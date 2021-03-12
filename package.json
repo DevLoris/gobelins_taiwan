@@ -34,7 +34,9 @@
     "@wbe/libraries": "^1.5.0-alpha.0",
     "gsap": "^3.6.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "stats.js": "^0.17.0",
+    "three": "^0.126.1"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",

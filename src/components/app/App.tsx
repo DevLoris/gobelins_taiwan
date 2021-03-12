@@ -75,7 +75,7 @@ class App extends Component<IProps, IStates> {
     pNewPage: TPageRegisterObject
   ): Promise<void> {
     return new Promise(async (resolve) => {
-      debug({ pOldPage, pNewPage });
+      // debug({ pOldPage, pNewPage });
       const oldPageRef = pOldPage?.rootRef?.current;
       const newPageRef = pNewPage?.rootRef?.current;
 
@@ -97,7 +97,7 @@ class App extends Component<IProps, IStates> {
    * When route has changed
    */
   protected routeChangedHandler(pRouteMatch: IRouteMatch) {
-    debug("pRouteMatch", pRouteMatch);
+    // debug("pRouteMatch", pRouteMatch);
 
     // if (!Router.currentRouteMatch.parameters.lang) {
     //   throw new Error("No language parameter passed");
@@ -188,25 +188,25 @@ class App extends Component<IProps, IStates> {
     return (
       <div className={css.root}>
         <div className={css.wrapper}>
-          <nav className={css.nav}>
-            <a
-              className={css.link}
-              href={Router.generateURL({ page: ERouterPage.HOME_PAGE })}
-              children={"Home"}
-              data-internal-link={true}
-            />
-            <a
-              className={css.link}
-              href={Router.generateURL({
-                page: ERouterPage.WORK_PAGE,
-                parameters: {
-                  slug: "custom-slug",
-                },
-              })}
-              children={"Work"}
-              data-internal-link={true}
-            />
-          </nav>
+          {/*<nav className={css.nav}>*/}
+          {/*  <a*/}
+          {/*    className={css.link}*/}
+          {/*    href={Router.generateURL({ page: ERouterPage.HOME_PAGE })}*/}
+          {/*    children={"Home"}*/}
+          {/*    data-internal-link={true}*/}
+          {/*  />*/}
+          {/*  <a*/}
+          {/*    className={css.link}*/}
+          {/*    href={Router.generateURL({*/}
+          {/*      page: ERouterPage.WORK_PAGE,*/}
+          {/*      parameters: {*/}
+          {/*        slug: "custom-slug",*/}
+          {/*      },*/}
+          {/*    })}*/}
+          {/*    children={"Work"}*/}
+          {/*    data-internal-link={true}*/}
+          {/*  />*/}
+          {/*</nav>*/}
           <ViewStack
             ref={(r) => (this._viewStack = r)}
             transitionType={ETransitionType.CONTROLLED}
