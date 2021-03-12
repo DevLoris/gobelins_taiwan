@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es5",
+    "baseUrl": "./src",
+    "paths": {},
+    "lib": ["es2015.promise", "es6", "dom", "esnext"],
+    "jsx": "react",
+    "moduleResolution": "node",
+    "types": ["node", "jest"],
+    "sourceMap": true,
+    "isolatedModules": false,
+    "noEmitOnError": false,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "noEmitHelpers": true,
+    "allowUnreachableCode": true,
+    "esModuleInterop": true
+  },
+  "include": ["src/**/**/**/*"],
+  "exclude": ["./node_modules/*"]
+}

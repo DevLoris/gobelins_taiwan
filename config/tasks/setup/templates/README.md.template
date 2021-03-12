@@ -1,0 +1,19 @@
+# %%projectName%%
+
+## About
+
+%%projectDescription%%
+
+## Installation
+
+...
+
+## Help
+
+```shell script
+$ npm run help
+```
+
+## Credits
+
+%%projectAuthor%%

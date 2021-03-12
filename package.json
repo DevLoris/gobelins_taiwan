@@ -1,0 +1,107 @@
+{
+  "name": "gobelins-taiwan",
+  "version": "0.1.0",
+  "description": "",
+  "author": "Dieu",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "keywords": [
+    "webpack",
+    "boilerplate",
+    "react",
+    "typescript",
+    "less"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cher-ami/webpack-base.git"
+  },
+  "scripts": {
+    "dev": "NODE_ENV=development env-cmd --no-override -f .env node config/tasks/runner.js dev",
+    "build": "NODE_ENV=production env-cmd --no-override -f .env.production --fallback node config/tasks/runner.js build",
+    "clean": "node config/tasks/runner.js clean",
+    "reset": "node config/tasks/runner.js reset",
+    "scaffold": "node config/tasks/runner.js scaffold",
+    "setup": "npm i && node config/tasks/runner.js setup",
+    "help": "node config/tasks/runner.js help",
+    "prettier": "prettier --write './src/**/**/**/*.{tsx,ts,jsx,js,less,css,json,md}'",
+    "test": "jest src/*",
+    "test-framework": "jest config/*",
+    "postinstall": "cp -n .env.example .env || true"
+  },
+  "dependencies": {
+    "@solid-js/css-flat": "^1.0.1",
+    "@wbe/libraries": "^1.5.0-alpha.0",
+    "gsap": "^3.6.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-proposal-export-default-from": "^7.12.13",
+    "@babel/plugin-proposal-optional-chaining": "^7.13.8",
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@babel/runtime": "^7.13.10",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
+    "@solid-js/cli": "^1.1.2",
+    "@testing-library/react": "^11.2.5",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.33",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.2",
+    "@zouloux/files": "^0.6.0",
+    "app-root-path": "^3.0.0",
+    "babel-loader": "^8.2.2",
+    "bcrypt": "^5.0.1",
+    "change-case": "^4.1.2",
+    "colors": "^1.4.0",
+    "copy-webpack-plugin": "^8.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.1.2",
+    "cssnano": "^4.1.10",
+    "debug": "^4.3.1",
+    "dotenv-webpack": "^7.0.1",
+    "env-cmd": "^10.1.0",
+    "file-loader": "^6.2.0",
+    "fork-ts-checker-webpack-plugin": "^6.1.1",
+    "html-webpack-plugin": "^5.3.1",
+    "husky": "^5.1.3",
+    "inquirer": "^8.0.0",
+    "internal-ip": "^6.2.0",
+    "jest": "^26.6.3",
+    "less": "^4.1.1",
+    "less-loader": "^8.0.0",
+    "lint-staged": "^10.5.4",
+    "mini-css-extract-plugin": "^1.3.9",
+    "portfinder-sync": "^0.0.2",
+    "postcss-loader": "^5.1.0",
+    "postcss-preset-env": "^6.7.0",
+    "prettier": "^2.2.1",
+    "raw-loader": "^4.0.2",
+    "react-refresh": "^0.9.0",
+    "react-test-renderer": "^17.0.1",
+    "style-loader": "^2.0.0",
+    "typescript": "^4.2.3",
+    "webpack": "^5.24.4",
+    "webpack-bundle-analyzer": "^4.4.0",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-manifest-plugin": "^3.1.0",
+    "webpack-merge": "^5.7.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{tsx,ts,jsx,js,less,css,json,md}": [
+      "prettier --write"
+    ]
+  }
+}
