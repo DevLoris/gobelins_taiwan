@@ -10,6 +10,12 @@
 $ npm i
 ```
 
+## Run
+
+```shell script
+$ npm run dev
+```
+
 ## Scaffolder
 
 ```shell script
