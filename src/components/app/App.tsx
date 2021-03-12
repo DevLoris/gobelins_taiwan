@@ -99,27 +99,27 @@ class App extends Component<IProps, IStates> {
   protected routeChangedHandler(pRouteMatch: IRouteMatch) {
     debug("pRouteMatch", pRouteMatch);
 
-    if (!Router.currentRouteMatch.parameters.lang) {
-      throw new Error("No language parameter passed");
-    }
+    // if (!Router.currentRouteMatch.parameters.lang) {
+    //   throw new Error("No language parameter passed");
+    // }
 
-    const language = stringToLanguage(
-      Router.currentRouteMatch.parameters.lang as string
-    );
+    // const language = stringToLanguage(
+    //   Router.currentRouteMatch.parameters.lang as string
+    // );
 
-    if (language === undefined) {
-      debug("Incorrect language", Router.currentRouteMatch.parameters.lang);
-
-      // Show 404 page
-      const notFoundPage = () =>
-        require("../../pages/notFoundPage/NotFoundPage");
-
-      setTimeout(
-        () =>
-          this._viewStack.showPage("NotFoundPage", notFoundPage, "index", {}),
-        1
-      );
-    }
+    // if (language === undefined) {
+    //   debug("Incorrect language", Router.currentRouteMatch.parameters.lang);
+    //
+    //   // Show 404 page
+    //   const notFoundPage = () =>
+    //     require("../../pages/notFoundPage/NotFoundPage");
+    //
+    //   setTimeout(
+    //     () =>
+    //       this._viewStack.showPage("NotFoundPage", notFoundPage, "index", {}),
+    //     1
+    //   );
+    // }
   }
 
   /**

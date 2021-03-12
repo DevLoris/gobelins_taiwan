@@ -7,12 +7,12 @@ export enum ERouterPage {
 
 export const routes: IRoute[] = [
   {
-    url: "/{lang}/",
+    url: "/",
     page: ERouterPage.HOME_PAGE,
     importer: () => require("./pages/homePage/HomePage"),
   },
   {
-    url: "/{lang}/work/{slug}",
+    url: "/work/{slug}",
     page: ERouterPage.WORK_PAGE,
     importer: () => require("./pages/workPage/WorkPage"),
   },

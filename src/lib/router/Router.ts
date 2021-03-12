@@ -829,9 +829,9 @@ export class Router {
     pRouteMatch.parameters = Object.assign(
       {},
       {
-        lang:
-          LanguageService.currentLanguageString ||
-          languageToString(DEFAULT_LANGUAGE),
+        // lang:
+        //   LanguageService.currentLanguageString ||
+        //   languageToString(DEFAULT_LANGUAGE),
       },
       pRouteMatch.parameters
     );
