@@ -1,5 +1,7 @@
 import * as THREE from "three";
 import Stats from "stats.js";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+import { BuildScene } from './scenes/BuildScene';
 
 const debug = require("debug")(`front:Game`);
 
@@ -24,6 +26,7 @@ export class Game {
     private __renderer = null;
     private __scene = null;
     private __camera = null;
+    private __control = null;
 
     public  init(parentElement) {
         debug("ThreeJS version:", THREE.REVISION);
@@ -33,15 +36,21 @@ export class Game {
         document.body.appendChild(this.__stats.dom);
 
         Game.instance.__scene = new THREE.Scene();
-        Game.instance.__camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+        Game.instance.__camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 50 );
+        Game.instance.__camera.position.z = 20; 
 
         Game.instance.__renderer = new THREE.WebGLRenderer();
         Game.instance.__renderer.setSize( window.innerWidth, window.innerHeight );
         parentElement.appendChild( Game.instance.__renderer.domElement );
+        
+        
+        Game.instance.__control = new OrbitControls(Game.instance.__camera, Game.instance.__renderer.domElement);
     }
 
     public  start() {
         Game.instance.__animationLoopId = requestAnimationFrame( Game.instance.animate );
+        
+        BuildScene.buildElements(Game.__instance.__scene);
     }
 
     public stop() {
@@ -49,7 +58,7 @@ export class Game {
     }
 
     private  animate() {
-        Game.instance.__stats.begin();
+        Game.instance.__stats.begin(); 
 
         Game.instance.__renderer.render( Game.instance.__scene, Game.instance.__camera );
 
@@ -57,5 +66,4 @@ export class Game {
 
         requestAnimationFrame( Game.instance.animate );
     }
-
 }

@@ -2,8 +2,10 @@
   "compilerOptions": {
     "module": "esnext",
     "target": "es5",
-    "baseUrl": "./src",
-    "paths": {},
+    "baseUrl": "./src", 
+    "paths": {
+      "three": ["node_modules/three/src/Three"] // relative to "baseUrl"
+    },
     "lib": ["es2015.promise", "es6", "dom", "esnext"],
     "jsx": "react",
     "moduleResolution": "node",
