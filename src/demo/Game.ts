@@ -50,7 +50,8 @@ export class Game {
     public  start() {
         Game.instance.__animationLoopId = requestAnimationFrame( Game.instance.animate );
         
-        BuildScene.buildElements(Game.__instance.__scene);
+        BuildScene.buildElements(Game.__instance.__scene, Game.__instance.__camera);
+
     }
 
     public stop() {
