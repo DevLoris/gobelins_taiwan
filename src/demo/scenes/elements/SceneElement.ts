@@ -27,7 +27,6 @@ export abstract class SceneElement {
         
         let elements = [element];
 
-        console.log(this.id);
         if(this.outline.enable) {
             // outline only on mesh 
             if(element instanceof Mesh) { 
