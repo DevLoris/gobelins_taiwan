@@ -15,6 +15,10 @@ export interface ICustomStateScene {
         intro: boolean,
         outro: boolean
     },
+    hint: {
+        pre_pickup: boolean,
+        pickup: boolean
+    },
     visible_on_map: boolean
 }
 
@@ -22,6 +26,12 @@ export interface ICustomStateScene {
 export interface IPickupElement {
     scene: string,
     pickup: string,
+}
+
+// Pickup
+export interface IBooleanScene {
+    scene: string,
+    bool: boolean,
 }
 
 // Define the initial state using that type

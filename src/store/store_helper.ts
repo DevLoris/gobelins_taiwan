@@ -9,6 +9,10 @@ export function createEmptyScene(scene: string) : ICustomStateScene {
             intro: false,
             outro: false
         },
+        hint: {
+            pre_pickup: false,
+            pickup: false
+        },
         visible_on_map: false
     }
 }

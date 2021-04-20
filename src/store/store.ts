@@ -1,6 +1,18 @@
 import {createSlice, configureStore, PayloadAction} from '@reduxjs/toolkit'
-import {ICustomState, ICustomStateScene, initialState, IPickupElement, STORE_VERSION} from "./state_interface";
+import {
+    IBooleanScene,
+    ICustomState,
+    ICustomStateScene,
+    initialState,
+    IPickupElement,
+    STORE_VERSION
+} from "./state_interface";
 const ls = require('local-storage');
+
+//------------------------------------------
+// STORE
+// Stockage des données, retrieve (Localstorage)
+//------------------------------------------
 
 const experienceSlice = createSlice({
     name: 'experience',
@@ -38,6 +50,36 @@ const experienceSlice = createSlice({
                 // on ajoute en évitant les duplicatas
                 finded.picked_elements = Array.from( new Set([...finded.picked_elements, payload.payload.pickup]));
             }
+        },
+        pickupPreHint: (state: ICustomState, payload: PayloadAction<IBooleanScene>) => {
+            let finded =  state.scenes.find(value => value.scene == payload.payload.scene);
+            if(finded) {
+                finded.hint.pre_pickup = payload.payload.bool;
+            }
+        },
+        pickupHint: (state: ICustomState, payload: PayloadAction<IBooleanScene>) => {
+            let finded =  state.scenes.find(value => value.scene == payload.payload.scene);
+            if(finded) {
+                finded.hint.pre_pickup = payload.payload.bool;
+            }
+        },
+        toggleOnMap: (state: ICustomState, payload: PayloadAction<IBooleanScene>) => {
+            let finded =  state.scenes.find(value => value.scene == payload.payload.scene);
+            if(finded) {
+                finded.visible_on_map = payload.payload.bool;
+            }
+        },
+        vlogIntro: (state: ICustomState, payload: PayloadAction<IBooleanScene>) => {
+            let finded =  state.scenes.find(value => value.scene == payload.payload.scene);
+            if(finded) {
+                finded.vlog.intro = payload.payload.bool;
+            }
+        },
+        vlogOutro: (state: ICustomState, payload: PayloadAction<IBooleanScene>) => {
+            let finded =  state.scenes.find(value => value.scene == payload.payload.scene);
+            if(finded) {
+                finded.vlog.outro = payload.payload.bool;
+            }
         }
     }
 });
@@ -55,7 +97,7 @@ store.subscribe(() => {
 // exports rapides des méthodes de store
 export {store};
 export const { getState, dispatch } = store;
-export const { activeScene, addScene, addPickElementScene } = experienceSlice.actions;
+export const { activeScene, addScene, addPickElementScene, pickupHint, pickupPreHint, toggleOnMap, vlogIntro, vlogOutro } = experienceSlice.actions;
 
 // Types relatifs au store
 export type RootState = ReturnType<typeof store.getState>
