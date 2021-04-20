@@ -3,6 +3,7 @@ import { BuildScene } from './scenes/BuildScene';
 import {RaycastEvent} from "./scenes/events/RaycastEvent";
 import {PerspectiveCamera, REVISION, Scene, WebGLRenderer} from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
+import {AudioHandler} from "../lib/audio/AudioHandler";
 
 const debug = require("debug")(`front:Game`);
 
@@ -59,7 +60,9 @@ export class Game {
 
     public  start() {
         Game.instance.__animationLoopId = requestAnimationFrame( Game.instance.animate );
-        
+
+        AudioHandler.loadFile();
+
         BuildScene.buildElements(Game.__instance.__scene, Game.__instance.__camera);
 
     }

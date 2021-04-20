@@ -1,4 +1,5 @@
 import {Camera, Raycaster, Scene} from "three";
+import {AudioHandler} from "../../../lib/audio/AudioHandler";
 
 export class RaycastEvent {
     private raycast: Raycaster = new Raycaster();
@@ -91,6 +92,7 @@ export class RaycastEvent {
             this._camera
         );
 
+        AudioHandler.play("test");
 
         console.log(this._mouse, touchedElementIdentifier);
         // Process data
