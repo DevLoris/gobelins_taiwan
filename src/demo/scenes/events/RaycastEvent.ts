@@ -1,4 +1,5 @@
 import {Camera, Raycaster, Scene} from "three";
+import {activeScene, addPickElementScene, store} from "../../../store/store";
 
 export class RaycastEvent {
     private raycast: Raycaster = new Raycaster();
@@ -90,6 +91,7 @@ export class RaycastEvent {
             this._mouse,
             this._camera
         );
+        store.dispatch(addPickElementScene({pickup: "test", scene: "test"}));
 
 
         console.log(this._mouse, touchedElementIdentifier);

@@ -6,6 +6,8 @@ import { Router } from "lib/router/Router";
 import { EnvUtils } from "lib/utils/EnvUtils";
 import App from "./components/app/App";
 import { routes } from "./routes";
+import {Provider} from "react-redux";
+import {store} from "./store/store";
 
 const fileName = "index";
 const debug = require("debug")(`front:${fileName}`);
@@ -35,7 +37,7 @@ const debug = require("debug")(`front:${fileName}`);
    * Init React App
    */
   ReactDOM.render(
-    React.createElement(App, {}, null),
+    React.createElement(Provider, {store: store}, React.createElement(App, {}, null)),
     document.getElementById("AppContainer")
   );
 })();
