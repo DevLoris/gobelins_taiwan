@@ -343,7 +343,7 @@ export class Router {
     // Record fakemode
     this._fakeMode = pFakeMode;
 
-    // In fake mode, init current path
+    // In fake mode, initAndStart current path
     if (this._fakeMode) {
       this._currentPath = "";
     }

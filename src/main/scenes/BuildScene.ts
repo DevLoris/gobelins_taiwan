@@ -20,8 +20,6 @@ export class BuildScene {
 
     static buildElements(scene: Scene, camera: Camera) {
 
-
-
         this.sceneComponents.forEach(value => {
             let elements = value.prepareElements();
             elements.forEach(element => {

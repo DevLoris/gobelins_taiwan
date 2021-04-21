@@ -14,7 +14,7 @@ export class DOMView {
    * DOMView constructor.
    * Set component's root. If not defined, can still be targeted trough targetRoot middleWare.
    * @param $pRoot Component's root. If not defined, can still be targeted trough targetRoot middleWare.
-   * @param pAutoInit Will launch init phase if true. Else, child component have to init manually.
+   * @param pAutoInit Will launch initAndStart phase if true. Else, child component have to initAndStart manually.
    */
   constructor($pRoot: HTMLElement = null, pAutoInit = true) {
     // Set root from parameter
@@ -27,7 +27,7 @@ export class DOMView {
   }
 
   /**
-   * Start init sequence
+   * Start initAndStart sequence
    */
   protected init() {
     this.prepareDependencies();
@@ -44,7 +44,7 @@ export class DOMView {
   protected prepareDependencies() {}
 
   /**
-   * Middleware called just before init sequence
+   * Middleware called just before initAndStart sequence
    */
   protected beforeInit() {}
 
@@ -64,7 +64,7 @@ export class DOMView {
   protected prepareEvents() {}
 
   /**
-   * Middleware called just after init sequence
+   * Middleware called just after initAndStart sequence
    */
   protected afterInit() {}
 }

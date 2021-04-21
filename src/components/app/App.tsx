@@ -1,5 +1,5 @@
 import css from "./App.module.less";
-import React, { Component } from "react";
+import React, {Component, useRef} from "react";
 import { ETransitionType, ViewStack } from "../../lib/router/ViewStack";
 import { IRouteMatch, Router } from "../../lib/router/Router";
 import { TPageRegisterObject } from "../../lib/router/usePageRegister";
@@ -7,6 +7,7 @@ import {
   DEFAULT_LANGUAGE,
   languageToString,
 } from "../../lib/services/LanguageService";
+import {Game} from "../../main/Game";
 
 const componentName = "App";
 const debug = require("debug")(`front:${componentName}`);
@@ -22,6 +23,8 @@ export interface IStates {}
 class App extends Component<IProps, IStates> {
   protected _viewStack: ViewStack;
 
+  private gameInstanceRef: any; // TODO typage ?
+
   /**
    * Constructor
    * @param props
@@ -33,6 +36,10 @@ class App extends Component<IProps, IStates> {
     this.state = {
       // initialize states...
     } as IStates;
+
+    this.gameInstanceRef = React.createRef();
+    this.gameInstanceRef.current = new Game();
+    this.gameInstanceRef.current.init();
   }
 
   componentDidMount() {
@@ -43,6 +50,8 @@ class App extends Component<IProps, IStates> {
   componentWillUnmount() {
     Router.onNotFound.remove(this.routeNotFoundHandler);
     Router.onNotFound.remove(this.routeChangedHandler);
+
+    this.gameInstanceRef.current.destroy();
   }
 
   componentDidUpdate(pPrevProps: IProps, pPrevState: IStates) {}
