@@ -1,4 +1,6 @@
-export const STORE_VERSION = 2;
+import {DEFAULT_SCENE} from "../vars/scene_vars";
+
+export const STORE_VERSION = 3;
 
 // Store state
 export interface ICustomState {
@@ -36,7 +38,7 @@ export interface IBooleanScene {
 
 // Define the initial state using that type
 export const initialState: ICustomState = {
-    active_scene: null,
+    active_scene: DEFAULT_SCENE,
     version: STORE_VERSION,
     scenes: []
 };
