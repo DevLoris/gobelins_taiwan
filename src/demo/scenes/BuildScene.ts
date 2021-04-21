@@ -11,11 +11,11 @@ export class BuildScene {
     public static elements:Mesh[];
 
     public static sceneComponents: SceneElement[] = [
-        // new CubeSceneElement("test", 0x00ff00, {size: [1, 1, 1], position: [0, 0, 0]}),
-        // new CubeSceneElement("test", 0xffff00, {size: [1, 1, 1], position: [2, 0, 0]}),
-        // new CubeSceneElement("test", 0xffff00, {size: [1, 1, 1], position: [4, 0, 0], outline: {enable: true, color: 0x00ff00, stroke: 2.05}}),
-        // new SpriteSceneElement("sprite", "/public/startup.png", {size:  [1, 2, 2], position: [1, 1, 1], renderTop: true}),
-        new ObjectSceneElement("littlestTokyo", "/public/LittlestTokyo.glb", {}),
+        new CubeSceneElement("test", 0x00ff00, {size: [1, 1, 1], position: [0, 0, 0]}),
+        new CubeSceneElement("test", 0xffff00, {size: [1, 1, 1], position: [2, 0, 0]}),
+        new CubeSceneElement("test", 0xffff00, {size: [1, 1, 1], position: [4, 0, 0], outline: {enable: true, color: 0x00ff00, stroke: 2.05}}),
+        new SpriteSceneElement("sprite", "/public/startup.png", {size:  [1, 2, 2], position: [1, 1, 1], renderTop: true}),
+        // new ObjectSceneElement("littlestTokyo", "/public/LittlestTokyo.glb", {}),
     ];
 
     static buildElements(scene: Scene, camera: Camera) {

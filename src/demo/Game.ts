@@ -3,6 +3,11 @@ import { BuildScene } from './scenes/BuildScene';
 import {RaycastEvent} from "./scenes/events/RaycastEvent";
 import {PerspectiveCamera, REVISION, Scene, WebGLRenderer} from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
+import {addScene, getState, store} from "../store/store";
+import {useDispatch} from "react-redux";
+import {selectActiveScene, selectStoreVersion} from "../store/store_selector";
+import {createEmptyScene} from "../store/store_helper";
+import {AudioHandler} from "../lib/audio/AudioHandler";
 
 const debug = require("debug")(`front:Game`);
 
@@ -61,9 +66,9 @@ export class Game {
 
     public  start() {
         Game.instance.__animationLoopId = requestAnimationFrame( Game.instance.animate );
-
+        store.dispatch(addScene(createEmptyScene("test")));
+        AudioHandler.loadFile();
         BuildScene.buildElements(Game.__instance.__scene, Game.__instance.__camera);
-
     }
 
     public stop(): void {
@@ -76,6 +81,7 @@ export class Game {
         Game.instance.__renderer.render( Game.instance.__scene, Game.instance.__camera );
 
         Game.instance.__stats.end();
+
 
         requestAnimationFrame( Game.instance.animate );
     }
