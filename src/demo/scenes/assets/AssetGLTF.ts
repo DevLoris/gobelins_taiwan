@@ -6,7 +6,7 @@ export class AssetGLTF {
     public loading_progress: number = 0;
     public id: string =  null;
     public path: string =  null;
-    public glft: GLTF;
+    public gltf: GLTF;
 
     constructor(id, path) {
         this.id = id;
@@ -21,7 +21,7 @@ export class AssetGLTF {
                 model.scale.set( 0.01, 0.01, 0.01 );
 
                 this.loaded  = true;
-                this.glft = gltf;
+                this.gltf = gltf;
             },
             ( xhr ) =>  {
                 this.loading_progress =  ( xhr.loaded / xhr.total * 100 ) ;

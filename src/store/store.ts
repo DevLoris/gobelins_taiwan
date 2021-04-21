@@ -1,4 +1,4 @@
-import {createSlice, configureStore, PayloadAction} from '@reduxjs/toolkit'
+import {createSlice, configureStore, PayloadAction, combineReducers} from '@reduxjs/toolkit'
 import {
     IBooleanScene,
     ICustomState,
@@ -6,7 +6,9 @@ import {
     initialState,
     IPickupElement,
     STORE_VERSION
-} from "./state_interface";
+} from "./state_interface_experience";
+import data from '../data/data.json';
+import {IStateData, IStateDataScene} from "./state_interface_data";
 const ls = require('local-storage');
 
 //------------------------------------------
@@ -46,6 +48,7 @@ const experienceSlice = createSlice({
         addPickElementScene: (state: ICustomState, payload: PayloadAction<IPickupElement>) => {
             // ajout d'un élément si la scene existe
             let finded =  state.scenes.find(value => value.scene == payload.payload.scene);
+            console.log(finded);
             if(finded) {
                 // on ajoute en évitant les duplicatas
                 finded.picked_elements = Array.from( new Set([...finded.picked_elements, payload.payload.pickup]));
@@ -84,14 +87,26 @@ const experienceSlice = createSlice({
     }
 });
 
+
+
+const dataSlice = createSlice({
+    name: 'data',
+    initialState: ((): IStateData => {
+        // @ts-ignore
+        return { scenes: data.scenes, collectibles: data.collectibles };
+    })(),
+    reducers: {
+    }
+});
+
 let store = configureStore({
-    reducer: experienceSlice.reducer,
+    reducer: combineReducers({user_data:  experienceSlice.reducer, data:  dataSlice.reducer}),
 });
 
 // Subscribe pour les mises à jour dans le Store locator
 store.subscribe(() => {
     console.log('Store update');
-    ls('save', store.getState());
+    ls('save', store.getState().user_data);
 });
 
 // exports rapides des méthodes de store

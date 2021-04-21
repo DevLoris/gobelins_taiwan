@@ -1,4 +1,4 @@
-import {ICustomStateScene} from "./state_interface";
+import {ICustomStateScene} from "./state_interface_experience";
 
 // Helper
 export function createEmptyScene(scene: string) : ICustomStateScene {

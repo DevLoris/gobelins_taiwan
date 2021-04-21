@@ -8,6 +8,7 @@ import App from "./components/app/App";
 import { routes } from "./routes";
 import {Provider} from "react-redux";
 import {store} from "./store/store";
+import './lib/i18n';
 
 const fileName = "index";
 const debug = require("debug")(`front:${fileName}`);

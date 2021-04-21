@@ -1,8 +1,8 @@
 import {SceneElementOption, SceneElementOptionOutline} from "./SceneElementOption";
-import { BackSide, Object3D } from 'three'; 
+import { BackSide, Object3D } from 'three';
 import { MeshBasicMaterial } from 'three';
-import { Mesh } from 'three'; 
- 
+import { Mesh } from 'three';
+
 export abstract class SceneElement {
     protected id: string;
 
@@ -11,25 +11,25 @@ export abstract class SceneElement {
     protected renderTop: boolean = false;
     protected outline: SceneElementOptionOutline = {enable: false};
 
-    protected element: Object3D; 
+    protected element: Object3D;
 
     constructor(id, options: SceneElementOption) {
-        this.id = id; 
-        Object.assign(this, options);    
+        this.id = id;
+        Object.assign(this, options);
     }
 
 
     abstract createElement() : Object3D;
 
     prepareElements() : Object3D[] {
-        let element = this.createElement(); 
+        let element = this.createElement();
         this.applyModifiers(element);
-        
+
         let elements = [element];
 
         if(this.outline.enable) {
-            // outline only on mesh 
-            if(element instanceof Mesh) { 
+            // outline only on mesh
+            if(element instanceof Mesh) {
                 var outlineMaterial = new MeshBasicMaterial( { color: this.outline.color, side: BackSide } );
                 var outlineMesh = new Mesh( element.geometry, outlineMaterial );
                 outlineMesh.position.set(...this.position);

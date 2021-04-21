@@ -1,0 +1,24 @@
+{
+  "scenes": [
+    {
+      "id":  "test",
+      "collectibles_id":  ["tomate", "carrot", "test"]
+    }
+  ],
+  "collectibles": [
+    {
+      "id": "tomate",
+      "name": "Tomate",
+      "asset": "/public/tomate-classique_1.png",
+      "text": "Les tomates c'est bon",
+      "additional": []
+    },
+    {
+      "id": "test",
+      "name": "Test",
+      "asset": "/public/tomate-classique_1.png",
+      "text": "Les tests c'est cool",
+      "additional": []
+    }
+  ]
+}
