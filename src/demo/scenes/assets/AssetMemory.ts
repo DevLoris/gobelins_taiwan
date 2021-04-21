@@ -1,14 +1,28 @@
 import {AssetLoader} from "./AssetLoader";
 import {AssetGLTF} from "./AssetGLTF";
 
-
 export class AssetMemory {
-    static loader: AssetLoader = new AssetLoader();
-    static assets: AssetGLTF[];
+    // --------------------------------------------------------------------------- SINGLETON
 
-    static load(id: string, path: string) {
+    /**
+     * Create an instance if it doesn't already exist when instance method
+     */
+    protected static __instance: AssetMemory;
+
+    static get instance(): AssetMemory {
+        if (this.__instance == null) this.__instance = new AssetMemory();
+        return this.__instance;
+    }
+
+    // ---------------------------------------------------------------------------
+
+    private __loader: AssetLoader = new AssetLoader();
+    private __assets: AssetGLTF[] = [];
+
+    public load(id: string, path: string) {
         let asset : AssetGLTF = new AssetGLTF(id, path);
-        AssetMemory.assets.push(asset);
-        asset.load(AssetMemory.loader);
+        AssetMemory.instance.__assets.push(asset);
+        asset.load(AssetMemory.instance.__loader);
+        return asset;
     }
 }

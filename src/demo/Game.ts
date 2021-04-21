@@ -39,7 +39,7 @@ export class Game {
 
         Game.instance.__scene = new Scene();
         Game.instance.__camera = new PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 50 );
-        Game.instance.__camera.position.z = 20; 
+        Game.instance.__camera.position.z = 20;
 
         Game.instance.__renderer = new WebGLRenderer();
         Game.instance.__renderer.setSize( window.innerWidth, window.innerHeight );
@@ -48,6 +48,8 @@ export class Game {
         this.setupEvents();
 
         Game.instance.__control = new OrbitControls(Game.instance.__camera, Game.instance.__renderer.domElement);
+        // Game.instance.__control.enablePan = false;
+        // Game.instance.__control.enableDamping = true;
     }
 
     public setupEvents(): void {
@@ -59,7 +61,7 @@ export class Game {
 
     public  start() {
         Game.instance.__animationLoopId = requestAnimationFrame( Game.instance.animate );
-        
+
         BuildScene.buildElements(Game.__instance.__scene, Game.__instance.__camera);
 
     }
@@ -69,7 +71,7 @@ export class Game {
     }
 
     private animate(): void {
-        Game.instance.__stats.begin(); 
+        Game.instance.__stats.begin();
 
         Game.instance.__renderer.render( Game.instance.__scene, Game.instance.__camera );
 
