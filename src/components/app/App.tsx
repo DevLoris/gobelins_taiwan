@@ -6,9 +6,7 @@ import { TPageRegisterObject } from "../../lib/router/usePageRegister";
 import {
   DEFAULT_LANGUAGE,
   languageToString,
-  stringToLanguage,
 } from "../../lib/services/LanguageService";
-import { ERouterPage } from "../../routes";
 
 const componentName = "App";
 const debug = require("debug")(`front:${componentName}`);
@@ -188,25 +186,6 @@ class App extends Component<IProps, IStates> {
     return (
       <div className={css.root}>
         <div className={css.wrapper}>
-          {/*<nav className={css.nav}>*/}
-          {/*  <a*/}
-          {/*    className={css.link}*/}
-          {/*    href={Router.generateURL({ page: ERouterPage.HOME_PAGE })}*/}
-          {/*    children={"Home"}*/}
-          {/*    data-internal-link={true}*/}
-          {/*  />*/}
-          {/*  <a*/}
-          {/*    className={css.link}*/}
-          {/*    href={Router.generateURL({*/}
-          {/*      page: ERouterPage.WORK_PAGE,*/}
-          {/*      parameters: {*/}
-          {/*        slug: "custom-slug",*/}
-          {/*      },*/}
-          {/*    })}*/}
-          {/*    children={"Work"}*/}
-          {/*    data-internal-link={true}*/}
-          {/*  />*/}
-          {/*</nav>*/}
           <ViewStack
             ref={(r) => (this._viewStack = r)}
             transitionType={ETransitionType.CONTROLLED}
