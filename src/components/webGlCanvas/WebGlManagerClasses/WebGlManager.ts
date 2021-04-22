@@ -1,11 +1,10 @@
-import {PerspectiveCamera, REVISION, Scene, WebGLRenderer} from "three";
+import {Color, PerspectiveCamera, REVISION, Scene, WebGLRenderer} from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import Stats from "stats.js";
-import {addScenery, store} from "../../../store/store";
-import {createEmptyScenery} from "../../../store/store_helper";
-import {AudioHandler} from "../../../lib/audio/AudioHandler";
+import {addScenery, getState, store} from "../../../store/store";
 import {RaycastEvent} from "./events/RaycastEvent";
 import {SceneryUtils} from "./scenery/SceneryUtils";
+import {selectScene} from "../../../store/store_selector";
 
 const debug = require("debug")(`front:WebGlManager`);
 
@@ -53,6 +52,8 @@ export class WebGlManager {
         this._prepareWorld();
 
         this._startWebGlLoop();
+
+        this.toggleScenery("test");
     }
 
     /**
@@ -138,6 +139,8 @@ export class WebGlManager {
     private _animationFrame():void {
         this._stats.begin();
 
+        this._control.update();
+
         this._renderer.render(this._scene, this._camera);
 
         this._stats.end();
@@ -155,6 +158,30 @@ export class WebGlManager {
         this._stopWebGlLoop();
         document.body.removeChild(this._stats.dom);
         this._wrapper.removeChild( this._renderer.domElement );
+    }
+
+    public toggleScenery(scene_id: string): void {
+        const scene = selectScene(scene_id)(getState().data);
+
+        // CONTROL
+        this._control.minPolarAngle = scene.orbit.minPolar;
+        this._control.maxPolarAngle = scene.orbit.maxPolar;
+        this._control.minDistance = scene.orbit.minDistance;
+        this._control.maxDistance = scene.orbit.maxDistance;
+        this._control.enablePan = false;
+        this._control.enableDamping = true;
+        this._control.zoomSpeed = 0.5;
+        this._control.update();
+
+        // SCENE
+        this._scene.background = new Color(scene.scene.background);
+
+        // CAMERA
+        // @ts-ignore
+        this._camera.position.set(scene.camera.position.x, scene.camera.position.y, scene.camera.position.z);
+
+        // @ts-ignore
+        this._control.target.set(scene.orbit.center.x, scene.orbit.center.y, scene.orbit.center.z);
     }
 
 }

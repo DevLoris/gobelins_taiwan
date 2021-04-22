@@ -1,6 +1,5 @@
 import {AudioHandler} from "../lib/audio/AudioHandler";
 import {addScenery, getState, store} from "../store/store";
-import {createEmptyScenery} from "../store/store_helper";
 import {selectScene} from "../store/store_selector";
 
 const debug = require("debug")(`front:Game`);
