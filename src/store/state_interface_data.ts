@@ -21,12 +21,6 @@ export interface IStateDataCollectibleWithPickup extends IStateDataCollectible {
 }
 
 export interface IStateDataCollectibleAdditional {
-}
-
-export interface IStateDataCollectibleAdditionalMedia extends IStateDataCollectibleAdditional {
-    path: string
-}
-
-export interface IStateDataCollectibleAdditionalText extends IStateDataCollectibleAdditional {
-    text: string
+    type: string,
+    value: any
 }

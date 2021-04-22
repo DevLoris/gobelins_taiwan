@@ -11,7 +11,12 @@
       "name": "Tomate",
       "asset": "/public/tomate-classique_1.png",
       "text": "Les tomates c'est bon",
-      "additional": []
+      "additional": [
+        {
+          "type": "text",
+          "value": "xccyxcxy"
+        }
+      ]
     },
     {
       "id": "test",

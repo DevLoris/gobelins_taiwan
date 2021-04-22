@@ -32,10 +32,10 @@ function Notebook (props: IProps) {
 
     return <div className={merge([css.root, props.className])}>
         <div>
-            <NotebookLabelToggler label={t('notebook__menu__hint')} onClick={() => { setPage(NotebookPages.HINT); }}/>
-            <NotebookLabelToggler label={t('notebook__menu__elements')} onClick={() => { setPage(NotebookPages.ELEMENTS); }}/>
-            <NotebookLabelToggler label={t('notebook__menu__map')} onClick={() => { setPage(NotebookPages.MAP); }}/>
-            <NotebookLabelToggler label={t('notebook__menu__pvt')} onClick={() => { setPage(NotebookPages.PVT); }}/>
+            <NotebookLabelToggler active={NotebookPages.HINT == page} label={t('notebook__menu__hint')} onClick={() => { setPage(NotebookPages.HINT); }}/>
+            <NotebookLabelToggler active={NotebookPages.ELEMENTS == page} label={t('notebook__menu__elements')} onClick={() => { setPage(NotebookPages.ELEMENTS); }}/>
+            <NotebookLabelToggler active={NotebookPages.MAP == page} label={t('notebook__menu__map')} onClick={() => { setPage(NotebookPages.MAP); }}/>
+            <NotebookLabelToggler active={NotebookPages.PVT == page} label={t('notebook__menu__pvt')} onClick={() => { setPage(NotebookPages.PVT); }}/>
         </div>
 
         {(page == NotebookPages.HINT &&
