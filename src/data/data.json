@@ -1,0 +1,38 @@
+{
+  "scenes": [
+    {
+      "id":  "test",
+      "collectibles_id":  ["tomate", "carrot", "test"],
+      "camera":  [0, 0, -20],
+      "orbit": {
+        "center": [0, 0, 0],
+        "minPolar": 10,
+        "maxPolar": 50,
+        "minZoom": 1,
+        "maxZoom": 10
+      },
+      "content": []
+    }
+  ],
+  "collectibles": [
+    {
+      "id": "tomate",
+      "name": "Tomate",
+      "asset": "/public/tomate-classique_1.png",
+      "text": "Les tomates c'est bon",
+      "additional": [
+        {
+          "type": "text",
+          "value": "xccyxcxy"
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "name": "Test",
+      "asset": "/public/tomate-classique_1.png",
+      "text": "Les tests c'est cool",
+      "additional": []
+    }
+  ]
+}

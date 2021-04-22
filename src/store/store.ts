@@ -1,4 +1,4 @@
-import {createSlice, configureStore, PayloadAction} from '@reduxjs/toolkit'
+import {createSlice, configureStore, PayloadAction, combineReducers} from '@reduxjs/toolkit'
 import {
     IBooleanScene,
     ICustomState,
@@ -6,7 +6,9 @@ import {
     initialState,
     IPickupElement,
     STORE_VERSION
-} from "./state_interface";
+} from "./state_interface_experience";
+import data from '../data/data.json';
+import {IStateData, IStateDataScene} from "./state_interface_data";
 const ls = require('local-storage');
 
 const debug = require("debug")(`front:Store`);
@@ -86,14 +88,26 @@ const experienceSlice = createSlice({
     }
 });
 
+
+
+const dataSlice = createSlice({
+    name: 'data',
+    initialState: ((): IStateData => {
+        // @ts-ignore
+        return { scenes: data.scenes, collectibles: data.collectibles };
+    })(),
+    reducers: {
+    }
+});
+
 let store = configureStore({
-    reducer: experienceSlice.reducer,
+    reducer: combineReducers({user_data:  experienceSlice.reducer, data:  dataSlice.reducer}),
 });
 
 // Subscribe pour les mises à jour dans le Store locator
 store.subscribe(() => {
+    ls('save', store.getState().user_data);
     debug('Store update');
-    ls('save', store.getState());
 });
 
 // exports rapides des méthodes de store
