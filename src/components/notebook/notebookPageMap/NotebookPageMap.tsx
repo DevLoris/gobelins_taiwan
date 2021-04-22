@@ -1,6 +1,6 @@
 import css from './NotebookPageMap.module.less';
 import React from 'react';
-import { merge } from "../../lib/utils/arrayUtils";
+import { merge } from "../../../lib/utils/arrayUtils";
 import NotebookTitle from "../notebookTitle/NotebookTitle";
 import {useTranslation} from "react-i18next";
 

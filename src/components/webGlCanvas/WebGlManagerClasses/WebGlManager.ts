@@ -1,7 +1,7 @@
-import {Color, PerspectiveCamera, REVISION, Scene, WebGLRenderer} from "three";
+import {Color, DirectionalLight, HemisphereLight, PerspectiveCamera, REVISION, Scene, WebGLRenderer} from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import Stats from "stats.js";
-import {addScenery, getState, store} from "../../../store/store";
+import {getState} from "../../../store/store";
 import {RaycastEvent} from "./events/RaycastEvent";
 import {SceneryUtils} from "./scenery/SceneryUtils";
 import {selectScene} from "../../../store/store_selector";
@@ -11,7 +11,7 @@ const debug = require("debug")(`front:WebGlManager`);
 const CAMERA_FOV = 75;
 const CAMERA_ASPECT = window.innerWidth / window.innerHeight;
 const CAMERA_NEAR = 0.1;
-const CAMERA_FAR = 50;
+const CAMERA_FAR = 10000;
 
 const STATS_FPS = 0;
 
@@ -54,6 +54,8 @@ export class WebGlManager {
         this._startWebGlLoop();
 
         this.toggleScenery("test");
+
+        window.addEventListener('resize', this._resizeHandler.bind(this));
     }
 
     /**
@@ -148,6 +150,18 @@ export class WebGlManager {
         requestAnimationFrame(this._animationFrame.bind(this));
     }
 
+    // --------------------------------------------------------------------------- SETUP
+
+    /**
+     * On window resize, adapt renderer
+     * @private
+     */
+    private _resizeHandler():void {
+        this._camera.aspect = window.innerWidth / window.innerHeight;
+        this._camera.updateProjectionMatrix();
+        this._renderer.setSize( window.innerWidth, window.innerHeight );
+    }
+
     // --------------------------------------------------------------------------- END INSTANCE
 
     /**
@@ -175,6 +189,13 @@ export class WebGlManager {
 
         // SCENE
         this._scene.background = new Color(scene.scene.background);
+
+        this._scene.add( new HemisphereLight( 0xffffff, 0x000000, 0.4 ) );
+
+        const dirLight = new DirectionalLight( 0xffffff, 1 );
+        dirLight.position.set( 5, 2, 8 );
+        this._scene.add( dirLight );
+
 
         // CAMERA
         // @ts-ignore

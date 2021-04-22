@@ -21,7 +21,7 @@ export class AssetGLTF {
             .then(gltf => {
                 const model = gltf.scene;
                 model.position.set( 0, 0, 0 );
-                model.scale.set( 1, 1, 1 );
+                model.scale.set( 0.01, 0.01, 0.01 );
 
                 this.loaded  = true;
                 this.gltf = gltf;

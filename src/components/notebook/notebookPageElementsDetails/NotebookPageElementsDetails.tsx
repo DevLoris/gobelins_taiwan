@@ -1,7 +1,7 @@
 import css from './NotebookPageElementsDetails.module.less';
 import React from 'react';
-import { merge } from "../../lib/utils/arrayUtils";
-import {IStateDataCollectibleWithPickup} from "../../store/state_interface_data";
+import { merge } from "../../../lib/utils/arrayUtils";
+import {IStateDataCollectibleWithPickup} from "../../../store/state_interface_data";
 import NotebookTitle from "../notebookTitle/NotebookTitle";
 
 interface IProps {

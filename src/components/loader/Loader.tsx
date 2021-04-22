@@ -40,7 +40,15 @@ function Loader (props: IProps) {
      * @param pDuration
      */
     function componentReveal(pShow, pDuration = 1) {
-        gsap.to(rootRef.current, { duration: pDuration, delay: 0, autoAlpha: 0 });
+        gsap.to(rootRef.current, {
+          duration: pDuration,
+          autoAlpha: pShow ? 1 : 0,
+          onComplete: () => {
+            if(!pShow) {
+              rootRef.current.style.display = "none";
+            }
+          }
+        });
     }
 
     // -------------------–-------------------–-------------------–--------------- RENDER
