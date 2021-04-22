@@ -88,8 +88,6 @@ const experienceSlice = createSlice({
     }
 });
 
-
-
 const dataSlice = createSlice({
     name: 'data',
     initialState: ((): IStateData => {

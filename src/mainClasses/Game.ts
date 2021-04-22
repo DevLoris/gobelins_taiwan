@@ -25,7 +25,8 @@ export class Game {
     }
 
     private _createSceneries() {
-        // let scene = selectScene("test")(getState());
+        let scene = selectScene("test")(getState().data);
+        debug(scene);
         // TODO utilise la data du commit de Loris dans le dossier data
     }
 }
