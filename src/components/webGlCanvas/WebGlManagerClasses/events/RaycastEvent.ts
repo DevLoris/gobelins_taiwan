@@ -1,6 +1,6 @@
 import {Camera, Raycaster, Scene} from "three";
-import {addPickElementScene, store} from "../../../store/store";
-import {AudioHandler} from "../../../lib/audio/AudioHandler";
+import {addPickElementScene, store} from "../../../../store/store";
+import {AudioHandler} from "../../../../lib/audio/AudioHandler";
 
 const debug = require("debug")(`front:RaycastEvent`);
 
@@ -102,5 +102,4 @@ export class RaycastEvent {
         // Process data
         //this.postStartTouchEventAction(touchedElementIdentifier, this._mouse.x, this._mouse.y);
     }
-
 }

@@ -1,13 +1,20 @@
 import {PerspectiveCamera, REVISION, Scene, WebGLRenderer} from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
-import {RaycastEvent} from "../../../main/scenes/events/RaycastEvent";
 import Stats from "stats.js";
 import {addScenery, store} from "../../../store/store";
 import {createEmptyScenery} from "../../../store/store_helper";
-import {BuildScene} from "../../../main/scenes/BuildScene";
 import {AudioHandler} from "../../../lib/audio/AudioHandler";
+import {RaycastEvent} from "./events/RaycastEvent";
+import {SceneryUtils} from "./scenery/SceneryUtils";
 
 const debug = require("debug")(`front:WebGlManager`);
+
+const CAMERA_FOV = 75;
+const CAMERA_ASPECT = window.innerWidth / window.innerHeight;
+const CAMERA_NEAR = 0.1;
+const CAMERA_FAR = 50;
+
+const STATS_FPS = 0;
 
 export class WebGlManager {
 
@@ -54,7 +61,7 @@ export class WebGlManager {
      */
     private _setupStats():void {
         this._stats = new Stats();
-        this._stats.showPanel(0);
+        this._stats.showPanel(STATS_FPS);
         document.body.appendChild(this._stats.dom);
     }
 
@@ -64,7 +71,7 @@ export class WebGlManager {
      */
     private _setupScene():void {
         this._scene = new Scene();
-        this._camera = new PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 50 );
+        this._camera = new PerspectiveCamera( CAMERA_FOV, CAMERA_ASPECT, CAMERA_NEAR, CAMERA_FAR );
         this._camera.position.z = 20;
     }
 
@@ -103,9 +110,7 @@ export class WebGlManager {
      * @private
      */
     private _prepareWorld():void {
-        store.dispatch(addScenery(createEmptyScenery("testScenery")));
-        AudioHandler.loadFile();
-        BuildScene.buildElements(this._scene, this._camera);
+        SceneryUtils.buildElementsOf(this._scene);
     }
 
     // --------------------------------------------------------------------------- LOOP

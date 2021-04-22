@@ -7,7 +7,7 @@ import {
   DEFAULT_LANGUAGE,
   languageToString,
 } from "../../lib/services/LanguageService";
-import {Game} from "../../main/Game";
+import {Game} from "../../mainClasses/Game";
 
 const componentName = "App";
 const debug = require("debug")(`front:${componentName}`);
