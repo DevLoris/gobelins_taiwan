@@ -2,7 +2,16 @@
   "scenes": [
     {
       "id":  "test",
-      "collectibles_id":  ["tomate", "carrot", "test"]
+      "collectibles_id":  ["tomate", "carrot", "test"],
+      "camera":  [0, 0, -20],
+      "orbit": {
+        "center": [0, 0, 0],
+        "minPolar": 10,
+        "maxPolar": 50,
+        "minZoom": 1,
+        "maxZoom": 10
+      },
+      "content": []
     }
   ],
   "collectibles": [

@@ -5,7 +5,19 @@ export interface IStateData {
 
 export interface IStateDataScene {
     id: string,
-    collectibles_id: string[]
+    collectibles_id: string[],
+    camera: {
+        position: number[]
+    },
+    orbit: {
+        center: number[],
+        minPolar: number,
+        maxPolar: number,
+        minZoom:  number,
+        maxZoom: number,
+    },
+    content: {
+    }
     //  todo complete this
 }
 
