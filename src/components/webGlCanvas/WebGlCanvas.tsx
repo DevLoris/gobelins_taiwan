@@ -1,8 +1,8 @@
 import css from './WebGlCanvas.module.less';
 import React, {useEffect, useRef} from 'react';
 import { merge } from "../../lib/utils/arrayUtils";
-import {WebGlManager} from "./WebGlManagerClasses/WebGlManager";
 import {gsap} from "gsap";
+import {WebGlManager} from "./WebGlManagerClasses/WebGlManager";
 
 interface IProps {
   className?: string

@@ -4,15 +4,15 @@ import {AssetGLTF} from "../../assets/AssetGLTF";
 import {AssetMemory} from "../../assets/AssetMemory";
 
 export class ObjectSceneElement extends SceneElement {
-    private path: any;
+    private gltfId: any;
 
-    constructor(id, path: string, options: SceneElementOption) {
-        super(id, options);
-        this.path = path;
+    constructor(idInScene, gltfId: string, options: SceneElementOption) {
+        super(idInScene, options);
+        this.gltfId = gltfId;
     }
 
     createElement() {
-        const asset: AssetGLTF = AssetMemory.instance.load(this.id, this.path);
+        const asset: AssetGLTF = AssetMemory.instance.get(this.gltfId);
         return asset.gltf.scene;
     }
 }

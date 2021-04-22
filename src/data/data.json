@@ -14,6 +14,16 @@
       "content": []
     }
   ],
+  "models": [
+    {
+      "id": "demoModel",
+      "path": "/public/sceneries/demo/LittlestTokyo.glb"
+    },
+    {
+      "id": "khkhkj",
+      "path": "/public/sceneries/demo/LittlestTokyo2.glb"
+    }
+  ],
   "collectibles": [
     {
       "id": "tomate",

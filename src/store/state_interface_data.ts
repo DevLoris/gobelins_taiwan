@@ -1,5 +1,6 @@
 export interface IStateData {
     scenes: IStateDataScene[],
+    models: IStateDataModel3D[],
     collectibles : IStateDataCollectible[]
 }
 
@@ -19,6 +20,11 @@ export interface IStateDataScene {
     content: {
     }
     //  todo complete this
+}
+
+export interface IStateDataModel3D {
+    id:string,
+    path: string,
 }
 
 export interface IStateDataCollectible {
