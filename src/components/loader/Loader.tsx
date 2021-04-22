@@ -26,7 +26,7 @@ function Loader (props: IProps) {
   useEffect(() => {
     AssetMemory.instance.loadAll(selectModels(getState()))
         .then((models) => {
-          debug("hahaha", models);
+          debug("Models loaded", models);
             componentReveal(false);
             props.modelsLoadedCallback();
         });
