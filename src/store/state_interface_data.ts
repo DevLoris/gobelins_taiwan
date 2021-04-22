@@ -7,19 +7,28 @@ export interface IStateData {
 export interface IStateDataScene {
     id: string,
     collectibles_id: string[],
+    scene: {
+        background: string
+    },
     camera: {
-        position: number[]
+        position: ICoord
     },
     orbit: {
-        center: number[],
+        center: ICoord,
         minPolar: number,
         maxPolar: number,
-        minZoom:  number,
-        maxZoom: number,
+        minDistance:  number,
+        maxDistance: number,
     },
     content: {
     }
     //  todo complete this
+}
+
+export interface ICoord {
+    x: number,
+    y: number,
+    z: number
 }
 
 export interface IStateDataModel3D {
