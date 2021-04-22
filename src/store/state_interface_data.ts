@@ -1,5 +1,6 @@
 export interface IStateData {
     scenes: IStateDataScene[],
+    models: IStateDataModel3D[],
     collectibles : IStateDataCollectible[]
 }
 
@@ -28,6 +29,11 @@ export interface ICoord {
     x: number,
     y: number,
     z: number
+}
+
+export interface IStateDataModel3D {
+    id:string,
+    path: string,
 }
 
 export interface IStateDataCollectible {

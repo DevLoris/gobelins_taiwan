@@ -18,7 +18,6 @@ export abstract class SceneElement {
         Object.assign(this, options);
     }
 
-
     abstract createElement() : Object3D;
 
     prepareElements() : Object3D[] {

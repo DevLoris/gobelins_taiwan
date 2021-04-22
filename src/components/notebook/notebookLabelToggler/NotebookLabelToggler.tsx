@@ -1,6 +1,6 @@
 import css from './NotebookLabelToggler.module.less';
 import React from 'react';
-import { merge } from "../../lib/utils/arrayUtils";
+import { merge } from "../../../lib/utils/arrayUtils";
 
 interface IProps {
   className?: string,

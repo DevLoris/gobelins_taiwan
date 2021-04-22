@@ -1,11 +1,11 @@
 import css from './Notebook.module.less';
 import React, {useState} from 'react';
 import { merge } from "../../lib/utils/arrayUtils";
-import NotebookPageHint from "../notebookPageHint/NotebookPageHint";
-import NotebookPagePvt from "../notebookPagePvt/NotebookPagePvt";
-import NotebookPageMap from "../notebookPageMap/NotebookPageMap";
-import NotebookPageElements from "../notebookPageElements/NotebookPageElements";
-import NotebookLabelToggler from "../notebookLabelToggler/NotebookLabelToggler";
+import NotebookPageHint from "./notebookPageHint/NotebookPageHint";
+import NotebookPagePvt from "./notebookPagePvt/NotebookPagePvt";
+import NotebookPageMap from "./notebookPageMap/NotebookPageMap";
+import NotebookPageElements from "./notebookPageElements/NotebookPageElements";
+import NotebookLabelToggler from "./notebookLabelToggler/NotebookLabelToggler";
 import {useTranslation} from "react-i18next";
 
 interface IProps {

@@ -1,8 +1,8 @@
 import css from './WebGlCanvas.module.less';
 import React, {useEffect, useRef} from 'react';
 import { merge } from "../../lib/utils/arrayUtils";
-import {WebGlManager} from "./WebGlManagerClasses/WebGlManager";
 import {gsap} from "gsap";
+import {WebGlManager} from "./WebGlManagerClasses/WebGlManager";
 
 interface IProps {
   className?: string
@@ -44,7 +44,7 @@ function WebGlCanvas (props: IProps) {
    * On show prop update
    */
   useEffect(() => {
-    componentReveal(props.show);
+    props.show && componentReveal(props.show);
   }, [props.show]);
 
   // -------------------–-------------------–-------------------–--------------- ANIMATION
@@ -55,7 +55,10 @@ function WebGlCanvas (props: IProps) {
    * @param pDuration
    */
   function componentReveal(pShow, pDuration = 1) {
-    // gsap.to(rootRef.current, { duration: pDuration, delay: pDuration });
+    gsap.to(rootRef.current, {
+      duration: pDuration,
+      autoAlpha: pShow ? 1 : 0
+    });
   }
 
   // -------------------–-------------------–-------------------–--------------- RENDER

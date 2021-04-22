@@ -12,7 +12,7 @@ export class AssetLoader {
         this._gltf_loader.setDRACOLoader( this._draco_loader );
     }
 
-    public getGlftLoader() {
+    public getGltfLoader() {
         return  this._gltf_loader;
     }
 }

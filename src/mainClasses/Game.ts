@@ -16,16 +16,15 @@ export class Game {
         AudioHandler.loadFile();
 
         // Init sceneries
-        this._createSceneries();
+        this._initSceneries();
     }
 
     public destroy(): void {
 
     }
 
-    private _createSceneries() {
+    private _initSceneries() {
         let scene = selectScene("test")(getState().data);
         debug(scene);
-        // TODO utilise la data du commit de Loris dans le dossier data
     }
 }

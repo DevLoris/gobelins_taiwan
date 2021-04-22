@@ -1,7 +1,8 @@
 import css from "./HomePage.module.less";
-import React, {useRef} from "react";
+import React, {useRef, useState} from "react";
 import { usePageRegister } from "../../lib/router/usePageRegister";
 import WebGlCanvas from "../../components/webGlCanvas/WebGlCanvas";
+import Loader from "../../components/loader/Loader";
 
 interface IProps {}
 
@@ -13,6 +14,8 @@ const debug = require("debug")(`front:${componentName}`);
  */
 const HomePage = (props: IProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
+
+  const [loadingDone, setLoadingDone] = useState<boolean>(false);
 
   // -------------------–-------------------–-------------------–--------------- REGISTER PAGE
 
@@ -40,15 +43,20 @@ const HomePage = (props: IProps) => {
    */
   usePageRegister({ componentName, rootRef, playIn, playOut });
 
-
+  function onModelsLoaded() {
+    setLoadingDone(true);
+  }
 
   // -------------------–-------------------–-------------------–--------------- RENDER
 
   return (
     <div className={css.root} ref={rootRef}>
-      <WebGlCanvas />
+      <Loader modelsLoadedCallback={onModelsLoaded} />
+      {
+        loadingDone && <WebGlCanvas show={loadingDone} />
+      }
     </div>
   );
-};
+}
 
 export default HomePage;

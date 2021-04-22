@@ -1,6 +1,8 @@
 import {GLTF} from "three/examples/jsm/loaders/GLTFLoader";
 import {AssetLoader} from "./AssetLoader";
 
+const debug = require("debug")(`front:AssetGLTF`);
+
 export class AssetGLTF {
     public loaded:  boolean = false;
     public loading_progress: number = 0;
@@ -13,23 +15,17 @@ export class AssetGLTF {
         this.path = path;
     }
 
-    load(assetLoader: AssetLoader) {
-        assetLoader.getGlftLoader().load( this.path,
-            ( gltf )  => {
+    async triggerLoad(assetLoader: AssetLoader):Promise<any> {
+        return assetLoader.getGltfLoader()
+            .loadAsync(this.path, (e: ProgressEvent) => {})
+            .then(gltf => {
                 const model = gltf.scene;
-                model.position.set( 1, 1, 0 );
+                model.position.set( 0, 0, 0 );
                 model.scale.set( 0.01, 0.01, 0.01 );
 
                 this.loaded  = true;
                 this.gltf = gltf;
-            },
-            ( xhr ) =>  {
-                this.loading_progress =  ( xhr.loaded / xhr.total * 100 ) ;
-            },
-            ( e ) => {
-                this.loaded  = false;
-                console.error( e );
-            }
-        );
+                return this;
+            });
     }
 }

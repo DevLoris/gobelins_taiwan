@@ -1,10 +1,10 @@
 import css from './NotebookPageElements.module.less';
 import React, {useState} from 'react';
-import { merge } from "../../lib/utils/arrayUtils";
+import { merge } from "../../../lib/utils/arrayUtils";
 import {useTranslation} from "react-i18next";
-import {selectCollectiblesOfSceneWithPickup, selectUserActiveScene} from "../../store/store_selector";
+import {selectCollectiblesOfSceneWithPickup, selectUserActiveScene} from "../../../store/store_selector";
 import {getState} from 'store/store';
-import {IStateDataCollectibleWithPickup} from "../../store/state_interface_data";
+import {IStateDataCollectibleWithPickup} from "../../../store/state_interface_data";
 import NotebookElement from "../notebookElement/NotebookElement";
 import {bool} from "prop-types";
 import NotebookPageElementsDetails from "../notebookPageElementsDetails/NotebookPageElementsDetails";

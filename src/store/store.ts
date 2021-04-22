@@ -9,6 +9,7 @@ import {
 } from "./state_interface_experience";
 import data from '../data/data.json';
 import {IStateData, IStateDataScene} from "./state_interface_data";
+import {AssetMemory} from "../components/webGlCanvas/WebGlManagerClasses/assets/AssetMemory";
 const ls = require('local-storage');
 
 const debug = require("debug")(`front:Store`);
@@ -92,7 +93,7 @@ const dataSlice = createSlice({
     name: 'data',
     initialState: ((): IStateData => {
         // @ts-ignore
-        return { scenes: data.scenes, collectibles: data.collectibles };
+        return { scenes: data.scenes, collectibles: data.collectibles, models: data.models };
     })(),
     reducers: {
     }

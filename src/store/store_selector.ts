@@ -43,6 +43,11 @@ export const selectScene = scene => {
     );
 };
 
+export const selectModels = createSelector(
+    getState,
+    (state) => state.data.models,
+);
+
 export const selectCollectibles = createSelector(
     getState,
     (state) => state.data.collectibles,
