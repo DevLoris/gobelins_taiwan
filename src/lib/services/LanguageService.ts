@@ -30,7 +30,7 @@ class LanguageService {
       );
     }
 
-    // Router may not be init yet, try parsing url
+    // Router may not be initAndStart yet, try parsing url
     const route = window.location.pathname.startsWith(
       GlobalConfig.routerBaseUrl
     )

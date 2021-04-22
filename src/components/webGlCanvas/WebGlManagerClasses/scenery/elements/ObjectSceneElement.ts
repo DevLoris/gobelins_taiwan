@@ -1,7 +1,7 @@
 import { SceneElement } from "./SceneElement";
 import { SceneElementOption } from "./SceneElementOption";
-import {AssetGLTF} from "../assets/AssetGLTF";
-import {AssetMemory} from "../assets/AssetMemory";
+import {AssetGLTF} from "../../assets/AssetGLTF";
+import {AssetMemory} from "../../assets/AssetMemory";
 
 export class ObjectSceneElement extends SceneElement {
     private path: any;

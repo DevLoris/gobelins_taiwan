@@ -2,7 +2,6 @@ import css from "./HomePage.module.less";
 import React, {useRef} from "react";
 import { usePageRegister } from "../../lib/router/usePageRegister";
 import WebGlCanvas from "../../components/webGlCanvas/WebGlCanvas";
-import {useTranslation} from "react-i18next";
 
 interface IProps {}
 

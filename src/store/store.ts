@@ -9,6 +9,8 @@ import {
 } from "./state_interface";
 const ls = require('local-storage');
 
+const debug = require("debug")(`front:Store`);
+
 //------------------------------------------
 // STORE
 // Stockage des données, retrieve (Localstorage)
@@ -31,13 +33,13 @@ const experienceSlice = createSlice({
         }
     })(),
     reducers: {
-        activeScene: (state: ICustomState, action: PayloadAction<string>) => {
+        activeScenery: (state: ICustomState, action: PayloadAction<string>) => {
             state.active_scene = action.payload
         },
-        addScene: (state: ICustomState, scene: PayloadAction<ICustomStateScene>) =>  {
+        addScenery: (state: ICustomState, scene: PayloadAction<ICustomStateScene>) =>  {
             // ajout  d'une scène dans le store, si elle existe déjà on l'ajoute pas
-            let finded =  state.scenes.find(value => value.scene == scene.payload.scene);
-            if(!finded)
+            let found = state.scenes.find(value => value.scene == scene.payload.scene);
+            if(!found)
                 state.scenes = [
                     ...state.scenes,
                     scene.payload
@@ -45,40 +47,40 @@ const experienceSlice = createSlice({
         },
         addPickElementScene: (state: ICustomState, payload: PayloadAction<IPickupElement>) => {
             // ajout d'un élément si la scene existe
-            let finded =  state.scenes.find(value => value.scene == payload.payload.scene);
-            if(finded) {
+            let found =  state.scenes.find(value => value.scene == payload.payload.scene);
+            if(found) {
                 // on ajoute en évitant les duplicatas
-                finded.picked_elements = Array.from( new Set([...finded.picked_elements, payload.payload.pickup]));
+                found.picked_elements = Array.from( new Set([...found.picked_elements, payload.payload.pickup]));
             }
         },
         pickupPreHint: (state: ICustomState, payload: PayloadAction<IBooleanScene>) => {
-            let finded =  state.scenes.find(value => value.scene == payload.payload.scene);
-            if(finded) {
-                finded.hint.pre_pickup = payload.payload.bool;
+            let found =  state.scenes.find(value => value.scene == payload.payload.scene);
+            if(found) {
+                found.hint.pre_pickup = payload.payload.bool;
             }
         },
         pickupHint: (state: ICustomState, payload: PayloadAction<IBooleanScene>) => {
-            let finded =  state.scenes.find(value => value.scene == payload.payload.scene);
-            if(finded) {
-                finded.hint.pre_pickup = payload.payload.bool;
+            let found =  state.scenes.find(value => value.scene == payload.payload.scene);
+            if(found) {
+                found.hint.pre_pickup = payload.payload.bool;
             }
         },
         toggleOnMap: (state: ICustomState, payload: PayloadAction<IBooleanScene>) => {
-            let finded =  state.scenes.find(value => value.scene == payload.payload.scene);
-            if(finded) {
-                finded.visible_on_map = payload.payload.bool;
+            let found =  state.scenes.find(value => value.scene == payload.payload.scene);
+            if(found) {
+                found.visible_on_map = payload.payload.bool;
             }
         },
         vlogIntro: (state: ICustomState, payload: PayloadAction<IBooleanScene>) => {
-            let finded =  state.scenes.find(value => value.scene == payload.payload.scene);
-            if(finded) {
-                finded.vlog.intro = payload.payload.bool;
+            let found =  state.scenes.find(value => value.scene == payload.payload.scene);
+            if(found) {
+                found.vlog.intro = payload.payload.bool;
             }
         },
         vlogOutro: (state: ICustomState, payload: PayloadAction<IBooleanScene>) => {
-            let finded =  state.scenes.find(value => value.scene == payload.payload.scene);
-            if(finded) {
-                finded.vlog.outro = payload.payload.bool;
+            let found = state.scenes.find(value => value.scene == payload.payload.scene);
+            if(found) {
+                found.vlog.outro = payload.payload.bool;
             }
         }
     }
@@ -90,14 +92,14 @@ let store = configureStore({
 
 // Subscribe pour les mises à jour dans le Store locator
 store.subscribe(() => {
-    console.log('Store update');
+    debug('Store update');
     ls('save', store.getState());
 });
 
 // exports rapides des méthodes de store
 export {store};
 export const { getState, dispatch } = store;
-export const { activeScene, addScene, addPickElementScene, pickupHint, pickupPreHint, toggleOnMap, vlogIntro, vlogOutro } = experienceSlice.actions;
+export const { activeScenery, addScenery, addPickElementScene, pickupHint, pickupPreHint, toggleOnMap, vlogIntro, vlogOutro } = experienceSlice.actions;
 
 // Types relatifs au store
 export type RootState = ReturnType<typeof store.getState>

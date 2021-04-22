@@ -1,14 +1,13 @@
 import css from "./App.module.less";
-import React, { Component } from "react";
+import React, {Component, useRef} from "react";
 import { ETransitionType, ViewStack } from "../../lib/router/ViewStack";
 import { IRouteMatch, Router } from "../../lib/router/Router";
 import { TPageRegisterObject } from "../../lib/router/usePageRegister";
 import {
   DEFAULT_LANGUAGE,
   languageToString,
-  stringToLanguage,
 } from "../../lib/services/LanguageService";
-import { ERouterPage } from "../../routes";
+import {Game} from "../../mainClasses/Game";
 
 const componentName = "App";
 const debug = require("debug")(`front:${componentName}`);
@@ -24,6 +23,8 @@ export interface IStates {}
 class App extends Component<IProps, IStates> {
   protected _viewStack: ViewStack;
 
+  private gameInstanceRef: any; // TODO typage ?
+
   /**
    * Constructor
    * @param props
@@ -35,6 +36,10 @@ class App extends Component<IProps, IStates> {
     this.state = {
       // initialize states...
     } as IStates;
+
+    this.gameInstanceRef = React.createRef();
+    this.gameInstanceRef.current = new Game();
+    this.gameInstanceRef.current.init();
   }
 
   componentDidMount() {
@@ -45,6 +50,8 @@ class App extends Component<IProps, IStates> {
   componentWillUnmount() {
     Router.onNotFound.remove(this.routeNotFoundHandler);
     Router.onNotFound.remove(this.routeChangedHandler);
+
+    this.gameInstanceRef.current.destroy();
   }
 
   componentDidUpdate(pPrevProps: IProps, pPrevState: IStates) {}
@@ -188,25 +195,6 @@ class App extends Component<IProps, IStates> {
     return (
       <div className={css.root}>
         <div className={css.wrapper}>
-          {/*<nav className={css.nav}>*/}
-          {/*  <a*/}
-          {/*    className={css.link}*/}
-          {/*    href={Router.generateURL({ page: ERouterPage.HOME_PAGE })}*/}
-          {/*    children={"Home"}*/}
-          {/*    data-internal-link={true}*/}
-          {/*  />*/}
-          {/*  <a*/}
-          {/*    className={css.link}*/}
-          {/*    href={Router.generateURL({*/}
-          {/*      page: ERouterPage.WORK_PAGE,*/}
-          {/*      parameters: {*/}
-          {/*        slug: "custom-slug",*/}
-          {/*      },*/}
-          {/*    })}*/}
-          {/*    children={"Work"}*/}
-          {/*    data-internal-link={true}*/}
-          {/*  />*/}
-          {/*</nav>*/}
           <ViewStack
             ref={(r) => (this._viewStack = r)}
             transitionType={ETransitionType.CONTROLLED}

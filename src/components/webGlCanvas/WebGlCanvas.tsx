@@ -1,10 +1,16 @@
 import css from './WebGlCanvas.module.less';
 import React, {useEffect, useRef} from 'react';
 import { merge } from "../../lib/utils/arrayUtils";
-import {Game} from "../../demo/Game";
+import {WebGlManager} from "./WebGlManagerClasses/WebGlManager";
+import {gsap} from "gsap";
 
 interface IProps {
   className?: string
+  show: boolean
+}
+
+WebGlCanvas.defaultProps = {
+  show: true
 }
 
 const componentName = "WebGlCanvas";
@@ -15,16 +21,42 @@ const debug = require("debug")(`front:${componentName}`);
  */
 function WebGlCanvas (props: IProps) {
 
-  const rootRef = useRef(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  const webGlManagerRef = useRef<WebGlManager>();
 
   // -------------------–-------------------–-------------------–--------------- EFFECTS
 
+  /**
+   * On component build
+   */
   useEffect(() => {
+    webGlManagerRef.current = new WebGlManager();
+    webGlManagerRef.current.initAndStart(rootRef.current);
 
-    Game.instance.init(rootRef.current);
-    Game.instance.start();
-
+    // On component destroy
+    return () => {
+      webGlManagerRef.current.destroy();
+    }
   }, []);
+
+  /**
+   * On show prop update
+   */
+  useEffect(() => {
+    componentReveal(props.show);
+  }, [props.show]);
+
+  // -------------------–-------------------–-------------------–--------------- ANIMATION
+
+  /**
+   * Play in / out animation
+   * @param pShow
+   * @param pDuration
+   */
+  function componentReveal(pShow, pDuration = 1) {
+    // gsap.to(rootRef.current, { duration: pDuration, delay: pDuration });
+  }
 
   // -------------------–-------------------–-------------------–--------------- RENDER
 

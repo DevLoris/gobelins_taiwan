@@ -1,6 +1,9 @@
-import {Howl, Howler} from 'howler';
+import {Howl} from 'howler';
 import audio from '../../data/audio.json';
-console.log(audio);
+
+const debug = require("debug")(`front:Audio`);
+
+debug(audio);
 
 export interface IAudio {
     id: string,

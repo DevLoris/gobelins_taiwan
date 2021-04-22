@@ -1,6 +1,5 @@
 import {DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
-import {AssetGLTF} from "./AssetGLTF";
 
 export class AssetLoader {
     private _draco_loader : DRACOLoader = new DRACOLoader();
