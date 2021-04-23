@@ -96,7 +96,7 @@ export class RaycastEvent {
         );
         store.dispatch(addPickElementScene({pickup: "test", scene: "test"}));
 
-        AudioHandler.play("test");
+        // AudioHandler.play("test");
 
         debug(this._mouse, touchedElementIdentifier);
         // Process data
