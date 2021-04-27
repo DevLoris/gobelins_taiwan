@@ -22,7 +22,7 @@
         "minPolar": 0,
         "maxPolar": 1.65,
         "minDistance": 0.2,
-        "maxDistance": 10
+        "maxDistance": 100
       },
       "content": []
     }
@@ -31,6 +31,10 @@
     {
       "id": "demoModel",
       "path": "/public/sceneries/demo/LittlestTokyo.glb"
+    },
+    {
+      "id": "raohe",
+      "path": "/public/sceneries/demo/raohe.glb"
     }
   ],
   "collectibles": [
