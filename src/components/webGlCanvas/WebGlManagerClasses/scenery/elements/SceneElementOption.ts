@@ -1,7 +1,8 @@
 export type SceneElementOption = {
-    size? : number[];
     position? : number[];
-    renderTop? : boolean; 
+    scale? : number[];
+    rotation? : {x: number, y: number, z:  number};
+    renderTop? : boolean;
     outline? : SceneElementOptionOutline;
 };
 

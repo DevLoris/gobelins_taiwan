@@ -33,8 +33,24 @@
       "path": "/public/sceneries/demo/LittlestTokyo.glb"
     },
     {
-      "id": "raohe",
-      "path": "/public/sceneries/demo/raohe.glb"
+      "id": "appart",
+      "path": "/public/sceneries/demo/Apart_testInstance.glb"
+    },
+    {
+      "id": "GridBottom",
+      "path": "/public/sceneries/demo/GridBottom.glb"
+    },
+    {
+      "id": "GridSolo",
+      "path": "/public/sceneries/demo/GridSolo.glb"
+    },
+    {
+      "id": "GridTop",
+      "path": "/public/sceneries/demo/GridTop.glb"
+    },
+    {
+      "id": "GridDouble",
+      "path": "/public/sceneries/demo/GridDouble.glb"
     }
   ],
   "collectibles": [

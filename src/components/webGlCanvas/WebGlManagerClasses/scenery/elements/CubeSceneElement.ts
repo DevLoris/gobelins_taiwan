@@ -11,7 +11,7 @@ export class CubeSceneElement extends SceneElement {
     }
 
     createElement() {
-        const geometry = new BoxGeometry( ...this.size );
+        const geometry = new BoxGeometry( ...this.scale );
         const material = new  MeshBasicMaterial( {color: this.color} );
         const cube = new Mesh( geometry, material ); 
         return cube;

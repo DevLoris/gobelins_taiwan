@@ -4,6 +4,7 @@ import { CubeSceneElement } from "./elements/CubeSceneElement";
 import { SpriteSceneElement } from "./elements/SpriteSceneElement";
 import {ObjectSceneElement} from "./elements/ObjectSceneElement";
 import {MeshObjectSceneElement} from "./elements/MeshObjectSceneElement";
+import {ObjectContainerSceneElement} from "./elements/ObjectContainerSceneElement";
 
 const SPREAD = 100;
 const DOORS = 1000;
@@ -17,9 +18,10 @@ export class SceneryUtils {
         // new CubeSceneElement("test", 0xffff00, {size: [1, 1, 1], position: [4, 0, 0], outline: {enable: true, color: 0x00ff00, stroke: 2.05}}),
         // new SpriteSceneElement("sprite", "/public/startup.png", {size:  [1, 2, 2], position: [1, 1, 1], renderTop: true}),
         // @ts-ignore
-        new MeshObjectSceneElement("raohe", "raohe",  [...Array(DOORS).keys()].map((v) => {
+        /*new MeshObjectSceneElement("raohe", "raohe",  [...Array(DOORS).keys()].map((v) => {
             return [(SPREAD/2) - Math.random() * SPREAD, Math.random() * 50, (SPREAD/2) - Math.random() * SPREAD]
-        }), {}),
+        }), {}),*/
+        new ObjectContainerSceneElement("test", "appart", {scale: [1,1,1], position: [0,0,0]})
         //new ObjectSceneElement("littlestTokyo", "demoModel", {}),
     ];
 

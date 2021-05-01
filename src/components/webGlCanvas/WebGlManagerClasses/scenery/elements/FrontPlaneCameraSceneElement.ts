@@ -14,7 +14,7 @@ export class FrontPlaneCameraSceneElement extends SceneElement {
     }
 
     createElement() {
-        const geometry = new PlaneGeometry( ...this.size );
+        const geometry = new PlaneGeometry( ...this.scale );
         const material = new MeshBasicMaterial( {color: this.color, side: DoubleSide} );
         const plane = new Mesh( geometry, material ); 
         return plane;

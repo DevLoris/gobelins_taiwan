@@ -28,6 +28,9 @@ export class WebGlManager {
     private _control : OrbitControls = null;
     private _raycast : RaycastEvent  = null;
 
+    // todo refacto
+    public static scene: Scene = null;
+
     constructor() {
     }
 
@@ -74,6 +77,7 @@ export class WebGlManager {
      */
     private _setupScene():void {
         this._scene = new Scene();
+        WebGlManager.scene = this._scene;
         this._camera = new PerspectiveCamera( CAMERA_FOV, CAMERA_ASPECT, CAMERA_NEAR, CAMERA_FAR );
         this._camera.position.z = 20;
     }

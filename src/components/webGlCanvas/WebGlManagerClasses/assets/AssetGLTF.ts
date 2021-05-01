@@ -1,5 +1,6 @@
 import {GLTF} from "three/examples/jsm/loaders/GLTFLoader";
 import {AssetLoader} from "./AssetLoader";
+import {DEFAULT_SCALE_FACTOR} from "../WebGlVars";
 
 const debug = require("debug")(`front:AssetGLTF`);
 
@@ -21,7 +22,7 @@ export class AssetGLTF {
             .then(gltf => {
                 const model = gltf.scene;
                 model.position.set( 0, 0, 0 );
-                model.scale.set( 0.01, 0.01, 0.01 );
+                model.scale.set( DEFAULT_SCALE_FACTOR, DEFAULT_SCALE_FACTOR, DEFAULT_SCALE_FACTOR );
 
                 this.loaded  = true;
                 this.gltf = gltf;

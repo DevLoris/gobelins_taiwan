@@ -7,10 +7,10 @@ import {createElement} from "react";
 
 export class MeshObjectSceneElement extends SceneElement {
     private gltfId: any;
-    private positions: number[][];
+    private positions: SceneElementOption[];
     private _dummy = new Object3D();
 
-    constructor(idInScene, gltfId: string, positions: number[][], options: SceneElementOption) {
+    constructor(idInScene, gltfId: string, positions: SceneElementOption[], options: SceneElementOption) {
         super(idInScene, options);
         this.gltfId = gltfId;
         this.positions = positions;
@@ -35,7 +35,10 @@ export class MeshObjectSceneElement extends SceneElement {
         console.log(element);
         let i = 0;
         this.positions.forEach((v) => {
-            this._dummy.position.set( v[0], v[1], v[2] );
+            console.log(v);
+            this._dummy.position.set( v.position[0], v.position[1], v.position[2] );
+            this._dummy.scale.set(v.scale[0], v.scale[1], v.scale[2]);
+            this._dummy.rotation.set(v.rotation.x, v.rotation.y, v.rotation.z);
             this._dummy.updateMatrix();
 
             element.setMatrixAt( i ++, this._dummy.matrix );

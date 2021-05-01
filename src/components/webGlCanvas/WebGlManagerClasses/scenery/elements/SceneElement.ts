@@ -6,7 +6,8 @@ import { Mesh } from 'three';
 export abstract class SceneElement {
     protected id: string;
 
-    protected size: [number, number, number] = [1, 1, 1];
+    protected scale: [number, number, number] = [1, 1, 1];
+    protected rotation: {x: number, y:  number, z: number} = {x: 0, y:0, z:0};
     protected position: [number, number, number] = [0, 0, 0];
     protected renderTop: boolean = false;
     protected outline: SceneElementOptionOutline = {enable: false};
