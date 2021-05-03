@@ -5,15 +5,9 @@ import {getState} from "../../../store/store";
 import {RaycastEvent} from "./events/RaycastEvent";
 import {SceneryUtils} from "./scenery/SceneryUtils";
 import {selectScene} from "../../../store/store_selector";
+import {CAMERA_ASPECT, CAMERA_FAR, CAMERA_FOV, CAMERA_NEAR, STATS_FPS} from "./WebGlVars";
 
 const debug = require("debug")(`front:WebGlManager`);
-
-const CAMERA_FOV = 75;
-const CAMERA_ASPECT = window.innerWidth / window.innerHeight;
-const CAMERA_NEAR = 0.1;
-const CAMERA_FAR = 10000;
-
-const STATS_FPS = 0;
 
 export class WebGlManager {
 
