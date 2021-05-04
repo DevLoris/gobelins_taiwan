@@ -25,8 +25,6 @@ export class RaycastEvent {
         // calculate objects intersecting the picking ray
         let intersects = this.raycast.intersectObjects(scene.children, true);
 
-        debug(scene.children);
-
         // Default identifier
         let identifier = "Generic";
 
