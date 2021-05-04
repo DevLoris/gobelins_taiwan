@@ -24,6 +24,11 @@ export class AssetGLTF {
                 model.position.set( 0, 0, 0 );
                 model.scale.set( DEFAULT_SCALE_FACTOR, DEFAULT_SCALE_FACTOR, DEFAULT_SCALE_FACTOR );
 
+                gltf.scene.traverse( child => {
+                    // @ts-ignore
+                    if ( child.material ) child.material.metalness = 0;
+                } );
+
                 this.loaded  = true;
                 this.gltf = gltf;
                 return this;
