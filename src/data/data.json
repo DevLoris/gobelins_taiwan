@@ -88,7 +88,7 @@
     },
     {
       "id": "appart",
-      "path": "/public/sceneries/demo/Apart_testInstance.glb"
+      "path": "/public/sceneries/demo/QuartierAffaire.glb"
     },
     {
       "id": "GridBottom",
@@ -105,6 +105,18 @@
     {
       "id": "GridDouble",
       "path": "/public/sceneries/demo/GridDouble.glb"
+    },
+    {
+      "id": "FleurA",
+      "path": "/public/sceneries/demo/FleurA.glb"
+    },
+    {
+      "id": "FleurB",
+      "path": "/public/sceneries/demo/FleurB.glb"
+    },
+    {
+      "id": "RaoheGate",
+      "path": "/public/sceneries/demo/raoheGate.glb"
     }
   ],
   "collectibles": [

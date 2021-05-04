@@ -11,11 +11,12 @@ import {
 } from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import Stats from "stats.js";
-import {getState} from "../../../store/store";
+import {addScenery, getState, store} from "../../../store/store";
 import {RaycastEvent} from "./events/RaycastEvent";
 import {SceneryUtils} from "./scenery/SceneryUtils";
 import {selectScene} from "../../../store/store_selector";
 import LightUtils from "./scenery/LightUtils";
+import {createEmptyScenery} from "../../../store/store_helper";
 
 const debug = require("debug")(`front:WebGlManager`);
 
@@ -191,6 +192,9 @@ export class WebGlManager {
 
     public toggleScenery(scene_id: string): void {
         const scene = selectScene(scene_id)(getState().data);
+
+        // ADD SCENE TO STORE
+        store.dispatch(addScenery(createEmptyScenery(scene_id)));
 
         // DESTROY
         SceneryUtils.destroyScenery(this._scene);
