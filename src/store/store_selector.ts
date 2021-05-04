@@ -67,13 +67,13 @@ export const selectCollectiblesOfSceneWithPickup = (scene: string) => {
         selectCollectibles,
         selectUserScenes,
         (scenes: IStateDataScene[], collectibles: IStateDataCollectible[], user_scenes: ICustomStateScene[]) => {
-            return scenes.find(value => value.id == scene).collectibles_id.map(value => {
+            return scenes.find(value => value.id == scene).collectibles.map(value => {
                 // on récupère les données de la scène
                 let user_scene = user_scenes.find(value1 => value1.scene == scene);
                 // on check si il l'a ramassé dans la scène
-                let pickup = (user_scene !== undefined && user_scene.picked_elements.includes(value));
+                let pickup = (user_scene !== undefined && user_scene.picked_elements.includes(value.collectible_id));
                 // on retourne
-                return {...collectibles.find(value1 => value1.id == value), pickup}
+                return {...collectibles.find(value1 => value1.id == value.collectible_id), pickup}
             }).filter(value => value.name !== undefined);
         }
     );

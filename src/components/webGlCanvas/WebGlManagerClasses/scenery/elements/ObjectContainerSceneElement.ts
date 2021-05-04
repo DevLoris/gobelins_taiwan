@@ -59,7 +59,7 @@ export class ObjectContainerSceneElement extends SceneElement {
                     }
                 }
             ), {});
-            WebGlManager.scene.add(...mesh.prepareElements());
+            WebGlManager.getInstance().getScene().add(...mesh.prepareElements());
         });
 
         return asset.gltf.scene;
