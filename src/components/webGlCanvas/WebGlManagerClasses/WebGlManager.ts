@@ -22,6 +22,8 @@ export class WebGlManager {
     private _control : OrbitControls = null;
     private _raycast : RaycastEvent  = null;
 
+    private _isRunning: boolean = false;
+
     // todo refacto
     public static scene: Scene = null;
 
@@ -121,7 +123,8 @@ export class WebGlManager {
      * @private
      */
     private _startWebGlLoop():void {
-        this._animationLoopId = requestAnimationFrame(this._animationFrame.bind(this));
+        if(!this._isRunning) this._animationLoopId = requestAnimationFrame(this._animationFrame.bind(this));
+        this._isRunning = true;
     }
 
     /**
@@ -130,6 +133,7 @@ export class WebGlManager {
      */
     private _stopWebGlLoop():void {
         cancelAnimationFrame(this._animationLoopId);
+        this._isRunning = false;
     }
 
     /**

@@ -29,10 +29,6 @@
   ],
   "models": [
     {
-      "id": "demoModel",
-      "path": "/public/sceneries/demo/LittlestTokyo.glb"
-    },
-    {
       "id": "appart",
       "path": "/public/sceneries/demo/Apart_testInstance.glb"
     },

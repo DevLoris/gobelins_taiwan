@@ -70,7 +70,7 @@ export class RaycastEvent {
             this._camera
         );
 
-        debug(this._mouse, touchedElementIdentifier);
+        // debug(this._mouse, touchedElementIdentifier);
 
         // Process data
         //this.postEndTouchEventAction(touchedElementIdentifier, this._mouse.x, this._mouse.y);
