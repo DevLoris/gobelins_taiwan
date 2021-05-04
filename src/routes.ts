@@ -4,6 +4,7 @@ export enum ERouterPage {
   HOME_PAGE = "HomePage",
   NOTEBOOK_PAGE = "NotebookPage",
   WORK_PAGE = "WorkPage",
+  VLOG_PAGE = "VlogPage",
 }
 
 export const routes: IRoute[] = [
@@ -21,5 +22,10 @@ export const routes: IRoute[] = [
     url: "/work/{slug}",
     page: ERouterPage.WORK_PAGE,
     importer: () => require("./pages/workPage/WorkPage"),
+  },
+  {
+    url: "/vlog",
+    page: ERouterPage.VLOG_PAGE,
+    importer: () => require("./pages/vlogPage/VlogPage"),
   },
 ];
