@@ -6,12 +6,8 @@ import {WebGlManager} from "./WebGlManagerClasses/WebGlManager";
 
 interface IProps {
   className?: string
-  show: boolean
 }
 
-WebGlCanvas.defaultProps = {
-  show: true
-}
 
 const componentName = "WebGlCanvas";
 const debug = require("debug")(`front:${componentName}`);
@@ -31,7 +27,7 @@ function WebGlCanvas (props: IProps) {
    * On component build
    */
   useEffect(() => {
-    webGlManagerRef.current = new WebGlManager();
+    webGlManagerRef.current = WebGlManager.getInstance();
     webGlManagerRef.current.initAndStart(rootRef.current);
 
     // On component destroy
@@ -40,26 +36,7 @@ function WebGlCanvas (props: IProps) {
     }
   }, []);
 
-  /**
-   * On show prop update
-   */
-  useEffect(() => {
-    props.show && componentReveal(props.show);
-  }, [props.show]);
 
-  // -------------------–-------------------–-------------------–--------------- ANIMATION
-
-  /**
-   * Play in / out animation
-   * @param pShow
-   * @param pDuration
-   */
-  function componentReveal(pShow, pDuration = 1) {
-    gsap.to(rootRef.current, {
-      duration: pDuration,
-      autoAlpha: pShow ? 1 : 0
-    });
-  }
 
   // -------------------–-------------------–-------------------–--------------- RENDER
 
