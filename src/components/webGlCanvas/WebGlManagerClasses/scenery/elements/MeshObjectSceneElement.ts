@@ -35,6 +35,8 @@ export class MeshObjectSceneElement extends SceneElement {
     prepareElements(): Object3D[] {
         let element = this.createElement();
         debug(element);
+        element.userData.internalId = this.id;
+
         let i = 0;
         this.positions.forEach((v) => {
             debug(v);

@@ -1,33 +1,33 @@
 import { Mesh, Scene } from "three";
 import { SceneElement } from "./elements/SceneElement";
-import { CubeSceneElement } from "./elements/CubeSceneElement";
-import { SpriteSceneElement } from "./elements/SpriteSceneElement";
-import {ObjectSceneElement} from "./elements/ObjectSceneElement";
-import {MeshObjectSceneElement} from "./elements/MeshObjectSceneElement";
 import {ObjectContainerSceneElement} from "./elements/ObjectContainerSceneElement";
+import {IStateDataSceneElement} from "../../../../store/state_interface_data";
+import {CubeSceneElement} from "./elements/CubeSceneElement";
+import {IStateDataSceneElementType} from "../../../../store/state_enums";
 
-const SPREAD = 100;
-const DOORS = 1000;
-
+/**
+ * Scenery Utils
+ */
 export class SceneryUtils {
     public static elements:Mesh[];
 
-    public static sceneComponents: SceneElement[] = [
-        // new CubeSceneElement("test", 0x00ff00, {size: [1, 1, 1], position: [0, 0, 0]}),
-        // new CubeSceneElement("test", 0xffff00, {size: [1, 1, 1], position: [2, 0, 0]}),
-        // new CubeSceneElement("test", 0xffff00, {size: [1, 1, 1], position: [4, 0, 0], outline: {enable: true, color: 0x00ff00, stroke: 2.05}}),
-        // new SpriteSceneElement("sprite", "/public/startup.png", {size:  [1, 2, 2], position: [1, 1, 1], renderTop: true}),
-        // @ts-ignore
-        /*new MeshObjectSceneElement("raohe", "raohe",  [...Array(DOORS).keys()].map((v) => {
-            return [(SPREAD/2) - Math.random() * SPREAD, Math.random() * 50, (SPREAD/2) - Math.random() * SPREAD]
-        }), {}),*/
-        new ObjectContainerSceneElement("test", "appart", {scale: [1,1,1], position: [0,0,0]})
-        //new ObjectSceneElement("littlestTokyo", "demoModel", {}),
-    ];
+    /**
+     * Destroy everything from scene
+     * @param scene
+     */
+    static destroyScenery(scene: Scene) {
+        while(scene.children.length > 0){
+            scene.remove(scene.children[0]);
+        }
+    }
 
-    static buildElementsOf(scene: Scene) {
-
-        this.sceneComponents.forEach(value => {
+    /**
+     * Build scene elements
+     * @param scene
+     * @param scene_data
+     */
+    static buildElementsOf(scene: Scene, scene_data: IStateDataSceneElement[]) {
+        this.convertSceneDataToElements(scene_data).forEach(value => {
             let elements = value.prepareElements();
             elements.forEach(element => {
                 if(element) {
@@ -35,5 +35,20 @@ export class SceneryUtils {
                 }
             });
         });
+    }
+
+    /**
+     * Convert data to SceneElement
+     * @param scene_data
+     */
+    static convertSceneDataToElements(scene_data: IStateDataSceneElement[]): SceneElement[] {
+        return scene_data.map(value => {
+            switch (value.type) {
+                case IStateDataSceneElementType.CUBE:
+                    return new CubeSceneElement(value.id, value.color, value.options);
+                case IStateDataSceneElementType.OBJECT_CONTAINER:
+                    return new ObjectContainerSceneElement(value.id, value.gltf, value.options);
+            }
+        })
     }
 }

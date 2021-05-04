@@ -3,6 +3,8 @@ import React, {useRef, useState} from "react";
 import { usePageRegister } from "../../lib/router/usePageRegister";
 import WebGlCanvas from "../../components/webGlCanvas/WebGlCanvas";
 import Loader from "../../components/loader/Loader";
+import InteractedElement from "../../components/interactedElement/InteractedElement";
+import GameContainer from "../../components/gameContainer/GameContainer";
 
 interface IProps {}
 
@@ -53,7 +55,7 @@ const HomePage = (props: IProps) => {
     <div className={css.root} ref={rootRef}>
       <Loader modelsLoadedCallback={onModelsLoaded} />
       {
-        loadingDone && <WebGlCanvas show={loadingDone} />
+        loadingDone && (<GameContainer show={loadingDone} />)
       }
     </div>
   );

@@ -1,6 +1,8 @@
 import {Camera, Raycaster, Scene} from "three";
 import {addPickElementScene, store} from "../../../../store/store";
 import {AudioHandler} from "../../../../lib/audio/AudioHandler";
+import {WebGlManager} from "../WebGlManager";
+import RaycastManager from "./RaycastManager";
 
 const debug = require("debug")(`front:RaycastEvent`);
 
@@ -22,6 +24,8 @@ export class RaycastEvent {
 
         // calculate objects intersecting the picking ray
         let intersects = this.raycast.intersectObjects(scene.children, true);
+
+        debug(scene.children);
 
         // Default identifier
         let identifier = "Generic";
@@ -56,6 +60,10 @@ export class RaycastEvent {
         return identifier;
     }
 
+    private getChildren(object) {
+
+    }
+
     onTouchEnd(event) {
         let touches = event.changedTouches !== undefined ? event.changedTouches[0] : {clientX: event.clientX, clientY: event.clientY};
         // calculate mouse position in normalized device coordinates
@@ -70,6 +78,7 @@ export class RaycastEvent {
             this._camera
         );
 
+        //debug(this._mouse, touchedElementIdentifier);
         // debug(this._mouse, touchedElementIdentifier);
 
         // Process data
@@ -94,9 +103,11 @@ export class RaycastEvent {
             this._mouse,
             this._camera
         );
-        store.dispatch(addPickElementScene({pickup: "test", scene: "test"}));
+        //store.dispatch(addPickElementScene({pickup: "test", scene: "test"}));
 
         // AudioHandler.play("test");
+
+        RaycastManager.getInstance().clickProcessing(touchedElementIdentifier);
 
         debug(this._mouse, touchedElementIdentifier);
         // Process data

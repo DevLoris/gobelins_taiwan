@@ -2,7 +2,12 @@
   "scenes": [
     {
       "id":  "test",
-      "collectibles_id":  ["tomate", "carrot", "test"],
+      "collectibles": [
+        {
+          "collectible_id": "tomate",
+          "trigger": "pickup"
+        }
+      ],
       "scene": {
         "background": "#bfe3dd"
       },
@@ -24,7 +29,56 @@
         "minDistance": 0.2,
         "maxDistance": 100
       },
-      "content": []
+      "content": {
+        "elements": [
+          {
+            "type": "cube",
+            "id": "pickup",
+            "color": "#ff00ff",
+            "options": {
+              "scale": [1, 1, 1],
+              "position": [3, 1, 3]
+            }
+          },
+          {
+            "type": "object_container",
+            "id": "scene",
+            "gltf": "appart",
+            "options": {
+              "scale": [1, 1, 1],
+              "position": [0, 0, 0]
+            }
+          }
+        ],
+        "lights": [
+          {
+            "type": "hemisphere",
+            "coords": {
+              "x": 0,
+              "y": 10,
+              "z": 0
+            },
+            "color": "#ffffff",
+            "groundColor": "#000000",
+            "intensity": 0.2
+          },
+          {
+            "type": "directional",
+            "coords": {
+              "x": 5,
+              "y": 2,
+              "z": 8
+            },
+            "color": "#ffffff",
+            "intensity": 0.8
+          },
+          {
+            "type": "ambient",
+            "color": "#ff00ff",
+            "intensity": 0.2
+          }
+        ]
+      }
     }
   ],
   "models": [
@@ -52,6 +106,7 @@
   "collectibles": [
     {
       "id": "tomate",
+      "type": "hint",
       "name": "Tomate",
       "asset": "/public/tomate-classique_1.png",
       "text": "Les tomates c'est bon",
@@ -64,6 +119,7 @@
     },
     {
       "id": "test",
+      "type": "hint",
       "name": "Test",
       "asset": "/public/tomate-classique_1.png",
       "text": "Les tests c'est cool",

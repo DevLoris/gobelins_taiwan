@@ -1,4 +1,14 @@
-import {Color, DirectionalLight, HemisphereLight, PerspectiveCamera, REVISION, Scene, WebGLRenderer} from "three";
+import {
+    Camera,
+    Color,
+    DirectionalLight,
+    DirectionalLightHelper,
+    HemisphereLight,
+    PerspectiveCamera,
+    REVISION,
+    Scene,
+    WebGLRenderer
+} from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import Stats from "stats.js";
 import {getState} from "../../../store/store";
@@ -6,10 +16,12 @@ import {RaycastEvent} from "./events/RaycastEvent";
 import {SceneryUtils} from "./scenery/SceneryUtils";
 import {selectScene} from "../../../store/store_selector";
 import {CAMERA_ASPECT, CAMERA_FAR, CAMERA_FOV, CAMERA_NEAR, STATS_FPS} from "./WebGlVars";
+import LightUtils from "./scenery/LightUtils";
 
 const debug = require("debug")(`front:WebGlManager`);
 
 export class WebGlManager {
+    private static instance: WebGlManager;
 
     private _wrapper:HTMLDivElement = null;
 
@@ -30,6 +42,16 @@ export class WebGlManager {
     constructor() {
     }
 
+
+    public static getInstance(): WebGlManager {
+        if (!WebGlManager.instance) {
+            WebGlManager.instance = new WebGlManager();
+        }
+
+        return WebGlManager.instance;
+    }
+
+
     // --------------------------------------------------------------------------- SETUP
 
     /**
@@ -47,8 +69,6 @@ export class WebGlManager {
         this._setupRenderer();
         this._setupOrbitControls();
         this._setupRaycaster();
-
-        this._prepareWorld();
 
         this._startWebGlLoop();
 
@@ -73,7 +93,6 @@ export class WebGlManager {
      */
     private _setupScene():void {
         this._scene = new Scene();
-        WebGlManager.scene = this._scene;
         this._camera = new PerspectiveCamera( CAMERA_FOV, CAMERA_ASPECT, CAMERA_NEAR, CAMERA_FAR );
         this._camera.position.z = 20;
     }
@@ -106,14 +125,6 @@ export class WebGlManager {
      */
     private _setupOrbitControls():void {
         this._control = new OrbitControls(this._camera, this._renderer.domElement);
-    }
-
-    /**
-     * Create necessary elements for the world to show up
-     * @private
-     */
-    private _prepareWorld():void {
-        SceneryUtils.buildElementsOf(this._scene);
     }
 
     // --------------------------------------------------------------------------- LOOP
@@ -179,6 +190,12 @@ export class WebGlManager {
     public toggleScenery(scene_id: string): void {
         const scene = selectScene(scene_id)(getState().data);
 
+        // DESTROY
+        SceneryUtils.destroyScenery(this._scene);
+
+        // BUILD SCENE
+        SceneryUtils.buildElementsOf(this._scene, scene.content.elements);
+
         // CONTROL
         this._control.minPolarAngle = scene.orbit.minPolar;
         this._control.maxPolarAngle = scene.orbit.maxPolar;
@@ -192,11 +209,11 @@ export class WebGlManager {
         // SCENE
         this._scene.background = new Color(scene.scene.background);
 
-        this._scene.add( new HemisphereLight( 0xffffff, 0x000000, 0.4 ) );
-
-        const dirLight = new DirectionalLight( 0xffffff, 1 );
+        /*const dirLight = new DirectionalLight( 0xffffff, 1 );
         dirLight.position.set( 5, 2, 8 );
-        this._scene.add( dirLight );
+        this._scene.add( dirLight );*/
+
+        LightUtils.buildLights(this._scene, scene.content.lights);
 
 
         // CAMERA
@@ -207,4 +224,15 @@ export class WebGlManager {
         this._control.target.set(scene.orbit.center.x, scene.orbit.center.y, scene.orbit.center.z);
     }
 
+    public getCamera(): Camera {
+        return this._camera;
+    }
+
+    public getOrbitControls(): OrbitControls {
+        return this._control;
+    }
+
+    public getScene(): Scene {
+        return this._scene;
+    }
 }
