@@ -58,10 +58,6 @@ export class RaycastEvent {
         return identifier;
     }
 
-    private getChildren(object) {
-
-    }
-
     onTouchEnd(event) {
         let touches = event.changedTouches !== undefined ? event.changedTouches[0] : {clientX: event.clientX, clientY: event.clientY};
         // calculate mouse position in normalized device coordinates
