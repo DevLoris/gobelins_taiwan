@@ -1,0 +1,34 @@
+[
+    {
+        "id": "opening",
+        "path": "/public/videos/ar-showreel.mp4"
+    },
+    {
+        "id": "taipei-intro",
+        "path": "/public/videos/"
+    },
+    {
+        "id": "taipei-outro",
+        "path": "/public/videos/"
+    },
+    {
+        "id": "wild-intro",
+        "path": "/public/videos/"
+    },
+    {
+        "id": "wild-outro",
+        "path": "/public/videos/"
+    },
+    {
+        "id": "history-intro",
+        "path": "/public/videos/"
+    },
+    {
+        "id": "history-outro",
+        "path": "/public/videos/"
+    },
+    {
+        "id": "ending",
+        "path": "/public/videos/"
+    }
+]
