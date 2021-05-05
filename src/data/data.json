@@ -81,6 +81,11 @@
             "color": "#ffffff",
             "intensity": 0.2
           }
+        ],
+        "effects": [
+          {
+            "type": "outline"
+          }
         ]
       }
     }
