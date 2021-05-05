@@ -1,9 +1,12 @@
 import css from './GameContainer.module.less';
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { merge } from "../../lib/utils/arrayUtils";
 import WebGlCanvas from "../webGlCanvas/WebGlCanvas";
 import {gsap} from "gsap";
 import InteractedElement from "../interactedElement/InteractedElement";
+import Notebook from "../notebook/Notebook";
+import NotebookToggler from "../notebook/notebookToggler/NotebookToggler";
+import {bool} from "prop-types";
 
 interface IProps {
   className?: string
@@ -23,6 +26,8 @@ const debug = require("debug")(`front:${componentName}`);
 function GameContainer (props: IProps) {
 
   const rootRef = useRef<HTMLDivElement>(null);
+
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   /**
    * On show prop update
@@ -47,6 +52,10 @@ function GameContainer (props: IProps) {
 
   return <div ref={rootRef}>
     <InteractedElement/>
+    <Notebook show={menuOpen}/>
+    <NotebookToggler onClick={() => {
+      setMenuOpen(!menuOpen);
+    }} />
     <WebGlCanvas />
   </div>
 }

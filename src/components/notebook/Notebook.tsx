@@ -9,7 +9,8 @@ import NotebookLabelToggler from "./notebookLabelToggler/NotebookLabelToggler";
 import {useTranslation} from "react-i18next";
 
 interface IProps {
-  className?: string
+    className?: string,
+    show?: boolean
 }
 
 enum NotebookPages {
@@ -22,6 +23,10 @@ enum NotebookPages {
 const componentName = "Notebook";
 const debug = require("debug")(`front:${componentName}`);
 
+Notebook.defaultProps = {
+    show: false
+};
+
 /**
  * @name Notebook
  */
@@ -30,8 +35,8 @@ function Notebook (props: IProps) {
 
     const { t } = useTranslation();
 
-    return <div className={merge([css.root, props.className])}>
-        <div>
+    return <div className={merge([css.root, props.className,  props.show ? css.open: null])}>
+        <div className={css.menu}>
             <NotebookLabelToggler active={NotebookPages.HINT == page} label={t('notebook__menu__hint')} onClick={() => { setPage(NotebookPages.HINT); }}/>
             <NotebookLabelToggler active={NotebookPages.ELEMENTS == page} label={t('notebook__menu__elements')} onClick={() => { setPage(NotebookPages.ELEMENTS); }}/>
             <NotebookLabelToggler active={NotebookPages.MAP == page} label={t('notebook__menu__map')} onClick={() => { setPage(NotebookPages.MAP); }}/>

@@ -33,7 +33,7 @@ function InteractedElement (props: IProps) {
         FocusUtils.restore();
       }}>Fermer</button>
       <h2>{ collectible.name }</h2>
-      <p>{collectible.text}</p>
+      <p>{ collectible.text }</p>
     </div>
   }
   else {
