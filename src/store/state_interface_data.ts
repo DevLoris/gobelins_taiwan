@@ -68,6 +68,7 @@ export interface IStateDataCollectible {
     name: string,
     asset: string,
     text: string,
+    hint?: string,
     additional?: IStateDataCollectibleAdditional[]
 }
 export interface IStateDataCollectibleWithPickup extends IStateDataCollectible {

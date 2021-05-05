@@ -43,11 +43,14 @@ class RaycastManager {
 
                         break;
                     case IStateDataSceneCollectibleType.PICKUP:
-                        if(userSceneData.hint.pre_pickup)
+                        if(userSceneData.hint.pre_pickup) {
+                            store.dispatch(addPickElementScene({pickup: collectible.id, scene: userSceneId}));
                             store.dispatch(pickupHint({scene: userSceneId, bool: true}));
+                        }
                         // todo UI & other
                         break;
                     case IStateDataSceneCollectibleType.PRE_PICKUP:
+                        store.dispatch(addPickElementScene({pickup: collectible.id, scene: userSceneId}));
                         store.dispatch(pickupPreHint({scene: userSceneId, bool: true}));
                         // todo UI & other
                         break;
