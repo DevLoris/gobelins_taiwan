@@ -12,7 +12,7 @@ export class SequenceChapterStep {
 
     // TODO typage
     constructor(step:any) {
-        // debug("SequenceChapterStep init", step.identifier);
+        debug("SequenceChapterStep init", step.identifier);
 
         this._identifier = step.identifier;
     }

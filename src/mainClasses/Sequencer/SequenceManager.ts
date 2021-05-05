@@ -3,9 +3,6 @@ import {EChapterStep} from "./SequenceChapterStep";
 
 const debug = require("debug")(`front:SequenceManager`);
 
-// Nombre de séquences totales dans le jeu
-const SEQUENCE_COUNT = 4;
-
 export enum EChapterName {
     INTRO_VLOG = "INTRO_VLOG",
     FIRST_ENIGMA = "FIRST_ENIGMA",
@@ -14,14 +11,6 @@ export enum EChapterName {
 }
 
 export const CHAPTERS = [
-    {
-        name: EChapterName.INTRO_VLOG,
-        steps: [
-            {
-                identifier: EChapterStep.INTRO_VLOG,
-            },
-        ]
-    },
     {
         name: EChapterName.FIRST_ENIGMA,
         steps: [
@@ -36,29 +25,10 @@ export const CHAPTERS = [
             },
         ]
     },
-    {
-        name: EChapterName.SECOND_ENIGMA,
-        steps: [
-            {
-                identifier: EChapterStep.INTRO_VLOG,
-            },
-            {
-                identifier: EChapterStep.DIORAMA,
-            },
-            {
-                identifier: EChapterStep.OUTRO_VLOG,
-            },
-        ]
-    },
-    {
-        name: EChapterName.OUTRO_VLOG,
-        steps: [
-            {
-                identifier: EChapterStep.OUTRO_VLOG,
-            },
-        ]
-    }
 ];
+
+// Nombre de séquences totales dans le jeu
+const SEQUENCE_COUNT = CHAPTERS.length;
 
 export class SequenceManager {
 
@@ -92,6 +62,10 @@ export class SequenceManager {
 
         // TODO checker dans le localstorage si il y a une sauvegarde
         this._activeChapterName = this._chapters[0].identifier;
+    }
+
+    public startFromBeginning(): void {
+        this._activeChapterName = CHAPTERS[0].name;
     }
 
     // TODO typage
