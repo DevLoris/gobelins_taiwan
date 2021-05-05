@@ -1,6 +1,7 @@
 import {GLTF} from "three/examples/jsm/loaders/GLTFLoader";
 import {AssetLoader} from "./AssetLoader";
 import {DEFAULT_SCALE_FACTOR} from "../WebGlVars";
+import {DoubleSide} from "three";
 
 const debug = require("debug")(`front:AssetGLTF`);
 
@@ -26,7 +27,12 @@ export class AssetGLTF {
 
                 gltf.scene.traverse( child => {
                     // @ts-ignore
-                    if ( child.material ) child.material.metalness = 0;
+                    if ( child.material ) {
+                        // @ts-ignore
+                        child.material.metalness = 0;
+                        // @ts-ignore
+                        child.material.side = DoubleSide;
+                    }
                 } );
 
                 this.loaded  = true;

@@ -7,15 +7,17 @@ import {
     PerspectiveCamera,
     REVISION,
     Scene,
-    WebGLRenderer
+    WebGLRenderer,
 } from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
+import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
 import Stats from "stats.js";
-import {getState} from "../../../store/store";
+import {addScenery, getState, store} from "../../../store/store";
 import {RaycastEvent} from "./events/RaycastEvent";
 import {SceneryUtils} from "./scenery/SceneryUtils";
 import {selectScene} from "../../../store/store_selector";
 import LightUtils from "./scenery/LightUtils";
+import {createEmptyScenery} from "../../../store/store_helper";
 
 const debug = require("debug")(`front:WebGlManager`);
 
@@ -39,6 +41,8 @@ export class WebGlManager {
     private _camera : PerspectiveCamera = null;
     private _control : OrbitControls = null;
     private _raycast : RaycastEvent  = null;
+
+    private _effect: OutlineEffect = null;
 
     // todo refacto
     public static scene: Scene = null;
@@ -158,7 +162,11 @@ export class WebGlManager {
 
         this._control.update();
 
-        this._renderer.render(this._scene, this._camera);
+        if (this._effect === null) {
+            this._renderer.render(this._scene, this._camera);
+        } else {
+            this._effect.render(this._scene, this._camera);
+        }
 
         this._stats.end();
 
@@ -192,11 +200,19 @@ export class WebGlManager {
     public toggleScenery(scene_id: string): void {
         const scene = selectScene(scene_id)(getState().data);
 
+        // ADD SCENE TO STORE
+        store.dispatch(addScenery(createEmptyScenery(scene_id)));
+
         // DESTROY
         SceneryUtils.destroyScenery(this._scene);
 
         // BUILD SCENE
         SceneryUtils.buildElementsOf(this._scene, scene.content.elements);
+
+        // ADD EFFECRS
+        if (SceneryUtils.addEffect(this._scene, scene.content.effects) === 'outline') {
+            this._effect = new OutlineEffect(this._renderer);
+        }
 
         // CONTROL
         this._control.minPolarAngle = scene.orbit.minPolar;

@@ -30,7 +30,7 @@ function NotebookPageElements (props: IProps) {
 
   // get collectibles of scene
   const active_scene  = selectUserActiveScene(getState());
-  const collectibles  = selectCollectiblesOfSceneWithPickup(active_scene)(getState().data);
+  const collectibles  = selectCollectiblesOfSceneWithPickup(active_scene)(getState().data, getState().user_data);
 
   if(showPage) {
     return <NotebookPageElementsDetails data={page} onExit={() => { toggleShowPage(false); }} />

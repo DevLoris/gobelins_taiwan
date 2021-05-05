@@ -1,5 +1,5 @@
 import {Signal} from "../../../../lib/helpers/Signal";
-import {selectCollectible, selectScene, selectUserActiveScene} from "../../../../store/store_selector";
+import {selectCollectible, selectScene, selectUserActiveScene, selectUserScene} from "../../../../store/store_selector";
 import {addPickElementScene, getState, pickupHint, pickupPreHint, store} from "../../../../store/store";
 import {IStateDataSceneCollectibleType} from "../../../../store/state_enums";
 import FocusUtils from "../scenery/FocusUtils";
@@ -23,6 +23,7 @@ class RaycastManager {
         // SCENE
         const userSceneId = selectUserActiveScene(getState());
         const scene = selectScene(userSceneId)(getState().data);
+        const userSceneData = selectUserScene(userSceneId)(getState().user_data);
 
         // GET COLLECTIBLE DATA
         const collectibleSceneData = scene.collectibles.find(value => value.trigger == id);
@@ -42,7 +43,8 @@ class RaycastManager {
 
                         break;
                     case IStateDataSceneCollectibleType.PICKUP:
-                        store.dispatch(pickupHint({scene: userSceneId, bool: true}));
+                        if(userSceneData.hint.pre_pickup)
+                            store.dispatch(pickupHint({scene: userSceneId, bool: true}));
                         // todo UI & other
                         break;
                     case IStateDataSceneCollectibleType.PRE_PICKUP:

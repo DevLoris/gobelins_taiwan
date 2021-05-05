@@ -1,7 +1,7 @@
 import { Mesh, Scene } from "three";
 import { SceneElement } from "./elements/SceneElement";
 import {ObjectContainerSceneElement} from "./elements/ObjectContainerSceneElement";
-import {IStateDataSceneElement} from "../../../../store/state_interface_data";
+import {IStateDataScene, IStateDataSceneEffect, IStateDataSceneElement} from "../../../../store/state_interface_data";
 import {CubeSceneElement} from "./elements/CubeSceneElement";
 import {IStateDataSceneElementType} from "../../../../store/state_enums";
 
@@ -50,5 +50,16 @@ export class SceneryUtils {
                     return new ObjectContainerSceneElement(value.id, value.gltf, value.options);
             }
         })
+    }
+
+    static addEffect(scene: Scene, scene_effect: IStateDataSceneEffect[]) {
+        let effect_type = '';
+        scene_effect.forEach((effect: IStateDataSceneEffect) => {
+            if (effect.type === 'outline') {
+                effect_type = 'outline';
+            }
+        });
+
+        return effect_type;
     }
 }
