@@ -16,3 +16,7 @@ export enum IStateDataSceneCollectibleType {
     PICKUP = "pickup",
     HINT = "hint"
 }
+
+export enum IStateDataSceneEffectsType {
+    OUTLINE = "outline"
+}
