@@ -30,6 +30,7 @@ export interface IStateDataScene {
     content: {
         elements: IStateDataSceneElement[],
         lights: IStateDataSceneLight[],
+        effects: IStateDataSceneEffect[],
     }
     //  todo complete this
 }
@@ -48,6 +49,10 @@ export interface IStateDataSceneLight {
     groundColor?: string,
     intensity?: number,
     coords?: ICoord
+}
+
+export interface IStateDataSceneEffect {
+    type: string;
 }
 
 

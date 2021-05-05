@@ -77,6 +77,11 @@
             "color": "#ff00ff",
             "intensity": 0.2
           }
+        ],
+        "effects": [
+          {
+            "type": "outline"
+          }
         ]
       }
     }

@@ -82,7 +82,7 @@ const experienceSlice = createSlice({
         },
         vlogOutro: (state: ICustomState, payload: PayloadAction<IBooleanScene>) => {
             let found = state.scenes.find(value => value.scene == payload.payload.scene);
-            if(found) {
+               if(found) {
                 found.vlog.outro = payload.payload.bool;
             }
         }
