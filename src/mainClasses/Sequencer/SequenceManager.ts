@@ -1,5 +1,7 @@
 import {SequenceChapter} from "./SequenceChapter";
 import {EChapterStep} from "./SequenceChapterStep";
+import {getChapterAndStepInUrl} from "../../helpers/DebugHelpers";
+import {Signal} from "../../lib/helpers/Signal";
 
 const debug = require("debug")(`front:SequenceManager`);
 
@@ -10,18 +12,22 @@ export enum EChapterName {
     OUTRO_VLOG = "OUTRO_VLOG"
 }
 
+// TODO mettre dans les data lol
 export const CHAPTERS = [
     {
         name: EChapterName.FIRST_ENIGMA,
         steps: [
             {
                 identifier: EChapterStep.INTRO_VLOG,
+                id: "opening", // TODO changer pour la démo
             },
             {
                 identifier: EChapterStep.DIORAMA,
+                id: "centreVilleWesh"
             },
             {
                 identifier: EChapterStep.OUTRO_VLOG,
+                id: "opening" // TODO changer pour la démo
             },
         ]
     },
@@ -52,6 +58,23 @@ export class SequenceManager {
     get activeChapterName(): EChapterName {
         return this._activeChapterName;
     }
+    set activeChapterName(name:EChapterName) {
+        this._activeChapterName = name;
+    }
+
+    private _activeStepName: EChapterStep = null;
+    get activeStepName(): EChapterStep {
+        return this._activeStepName;
+    }
+    set activeStepName(name: EChapterStep) {
+        this._activeStepName = name;
+        this._onStepUpdated.dispatch();
+    }
+
+    protected _onStepUpdated: Signal = new Signal();
+    public get onStepUpdated(): Signal {
+        return this._onStepUpdated;
+    }
 
     public init(): void {
         debug("SequenceManager init", CHAPTERS);
@@ -60,17 +83,40 @@ export class SequenceManager {
             this._chapters.push(new SequenceChapter(CHAPTERS[i]));
         }
 
+        const fromUrl = getChapterAndStepInUrl()
+
+        debug("URL", fromUrl);
+
+        // Get debug chapter & step from url
+        if( fromUrl[0] && fromUrl[1] ) {
+            CHAPTERS.forEach((chapter) => {
+                if(chapter.name === fromUrl[0]) {
+                    this.activeChapterName = fromUrl[0];
+                    chapter.steps.forEach((step) => {
+                        if(step.identifier === fromUrl[1]) {
+                            this.activeStepName = fromUrl[1];
+                            debug("identifier", step.identifier);
+                        }
+                    });
+                }
+            });
+        }
+        else {
+            this.startFromBeginning();
+        }
+
+
         // TODO checker dans le localstorage si il y a une sauvegarde
-        this._activeChapterName = this._chapters[0].identifier;
+        // TODO sinon démarrer du début
     }
 
     public startFromBeginning(): void {
-        this._activeChapterName = CHAPTERS[0].name;
+        this.activeChapterName = CHAPTERS[0].name;
+        this.activeStepName = CHAPTERS[0].steps[0].identifier;
     }
 
-    // TODO typage
-    public getCurrentPositionInSequence(): any {
-
+    public getCurrentPositionInSequence(): [string, string] {
+        return [this.activeChapterName, this.activeStepName];
     }
 
     public increment(): void {

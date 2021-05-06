@@ -1,15 +1,16 @@
 import css from './Vlog.module.less';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { merge } from "../../lib/utils/arrayUtils";
 import {useTranslation} from "react-i18next";
 import video from '../../data/video.json';
 import Video from "./video/Video";
+import {SequenceManager} from "../../mainClasses/Sequencer/SequenceManager";
 
 interface IProps {
     className?: string;
     videoId: string;
   }
-  
+
 
 const componentName = "Vlog";
 const debug = require("debug")(`front:${componentName}`);
@@ -26,6 +27,17 @@ function Vlog (props: IProps) {
     });
 
     const { t } = useTranslation();
+
+    useEffect(() => {
+        SequenceManager.instance.onStepUpdated.add(sequenceStepUpdatedHandler);
+        return () => {
+            SequenceManager.instance.onStepUpdated.remove(sequenceStepUpdatedHandler);
+        }
+    }, []);
+
+    function sequenceStepUpdatedHandler() {
+
+    }
 
     return <Video path={path}/>
 }

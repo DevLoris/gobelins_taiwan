@@ -17,8 +17,6 @@ export class Game {
         isLocal() && debug("It's a local server!");
         isUrlDebug() && debug("Debug mode enabled!");
 
-        debug(getChapterAndStepInUrl());
-
         // Init audio
         AudioHandler.loadFile();
 

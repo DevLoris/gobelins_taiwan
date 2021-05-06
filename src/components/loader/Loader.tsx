@@ -45,7 +45,7 @@ function Loader (props: IProps) {
           autoAlpha: pShow ? 1 : 0,
           onComplete: () => {
             if(!pShow) {
-              rootRef.current.style.display = "none";
+              if (rootRef.current?.style?.display) rootRef.current.style.display = "none";
             }
           }
         });
