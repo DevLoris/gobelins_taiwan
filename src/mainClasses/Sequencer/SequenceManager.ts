@@ -19,7 +19,7 @@ export const CHAPTERS = [
         steps: [
             {
                 identifier: EChapterStep.INTRO_VLOG,
-                id: "opening", // TODO changer pour la démo
+                id: "loris", // TODO
             },
             {
                 identifier: EChapterStep.DIORAMA,
@@ -27,7 +27,7 @@ export const CHAPTERS = [
             },
             {
                 identifier: EChapterStep.OUTRO_VLOG,
-                id: "opening" // TODO changer pour la démo
+                id: "opening"
             },
         ]
     },
@@ -54,6 +54,10 @@ export class SequenceManager {
 
     private _chapters = new Array<SequenceChapter>();
 
+    /**
+     * Contains the active chapter name
+     * @private
+     */
     private _activeChapterName: EChapterName = null;
     get activeChapterName(): EChapterName {
         return this._activeChapterName;
@@ -62,64 +66,117 @@ export class SequenceManager {
         this._activeChapterName = name;
     }
 
+    /**
+     * The active chapter index in chapter array
+     * @private
+     */
+    private _activeChapterIndex:number = 0;
+
+    /**
+     * Contains the active step name in current chapter
+     * Setter triggers onStepUpdated() Signal
+     * @private
+     */
     private _activeStepName: EChapterStep = null;
     get activeStepName(): EChapterStep {
         return this._activeStepName;
     }
     set activeStepName(name: EChapterStep) {
         this._activeStepName = name;
-        this._onStepUpdated.dispatch();
+        // Trigger onStepUpdated() signal
+        this.onStepUpdated.dispatch();
     }
 
+    /**
+     * Used to indicate that the current step has been modified
+     * @protected
+     */
     protected _onStepUpdated: Signal = new Signal();
     public get onStepUpdated(): Signal {
         return this._onStepUpdated;
     }
 
+    /**
+     * The active step index in the current chapter
+     * @private
+     */
+    private _activeStepIndex:number = 0;
+
+    // ---------------------------------------------------------------------------
+
+    /**
+     * Check if debug data is in url
+     * or check if saved data is in localstorage
+     * or start from beginning
+     */
     public init(): void {
         debug("SequenceManager init", CHAPTERS);
 
         for(let i = 0; i < SEQUENCE_COUNT; i++) {
-            this._chapters.push(new SequenceChapter(CHAPTERS[i]));
+            this._chapters.push(new SequenceChapter(CHAPTERS[i])); // TODO walla ca sert à rien en fait
         }
 
         const fromUrl = getChapterAndStepInUrl()
-
         debug("URL", fromUrl);
 
         // Get debug chapter & step from url
         if( fromUrl[0] && fromUrl[1] ) {
-            CHAPTERS.forEach((chapter) => {
+            CHAPTERS.forEach((chapter, chapterIndex) => {
                 if(chapter.name === fromUrl[0]) {
                     this.activeChapterName = fromUrl[0];
-                    chapter.steps.forEach((step) => {
+                    this._activeChapterIndex = chapterIndex;
+                    chapter.steps.forEach((step, stepIndex) => {
                         if(step.identifier === fromUrl[1]) {
                             this.activeStepName = fromUrl[1];
+                            this._activeStepIndex = stepIndex;
                             debug("identifier", step.identifier);
                         }
                     });
                 }
             });
         }
+        // TODO checker dans le localstorage si il y a une sauvegarde
+        // Start at the beginning
         else {
             this.startFromBeginning();
         }
-
-
-        // TODO checker dans le localstorage si il y a une sauvegarde
-        // TODO sinon démarrer du début
     }
 
+    /**
+     * Set indexes to 0, start from the beginning
+     */
     public startFromBeginning(): void {
         this.activeChapterName = CHAPTERS[0].name;
+        this._activeChapterIndex = 0;
         this.activeStepName = CHAPTERS[0].steps[0].identifier;
+        this._activeStepIndex = 0;
     }
 
+    /**
+     * Get names of current chapter ans step
+     */
     public getCurrentPositionInSequence(): [string, string] {
+        if(this.activeChapterName === undefined || this.activeStepName === undefined) this.startFromBeginning();
         return [this.activeChapterName, this.activeStepName];
     }
 
+    /**
+     * Step forward in sequence
+     */
     public increment(): void {
+        // If there is one more step inside this chapter
+        if(CHAPTERS[this._activeChapterIndex].steps[this._activeStepIndex+1]) {
+            this._activeStepIndex += 1;
+            this.activeStepName = CHAPTERS[this._activeChapterIndex].steps[this._activeStepIndex].identifier;
+        }
+        // Else jump to next chapter
+        else {
+            this._activeChapterIndex += 1;
+            this._activeStepIndex = 0;
 
+            this.activeChapterName = CHAPTERS[this._activeChapterIndex].name;
+            this.activeStepName = CHAPTERS[this._activeChapterIndex].steps[this._activeStepIndex].identifier;
+        }
+        // TODO gérer si c'était le dernier step du dernier chapitre
     }
 }

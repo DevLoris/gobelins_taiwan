@@ -47,7 +47,7 @@ const VlogPage = (props: IProps) => {
 
   return (
     <div className={css.root} ref={rootRef}>
-      <Vlog videoId="opening"/>
+      <Vlog videoId="loris"/>
     </div>
   );
 };

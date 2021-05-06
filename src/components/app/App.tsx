@@ -82,9 +82,11 @@ class App extends Component<IProps, IStates> {
     pNewPage: TPageRegisterObject
   ): Promise<void> {
     return new Promise(async (resolve) => {
-      // debug({ pOldPage, pNewPage });
+      debug("{ pOldPage, pNewPage }", { pOldPage, pNewPage });
       const oldPageRef = pOldPage?.rootRef?.current;
       const newPageRef = pNewPage?.rootRef?.current;
+
+      debug("Yolo Dark XXX 2015 SWAG Doritos MLG");
 
       // hide new page fist
       if (newPageRef != null) newPageRef.style.visibility = "hidden";
