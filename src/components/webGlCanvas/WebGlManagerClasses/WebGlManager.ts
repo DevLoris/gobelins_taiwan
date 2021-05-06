@@ -18,6 +18,7 @@ import {SceneryUtils} from "./scenery/SceneryUtils";
 import {selectScene} from "../../../store/store_selector";
 import LightUtils from "./scenery/LightUtils";
 import {createEmptyScenery} from "../../../store/store_helper";
+import {HdrUtils} from "./scenery/HdrUtils";
 
 const debug = require("debug")(`front:WebGlManager`);
 
@@ -210,7 +211,8 @@ export class WebGlManager {
         SceneryUtils.buildElementsOf(this._scene, scene.content.elements);
 
         // ADD EFFECTS
-        this._effects = SceneryUtils.addEffects(this._scene, scene.content.effects);
+        //this._effects = SceneryUtils.addEffects(this._scene, scene.content.effects);
+        HdrUtils.loadEnvironment('wow');
 
         // CONTROL
         this._control.minPolarAngle = scene.orbit.minPolar;
