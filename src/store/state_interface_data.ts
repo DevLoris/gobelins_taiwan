@@ -13,7 +13,11 @@ export interface IStateData {
 
 export interface IStateDataSceneCollectible {
     collectible_id: string
-    trigger: string
+    trigger: string,
+    focus?: {
+        coords: ICoord,
+        rotation: ICoord
+    }
 }
 
 export interface IStateDataScene {

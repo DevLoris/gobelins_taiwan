@@ -23,6 +23,13 @@ export class SceneryUtils {
         }
     }
 
+    static destroyElementByName(name:  string) {
+        WebGlManager.getInstance().getScene().traverse(value => {
+           if(value.name == name)
+               WebGlManager.getInstance().getScene().remove(value);
+        });
+    }
+
     /**
      * Build scene elements
      * @param scene

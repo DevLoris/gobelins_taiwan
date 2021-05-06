@@ -7,6 +7,7 @@ import {
     IStateDataScene,
     IStateDataCollectibleWithPickup
 } from "./state_interface_data";
+import {IStateDataSceneCollectibleType} from "./state_enums";
 
 // RELATIVE TO USER DATA
 // Select user save related data
@@ -57,6 +58,13 @@ export const selectCollectible = collectible => {
     return createSelector<IStateData, IStateDataCollectible[], IStateDataCollectible>(
         selectCollectibles,
         items => items.find(item => item.id == collectible)
+    );
+};
+
+export const selectCollectibleOfType = (type: IStateDataSceneCollectibleType) => {
+    return createSelector<IStateData, IStateDataCollectible[], IStateDataCollectible>(
+        selectCollectibles,
+        items => items.find(item => item.type == type)
     );
 };
 

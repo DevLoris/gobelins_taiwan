@@ -1,8 +1,15 @@
 import {Signal} from "../../../../lib/helpers/Signal";
-import {selectCollectible, selectScene, selectUserActiveScene, selectUserScene} from "../../../../store/store_selector";
+import {
+    selectCollectible,
+    selectCollectibleOfType,
+    selectScene,
+    selectUserActiveScene,
+    selectUserScene
+} from "../../../../store/store_selector";
 import {addPickElementScene, getState, pickupHint, pickupPreHint, store} from "../../../../store/store";
 import {IStateDataSceneCollectibleType} from "../../../../store/state_enums";
 import FocusUtils from "../scenery/FocusUtils";
+import {SceneryUtils} from "../scenery/SceneryUtils";
 
 class RaycastManager {
     private static instance: RaycastManager;
@@ -28,7 +35,7 @@ class RaycastManager {
         // GET COLLECTIBLE DATA
         const collectibleSceneData = scene.collectibles.find(value => value.trigger == id);
 
-        if(collectibleSceneData !== undefined) {
+        if(collectibleSceneData !== undefined && !FocusUtils.isFocus) {
             // COLLECTIBLE EXIST ON SCENE
             let collectible = selectCollectible(collectibleSceneData.collectible_id)(getState().data);
             if(collectible) {
@@ -39,20 +46,28 @@ class RaycastManager {
                         // UPDATE STORE WITH USER DATA
                         store.dispatch(addPickElementScene({pickup: collectible.id, scene: userSceneId}));
 
-                        FocusUtils.focusOn({x: 2, y: 4, z: 5}, {x: 3, y: 1, z:3});
+                        FocusUtils.focusOn(collectibleSceneData.focus.coords, collectibleSceneData.focus.rotation);
 
                         break;
                     case IStateDataSceneCollectibleType.PICKUP:
                         if(userSceneData.hint.pre_pickup) {
                             store.dispatch(addPickElementScene({pickup: collectible.id, scene: userSceneId}));
                             store.dispatch(pickupHint({scene: userSceneId, bool: true}));
+                            this.onInteract.dispatch(collectible, true);
                         }
-                        // todo UI & other
+                        else {
+                            let collectible_prepickup = selectCollectibleOfType(IStateDataSceneCollectibleType.PRE_PICKUP)(getState().data);
+                            this.onInteract.dispatch(collectible_prepickup, false);
+
+                        }
+                        console.log(collectibleSceneData);
+                        FocusUtils.focusOn(collectibleSceneData.focus.coords, collectibleSceneData.focus.rotation);
                         break;
                     case IStateDataSceneCollectibleType.PRE_PICKUP:
                         store.dispatch(addPickElementScene({pickup: collectible.id, scene: userSceneId}));
                         store.dispatch(pickupPreHint({scene: userSceneId, bool: true}));
-                        // todo UI & other
+                        this.onInteract.dispatch(collectible, true);
+                        SceneryUtils.destroyElementByName(collectibleSceneData.trigger);
                         break;
                 }
             }
