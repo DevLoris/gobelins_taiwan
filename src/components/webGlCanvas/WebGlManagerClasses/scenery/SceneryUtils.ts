@@ -24,9 +24,11 @@ export class SceneryUtils {
     }
 
     static destroyElementByName(name:  string) {
-        WebGlManager.getInstance().getScene().traverse(value => {
-           if(value.name == name)
-               WebGlManager.getInstance().getScene().remove(value);
+        WebGlManager.getInstance().getScene().children.forEach(value => {
+           if(value.userData.internalId && value.userData.internalId == name) {
+               let object = WebGlManager.getInstance().getScene().getObjectById(value.id);
+               WebGlManager.getInstance().getScene().remove(object);
+           }
         });
     }
 

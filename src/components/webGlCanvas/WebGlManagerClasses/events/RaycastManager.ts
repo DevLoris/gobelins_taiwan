@@ -41,32 +41,40 @@ class RaycastManager {
             if(collectible) {
                 switch (collectible.type) {
                     case IStateDataSceneCollectibleType.HINT:
-                        // SHOW UI
+                        // DISPATCH UI UPDATE
                         this.onInteract.dispatch(collectible);
                         // UPDATE STORE WITH USER DATA
                         store.dispatch(addPickElementScene({pickup: collectible.id, scene: userSceneId}));
-
+                        // SET FOCUS
                         FocusUtils.focusOn(collectibleSceneData.focus.coords, collectibleSceneData.focus.rotation);
 
                         break;
                     case IStateDataSceneCollectibleType.PICKUP:
                         if(userSceneData.hint.pre_pickup) {
+                            // ADD ELEMENT TO PICKUP LIST
                             store.dispatch(addPickElementScene({pickup: collectible.id, scene: userSceneId}));
+                            // UPDATE HINT
                             store.dispatch(pickupHint({scene: userSceneId, bool: true}));
+                            // DISPATCH UI UPDATE
                             this.onInteract.dispatch(collectible, true);
                         }
                         else {
+                            // GET LINKED PRE PICKUP ELEMENT
                             let collectible_prepickup = selectCollectibleOfType(IStateDataSceneCollectibleType.PRE_PICKUP)(getState().data);
+                            // DISPATCH UI UPDATE
                             this.onInteract.dispatch(collectible_prepickup, false);
-
                         }
-                        console.log(collectibleSceneData);
+                        // SET FOCUS
                         FocusUtils.focusOn(collectibleSceneData.focus.coords, collectibleSceneData.focus.rotation);
                         break;
                     case IStateDataSceneCollectibleType.PRE_PICKUP:
+                        // ADD ELEMENT TO PICKUP LIST
                         store.dispatch(addPickElementScene({pickup: collectible.id, scene: userSceneId}));
+                        // UPDATE PRE HINT
                         store.dispatch(pickupPreHint({scene: userSceneId, bool: true}));
+                        // DISPATCH UI UPDATE
                         this.onInteract.dispatch(collectible, true);
+                        // REMOVE ELEMENT FROM SCENE
                         SceneryUtils.destroyElementByName(collectibleSceneData.trigger);
                         break;
                 }
