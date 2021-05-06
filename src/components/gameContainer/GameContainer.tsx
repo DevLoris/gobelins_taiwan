@@ -7,6 +7,8 @@ import InteractedElement from "../interactedElement/InteractedElement";
 import Notebook from "../notebook/Notebook";
 import NotebookToggler from "../notebook/notebookToggler/NotebookToggler";
 import {bool} from "prop-types";
+import PrePickupElement from "../prePickupElement/PrePickupElement";
+import YouNeedElement from "../youNeedElement/YouNeedElement";
 
 interface IProps {
   className?: string
@@ -56,6 +58,8 @@ function GameContainer (props: IProps) {
     <NotebookToggler onClick={() => {
       setMenuOpen(!menuOpen);
     }} />
+    <PrePickupElement/>
+    <YouNeedElement/>
     <WebGlCanvas />
   </div>
 }

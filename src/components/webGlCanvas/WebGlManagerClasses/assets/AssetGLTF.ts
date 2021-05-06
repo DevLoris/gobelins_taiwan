@@ -25,6 +25,11 @@ export class AssetGLTF {
                 model.position.set( 0, 0, 0 );
                 model.scale.set( DEFAULT_SCALE_FACTOR, DEFAULT_SCALE_FACTOR, DEFAULT_SCALE_FACTOR );
 
+                // on set les types juste pour les enfants
+                gltf.scene.children.forEach(value => {
+                    value.userData.internalId = value.name;
+                });
+
                 gltf.scene.traverse( child => {
                     // @ts-ignore
                     if ( child.material ) {

@@ -1,5 +1,5 @@
 @import (reference) "./references.less";
-@import (inline) "../node_modules/@solid-js/css-flat/css-flat.css";
+@import (inline) "./css-flat.less";
 @import "./fonts/Fonts.less";
 
 html,
@@ -12,4 +12,8 @@ body {
 h2 {
   font-weight: 700;
   font-size: 22px;
+}
+
+.dg li.gui-stats:not(.folder) {
+  height: auto;
 }

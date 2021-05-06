@@ -1,17 +1,13 @@
 import {
     Camera,
     Color,
-    DirectionalLight,
-    DirectionalLightHelper,
-    HemisphereLight,
-    PerspectiveCamera, Renderer,
+    PerspectiveCamera,
     REVISION,
-    Scene,
+    Scene, sRGBEncoding,
     WebGLRenderer,
 } from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
-import Stats from "stats.js";
 import {addScenery, getState, store} from "../../../store/store";
 import {RaycastEvent} from "./events/RaycastEvent";
 import {SceneryUtils} from "./scenery/SceneryUtils";
@@ -19,6 +15,7 @@ import {selectScene} from "../../../store/store_selector";
 import LightUtils from "./scenery/LightUtils";
 import {createEmptyScenery} from "../../../store/store_helper";
 import {HdrUtils} from "./scenery/HdrUtils";
+import {ConfigureGui} from "./ConfigureGui";
 
 const debug = require("debug")(`front:WebGlManager`);
 
@@ -27,15 +24,13 @@ const CAMERA_ASPECT = window.innerWidth / window.innerHeight;
 const CAMERA_NEAR = 0.1;
 const CAMERA_FAR = 10000;
 
-const STATS_FPS = 0;
-
 export class WebGlManager {
     private static instance: WebGlManager;
 
     private _wrapper:HTMLDivElement = null;
 
     private _animationLoopId:number = 0;
-    private _stats:Stats = null;
+    private _configureGui:ConfigureGui = null;
 
     private _renderer : WebGLRenderer = null;
     private _scene : Scene = null;
@@ -73,13 +68,13 @@ export class WebGlManager {
 
         this._wrapper = pWrapper;
 
-        this._setupStats();
         this._setupScene();
         this._setupRenderer();
         this._setupOrbitControls();
         this._setupRaycaster();
 
         this._startWebGlLoop();
+        this._setupStats();
 
         this.toggleScenery("test");
 
@@ -91,9 +86,7 @@ export class WebGlManager {
      * @private
      */
     private _setupStats():void {
-        this._stats = new Stats();
-        this._stats.showPanel(STATS_FPS);
-        document.body.appendChild(this._stats.dom);
+        this._configureGui = new ConfigureGui();
     }
 
     /**
@@ -112,6 +105,7 @@ export class WebGlManager {
      */
     private _setupRenderer():void {
         this._renderer = new WebGLRenderer();
+        this._renderer.outputEncoding = sRGBEncoding;
         this._renderer.setSize( window.innerWidth, window.innerHeight );
         // Add canvas to dom
         this._wrapper.appendChild( this._renderer.domElement );
@@ -159,7 +153,7 @@ export class WebGlManager {
      * @private
      */
     private _animationFrame():void {
-        this._stats.begin();
+        this._configureGui.getStats().begin();
 
         this._control.update();
 
@@ -169,7 +163,7 @@ export class WebGlManager {
             this._effects.forEach(value => value.render(this._scene, this._camera));
         }
 
-        this._stats.end();
+        this._configureGui.getStats().end();
 
         requestAnimationFrame(this._animationFrame.bind(this));
     }
@@ -194,7 +188,7 @@ export class WebGlManager {
      */
     public destroy():void {
         this._stopWebGlLoop();
-        document.body.removeChild(this._stats.dom);
+        this._configureGui.destroy();
         this._wrapper.removeChild( this._renderer.domElement );
     }
 
