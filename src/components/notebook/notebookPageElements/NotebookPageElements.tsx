@@ -1,14 +1,14 @@
 import css from './NotebookPageElements.module.less';
 import React, {useState} from 'react';
-import { merge } from "../../../lib/utils/arrayUtils";
+import {merge} from "../../../lib/utils/arrayUtils";
 import {useTranslation} from "react-i18next";
 import {selectCollectiblesOfSceneWithPickup, selectUserActiveScene} from "../../../store/store_selector";
 import {getState} from 'store/store';
 import {IStateDataCollectibleWithPickup} from "../../../store/state_interface_data";
 import NotebookElement from "../notebookElement/NotebookElement";
-import {bool} from "prop-types";
 import NotebookPageElementsDetails from "../notebookPageElementsDetails/NotebookPageElementsDetails";
 import NotebookTitle from "../notebookTitle/NotebookTitle";
+import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
 
 interface IProps {
   className?: string
@@ -30,7 +30,9 @@ function NotebookPageElements (props: IProps) {
 
   // get collectibles of scene
   const active_scene  = selectUserActiveScene(getState());
-  const collectibles  = selectCollectiblesOfSceneWithPickup(active_scene)(getState().data, getState().user_data);
+  const collectibles  = selectCollectiblesOfSceneWithPickup(active_scene)(getState().data, getState().user_data).filter(value => {
+    return value.type == IStateDataSceneCollectibleType.HINT;
+  });
 
   if(showPage) {
     return <NotebookPageElementsDetails data={page} onExit={() => { toggleShowPage(false); }} />

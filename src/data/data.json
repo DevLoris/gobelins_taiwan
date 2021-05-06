@@ -4,7 +4,11 @@
       "id":  "test",
       "collectibles": [
         {
-          "collectible_id": "tomate",
+          "collectible_id": "seven_eleven",
+          "trigger": "seven_eleven"
+        },
+        {
+          "collectible_id": "camion_poubelle",
           "trigger": "pickup"
         }
       ],
@@ -55,27 +59,12 @@
             "type": "hemisphere",
             "coords": {
               "x": 0,
-              "y": 10,
+              "y": 50,
               "z": 0
             },
             "color": "#ffffff",
-            "groundColor": "#000000",
-            "intensity": 0.2
-          },
-          {
-            "type": "directional",
-            "coords": {
-              "x": 5,
-              "y": 2,
-              "z": 8
-            },
-            "color": "#ffffff",
-            "intensity": 0.8
-          },
-          {
-            "type": "ambient",
-            "color": "#ff00ff",
-            "intensity": 0.2
+            "groundColor": "#ffffff",
+            "intensity": 0.1
           }
         ],
         "effects": [
@@ -122,24 +111,25 @@
   ],
   "collectibles": [
     {
-      "id": "tomate",
-      "type": "hint",
-      "name": "Tomate",
-      "asset": "/public/tomate-classique_1.png",
-      "text": "Les tomates c'est bon",
+      "id": "seven_eleven",
+      "type": "pickup",
+      "name": "7-Eleven",
+      "asset": "/public/hints/7-eleven.png",
+      "hint": "Ces si petits magasins ouverts jours et nuits sont de véritables cavernes d'Ali Baba",
+      "text": "Ces magasins permettent d’absolument tout faire : tu peux faire tes courses du quotidien, manger des repas complets sur place, faire des photocopies, retirer de l’argent ou avoir du wifi gratuitement. Et tout ça, à n’importe quelle heure de la journée c’est ouvert 24h/24 et 7j/7 !",
       "additional": [
         {
           "type": "text",
-          "value": "xccyxcxy"
+          "value": "Il y en a plus de 3600 à Taiwan, donc tu peux en trouver de partout, c’est ultra pratique !"
         }
       ]
     },
     {
-      "id": "test",
+      "id": "camion_poubelle",
       "type": "hint",
-      "name": "Test",
-      "asset": "/public/tomate-classique_1.png",
-      "text": "Les tests c'est cool",
+      "name": "Camion Poubelle",
+      "asset": "/public/hints/camions-poubelle.jpeg",
+      "text": "A Taiwan, les camions poubelle jouent une petite mélodie quant ils passent. Ça te permet de savoir quand ils arrivent pour que tu ailles jeter tes poubelles. C’est l’occase de voir tous tes voisins en survêt claquettes.",
       "additional": []
     }
   ]

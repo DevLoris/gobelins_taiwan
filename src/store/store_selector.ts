@@ -72,10 +72,6 @@ export const selectCollectiblesOfSceneWithPickup = (scene: string) => {
                 let user_scene = user_scenes.find(value1 => value1.scene == scene);
                 // on check si il l'a ramassé dans la scène
                 let pickup = (user_scene !== undefined && user_scene.picked_elements.includes(value.collectible_id));
-
-
-                console.log(value, scene, user_scenes, pickup);
-
                 // on retourne
                 return {...collectibles.find(value1 => value1.id == value.collectible_id), pickup}
             }).filter(value => value.name !== undefined);

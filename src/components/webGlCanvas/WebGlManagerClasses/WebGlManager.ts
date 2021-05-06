@@ -4,7 +4,7 @@ import {
     DirectionalLight,
     DirectionalLightHelper,
     HemisphereLight,
-    PerspectiveCamera,
+    PerspectiveCamera, Renderer,
     REVISION,
     Scene,
     WebGLRenderer,
@@ -19,6 +19,7 @@ import {selectScene} from "../../../store/store_selector";
 import {CAMERA_ASPECT, CAMERA_FAR, CAMERA_FOV, CAMERA_NEAR, STATS_FPS} from "./WebGlVars";
 import LightUtils from "./scenery/LightUtils";
 import {createEmptyScenery} from "../../../store/store_helper";
+import {HdrUtils} from "./scenery/HdrUtils";
 
 const debug = require("debug")(`front:WebGlManager`);
 
@@ -39,6 +40,7 @@ export class WebGlManager {
     private _isRunning: boolean = false;
 
     private _effect: OutlineEffect = null;
+    private _effects:  (OutlineEffect|any)[] = [];
 
     // todo refacto
     public static scene: Scene = null;
@@ -160,10 +162,10 @@ export class WebGlManager {
 
         this._control.update();
 
-        if (this._effect === null) {
+        if (this._effects.length == 0) {
             this._renderer.render(this._scene, this._camera);
         } else {
-            this._effect.render(this._scene, this._camera);
+            this._effects.forEach(value => value.render(this._scene, this._camera));
         }
 
         this._stats.end();
@@ -207,10 +209,9 @@ export class WebGlManager {
         // BUILD SCENE
         SceneryUtils.buildElementsOf(this._scene, scene.content.elements);
 
-        // ADD EFFECRS
-        if (SceneryUtils.addEffect(this._scene, scene.content.effects) === 'outline') {
-            this._effect = new OutlineEffect(this._renderer);
-        }
+        // ADD EFFECTS
+        //this._effects = SceneryUtils.addEffects(this._scene, scene.content.effects);
+        HdrUtils.loadEnvironment('wow');
 
         // CONTROL
         this._control.minPolarAngle = scene.orbit.minPolar;
@@ -250,5 +251,13 @@ export class WebGlManager {
 
     public getScene(): Scene {
         return this._scene;
+    }
+
+    public getRenderer(): WebGLRenderer {
+        return this._renderer;
+    }
+
+    public getEffects() {
+        return this._effects;
     }
 }

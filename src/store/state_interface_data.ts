@@ -1,4 +1,9 @@
-import {IStateDataSceneCollectibleType, IStateDataSceneElementType, IStateDataSceneLightType} from "./state_enums";
+import {
+    IStateDataSceneEffectsType,
+    IStateDataSceneCollectibleType,
+    IStateDataSceneElementType,
+    IStateDataSceneLightType
+} from "./state_enums";
 
 export interface IStateData {
     scenes: IStateDataScene[],
@@ -52,7 +57,7 @@ export interface IStateDataSceneLight {
 }
 
 export interface IStateDataSceneEffect {
-    type: string;
+    type: IStateDataSceneEffectsType;
 }
 
 
@@ -73,6 +78,7 @@ export interface IStateDataCollectible {
     name: string,
     asset: string,
     text: string,
+    hint?: string,
     additional?: IStateDataCollectibleAdditional[]
 }
 export interface IStateDataCollectibleWithPickup extends IStateDataCollectible {

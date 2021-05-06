@@ -3,7 +3,9 @@ import { SceneElement } from "./elements/SceneElement";
 import {ObjectContainerSceneElement} from "./elements/ObjectContainerSceneElement";
 import {IStateDataScene, IStateDataSceneEffect, IStateDataSceneElement} from "../../../../store/state_interface_data";
 import {CubeSceneElement} from "./elements/CubeSceneElement";
-import {IStateDataSceneElementType} from "../../../../store/state_enums";
+import {IStateDataSceneEffectsType, IStateDataSceneElementType} from "../../../../store/state_enums";
+import {WebGlManager} from "../WebGlManager";
+import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
 
 /**
  * Scenery Utils
@@ -52,14 +54,12 @@ export class SceneryUtils {
         })
     }
 
-    static addEffect(scene: Scene, scene_effect: IStateDataSceneEffect[]) {
-        let effect_type = '';
-        scene_effect.forEach((effect: IStateDataSceneEffect) => {
-            if (effect.type === 'outline') {
-                effect_type = 'outline';
+    static addEffects(scene: Scene, scene_effect: IStateDataSceneEffect[]): any[] {
+        return scene_effect.map((effect: IStateDataSceneEffect) => {
+            switch (effect.type) {
+                case IStateDataSceneEffectsType.OUTLINE:
+                    return new OutlineEffect(WebGlManager.getInstance().getRenderer());
             }
         });
-
-        return effect_type;
     }
 }

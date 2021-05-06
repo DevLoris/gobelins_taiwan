@@ -15,7 +15,7 @@ const debug = require("debug")(`front:${componentName}`);
  */
 function NotebookToggler (props: IProps) {
   return <div onClick={props.onClick} className={merge([css.root, props.className])}>
-    <img src={"/public/tomate-classique_1.png"} alt={"menu"}/>
+    <img src={"/public/book.png"} alt={"menu"}/>
   </div>
 }
 

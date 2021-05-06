@@ -40,7 +40,6 @@ function Notebook (props: IProps) {
             <NotebookLabelToggler active={NotebookPages.HINT == page} label={t('notebook__menu__hint')} onClick={() => { setPage(NotebookPages.HINT); }}/>
             <NotebookLabelToggler active={NotebookPages.ELEMENTS == page} label={t('notebook__menu__elements')} onClick={() => { setPage(NotebookPages.ELEMENTS); }}/>
             <NotebookLabelToggler active={NotebookPages.MAP == page} label={t('notebook__menu__map')} onClick={() => { setPage(NotebookPages.MAP); }}/>
-            <NotebookLabelToggler active={NotebookPages.PVT == page} label={t('notebook__menu__pvt')} onClick={() => { setPage(NotebookPages.PVT); }}/>
         </div>
 
         {(page == NotebookPages.HINT &&
@@ -51,9 +50,6 @@ function Notebook (props: IProps) {
         )}
         {(page == NotebookPages.MAP &&
             <NotebookPageMap/>
-        )}
-        {(page == NotebookPages.PVT &&
-            <NotebookPagePvt/>
         )}
     </div>
 }
