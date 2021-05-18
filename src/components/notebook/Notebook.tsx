@@ -1,14 +1,14 @@
 import css from './Notebook.module.less';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { merge } from "../../lib/utils/arrayUtils";
 import NotebookPageHint from "./notebookPageHint/NotebookPageHint";
-import NotebookPagePvt from "./notebookPagePvt/NotebookPagePvt";
 import NotebookPageMap from "./notebookPageMap/NotebookPageMap";
 import NotebookPageElements from "./notebookPageElements/NotebookPageElements";
 import NotebookLabelToggler from "./notebookLabelToggler/NotebookLabelToggler";
 import {useTranslation} from "react-i18next";
-import {WebGlManager} from "../webGlCanvas/WebGlManagerClasses/WebGlManager";
 import NotebookSignal from "./notebook-signal";
+import {selectUserScenes} from "../../store/store_selector";
+import {getState} from "../../store/store";
 
 interface IProps {
     className?: string,
@@ -44,11 +44,15 @@ function Notebook (props: IProps) {
         NotebookSignal.getInstance().toggle(props.show);
     }, [props.show]);
 
+    const userScenes = selectUserScenes(getState());
+
     return <div className={merge([css.root, props.className,  props.show ? css.open: null])}>
         <div className={css.menu}>
             <NotebookLabelToggler active={NotebookPages.HINT == page} label={t('notebook__menu__hint')} onClick={() => { setPage(NotebookPages.HINT); }}/>
             <NotebookLabelToggler active={NotebookPages.ELEMENTS == page} label={t('notebook__menu__elements')} onClick={() => { setPage(NotebookPages.ELEMENTS); }}/>
-            <NotebookLabelToggler active={NotebookPages.MAP == page} label={t('notebook__menu__map')} onClick={() => { setPage(NotebookPages.MAP); }}/>
+            {userScenes.length > 1 && (
+                <NotebookLabelToggler active={NotebookPages.MAP == page} label={t('notebook__menu__map')} onClick={() => { setPage(NotebookPages.MAP); }}/>
+            )}
         </div>
 
         {(page == NotebookPages.HINT &&

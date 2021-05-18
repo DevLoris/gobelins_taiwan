@@ -42,17 +42,18 @@ function NotebookPageElements (props: IProps) {
   })
 
   if(showPage) {
-    return <NotebookPageElementsDetails data={page} onExit={() => { toggleShowPage(false); }} />
+    return <NotebookPageElementsDetails leaveButton={true} data={page} onExit={() => { toggleShowPage(false); }} />
   }
   else {
     return <div className={merge([css.root, props.className])}>
       <NotebookTitle title={t('notebook__page__elements__title')}/>
+      <div>{collectibles.filter(value => value.pickup).length} / {collectibles.length}</div>
 
       {collectibles.map((data, i) => {
         return (<NotebookElement callback={() => {
           setPage(data);
           toggleShowPage(true)
-        }} data={data} key={i}/>)
+        }}  data={data} key={i}/>)
       })}
     </div>
   }

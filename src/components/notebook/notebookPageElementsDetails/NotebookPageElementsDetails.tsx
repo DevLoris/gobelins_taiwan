@@ -7,7 +7,8 @@ import NotebookTitle from "../notebookTitle/NotebookTitle";
 interface IProps {
   className?: string,
   data?: IStateDataCollectibleWithPickup,
-  onExit?: () => any
+  onExit?: () => any,
+  leaveButton?: boolean
 }
 
 const componentName = "NotebookPageElementsDetails";
@@ -20,7 +21,9 @@ function NotebookPageElementsDetails (props: IProps) {
   return <div className={merge([css.root, props.className])}>
     <NotebookTitle title={props.data.name}/>
     <p>{props.data.text}</p>
-    <button  onClick={props.onExit}>quitter</button>
+    {(props.leaveButton && (
+        <button  onClick={props.onExit}>quitter</button>
+    ))}
   </div>
 }
 
