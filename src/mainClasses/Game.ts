@@ -1,6 +1,7 @@
 import {AudioHandler} from "../lib/audio/AudioHandler";
 import {addScenery, getState, store} from "../store/store";
 import {selectScene} from "../store/store_selector";
+import {DEFAULT_SCENE} from "../vars/scene_vars";
 
 const debug = require("debug")(`front:Game`);
 
@@ -24,7 +25,7 @@ export class Game {
     }
 
     private _initSceneries() {
-        let scene = selectScene("test")(getState().data);
+        let scene = selectScene(DEFAULT_SCENE)(getState().data);
         debug(scene);
     }
 }

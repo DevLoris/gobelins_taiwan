@@ -9,6 +9,7 @@ import NotebookElement from "../notebookElement/NotebookElement";
 import NotebookPageElementsDetails from "../notebookPageElementsDetails/NotebookPageElementsDetails";
 import NotebookTitle from "../notebookTitle/NotebookTitle";
 import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
+import NotebookSignal from "../notebook-signal";
 
 interface IProps {
   className?: string
@@ -33,6 +34,12 @@ function NotebookPageElements (props: IProps) {
   const collectibles  = selectCollectiblesOfSceneWithPickup(active_scene)(getState().data, getState().user_data).filter(value => {
     return value.type == IStateDataSceneCollectibleType.HINT;
   });
+
+  // reset to close details page
+  NotebookSignal.getInstance().onToggle.add((value) =>  {
+    if(value)
+      toggleShowPage(false);
+  })
 
   if(showPage) {
     return <NotebookPageElementsDetails data={page} onExit={() => { toggleShowPage(false); }} />

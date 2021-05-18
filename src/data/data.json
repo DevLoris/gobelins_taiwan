@@ -1,7 +1,8 @@
 {
   "scenes": [
     {
-      "id":  "test",
+      "id":  "taipei",
+      "name": "Taipei Centre",
       "collectibles": [
         {
           "collectible_id": "seven_eleven",
@@ -97,6 +98,33 @@
             "type": "outline"
           }
         ]
+      }
+    },
+    {
+      "id": "wild",
+      "name": "Terres sauvages",
+      "collectibles": [],
+      "scene": {
+        "background": "#bfe3dd"
+      },
+      "camera": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": -20
+        }
+      },
+      "orbit": {
+        "center": {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      },
+      "content": {
+        "elements":  [],
+        "lights": [],
+        "effects": []
       }
     }
   ],

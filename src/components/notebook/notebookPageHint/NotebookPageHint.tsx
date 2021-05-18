@@ -1,5 +1,5 @@
 import css from './NotebookPageHint.module.less';
-import React from 'react';
+import React, {MutableRefObject, RefObject} from 'react';
 import { merge } from "../../../lib/utils/arrayUtils";
 import {useTranslation} from "react-i18next";
 import NotebookTitle from "../notebookTitle/NotebookTitle";
@@ -8,7 +8,8 @@ import {getState} from "../../../store/store";
 import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
 
 interface IProps {
-  className?: string
+  className?: string,
+  ref?: MutableRefObject<any>
 }
 
 const componentName = "NotebookPageHint";

@@ -22,6 +22,7 @@ export interface IStateDataSceneCollectible {
 
 export interface IStateDataScene {
     id: string,
+    name: string,
     collectibles: IStateDataSceneCollectible[],
     scene: {
         background: string

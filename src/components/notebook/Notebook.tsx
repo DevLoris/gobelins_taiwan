@@ -1,5 +1,5 @@
 import css from './Notebook.module.less';
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { merge } from "../../lib/utils/arrayUtils";
 import NotebookPageHint from "./notebookPageHint/NotebookPageHint";
 import NotebookPagePvt from "./notebookPagePvt/NotebookPagePvt";
@@ -7,6 +7,8 @@ import NotebookPageMap from "./notebookPageMap/NotebookPageMap";
 import NotebookPageElements from "./notebookPageElements/NotebookPageElements";
 import NotebookLabelToggler from "./notebookLabelToggler/NotebookLabelToggler";
 import {useTranslation} from "react-i18next";
+import {WebGlManager} from "../webGlCanvas/WebGlManagerClasses/WebGlManager";
+import NotebookSignal from "./notebook-signal";
 
 interface IProps {
     className?: string,
@@ -16,7 +18,6 @@ interface IProps {
 enum NotebookPages {
     HINT,
     ELEMENTS,
-    PVT,
     MAP
 }
 
@@ -34,6 +35,14 @@ function Notebook (props: IProps) {
     const [page, setPage] : [NotebookPages, (NotebookPages) => void]= useState(NotebookPages.ELEMENTS);
 
     const { t } = useTranslation();
+
+    // this effect reset book status to default one, for all page. a signal is send across all pages
+    useEffect(() =>  {
+        if(props.show) {
+            setPage(NotebookPages.HINT);
+        }
+        NotebookSignal.getInstance().toggle(props.show);
+    }, [props.show]);
 
     return <div className={merge([css.root, props.className,  props.show ? css.open: null])}>
         <div className={css.menu}>
