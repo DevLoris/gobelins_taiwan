@@ -8,6 +8,7 @@ class FocusUtils {
     // for restoration
     static focusPositionBackup: ICoord;
     static focusTargetBackup: ICoord;
+    static isFocus: boolean = false;
 
     /**
      * Set focus on a precise point
@@ -20,6 +21,7 @@ class FocusUtils {
 
         this.focusPositionBackup = {x: camera.position.x, y: camera.position.y, z: camera.position.z};
         this.focusTargetBackup = {x: orbit.target.x, y: orbit.target.y, z: orbit.target.z};
+        FocusUtils.isFocus = true;
 
         gsap.to(camera.position, {
             x: coords.x,
@@ -56,6 +58,7 @@ class FocusUtils {
             onComplete: () => {
                 orbit.enabled = true;
                 orbit.enableZoom = true;
+                FocusUtils.isFocus = false;
             }
         });
 

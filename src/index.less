@@ -1,5 +1,5 @@
 @import (reference) "./references.less";
-@import (inline) "../node_modules/@solid-js/css-flat/css-flat.css";
+@import (inline) "./css-flat.less";
 @import "./fonts/Fonts.less";
 
 html,
@@ -16,4 +16,9 @@ h2 {
 
 #AppContainer {
   overflow: hidden;
+}
+
+
+.dg li.gui-stats:not(.folder) {
+  height: auto;
 }

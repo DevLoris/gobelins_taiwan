@@ -1,9 +1,10 @@
 import css from './InteractedElement.module.less';
 import React, {useState} from 'react';
-import { merge } from "../../lib/utils/arrayUtils";
+import {merge} from "../../lib/utils/arrayUtils";
 import RaycastManager from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
 import {IStateDataCollectible} from "../../store/state_interface_data";
 import FocusUtils from "../webGlCanvas/WebGlManagerClasses/scenery/FocusUtils";
+import {IStateDataSceneCollectibleType} from "../../store/state_enums";
 
 interface IProps {
   className?: string
@@ -20,10 +21,13 @@ function InteractedElement (props: IProps) {
   const [collectible, setCollectible] = useState<IStateDataCollectible>(null);
 
   RaycastManager.getInstance().onInteract.add((value: IStateDataCollectible) => {
-    setTimeout(() => {
-      setCollectible(value);
-      toggleShowed(true);
-    }, 2000);
+    // On affiche si on clique sur un HINT sinon ignoré ici
+    if([IStateDataSceneCollectibleType.HINT, IStateDataSceneCollectibleType.PICKUP].includes(value.type)) {
+      setTimeout(() => {
+        setCollectible(value);
+        toggleShowed(true);
+      }, 2000);
+    }
   });
 
   if(showed) {
