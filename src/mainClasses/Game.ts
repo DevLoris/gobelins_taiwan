@@ -14,6 +14,9 @@ export class Game {
     constructor() {
     }
 
+    /**
+     * Initialise global game utilities
+     */
     public init(): void {
         debug("Init Game");
 
@@ -28,19 +31,24 @@ export class Game {
 
         SequenceManager.instance.onStepUpdated.add(this.sequenceStepUpdatedHandler);
         SequenceManager.instance.init();
-
-        // TODO if current sequence step is Vlog, stop animation frame,
-        //  if current step is diorama, resume animation frame
     }
 
+    /**
+     * Destroy instances
+     */
     public destroy(): void {
         SequenceManager.instance.onStepUpdated.remove(this.sequenceStepUpdatedHandler);
     }
 
+    /**
+     * On sequence updated
+     */
     public sequenceStepUpdatedHandler() {
 
+        // Get current step
         const currentStep = SequenceManager.instance.getCurrentPositionInSequence()[1];
 
+        // Show page related to current step type
         // Is 3d scene
         if(currentStep === EChapterStep.DIORAMA) {
             Router.openPage({page: ERouterPage.HOME_PAGE}); // TODO changer HOME_PAGE en WEBGL_PAGE

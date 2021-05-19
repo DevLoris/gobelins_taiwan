@@ -5,6 +5,11 @@ import {Signal} from "../../lib/helpers/Signal";
 
 const debug = require("debug")(`front:SequenceManager`);
 
+/**
+ * An EChapterName is the type of the current sequence chapter
+ * Chapter != Step
+ * A chapter has steps inside it (see ISequenceChapter)
+ */
 export enum EChapterName {
     INTRO_VLOG = "INTRO_VLOG",
     FIRST_ENIGMA = "FIRST_ENIGMA",
@@ -12,8 +17,24 @@ export enum EChapterName {
     OUTRO_VLOG = "OUTRO_VLOG"
 }
 
+/**
+ * Chapter data
+ */
+export interface ISequenceChapter {
+    name: string,
+    steps: ISequenceStep[],
+}
+
+/**
+ * Chapter step data
+ */
+export interface ISequenceStep {
+    identifier: EChapterStep,
+    id: string,
+}
+
 // TODO mettre dans les data lol
-export const CHAPTERS = [
+export const CHAPTERS: ISequenceChapter[] = [
     {
         name: EChapterName.FIRST_ENIGMA,
         steps: [
@@ -123,7 +144,7 @@ export class SequenceManager {
         if( fromUrl[0] && fromUrl[1] ) {
             CHAPTERS.forEach((chapter, chapterIndex) => {
                 if(chapter.name === fromUrl[0]) {
-                    this.activeChapterName = fromUrl[0];
+                    this.activeChapterName = EChapterName[fromUrl[0]];
                     this._activeChapterIndex = chapterIndex;
                     chapter.steps.forEach((step, stepIndex) => {
                         if(step.identifier === fromUrl[1]) {
@@ -146,7 +167,7 @@ export class SequenceManager {
      * Set indexes to 0, start from the beginning
      */
     public startFromBeginning(): void {
-        this.activeChapterName = CHAPTERS[0].name;
+        this.activeChapterName = EChapterName[CHAPTERS[0].name];
         this._activeChapterIndex = 0;
         this.activeStepName = CHAPTERS[0].steps[0].identifier;
         this._activeStepIndex = 0;
@@ -174,7 +195,7 @@ export class SequenceManager {
             this._activeChapterIndex += 1;
             this._activeStepIndex = 0;
 
-            this.activeChapterName = CHAPTERS[this._activeChapterIndex].name;
+            this.activeChapterName = EChapterName[CHAPTERS[this._activeChapterIndex].name];
             this.activeStepName = CHAPTERS[this._activeChapterIndex].steps[this._activeStepIndex].identifier;
         }
         // TODO gérer si c'était le dernier step du dernier chapitre
