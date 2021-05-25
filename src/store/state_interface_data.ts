@@ -92,5 +92,6 @@ export interface IStateDataCollectibleWithPickup extends IStateDataCollectible {
 
 export interface IStateDataCollectibleAdditional {
     type: string,
-    value: any
+    value: any,
+    credits?: string
 }

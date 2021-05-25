@@ -5,24 +5,25 @@
  * - Pareil pour le seuil monétaire
  */
 
-interface IEligibilityQuestion {
+export interface IEligibilityQuestion {
     question: string,
+    id: string,
     helper?: string,
     type: EligibilityQuestionType,
     response: IEligibiltyResponse[]
 }
 
-interface IEligibiltyResponse {
+export interface IEligibiltyResponse {
     correct: EligibilityResponseType;
     response: string;
     tip?:string;
 }
 
-enum EligibilityQuestionType {
+export enum EligibilityQuestionType {
     RADIO = 'radio'
 }
 
-enum EligibilityResponseType {
+export enum EligibilityResponseType {
     FORBIDDEN = 'forbidden',
     TIP = 'tip',
     OK = 'ok'
@@ -30,6 +31,7 @@ enum EligibilityResponseType {
 
 export const QUESTIONS:IEligibilityQuestion[]  = [
     {
+        id: "age",
         question: "Quel âge as-tu  ?",
         type: EligibilityQuestionType.RADIO,
         response: [
@@ -50,6 +52,7 @@ export const QUESTIONS:IEligibilityQuestion[]  = [
         ]
     },
     {
+        id: "passeport",
         question: "As-tu ton passeport ?",
         type: EligibilityQuestionType.RADIO,
         response: [
