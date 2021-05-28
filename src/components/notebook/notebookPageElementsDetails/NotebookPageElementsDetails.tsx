@@ -32,7 +32,7 @@ function NotebookPageElementsDetails (props: IProps) {
             content = (<p>{value.value}</p>);
             break;
           case "image":
-            content = (<img src={value.value}/>);
+            content = (<img src={value.value} alt={"file"}/>);
             break;
           case "youtube":
             content = (<div className={""}>
