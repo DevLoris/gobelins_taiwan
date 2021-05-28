@@ -109,7 +109,7 @@ export class WebGlManager {
      * @private
      */
     private _setupRenderer():void {
-        this._renderer = new WebGLRenderer();
+        this._renderer = new WebGLRenderer({ antialias: true });
         this._renderer.outputEncoding = sRGBEncoding;
         this._renderer.setSize( window.innerWidth, window.innerHeight );
         // Add canvas to dom
