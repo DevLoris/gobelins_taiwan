@@ -2,9 +2,10 @@ import css from './Loader.module.less';
 import React, {LegacyRef, useEffect, useRef} from 'react';
 import { merge } from "../../lib/utils/arrayUtils";
 import {AssetMemory} from "../webGlCanvas/WebGlManagerClasses/assets/AssetMemory";
-import {selectModels} from "../../store/store_selector";
+import {selectAudios, selectModels} from "../../store/store_selector";
 import {getState} from "../../store/store";
 import {gsap} from "gsap";
+import {AudioHandler} from "../../lib/audio/AudioHandler";
 
 interface IProps {
   className?: string
@@ -24,6 +25,9 @@ function Loader (props: IProps) {
     // -------------------–-------------------–-------------------–--------------- EFFECTS
 
   useEffect(() => {
+    // audio
+    AudioHandler.loadAll(selectAudios(getState()));
+
     AssetMemory.instance.loadAll(selectModels(getState()))
         .then((models) => {
           debug("Models loaded", models);

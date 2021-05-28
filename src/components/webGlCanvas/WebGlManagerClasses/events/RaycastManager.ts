@@ -10,6 +10,7 @@ import {addPickElementScene, getState, pickupHint, pickupPreHint, store} from ".
 import {IStateDataSceneCollectibleType} from "../../../../store/state_enums";
 import FocusUtils from "../scenery/FocusUtils";
 import {SceneryUtils} from "../scenery/SceneryUtils";
+import {AudioHandler} from "../../../../lib/audio/AudioHandler";
 
 class RaycastManager {
     private static instance: RaycastManager;
@@ -48,6 +49,7 @@ class RaycastManager {
                         // SET FOCUS
                         FocusUtils.focusOn(collectibleSceneData.focus.coords, collectibleSceneData.focus.rotation);
 
+                        AudioHandler.play("pickup");
                         break;
                     case IStateDataSceneCollectibleType.PICKUP:
                         if(userSceneData.hint.pre_pickup) {
@@ -57,6 +59,8 @@ class RaycastManager {
                             store.dispatch(pickupHint({scene: userSceneId, bool: true}));
                             // DISPATCH UI UPDATE
                             this.onInteract.dispatch(collectible, true);
+
+                            AudioHandler.play("pickup");
                         }
                         else {
                             // GET LINKED PRE PICKUP ELEMENT
@@ -76,6 +80,9 @@ class RaycastManager {
                         this.onInteract.dispatch(collectible, true);
                         // REMOVE ELEMENT FROM SCENE
                         SceneryUtils.destroyElementByName(collectibleSceneData.trigger);
+
+                        AudioHandler.play("pickup");
+
                         break;
                 }
             }

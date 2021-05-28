@@ -8,16 +8,17 @@ import {
 } from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
-import {addScenery, getState, store} from "../../../store/store";
+import {activeScenery, addScenery, getState, store} from "../../../store/store";
 import {RaycastEvent} from "./events/RaycastEvent";
 import {SceneryUtils} from "./scenery/SceneryUtils";
-import {selectScene} from "../../../store/store_selector";
+import {selectScene, selectUserActiveScene} from "../../../store/store_selector";
 import LightUtils from "./scenery/LightUtils";
 import {createEmptyScenery} from "../../../store/store_helper";
 import {HdrUtils} from "./scenery/HdrUtils";
 import {ConfigureGui} from "./ConfigureGui";
 import {DEFAULT_SCENE} from "../../../vars/scene_vars";
 import {Signal} from "../../../lib/helpers/Signal";
+import {AudioHandler} from "../../../lib/audio/AudioHandler";
 
 const debug = require("debug")(`front:WebGlManager`);
 
@@ -196,14 +197,26 @@ export class WebGlManager {
         this._wrapper.removeChild( this._renderer.domElement );
     }
 
+    public disableScenery(scene_id: string): void  {
+        const previous_scene = selectScene(scene_id)(getState().data);
+
+        // DESTROY
+        SceneryUtils.destroyScenery(this._scene);
+
+        // AMBIENT SOUND DISABLE
+        AudioHandler.stop(previous_scene.ambient);
+    }
+
     public toggleScenery(scene_id: string): void {
+        // GET NEW SCENE
         const scene = selectScene(scene_id)(getState().data);
 
         // ADD SCENE TO STORE
         store.dispatch(addScenery(createEmptyScenery(scene_id)));
 
-        // DESTROY
-        SceneryUtils.destroyScenery(this._scene);
+        // last scenery
+        const previous_scene = selectUserActiveScene(getState());
+        this.disableScenery(previous_scene);
 
         // BUILD SCENE
         SceneryUtils.buildElementsOf(this._scene, scene.content.elements);
@@ -212,7 +225,11 @@ export class WebGlManager {
         //this._effects = SceneryUtils.addEffects(this._scene, scene.content.effects);
         HdrUtils.loadEnvironment('wow');
 
+        // AMBIENT SOUND
+        AudioHandler.play(scene.ambient);
+
         // CONTROL
+        this._control.enabled = scene.orbit.enabled;
         this._control.minPolarAngle = scene.orbit.minPolar;
         this._control.maxPolarAngle = scene.orbit.maxPolar;
         this._control.minDistance = scene.orbit.minDistance;
@@ -227,13 +244,15 @@ export class WebGlManager {
 
         LightUtils.buildLights(this._scene, scene.content.lights);
 
-
         // CAMERA
         // @ts-ignore
         this._camera.position.set(scene.camera.position.x, scene.camera.position.y, scene.camera.position.z);
 
         // @ts-ignore
         this._control.target.set(scene.orbit.center.x, scene.orbit.center.y, scene.orbit.center.z);
+
+        // SCENE IS NOW BUILD, UPDATE STORE
+        store.dispatch(activeScenery(scene_id));
 
         this.onChangeScenery.dispatch(scene_id);
     }

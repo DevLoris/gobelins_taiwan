@@ -93,7 +93,7 @@ const dataSlice = createSlice({
     name: 'data',
     initialState: ((): IStateData => {
         // @ts-ignore
-        return { scenes: data.scenes, collectibles: data.collectibles, models: data.models };
+        return { scenes: data.scenes, collectibles: data.collectibles, models: data.models, audios: data.audios };
     })(),
     reducers: {
     }

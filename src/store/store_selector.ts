@@ -49,6 +49,11 @@ export const selectModels = createSelector(
     (state) => state.data.models,
 );
 
+export const selectAudios = createSelector(
+    getState,
+    (state) => state.data.audios,
+);
+
 export const selectCollectibles = createSelector(
     getState,
     (state) => state.data.collectibles,

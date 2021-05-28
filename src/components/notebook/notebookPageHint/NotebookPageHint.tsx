@@ -1,5 +1,5 @@
 import css from './NotebookPageHint.module.less';
-import React, {MutableRefObject, RefObject} from 'react';
+import React, {MutableRefObject, RefObject, useEffect} from 'react';
 import { merge } from "../../../lib/utils/arrayUtils";
 import {useTranslation} from "react-i18next";
 import NotebookTitle from "../notebookTitle/NotebookTitle";
@@ -7,6 +7,7 @@ import {selectCollectiblesOfSceneWithPickup, selectUserActiveScene} from "../../
 import {getState} from "../../../store/store";
 import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
 import NotebookPageElementsDetails from "../notebookPageElementsDetails/NotebookPageElementsDetails";
+import {AudioHandler} from "../../../lib/audio/AudioHandler";
 
 interface IProps {
   className?: string,

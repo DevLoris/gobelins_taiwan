@@ -1,5 +1,4 @@
-import {AudioHandler} from "../lib/audio/AudioHandler";
-import {addScenery, getState, store} from "../store/store";
+import {getState} from "../store/store";
 import {selectScene} from "../store/store_selector";
 import {DEFAULT_SCENE} from "../vars/scene_vars";
 
@@ -12,9 +11,6 @@ export class Game {
 
     public init(): void {
         debug("Init Game");
-
-        // Init audio
-        AudioHandler.loadFile();
 
         // Init sceneries
         this._initSceneries();
