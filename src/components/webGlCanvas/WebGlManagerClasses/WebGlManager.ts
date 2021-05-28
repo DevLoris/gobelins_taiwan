@@ -222,7 +222,7 @@ export class WebGlManager {
         SceneryUtils.buildElementsOf(this._scene, scene.content.elements);
 
         // ADD EFFECTS
-        //this._effects = SceneryUtils.addEffects(this._scene, scene.content.effects);
+        this._effects = SceneryUtils.addEffects(this._scene, scene.content.effects);
         HdrUtils.loadEnvironment('wow');
 
         // AMBIENT SOUND
