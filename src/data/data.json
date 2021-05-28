@@ -1,7 +1,8 @@
 {
   "scenes": [
     {
-      "id":  "test",
+      "id":  "taipei",
+      "name": "Taipei Centre",
       "collectibles": [
         {
           "collectible_id": "seven_eleven",
@@ -98,6 +99,33 @@
           }
         ]
       }
+    },
+    {
+      "id": "wild",
+      "name": "Terres sauvages",
+      "collectibles": [],
+      "scene": {
+        "background": "#bfe3dd"
+      },
+      "camera": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": -20
+        }
+      },
+      "orbit": {
+        "center": {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      },
+      "content": {
+        "elements":  [],
+        "lights": [],
+        "effects": []
+      }
     }
   ],
   "models": [
@@ -160,6 +188,11 @@
       "asset": "/public/hints/dollar.jpeg",
       "text": "Nouveau dollar Taiwanais",
       "additional": [
+        {
+          "type": "youtube",
+          "value": "Ver1OZdK2bA",
+          "credits": "copyright wtf coucou"
+        }
       ]
     },
     {
@@ -168,7 +201,21 @@
       "name": "Camion Poubelle",
       "asset": "/public/hints/camions-poubelle.jpeg",
       "text": "A Taiwan, les camions poubelle jouent une petite mélodie quant ils passent. Ça te permet de savoir quand ils arrivent pour que tu ailles jeter tes poubelles. C’est l’occase de voir tous tes voisins en survêt claquettes.",
-      "additional": []
+      "additional": [
+        {
+          "type": "youtube",
+          "value": "0BjQIB7Zikk",
+          "credits": "copyright wola"
+        },
+        {
+          "type": "text",
+          "value": "Ils jouent du beethoven"
+        },
+        {
+          "type": "image",
+          "value": "/public/book.png"
+        }
+      ]
     }
   ]
 }

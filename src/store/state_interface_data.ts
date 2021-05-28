@@ -22,6 +22,7 @@ export interface IStateDataSceneCollectible {
 
 export interface IStateDataScene {
     id: string,
+    name: string,
     collectibles: IStateDataSceneCollectible[],
     scene: {
         background: string
@@ -91,5 +92,6 @@ export interface IStateDataCollectibleWithPickup extends IStateDataCollectible {
 
 export interface IStateDataCollectibleAdditional {
     type: string,
-    value: any
+    value: any,
+    credits?: string
 }

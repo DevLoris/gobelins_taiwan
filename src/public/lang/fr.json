@@ -10,5 +10,9 @@
 
   "notebook__page__elements__title": "Collection",
 
-  "notebook__page__pvt__title": "PVT"
+  "notebook__page__pvt__title": "PVT",
+
+  "notebook__page__map__label__pickup": "Enigme",
+  "notebook__page__map__label__hints": "Objets",
+  "notebook__page__map__label__goto": "go to"
 }

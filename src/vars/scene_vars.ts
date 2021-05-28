@@ -1,5 +1,7 @@
 export enum SceneVars {
-    TEST =  "test"
+    TEST =  "test",
+    TAIPEI = "taipei",
+    WILD = "wild"
 }
 
-export const DEFAULT_SCENE =  SceneVars.TEST;
+export const DEFAULT_SCENE =  SceneVars.TAIPEI;
