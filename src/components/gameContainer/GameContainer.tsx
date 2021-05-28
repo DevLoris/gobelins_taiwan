@@ -9,6 +9,7 @@ import NotebookToggler from "../notebook/notebookToggler/NotebookToggler";
 import {bool} from "prop-types";
 import PrePickupElement from "../prePickupElement/PrePickupElement";
 import YouNeedElement from "../youNeedElement/YouNeedElement";
+import {WebGlManager} from "../webGlCanvas/WebGlManagerClasses/WebGlManager";
 
 interface IProps {
   className?: string
@@ -30,6 +31,11 @@ function GameContainer (props: IProps) {
   const rootRef = useRef<HTMLDivElement>(null);
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+
+  // when scene change -> close notebook
+  WebGlManager.getInstance().onChangeScenery.add(() => {
+    setMenuOpen(false);
+  })
 
   /**
    * On show prop update

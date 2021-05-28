@@ -7,6 +7,7 @@ import {ERouterPage} from "../routes";
 import {Router} from "../lib/router/Router";
 import {EChapterStep} from "./Sequencer/SequenceChapterStep";
 import {WebGlManager} from "../components/webGlCanvas/WebGlManagerClasses/WebGlManager";
+import {DEFAULT_SCENE} from "../vars/scene_vars";
 
 const debug = require("debug")(`front:Game`);
 

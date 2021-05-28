@@ -1,6 +1,6 @@
 import {DEFAULT_SCENE} from "../vars/scene_vars";
 
-export const STORE_VERSION = 3;
+export const STORE_VERSION = 4;
 
 // Store state
 export interface ICustomState {

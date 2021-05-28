@@ -17,6 +17,8 @@ import LightUtils from "./scenery/LightUtils";
 import {createEmptyScenery} from "../../../store/store_helper";
 import {HdrUtils} from "./scenery/HdrUtils";
 import {ConfigureGui} from "./ConfigureGui";
+import {DEFAULT_SCENE} from "../../../vars/scene_vars";
+import {Signal} from "../../../lib/helpers/Signal";
 
 const debug = require("debug")(`front:WebGlManager`);
 
@@ -42,6 +44,8 @@ export class WebGlManager {
     // todo refacto
     public static scene: Scene = null;
 
+
+    public onChangeScenery: Signal = new Signal();
 
     constructor() {
     }
@@ -227,10 +231,6 @@ export class WebGlManager {
         // SCENE
         this._scene.background = new Color(scene.scene.background);
 
-        /*const dirLight = new DirectionalLight( 0xffffff, 1 );
-        dirLight.position.set( 5, 2, 8 );
-        this._scene.add( dirLight );*/
-
         LightUtils.buildLights(this._scene, scene.content.lights);
 
 
@@ -240,6 +240,8 @@ export class WebGlManager {
 
         // @ts-ignore
         this._control.target.set(scene.orbit.center.x, scene.orbit.center.y, scene.orbit.center.z);
+
+        this.onChangeScenery.dispatch(scene_id);
     }
 
     public getCamera(): Camera {

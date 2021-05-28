@@ -1,8 +1,13 @@
 import css from './NotebookPageMap.module.less';
-import React from 'react';
+import React, {useState} from 'react';
 import { merge } from "../../../lib/utils/arrayUtils";
 import NotebookTitle from "../notebookTitle/NotebookTitle";
 import {useTranslation} from "react-i18next";
+import {selectScene, selectScenes} from "../../../store/store_selector";
+import {getState} from "../../../store/store";
+import {IStateDataScene} from "../../../store/state_interface_data";
+import NotebookPageMapDetails from "../notebookPageMapDetails/NotebookPageMapDetails";
+import NotebookSignal from "../notebook-signal";
 
 interface IProps {
   className?: string
@@ -15,13 +20,45 @@ const debug = require("debug")(`front:${componentName}`);
  * @name NotebookPageMap
  */
 function NotebookPageMap (props: IProps) {
+    // use translation
     const { t } = useTranslation();
 
-  return <div className={merge([css.root, props.className])}>
+    // get all scenes (for map pins)
+    let scenes = selectScenes(getState());
+
+    // toggle popup for details
+    let [detailsScene, setDetailsScene] = useState<string>(null);
+
+    // reset to close details page
+    NotebookSignal.getInstance().onToggle.add((value) =>  {
+        if(value)
+            setDetailsScene(null);
+    })
+
+    return <div className={merge([css.root, props.className])}>
       <NotebookTitle title={t('notebook__page__map__title')}/>
+      <div>
+          {
+              scenes.map((value, key) => {
+                  return (<div key={key} onClick={() => {
+                      setDetailsScene(value.id);
+                  }}>Voir : {value.name}</div>)
+              })
+          }
+      </div>
       <div>
           <img src={"/public/images/taiwan.jpeg"} />
       </div>
+        {
+            (detailsScene !== null &&
+                (<NotebookPageMapDetails
+                    sceneId={detailsScene}
+                    onClickClose={() => {
+                        setDetailsScene(null)
+                    }
+                }/>)
+            )
+        }
   </div>
 }
 
