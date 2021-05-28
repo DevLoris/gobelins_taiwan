@@ -2,6 +2,7 @@ import {GLTF} from "three/examples/jsm/loaders/GLTFLoader";
 import {AssetLoader} from "./AssetLoader";
 import {DEFAULT_SCALE_FACTOR} from "../WebGlVars";
 import {DoubleSide} from "three";
+import LoaderSignal from "../../../loader/LoaderSignal";
 
 const debug = require("debug")(`front:AssetGLTF`);
 
@@ -21,6 +22,8 @@ export class AssetGLTF {
         return assetLoader.getGltfLoader()
             .loadAsync(this.path, (e: ProgressEvent) => {})
             .then(gltf => {
+                LoaderSignal.getInstance().loaded(this.id);
+
                 const model = gltf.scene;
                 model.position.set( 0, 0, 0 );
                 model.scale.set( DEFAULT_SCALE_FACTOR, DEFAULT_SCALE_FACTOR, DEFAULT_SCALE_FACTOR );

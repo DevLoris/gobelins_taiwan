@@ -1,11 +1,12 @@
 import css from './Loader.module.less';
-import React, {LegacyRef, useEffect, useRef} from 'react';
+import React, {LegacyRef, useEffect, useRef, useState} from 'react';
 import { merge } from "../../lib/utils/arrayUtils";
 import {AssetMemory} from "../webGlCanvas/WebGlManagerClasses/assets/AssetMemory";
 import {selectAudios, selectModels} from "../../store/store_selector";
 import {getState} from "../../store/store";
 import {gsap} from "gsap";
 import {AudioHandler} from "../../lib/audio/AudioHandler";
+import LoaderSignal from "./LoaderSignal";
 
 interface IProps {
   className?: string
@@ -22,10 +23,16 @@ function Loader (props: IProps) {
 
   const rootRef = useRef(null);
 
+  const [loading] = useState<string[]>([]);
+
     // -------------------–-------------------–-------------------–--------------- EFFECTS
 
   useEffect(() => {
-    // audio
+      LoaderSignal.getInstance().beforeLoad.add((value: string) => {
+          !loading.includes(value) && loading.push(value);
+      })
+
+      // audio
     AudioHandler.loadAll(selectAudios(getState()));
 
     AssetMemory.instance.loadAll(selectModels(getState()))
@@ -58,7 +65,7 @@ function Loader (props: IProps) {
     // -------------------–-------------------–-------------------–--------------- RENDER
 
   return <div ref={rootRef} className={merge([css.root, props.className])}>
-      {componentName}
+      assets : { loading.length } - {loading.concat(" / ")}
   </div>
 }
 
