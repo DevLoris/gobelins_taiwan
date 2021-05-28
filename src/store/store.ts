@@ -8,8 +8,7 @@ import {
     STORE_VERSION
 } from "./state_interface_experience";
 import data from '../data/data.json';
-import {IStateData, IStateDataScene} from "./state_interface_data";
-import {AssetMemory} from "../components/webGlCanvas/WebGlManagerClasses/assets/AssetMemory";
+import {IStateData} from "./state_interface_data";
 const ls = require('local-storage');
 
 const debug = require("debug")(`front:Store`);
