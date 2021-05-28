@@ -159,10 +159,6 @@
   ],
   "models": [
     {
-      "id": "demoModel",
-      "path": "/public/sceneries/demo/LittlestTokyo.glb"
-    },
-    {
       "id": "appart",
       "path": "/public/sceneries/demo/QuartierAffaire.glb"
     },
@@ -252,11 +248,6 @@
     }
   ],
   "audios": [
-    {
-      "id": "test",
-      "url": "/public/audio/alert_person.mp3",
-      "params": {}
-    },
     {
       "id": "pickup",
       "url": "/public/audio/Game Reward.mp3",
