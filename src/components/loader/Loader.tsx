@@ -30,6 +30,7 @@ function Loader (props: IProps) {
   useEffect(() => {
       LoaderSignal.getInstance().beforeLoad.add((value: string) => {
           !loading.includes(value) && loading.push(value);
+          console.log(loading);
       })
 
       // audio
