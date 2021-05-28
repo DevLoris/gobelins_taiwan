@@ -6,6 +6,7 @@ import {getChapterAndStepInUrl, isLocal, isUrlDebug} from "../helpers/DebugHelpe
 import {ERouterPage} from "../routes";
 import {Router} from "../lib/router/Router";
 import {EChapterStep} from "./Sequencer/SequenceChapterStep";
+import {WebGlManager} from "../components/webGlCanvas/WebGlManagerClasses/WebGlManager";
 
 const debug = require("debug")(`front:Game`);
 
@@ -51,7 +52,7 @@ export class Game {
         // Show page related to current step type
         // Is 3d scene
         if(currentStep === EChapterStep.DIORAMA) {
-            Router.openPage({page: ERouterPage.HOME_PAGE}); // TODO changer HOME_PAGE en WEBGL_PAGE
+            Router.openPage({page: ERouterPage.WEBGL_PAGE});
         }
         // Is video
         else {

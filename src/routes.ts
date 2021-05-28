@@ -1,7 +1,7 @@
 import { IRoute } from "./lib/router/Router";
 
 export enum ERouterPage {
-  HOME_PAGE = "HomePage",
+  WEBGL_PAGE = "HomePage",
   NOTEBOOK_PAGE = "NotebookPage",
   WORK_PAGE = "WorkPage",
   VLOG_PAGE = "VlogPage",
@@ -10,7 +10,7 @@ export enum ERouterPage {
 export const routes: IRoute[] = [
   {
     url: "/",
-    page: ERouterPage.HOME_PAGE,
+    page: ERouterPage.WEBGL_PAGE,
     importer: () => require("./pages/homePage/HomePage"),
   },
   {

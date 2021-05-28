@@ -3,6 +3,7 @@ import React, {useEffect, useRef} from 'react';
 import { merge } from "../../lib/utils/arrayUtils";
 import {gsap} from "gsap";
 import {WebGlManager} from "./WebGlManagerClasses/WebGlManager";
+import {SequenceManager} from "../../mainClasses/Sequencer/SequenceManager";
 
 interface IProps {
   className?: string
@@ -28,7 +29,7 @@ function WebGlCanvas (props: IProps) {
    */
   useEffect(() => {
     webGlManagerRef.current = WebGlManager.getInstance();
-    webGlManagerRef.current.initAndStart(rootRef.current);
+    webGlManagerRef.current.initAndStart(rootRef.current, SequenceManager.instance.getCurrentSceneId());
 
     // On component destroy
     return () => {

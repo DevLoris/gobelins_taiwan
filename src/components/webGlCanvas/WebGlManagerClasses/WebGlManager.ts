@@ -42,12 +42,14 @@ export class WebGlManager {
     // todo refacto
     public static scene: Scene = null;
 
+
     constructor() {
     }
 
 
     public static getInstance(): WebGlManager {
         if (!WebGlManager.instance) {
+            debug("new instance");
             WebGlManager.instance = new WebGlManager();
         }
 
@@ -57,13 +59,16 @@ export class WebGlManager {
 
     // --------------------------------------------------------------------------- SETUP
 
+
     /**
      * Init params & start webgl
      * @param pWrapper div container of canvas
+     * @param pSceneryName name of the scenery to be loaded
      */
-    public initAndStart(pWrapper: HTMLDivElement):void {
+    public initAndStart(pWrapper: HTMLDivElement, pSceneryName?: string):void {
         debug("Init WebGlManager", pWrapper);
         debug("ThreeJS version:", REVISION);
+        debug("pSceneryName", pSceneryName);
 
         this._wrapper = pWrapper;
 
@@ -75,7 +80,7 @@ export class WebGlManager {
         this._startWebGlLoop();
         this._setupStats();
 
-        this.toggleScenery("test");
+        pSceneryName && this.toggleScenery(pSceneryName);
 
         window.addEventListener('resize', this._resizeHandler.bind(this));
     }

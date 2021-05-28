@@ -31,6 +31,7 @@ export interface ISequenceChapter {
 export interface ISequenceStep {
     identifier: EChapterStep,
     id: string,
+    sceneId?: string
 }
 
 // TODO mettre dans les data lol
@@ -40,11 +41,12 @@ export const CHAPTERS: ISequenceChapter[] = [
         steps: [
             {
                 identifier: EChapterStep.INTRO_VLOG,
-                id: "loris", // TODO
+                id: "loris",
             },
             {
                 identifier: EChapterStep.DIORAMA,
-                id: "centreVilleWesh"
+                id: "centreVilleWesh",
+                sceneId: "test"
             },
             {
                 identifier: EChapterStep.OUTRO_VLOG,
@@ -72,8 +74,6 @@ export class SequenceManager {
     }
 
     // ---------------------------------------------------------------------------
-
-    private _chapters = new Array<SequenceChapter>();
 
     /**
      * Contains the active chapter name
@@ -133,10 +133,6 @@ export class SequenceManager {
     public init(): void {
         debug("SequenceManager init", CHAPTERS);
 
-        for(let i = 0; i < SEQUENCE_COUNT; i++) {
-            this._chapters.push(new SequenceChapter(CHAPTERS[i])); // TODO walla ca sert à rien en fait
-        }
-
         const fromUrl = getChapterAndStepInUrl()
         debug("URL", fromUrl);
 
@@ -156,7 +152,9 @@ export class SequenceManager {
                 }
             });
         }
-        // TODO checker dans le localstorage si il y a une sauvegarde
+
+        //  checker dans le localstorage si il y a une sauvegarde
+
         // Start at the beginning
         else {
             this.startFromBeginning();
@@ -175,10 +173,18 @@ export class SequenceManager {
 
     /**
      * Get names of current chapter ans step
+     * return [activeChapterName: string, activeStepName: string]
      */
     public getCurrentPositionInSequence(): [string, string] {
         if(this.activeChapterName === undefined || this.activeStepName === undefined) this.startFromBeginning();
         return [this.activeChapterName, this.activeStepName];
+    }
+
+    /**
+     * If current step is diorama, return the name of the scenery
+     */
+    public getCurrentSceneId(): string {
+        return CHAPTERS[this._activeChapterIndex].steps[this._activeStepIndex].sceneId;
     }
 
     /**
@@ -192,12 +198,17 @@ export class SequenceManager {
         }
         // Else jump to next chapter
         else {
+            // Check if next chapter exists
+            if(!CHAPTERS[this._activeChapterIndex + 1]) {
+                console.error("Cannot switch to next chapter: current is last on list");
+                return;
+            }
+
             this._activeChapterIndex += 1;
             this._activeStepIndex = 0;
 
             this.activeChapterName = EChapterName[CHAPTERS[this._activeChapterIndex].name];
             this.activeStepName = CHAPTERS[this._activeChapterIndex].steps[this._activeStepIndex].identifier;
         }
-        // TODO gérer si c'était le dernier step du dernier chapitre
     }
 }
