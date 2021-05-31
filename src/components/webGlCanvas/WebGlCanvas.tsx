@@ -29,7 +29,8 @@ function WebGlCanvas (props: IProps) {
    */
   useEffect(() => {
     webGlManagerRef.current = WebGlManager.getInstance();
-    webGlManagerRef.current.initAndStart(rootRef.current, SequenceManager.instance.getCurrentSceneId());
+    const sceneryIdentifier = SequenceManager.instance.getCurrentChapterSceneFromDiorama();
+    webGlManagerRef.current.initAndStart(rootRef.current, sceneryIdentifier);
 
     // On component destroy
     return () => {

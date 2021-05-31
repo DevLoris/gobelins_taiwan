@@ -1,7 +1,9 @@
-import {SequenceChapter} from "./SequenceChapter";
 import {EChapterStep} from "./SequenceChapterStep";
 import {getChapterAndStepInUrl} from "../../helpers/DebugHelpers";
 import {Signal} from "../../lib/helpers/Signal";
+import {SceneVars} from "../../vars/scene_vars";
+import {selectUserScene} from "../../store/store_selector";
+import {getState} from "../../store/store";
 
 const debug = require("debug")(`front:SequenceManager`);
 
@@ -46,7 +48,7 @@ export const CHAPTERS: ISequenceChapter[] = [
             {
                 identifier: EChapterStep.DIORAMA,
                 id: "centreVilleWesh",
-                sceneId: "test"
+                sceneId: SceneVars.TAIPEI
             },
             {
                 identifier: EChapterStep.OUTRO_VLOG,
@@ -56,7 +58,7 @@ export const CHAPTERS: ISequenceChapter[] = [
     },
 ];
 
-// Nombre de séquences totales dans le jeu
+// Nombre de chapitres dans le jeu
 const SEQUENCE_COUNT = CHAPTERS.length;
 
 export class SequenceManager {
@@ -136,8 +138,11 @@ export class SequenceManager {
         const fromUrl = getChapterAndStepInUrl()
         debug("URL", fromUrl);
 
+        // const sceneryIdentifier = SequenceManager.instance.getCurrentChapterSceneFromDiorama();
+        // const vlogsStates = selectUserScene(sceneryIdentifier)(getState().user_data)?.vlog;
+
         // Get debug chapter & step from url
-        if( fromUrl[0] && fromUrl[1] ) {
+        if( fromUrl?.[0] && fromUrl?.[1] ) {
             CHAPTERS.forEach((chapter, chapterIndex) => {
                 if(chapter.name === fromUrl[0]) {
                     this.activeChapterName = EChapterName[fromUrl[0]];
@@ -146,16 +151,14 @@ export class SequenceManager {
                         if(step.identifier === fromUrl[1]) {
                             this.activeStepName = fromUrl[1];
                             this._activeStepIndex = stepIndex;
-                            debug("identifier", step.identifier);
                         }
                     });
                 }
             });
         }
 
-        //  checker dans le localstorage si il y a une sauvegarde
-
         // Start at the beginning
+        // TODO à voir à l'utilisation si y'a besoin de modifier ça
         else {
             this.startFromBeginning();
         }
@@ -165,6 +168,7 @@ export class SequenceManager {
      * Set indexes to 0, start from the beginning
      */
     public startFromBeginning(): void {
+        debug("start from beginning");
         this.activeChapterName = EChapterName[CHAPTERS[0].name];
         this._activeChapterIndex = 0;
         this.activeStepName = CHAPTERS[0].steps[0].identifier;
@@ -172,7 +176,7 @@ export class SequenceManager {
     }
 
     /**
-     * Get names of current chapter ans step
+     * Get names of current chapter and step
      * return [activeChapterName: string, activeStepName: string]
      */
     public getCurrentPositionInSequence(): [string, string] {
@@ -184,13 +188,27 @@ export class SequenceManager {
      * If current step is diorama, return the name of the scenery
      */
     public getCurrentSceneId(): string {
-        return CHAPTERS[this._activeChapterIndex].steps[this._activeStepIndex].sceneId;
+        const sceneId = CHAPTERS[this._activeChapterIndex].steps[this._activeStepIndex].sceneId;
+        debug("getCurrentSceneId()", sceneId);
+        if(sceneId === undefined) console.error("Scene ID is undefined. Maybe the current step is not diorama");
+        return sceneId;
+    }
+
+    public getCurrentChapterSceneFromDiorama(): string {
+        let sceneId = "";
+        CHAPTERS[this._activeChapterIndex].steps.map((step) => {
+            if(step.identifier === EChapterStep.DIORAMA) {
+                sceneId = step.sceneId;
+            }
+        });
+        return sceneId;
     }
 
     /**
      * Step forward in sequence
      */
     public increment(): void {
+        debug("Increment sequence")
         // If there is one more step inside this chapter
         if(CHAPTERS[this._activeChapterIndex].steps[this._activeStepIndex+1]) {
             this._activeStepIndex += 1;

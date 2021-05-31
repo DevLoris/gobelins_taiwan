@@ -25,10 +25,13 @@ export function isUrlDebug(): boolean {
 
 /**
  * Get chapter and step params in url
- * @return string[]
+ * @return string[] | string
  */
 export function getChapterAndStepInUrl(): string[] {
     const urlSearchParams = new URLSearchParams(window.location.search);
 
-    return [urlSearchParams.get("chapter")?.toUpperCase(), urlSearchParams.get("step")?.toUpperCase()];
+    const chapter = urlSearchParams.get("chapter")?.toUpperCase();
+    const step = urlSearchParams.get("step")?.toUpperCase();
+
+    return chapter || step ? [chapter, step] : null;
 }
