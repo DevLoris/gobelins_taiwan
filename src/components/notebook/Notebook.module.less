@@ -1,18 +1,46 @@
 @import (reference) "../../references.less";
 
 .root {
-  width: 300px;
+  width: 350px;
   height: 500px;
   position: absolute;
   z-index: 3;
   right: 20px;
   top: 50%;
   transform: translate(400px, -50%);
-  padding: 20px;
-  border-radius: 10px;
-  background: white;
   overflow: auto;
+  padding: 20px 0;
   transition: 0.5s;
+}
+
+.outer {
+  height: 100%;
+  overflow: hidden;
+  padding-top: 50px;
+  position: relative;
+  pointer-events: none;
+}
+
+.outer:before {
+  content: '';
+  transform: rotate(-1deg);
+  border-top: 2px dotted black;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top:50px;
+  background: white;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  pointer-events: all;
+  height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .root img {
@@ -20,12 +48,11 @@
 }
 
 .menu {
+  position: absolute;
   display: flex;
+  top: 20px;
   margin-bottom: 10px;
-}
-
-.menu > div {
-  padding-right: 7px;
+  margin: 0 20px;
 }
 
 .open {

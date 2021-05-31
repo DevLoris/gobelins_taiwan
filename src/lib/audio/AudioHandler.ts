@@ -34,6 +34,10 @@ export class AudioHandler {
         this.audioList.find(value => value.id == id)?.howl.play();
     }
 
+    static get(id) {
+        return this.audioList.find(value => value.id == id)?.howl;
+    }
+
     static stop(id) {
         this.audioList.find(value => value.id == id)?.howl.stop();
     }

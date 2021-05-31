@@ -1,0 +1,33 @@
+@import (reference) "../../../references.less";
+
+.root {
+  border: 1px dotted @text-color;
+  display: flex;
+  align-items: center;
+  margin: 2rem 0 4rem;
+}
+
+.chinese {
+  color: @red;
+  font-size: 36px;
+  font-family: @font-chinese;
+  border-right: 1px dotted @text-color;
+  padding: 0.6rem 0.6rem;
+  margin-right: 0.6rem;
+}
+
+.phonetic {
+  font-size: 14px;
+  .phoneticLine {
+    margin: 0.2rem 0;
+  }
+  span {
+    font-size: 10px;
+    background: @text-color;
+    padding: 2px 5px;
+    border-radius: 6px;
+    color: white;
+    text-transform: uppercase;
+    margin-right: 0.3rem;
+  }
+}

@@ -66,15 +66,19 @@ function Notebook (props: IProps) {
             )}
         </div>
 
-        {(page == NotebookPages.HINT &&
-            <NotebookPageHint/>
-        )}
-        {(page == NotebookPages.ELEMENTS &&
-            <NotebookPageElements/>
-        )}
-        {(page == NotebookPages.MAP &&
-            <NotebookPageMap/>
-        )}
+        <div className={css.outer}>
+            <div className={css.inner}>
+                {(page == NotebookPages.HINT &&
+                    <NotebookPageHint/>
+                )}
+                {(page == NotebookPages.ELEMENTS &&
+                    <NotebookPageElements/>
+                )}
+                {(page == NotebookPages.MAP &&
+                    <NotebookPageMap/>
+                )}
+            </div>
+        </div>
     </div>
 }
 

@@ -34,19 +34,16 @@ function NotebookPageHint (props: IProps) {
 
   if(pickup.pickup)
     return <div className={merge([css.root, props.className])}>
-      <NotebookTitle title={t('notebook__page__hint__title')}/>
       <NotebookPageElementsDetails data={pickup}/>
     </div>
   else if(pre_pickup.pickup) {
     return <div className={merge([css.root, props.className])}>
-      <NotebookTitle title={t('notebook__page__hint__title')}/>
       <p>{pickup.hint}</p>
       <p>élément nécessaire ramassé</p>
     </div>
   }
   else  {
     return <div className={merge([css.root, props.className])}>
-      <NotebookTitle title={t('notebook__page__hint__title')}/>
       <p>{pickup.hint}</p>
     </div>
   }

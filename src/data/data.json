@@ -207,6 +207,14 @@
         {
           "type": "text",
           "value": "Il y en a plus de 3600 à Taiwan, donc tu peux en trouver de partout, c’est ultra pratique !"
+        },
+        {
+          "type": "image",
+          "value": "https://fr-wp.rti.org.tw/wp-content/uploads/2018/06/7-Eleven-%C3%A0-tous-les-carrefours-de-Taiwan-image-Flickr.jpg"
+        },
+        {
+          "type": "audio",
+          "value": "book"
         }
       ]
     },
