@@ -285,5 +285,10 @@
         "loop": true
       }
     }
+  ],
+  "effects": [
+    {
+      "type": "outline"
+    }
   ]
 }
