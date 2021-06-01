@@ -64,7 +64,7 @@ const experienceSlice = createSlice({
         pickupHint: (state: ICustomState, payload: PayloadAction<IBooleanScene>) => {
             let found =  state.scenes.find(value => value.scene == payload.payload.scene);
             if(found) {
-                found.hint.pre_pickup = payload.payload.bool;
+                found.hint.pickup = payload.payload.bool;
             }
         },
         toggleOnMap: (state: ICustomState, payload: PayloadAction<IBooleanScene>) => {

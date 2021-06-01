@@ -1,4 +1,4 @@
-import { Mesh, Scene } from "three";
+import { CubeTexture, CubeTextureLoader, Mesh, Scene } from "three";
 import { SceneElement } from "./elements/SceneElement";
 import {ObjectContainerSceneElement} from "./elements/ObjectContainerSceneElement";
 import {IStateDataScene, IStateDataSceneEffect, IStateDataSceneElement} from "../../../../store/state_interface_data";
@@ -63,12 +63,36 @@ export class SceneryUtils {
         })
     }
 
-    static addEffects(scene: Scene, scene_effect: IStateDataSceneEffect[]): any[] {
+    /**
+     * Add visual effects
+     * @param scene_effect
+     */
+    static addEffects(scene_effect: IStateDataSceneEffect[]): any[] {
         return scene_effect.map((effect: IStateDataSceneEffect) => {
             switch (effect.type) {
                 case IStateDataSceneEffectsType.OUTLINE:
                     return new OutlineEffect(WebGlManager.getInstance().getRenderer());
             }
         });
+    }
+
+    /**
+     * Creates skybox
+     * @param scene 
+     */
+    static createSkybox(scene: IStateDataScene): CubeTexture {
+        console.log(scene);
+        const loader = new CubeTextureLoader();
+        if (!scene.scene.skybox || Object.entries(scene.scene.skybox).length === 0) {
+            return null;
+        }
+        return loader.load([
+            scene.scene.skybox.posXPath,
+            scene.scene.skybox.negXPath,
+            scene.scene.skybox.posYPath,
+            scene.scene.skybox.negYPath,
+            scene.scene.skybox.posZPath,
+            scene.scene.skybox.negZPath
+        ]);
     }
 }
