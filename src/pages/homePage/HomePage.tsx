@@ -5,6 +5,7 @@ import WebGlCanvas from "../../components/webGlCanvas/WebGlCanvas";
 import Loader from "../../components/loader/Loader";
 import InteractedElement from "../../components/interactedElement/InteractedElement";
 import GameContainer from "../../components/gameContainer/GameContainer";
+import ProtoFold from "../../components/protoFold/ProtoFold";
 
 interface IProps {}
 
@@ -53,10 +54,7 @@ const HomePage = (props: IProps) => {
 
   return (
     <div className={css.root} ref={rootRef}>
-      <Loader modelsLoadedCallback={onModelsLoaded} />
-      {
-        loadingDone && (<GameContainer show={loadingDone} />)
-      }
+      <ProtoFold />
     </div>
   );
 }
