@@ -1,6 +1,7 @@
 import {
     Camera,
     Color,
+    CubeTextureLoader,
     PerspectiveCamera,
     REVISION,
     Scene, sRGBEncoding,
@@ -222,7 +223,7 @@ export class WebGlManager {
         SceneryUtils.buildElementsOf(this._scene, scene.content.elements);
 
         // ADD EFFECTS
-        this._effects = SceneryUtils.addEffects(this._scene, scene.content.effects);
+        this._effects = SceneryUtils.addEffects(scene.content.effects);
         HdrUtils.loadEnvironment('wow');
 
         // AMBIENT SOUND
@@ -240,7 +241,8 @@ export class WebGlManager {
         this._control.update();
 
         // SCENE
-        this._scene.background = new Color(scene.scene.background);
+        const texture = SceneryUtils.createSkybox(scene);
+        this._scene.background = texture || new Color(scene.scene.background);
 
         LightUtils.buildLights(this._scene, scene.content.lights);
 

@@ -10,7 +10,7 @@ export interface IStateData {
     scenes: IStateDataScene[],
     models: IStateDataModel3D[],
     collectibles : IStateDataCollectible[],
-    audios: IStateDataAudio[]
+    audios: IStateDataAudio[],
 }
 
 export interface IStateDataSceneCollectible {
@@ -30,7 +30,15 @@ export interface IStateDataScene {
     ambient: string,
     collectibles: IStateDataSceneCollectible[],
     scene: {
-        background: string
+        background: string,
+        skybox: {
+            posXPath: string,
+            negXPath: string,
+            posYPath: string,
+            negYPath: string,
+            posZPath: string,
+            negZPath: string
+        }
     },
     camera: {
         position: ICoord
@@ -40,7 +48,7 @@ export interface IStateDataScene {
         center: ICoord,
         minPolar: number,
         maxPolar: number,
-        minDistance:  number,
+        minDistance: number,
         maxDistance: number,
     },
     content: {
@@ -48,7 +56,6 @@ export interface IStateDataScene {
         lights: IStateDataSceneLight[],
         effects: IStateDataSceneEffect[],
     }
-    //  todo complete this
 }
 
 export interface IStateDataSceneElement {
