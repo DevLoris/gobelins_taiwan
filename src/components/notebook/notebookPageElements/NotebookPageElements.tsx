@@ -55,12 +55,14 @@ function NotebookPageElements (props: IProps) {
           picked={collectibles.filter(value => value.pickup).length}
       />
 
-      {collectibles.map((data, i) => {
-        return (<NotebookElement callback={() => {
-          setPage(data);
-          toggleShowPage(true)
-        }}  data={data} key={i}/>)
-      })}
+      <div className={css.notebookList}>
+        {collectibles.map((data, i) => {
+          return (<NotebookElement callback={() => {
+            setPage(data);
+            toggleShowPage(true)
+          }}  data={data} key={i}/>)
+        })}
+      </div>
     </div>
   }
 }
