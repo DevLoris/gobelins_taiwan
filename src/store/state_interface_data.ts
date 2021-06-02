@@ -4,11 +4,13 @@ import {
     IStateDataSceneElementType,
     IStateDataSceneLightType
 } from "./state_enums";
+import {IStateDataAudio} from "./state_interface_data_audio";
 
 export interface IStateData {
     scenes: IStateDataScene[],
     models: IStateDataModel3D[],
-    collectibles : IStateDataCollectible[]
+    collectibles : IStateDataCollectible[],
+    audios: IStateDataAudio[],
 }
 
 export interface IStateDataSceneCollectible {
@@ -23,18 +25,28 @@ export interface IStateDataSceneCollectible {
 export interface IStateDataScene {
     id: string,
     name: string,
+    ambient: string,
     collectibles: IStateDataSceneCollectible[],
     scene: {
-        background: string
+        background: string,
+        skybox: {
+            posXPath: string,
+            negXPath: string,
+            posYPath: string,
+            negYPath: string,
+            posZPath: string,
+            negZPath: string
+        }
     },
     camera: {
         position: ICoord
     },
     orbit: {
+        enabled: boolean,
         center: ICoord,
         minPolar: number,
         maxPolar: number,
-        minDistance:  number,
+        minDistance: number,
         maxDistance: number,
     },
     content: {
@@ -42,7 +54,6 @@ export interface IStateDataScene {
         lights: IStateDataSceneLight[],
         effects: IStateDataSceneEffect[],
     }
-    //  todo complete this
 }
 
 export interface IStateDataSceneElement {

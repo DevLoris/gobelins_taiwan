@@ -3,6 +3,8 @@ import React from 'react';
 import { merge } from "../../../lib/utils/arrayUtils";
 import {IStateDataCollectibleWithPickup} from "../../../store/state_interface_data";
 import NotebookTitle from "../notebookTitle/NotebookTitle";
+import NotebookPhonetic from "../notebookPhonetic/NotebookPhonetic";
+import NotebookAudio from "../notebookAudio/NotebookAudio";
 
 interface IProps {
   className?: string,
@@ -19,12 +21,28 @@ const debug = require("debug")(`front:${componentName}`);
  */
 function NotebookPageElementsDetails (props: IProps) {
   return <div className={merge([css.root, props.className])}>
-    <NotebookTitle title={props.data.name}/>
-    <p>{props.data.text}</p>
-    {(props.leaveButton && (
-        <button  onClick={props.onExit}>quitter</button>
-    ))}
-    <div className={"additional-content"}>
+
+    <div className={css.elementHeader}>
+      <div>
+        <div className={css.elementHeaderStamp}/>
+        <div className={css.elementHeaderTitle}>{props.data.name}</div>
+      </div>
+    </div>
+
+    <div className={merge([css.contentBlockBorder, css.contentBlock])}>
+      <div className={"title-block"}>
+        <div className={"title-block-mandarin"}>信息</div>
+        <div className={"title-block-name"}>
+          <h2>Info</h2>
+          <div className={"title-block-phonetic"}><span>zn.</span> [Xinxi]</div>
+        </div>
+      </div>
+
+      <p className={"bigger"}>{props.data.text}</p>
+
+      <NotebookPhonetic/>
+    </div>
+    <div className={merge([css.contentBlock])}>
       {props.data.additional.map((value, k) => {
         let content = null;
         switch (value.type) {
@@ -32,7 +50,10 @@ function NotebookPageElementsDetails (props: IProps) {
             content = (<p>{value.value}</p>);
             break;
           case "image":
-            content = (<img src={value.value} alt={"file"}/>);
+            content = (<img src={value.value} alt={"file"} className={css.image}/>);
+            break;
+          case "audio":
+            content = (<NotebookAudio audio={value.value}/>);
             break;
           case "youtube":
             content = (<div className={""}>
@@ -40,7 +61,7 @@ function NotebookPageElementsDetails (props: IProps) {
             break;
         }
         return (<div key={k}>{content}{value.credits
-          && (<div>{value.credits}</div>)}</div>);
+        && (<div>{value.credits}</div>)}</div>);
       })}
     </div>
   </div>

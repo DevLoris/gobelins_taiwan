@@ -8,8 +8,7 @@ import {
     STORE_VERSION
 } from "./state_interface_experience";
 import data from '../data/data.json';
-import {IStateData, IStateDataScene} from "./state_interface_data";
-import {AssetMemory} from "../components/webGlCanvas/WebGlManagerClasses/assets/AssetMemory";
+import {IStateData} from "./state_interface_data";
 const ls = require('local-storage');
 
 const debug = require("debug")(`front:Store`);
@@ -65,7 +64,7 @@ const experienceSlice = createSlice({
         pickupHint: (state: ICustomState, payload: PayloadAction<IBooleanScene>) => {
             let found =  state.scenes.find(value => value.scene == payload.payload.scene);
             if(found) {
-                found.hint.pre_pickup = payload.payload.bool;
+                found.hint.pickup = payload.payload.bool;
             }
         },
         toggleOnMap: (state: ICustomState, payload: PayloadAction<IBooleanScene>) => {
@@ -93,7 +92,7 @@ const dataSlice = createSlice({
     name: 'data',
     initialState: ((): IStateData => {
         // @ts-ignore
-        return { scenes: data.scenes, collectibles: data.collectibles, models: data.models };
+        return { scenes: data.scenes, collectibles: data.collectibles, models: data.models, audios: data.audios };
     })(),
     reducers: {
     }

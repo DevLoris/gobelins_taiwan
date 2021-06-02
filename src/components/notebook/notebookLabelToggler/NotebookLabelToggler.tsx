@@ -17,7 +17,7 @@ const debug = require("debug")(`front:${componentName}`);
  */
 function NotebookLabelToggler (props: IProps) {
   return <div onClick={props.onClick} className={merge([css.root, props.className, props.active ? css.active : ''])}>
-      {props.label}
+    <span>{props.label}</span>
   </div>
 }
 

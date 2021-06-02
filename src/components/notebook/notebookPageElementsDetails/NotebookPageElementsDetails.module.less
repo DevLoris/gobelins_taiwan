@@ -2,3 +2,62 @@
 
 .root {
 }
+
+.elementHeader {
+  background: url("../../../public/da/texture_wave.png") left top;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  width: 110%;
+  padding-bottom: 30px;
+  transform: translate(-5%) rotate(-1deg);
+}
+
+.elementHeader  > div {
+  transform: rotate(1deg);
+}
+
+.elementHeaderStamp {
+  width: 128px;
+  height: 128px;
+  border: 2px dashed @text-color;
+  margin: 20px;
+}
+
+.elementHeaderTitle {
+  text-align: center;
+  font-weight: bold;
+  color: @text-color;
+  font-family: Fuji;
+  font-size: 22px;
+}
+
+.elementHeader:after  {
+  content: '';
+  position: absolute;
+  height: 32px;
+  background: url("../../../public/da/pattern.png") left top;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.contentBlock {
+  margin: 2rem 2.2rem;
+}
+
+.contentBlockBorder {
+  border-bottom: 1px dotted black;
+}
+
+.image {
+  border: 10px solid white;
+  transform: rotate(3deg);
+  box-shadow: @text-color_20 0 0 2px;
+  margin: 2rem -1rem;
+  width: calc(100% + 2rem);
+  max-width: initial !important;
+}

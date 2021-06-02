@@ -1,9 +1,35 @@
 @import (reference) "../../../references.less";
 
 .root {
-  font-weight: 700;
+  border-radius: 2px 2px 0 0;
+  background: white;
+  font-family: 'Fuji';
+  font-size: 20px;
+  color: #121D30;
+  width: 95px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
-.active {
-  color: red;
+.root:before {
+  content: '';
+  background: url("../../../public/da/texture_wave.png") no-repeat left top;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.root:nth-child(1) {
+  transform: rotate(-1deg);
+}
+.root:nth-child(2) {
+  transform: rotate(1deg);
+}
+
+.root > span {
+  position: relative;
+  z-index: 1;
 }

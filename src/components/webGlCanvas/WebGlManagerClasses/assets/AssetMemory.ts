@@ -1,6 +1,5 @@
 import {AssetLoader} from "./AssetLoader";
 import {AssetGLTF} from "./AssetGLTF";
-import {store} from "../../../../store/store";
 import {IStateDataModel3D} from "../../../../store/state_interface_data";
 
 const debug = require("debug")(`front:AssetMemory`);

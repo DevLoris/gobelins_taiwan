@@ -1,9 +1,7 @@
 import {Howl} from 'howler';
-import audio from '../../data/audio.json';
+import {IStateDataAudio} from "../../store/state_interface_data_audio";
 
 const debug = require("debug")(`front:Audio`);
-
-debug(audio);
 
 export interface IAudio {
     id: string,
@@ -18,10 +16,8 @@ export interface IAudioParams {
 export class AudioHandler {
     static audioList: IAudio[] = [];
 
-    static loadFile() {
-        audio.forEach((value : {id: string, url: string, params: IAudioParams}) => {
-            AudioHandler.load(value.id, value.url, value.params);
-        })
+    static loadAll(audios:  IStateDataAudio[]) {
+        audios.forEach(value => AudioHandler.load(value.id, value.url, value.params));
     }
 
     static load(id, path, params: IAudioParams) {
@@ -36,6 +32,10 @@ export class AudioHandler {
 
     static play(id) {
         this.audioList.find(value => value.id == id)?.howl.play();
+    }
+
+    static get(id) {
+        return this.audioList.find(value => value.id == id)?.howl;
     }
 
     static stop(id) {

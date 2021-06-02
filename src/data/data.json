@@ -3,6 +3,7 @@
     {
       "id":  "taipei",
       "name": "Taipei Centre",
+      "ambient": "ambient_city",
       "collectibles": [
         {
           "collectible_id": "seven_eleven",
@@ -40,6 +41,7 @@
         }
       },
       "orbit": {
+        "enabled": true,
         "center": {
           "x": 0,
           "y": 1,
@@ -102,8 +104,34 @@
     },
     {
       "id": "wild",
+      "ambient": "ambient_nature",
       "name": "Terres sauvages",
-      "collectibles": [],
+      "collectibles": [
+        {
+          "collectible_id": "seven_eleven",
+          "trigger": "AntoineBatiment",
+          "focus": {
+            "coords": {"x": -20, "y": 20, "z": -5.5},
+            "rotation": {"x": -15.2, "y": 6.8, "z":  7.7}
+          }
+        },
+        {
+          "collectible_id": "camion_poubelle",
+          "trigger": "pickup",
+          "focus": {
+            "coords": {"x": 2, "y": 4, "z": 5},
+            "rotation": {"x": 3, "y": 1, "z":3}
+          }
+        },
+        {
+          "collectible_id": "coins",
+          "trigger": "coins",
+          "focus": {
+            "coords": {"x": 2, "y": 4, "z": 5},
+            "rotation": {"x": 3, "y": 1, "z":3}
+          }
+        }
+      ],
       "scene": {
         "background": "#bfe3dd"
       },
@@ -115,6 +143,7 @@
         }
       },
       "orbit": {
+        "enabled": true,
         "center": {
           "x": 0,
           "y": 1,
@@ -160,6 +189,10 @@
     {
       "id": "RaoheGate",
       "path": "/public/sceneries/demo/raoheGate.glb"
+    },
+    {
+      "id": "Clim",
+      "path": "/public/sceneries/demo/clim.glb"
     }
   ],
   "collectibles": [
@@ -174,6 +207,14 @@
         {
           "type": "text",
           "value": "Il y en a plus de 3600 à Taiwan, donc tu peux en trouver de partout, c’est ultra pratique !"
+        },
+        {
+          "type": "image",
+          "value": "https://fr-wp.rti.org.tw/wp-content/uploads/2018/06/7-Eleven-%C3%A0-tous-les-carrefours-de-Taiwan-image-Flickr.jpg"
+        },
+        {
+          "type": "audio",
+          "value": "book"
         }
       ]
     },
@@ -212,6 +253,42 @@
           "value": "/public/book.png"
         }
       ]
+    }
+  ],
+  "audios": [
+    {
+      "id": "pickup",
+      "url": "/public/audio/Game Reward.mp3",
+      "params": {}
+    },
+    {
+      "id": "page",
+      "url": "/public/audio/page.mp3",
+      "params": {}
+    },
+    {
+      "id": "book",
+      "url": "/public/audio/book.wav",
+      "params": {}
+    },
+    {
+      "id": "ambient_city",
+      "url": "/public/audio/ambient_city.mp3",
+      "params": {
+        "loop": true
+      }
+    },
+    {
+      "id": "ambient_nature",
+      "url": "/public/audio/ambient_nature.mp3",
+      "params": {
+        "loop": true
+      }
+    }
+  ],
+  "effects": [
+    {
+      "type": "outline"
     }
   ]
 }

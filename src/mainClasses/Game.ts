@@ -25,9 +25,6 @@ export class Game {
         isLocal() && debug("It's a local server!");
         isUrlDebug() && debug("Debug mode enabled!");
 
-        // Init audio
-        AudioHandler.loadFile();
-
         // Init sceneries
         this._initSceneries();
 
