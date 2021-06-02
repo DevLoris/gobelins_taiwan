@@ -2,7 +2,7 @@ import css from './NotebookPageElements.module.less';
 import React, {useState} from 'react';
 import {merge} from "../../../lib/utils/arrayUtils";
 import {useTranslation} from "react-i18next";
-import {selectCollectiblesOfSceneWithPickup, selectUserActiveScene} from "../../../store/store_selector";
+import {selectCollectiblesOfSceneWithPickup, selectScene, selectUserActiveScene} from "../../../store/store_selector";
 import {getState} from 'store/store';
 import {IStateDataCollectibleWithPickup} from "../../../store/state_interface_data";
 import NotebookElement from "../notebookElement/NotebookElement";
@@ -31,6 +31,7 @@ function NotebookPageElements (props: IProps) {
 
   // get collectibles of scene
   const active_scene  = selectUserActiveScene(getState());
+  const scene  = selectScene(active_scene)(getState().data);
   const collectibles  = selectCollectiblesOfSceneWithPickup(active_scene)(getState().data, getState().user_data).filter(value => {
     return value.type == IStateDataSceneCollectibleType.HINT;
   });
@@ -46,8 +47,13 @@ function NotebookPageElements (props: IProps) {
   }
   else {
     return <div className={merge([css.root, props.className])}>
-      <NotebookTitle title={t('notebook__page__elements__title')}/>
-      <div>{collectibles.filter(value => value.pickup).length} / {collectibles.length}</div>
+      <NotebookTitle
+          title={scene.name}
+          phonetic={scene.phonetic}
+          chinese_title={scene.chinese_name}
+          total={collectibles.length}
+          picked={collectibles.filter(value => value.pickup).length}
+      />
 
       {collectibles.map((data, i) => {
         return (<NotebookElement callback={() => {

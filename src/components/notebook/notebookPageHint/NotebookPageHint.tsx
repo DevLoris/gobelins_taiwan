@@ -8,6 +8,7 @@ import {getState} from "../../../store/store";
 import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
 import NotebookPageElementsDetails from "../notebookPageElementsDetails/NotebookPageElementsDetails";
 import {AudioHandler} from "../../../lib/audio/AudioHandler";
+import NotebookHint from "../notebookHint/NotebookHint";
 
 interface IProps {
   className?: string,
@@ -32,21 +33,12 @@ function NotebookPageHint (props: IProps) {
     return value.type == IStateDataSceneCollectibleType.PRE_PICKUP;
   });
 
-  if(pickup.pickup)
-    return <div className={merge([css.root, props.className])}>
-      <NotebookPageElementsDetails data={pickup}/>
-    </div>
-  else if(pre_pickup.pickup) {
-    return <div className={merge([css.root, props.className])}>
-      <p>{pickup.hint}</p>
-      <p>élément nécessaire ramassé</p>
-    </div>
-  }
-  else  {
-    return <div className={merge([css.root, props.className])}>
-      <p>{pickup.hint}</p>
-    </div>
-  }
+  return (
+      <>
+        <NotebookPageElementsDetails data={pickup}/>
+        <NotebookHint showDefault={!pickup.pickup} showClose={pickup.pickup} hint={pickup.hint} hint_audio={"ambient_city"}/>
+      </>
+  )
 }
 
 export default NotebookPageHint

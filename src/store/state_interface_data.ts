@@ -25,6 +25,8 @@ export interface IStateDataSceneCollectible {
 export interface IStateDataScene {
     id: string,
     name: string,
+    chinese_name: string,
+    phonetic: string,
     ambient: string,
     collectibles: IStateDataSceneCollectible[],
     scene: {
@@ -96,6 +98,6 @@ export interface IStateDataCollectibleWithPickup extends IStateDataCollectible {
 
 export interface IStateDataCollectibleAdditional {
     type: string,
-    value: any,
+    value: any|string[],
     credits?: string
 }

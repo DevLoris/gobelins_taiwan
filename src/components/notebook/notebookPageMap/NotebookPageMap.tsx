@@ -36,18 +36,24 @@ function NotebookPageMap (props: IProps) {
     })
 
     return <div className={merge([css.root, props.className])}>
-      <NotebookTitle title={t('notebook__page__map__title')}/>
-      <div>
-          {
-              scenes.map((value, key) => {
-                  return (<div key={key} onClick={() => {
+        <div>
+        {
+            scenes.map((value, key) => {
+                return <NotebookTitle
+                    title={value.name}
+                    phonetic={value.phonetic}
+                    chinese_title={value.chinese_name}
+                    total={1}
+                    picked={0}
+                    /*onClick={() => {
                       setDetailsScene(value.id);
-                  }}>Voir : {value.name}</div>)
-              })
-          }
+                  }}*/
+                />
+            })
+        }
       </div>
       <div>
-          <img src={"/public/images/taiwan.jpeg"} />
+          <img src={"/public/images/map.png"} alt={"Map"} className={"map"} />
       </div>
         {
             (detailsScene !== null &&

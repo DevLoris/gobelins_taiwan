@@ -15,9 +15,6 @@ const debug = require("debug")(`front:${componentName}`);
  * @name NotebookAudio
  */
 function NotebookAudio (props: IProps) {
-
-  console.log(props);
-
   const play = () => {
     let audio = AudioHandler.get(props.audio);
 
