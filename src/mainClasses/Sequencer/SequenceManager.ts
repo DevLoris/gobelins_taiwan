@@ -2,7 +2,7 @@ import {EChapterStep} from "./SequenceChapterStep";
 import {getChapterAndStepInUrl} from "../../helpers/DebugHelpers";
 import {Signal} from "../../lib/helpers/Signal";
 import {SceneVars} from "../../vars/scene_vars";
-import {selectUserScene} from "../../store/store_selector";
+import {selectUserActiveScene, selectUserScene} from "../../store/store_selector";
 import {getState} from "../../store/store";
 
 const debug = require("debug")(`front:SequenceManager`);
@@ -36,7 +36,7 @@ export interface ISequenceStep {
     sceneId?: string
 }
 
-// TODO mettre dans les data lol
+// TODO mettre dans les data !!!!!!!!!!
 export const CHAPTERS: ISequenceChapter[] = [
     {
         name: EChapterName.FIRST_ENIGMA,
@@ -124,6 +124,21 @@ export class SequenceManager {
      * @private
      */
     private _activeStepIndex:number = 0;
+    get activeStepIndex(): number {
+        return this._activeStepIndex;
+    }
+    set activeStepIndex(index: number) {
+        this._activeStepIndex = index;
+        debug("New active step index is", this.activeStepIndex);
+    }
+
+    private _activeVideoId: string = "";
+    get activeVideoId(): string {
+        return this._activeVideoId;
+    }
+    set activeVideoId(id:string) {
+        this._activeVideoId = id;
+    }
 
     // ---------------------------------------------------------------------------
 
@@ -133,13 +148,13 @@ export class SequenceManager {
      * or start from beginning
      */
     public init(): void {
-        debug("SequenceManager init", CHAPTERS);
+        debug("SequenceManager init chapters:", CHAPTERS);
 
         const fromUrl = getChapterAndStepInUrl()
         debug("URL", fromUrl);
 
-        // const sceneryIdentifier = SequenceManager.instance.getCurrentChapterSceneFromDiorama();
-        // const vlogsStates = selectUserScene(sceneryIdentifier)(getState().user_data)?.vlog;
+        const sceneryIdentifier = SequenceManager.instance.getCurrentChapterSceneFromDiorama();
+        const vlogsStates = selectUserScene(sceneryIdentifier)(getState().user_data)?.vlog;
 
         // Get debug chapter & step from url
         if( fromUrl?.[0] && fromUrl?.[1] ) {
@@ -150,17 +165,21 @@ export class SequenceManager {
                     chapter.steps.forEach((step, stepIndex) => {
                         if(step.identifier === fromUrl[1]) {
                             this.activeStepName = fromUrl[1];
-                            this._activeStepIndex = stepIndex;
+                            this.activeStepIndex = stepIndex;
                         }
                     });
                 }
             });
         }
-
         // Start at the beginning
-        // TODO à voir à l'utilisation si y'a besoin de modifier ça
-        else {
+        else if(!vlogsStates?.intro) {
             this.startFromBeginning();
+        }
+        // Get data from save
+        else {
+            debug("Get data from save", selectUserScene(sceneryIdentifier)(getState().user_data));
+            this.setPositionsFromStore(selectUserActiveScene(getState()));
+            debug("Position is now", this.getCurrentPositionInSequence());
         }
     }
 
@@ -172,7 +191,7 @@ export class SequenceManager {
         this.activeChapterName = EChapterName[CHAPTERS[0].name];
         this._activeChapterIndex = 0;
         this.activeStepName = CHAPTERS[0].steps[0].identifier;
-        this._activeStepIndex = 0;
+        this.activeStepIndex = 0;
     }
 
     /**
@@ -180,7 +199,7 @@ export class SequenceManager {
      * return [activeChapterName: string, activeStepName: string]
      */
     public getCurrentPositionInSequence(): [string, string] {
-        if(this.activeChapterName === undefined || this.activeStepName === undefined) this.startFromBeginning();
+        // if(this.activeChapterName === undefined || this.activeStepName === undefined) this.startFromBeginning();
         return [this.activeChapterName, this.activeStepName];
     }
 
@@ -188,12 +207,16 @@ export class SequenceManager {
      * If current step is diorama, return the name of the scenery
      */
     public getCurrentSceneId(): string {
-        const sceneId = CHAPTERS[this._activeChapterIndex].steps[this._activeStepIndex].sceneId;
+        const sceneId = CHAPTERS[this._activeChapterIndex].steps[this.activeStepIndex].sceneId;
         debug("getCurrentSceneId()", sceneId);
         if(sceneId === undefined) console.error("Scene ID is undefined. Maybe the current step is not diorama");
         return sceneId;
     }
 
+    /**
+     * Get scene id from current chapter
+     * @return string
+     */
     public getCurrentChapterSceneFromDiorama(): string {
         let sceneId = "";
         CHAPTERS[this._activeChapterIndex].steps.map((step) => {
@@ -204,15 +227,50 @@ export class SequenceManager {
         return sceneId;
     }
 
+    public getCurrentVideoId(): string {
+        if(!CHAPTERS[this._activeChapterIndex].steps[this.activeStepIndex]?.id) {
+            console.error("No video for current step");
+        }
+        return CHAPTERS[this._activeChapterIndex].steps[this.activeStepIndex].id;
+    }
+
+    /**
+     * Set position params in object, from saved data
+     * @param sceneId
+     * @private
+     */
+    private setPositionsFromStore(sceneId: string) {
+        CHAPTERS.forEach((chapter, chapterIndex) => {
+                chapter.steps.forEach((step, stepIndex) => {
+                    // Set current step as diorama scene
+                    if( step?.sceneId && step.sceneId === sceneId ) {
+                        this.activeChapterName = EChapterName[CHAPTERS[chapterIndex].name];
+                        this._activeChapterIndex = chapterIndex;
+                        this.activeStepName = step.identifier;
+                        this.activeStepIndex = stepIndex;
+
+                        const scenePickupState = selectUserScene(sceneId)(getState().user_data).hint.pickup;
+
+                        // If main element has been picked, increment
+                        if(scenePickupState) {
+                            this.increment();
+                        }
+                    }
+                });
+        });
+    }
+
     /**
      * Step forward in sequence
      */
     public increment(): void {
-        debug("Increment sequence")
+        debug("Increment sequence. Current step:", this.getCurrentPositionInSequence());
         // If there is one more step inside this chapter
-        if(CHAPTERS[this._activeChapterIndex].steps[this._activeStepIndex+1]) {
-            this._activeStepIndex += 1;
-            this.activeStepName = CHAPTERS[this._activeChapterIndex].steps[this._activeStepIndex].identifier;
+        if(CHAPTERS[this._activeChapterIndex].steps[this.activeStepIndex+1]) {
+            debug("Switching to next step");
+            this.activeStepIndex += 1;
+            this.activeStepName = CHAPTERS[this._activeChapterIndex].steps[this.activeStepIndex].identifier;
+            debug("new step is", this.activeStepName);
         }
         // Else jump to next chapter
         else {
@@ -222,11 +280,15 @@ export class SequenceManager {
                 return;
             }
 
+            debug("Switching to next chapter");
+
             this._activeChapterIndex += 1;
-            this._activeStepIndex = 0;
+
+            this.activeStepIndex = 0;
 
             this.activeChapterName = EChapterName[CHAPTERS[this._activeChapterIndex].name];
-            this.activeStepName = CHAPTERS[this._activeChapterIndex].steps[this._activeStepIndex].identifier;
+            this.activeStepName = CHAPTERS[this._activeChapterIndex].steps[this.activeStepIndex].identifier;
+            debug("current chapter is", this.activeChapterName, "and current step is", this.activeStepName);
         }
     }
 }

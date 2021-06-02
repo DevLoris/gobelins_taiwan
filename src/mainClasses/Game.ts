@@ -43,10 +43,10 @@ export class Game {
      * On sequence updated
      */
     public sequenceStepUpdatedHandler() {
-        debug("sequenceStepUpdatedHandler");
-
         // Get current step
         const currentStep = SequenceManager.instance.getCurrentPositionInSequence()[1];
+
+        debug("sequenceStepUpdatedHandler", SequenceManager.instance.getCurrentPositionInSequence());
 
         // Show page related to current step type
         // Is 3d scene
@@ -70,6 +70,11 @@ export class Game {
                     debug(SequenceManager.instance.getCurrentPositionInSequence());
                     Router.openPage({page: ERouterPage.WEBGL_PAGE});
                 }
+            }
+            else if(currentStep === EChapterStep.OUTRO_VLOG) {
+                // Set vlog as viewed
+                store.dispatch(vlogOutro({bool: true, scene: sceneryIdentifier}));
+                Router.openPage({page: ERouterPage.VLOG_PAGE});
             }
         }
     }
