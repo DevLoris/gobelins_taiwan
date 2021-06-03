@@ -204,7 +204,8 @@
       "id": "seven_eleven",
       "type": "pickup",
       "name": "7-Eleven",
-      "asset": "/public/images/stamp/stamp.png",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
       "hint": "Ces si petits magasins ouverts jours et nuits sont de véritables cavernes d'Ali Baba",
       "text": "Ces magasins permettent d’absolument tout faire : tu peux faire tes courses du quotidien, manger des repas complets sur place, faire des photocopies, retirer de l’argent ou avoir du wifi gratuitement. Et tout ça, à n’importe quelle heure de la journée c’est ouvert 24h/24 et 7j/7 !",
       "additional": [
@@ -226,21 +227,18 @@
       "id": "coins",
       "type": "pre_pickup",
       "name": "Monnaie locale",
-      "asset": "/public/images/stamp/stamp.png",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
       "text": "Nouveau dollar Taiwanais",
       "additional": [
-        {
-          "type": "youtube",
-          "value": "Ver1OZdK2bA",
-          "credits": "copyright wtf coucou"
-        }
       ]
     },
     {
       "id": "camion_poubelle",
       "type": "hint",
       "name": "Camion Poubelle",
-      "asset": "/public/images/stamp/stamp.png",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
       "text": "A Taiwan, les camions poubelle jouent une petite mélodie quant ils passent. Ça te permet de savoir quand ils arrivent pour que tu ailles jeter tes poubelles. C’est l’occase de voir tous tes voisins en survêt claquettes.",
       "additional": [
         {

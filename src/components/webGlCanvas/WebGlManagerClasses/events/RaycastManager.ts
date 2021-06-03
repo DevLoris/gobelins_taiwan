@@ -45,7 +45,7 @@ class RaycastManager {
                         // DISPATCH UI UPDATE
                         this.onInteract.dispatch(collectible);
                         // UPDATE STORE WITH USER DATA
-                        store.dispatch(addPickElementScene({pickup: collectible.id, scene: userSceneId}));
+                        //todo : enable ; store.dispatch(addPickElementScene({pickup: collectible.id, scene: userSceneId}));
                         // SET FOCUS
                         FocusUtils.focusOn(collectibleSceneData.focus.coords, collectibleSceneData.focus.rotation);
 
