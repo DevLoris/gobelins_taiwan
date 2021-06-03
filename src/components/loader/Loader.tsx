@@ -23,26 +23,30 @@ function Loader (props: IProps) {
 
   const rootRef = useRef(null);
 
-  const [loading] = useState<string[]>([]);
+  const [loadingCount, setLoadingCount] = useState<number>(0);
+  const [loadedElementsNames, setLoadedElementsNames] = useState<string[]>([]);
 
     // -------------------–-------------------–-------------------–--------------- EFFECTS
 
   useEffect(() => {
       LoaderSignal.getInstance().beforeLoad.add((value: string) => {
-          !loading.includes(value) && loading.push(value);
-          console.log(loading);
+          !loadedElementsNames.includes(value) && setLoadedElementsNames(loadedElementsNames => [...loadedElementsNames, value]);
       })
 
       // audio
-    AudioHandler.loadAll(selectAudios(getState()));
+      AudioHandler.loadAll(selectAudios(getState()));
 
-    AssetMemory.instance.loadAll(selectModels(getState()))
-        .then((models) => {
-          debug("Models loaded", models);
-            componentReveal(false);
-            props.modelsLoadedCallback();
-        });
+        AssetMemory.instance.loadAll(selectModels(getState()))
+            .then((models) => {
+                debug("Models loaded", models);
+                componentReveal(false);
+                props.modelsLoadedCallback();
+            });
   }, []);
+
+    useEffect(() => {
+        setLoadingCount(loadedElementsNames.length);
+    }, [loadedElementsNames]);
 
     // -------------------–-------------------–-------------------–--------------- ANIMATION
 
@@ -57,7 +61,7 @@ function Loader (props: IProps) {
           autoAlpha: pShow ? 1 : 0,
           onComplete: () => {
             if(!pShow) {
-              rootRef.current.style.display = "none";
+              if (rootRef.current?.style?.display) rootRef.current.style.display = "none";
             }
           }
         });
@@ -66,7 +70,7 @@ function Loader (props: IProps) {
     // -------------------–-------------------–-------------------–--------------- RENDER
 
   return <div ref={rootRef} className={merge([css.root, props.className])}>
-      assets : { loading.length } - {loading.concat(" / ")}
+      assets : { loadingCount } - {loadedElementsNames[loadingCount-1]}
   </div>
 }
 
