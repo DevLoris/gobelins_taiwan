@@ -7,6 +7,8 @@ import {IStateDataSceneEffectsType, IStateDataSceneElementType} from "../../../.
 import {WebGlManager} from "../WebGlManager";
 import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
 
+const debug = require("debug")(`front:SceneryUtils`);
+
 /**
  * Scenery Utils
  */
@@ -78,10 +80,10 @@ export class SceneryUtils {
 
     /**
      * Creates skybox
-     * @param scene 
+     * @param scene
      */
     static createSkybox(scene: IStateDataScene): CubeTexture {
-        console.log(scene);
+        debug(scene);
         const loader = new CubeTextureLoader();
         if (!scene.scene.skybox || Object.entries(scene.scene.skybox).length === 0) {
             return null;

@@ -1,21 +1,20 @@
-import css from "./VlogPage.module.less";
-import React, { useRef } from "react";
+import css from "./TransitionPage.module.less";
+import React, {useEffect, useRef} from "react";
 import { usePageRegister } from "../../lib/router/usePageRegister";
-import Vlog from "../../components/vlog/Vlog";
-import {SequenceManager} from "../../mainClasses/Sequencer/SequenceManager";
+import {Router} from "../../lib/router/Router";
+import {ERouterPage} from "../../routes";
 
 interface IProps {
   className: string;
-  id: string;
 }
 
-const componentName = "VlogPage";
+const componentName = "TransitionPage";
 const debug = require("debug")(`front:${componentName}`);
 
 /**
- * @name VlogPage
+ * @name TransitionPage
  */
-const VlogPage = (props: IProps) => {
+const TransitionPage = (props: IProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
 
   // -------------------–-------------------–-------------------–--------------- REGISTER PAGE
@@ -44,20 +43,19 @@ const VlogPage = (props: IProps) => {
    */
   usePageRegister({ componentName, rootRef, playIn, playOut });
 
+
+  useEffect(() => {
+
+    // Only used to redirect to vlog page for now
+    Router.openPage({page: ERouterPage.VLOG_PAGE});
+
+  }, []);
+
   // -------------------–-------------------–-------------------–--------------- RENDER
 
   return (
-    <div className={css.root} ref={rootRef}>
-      {/* TODO virer le paramètre ?????? */}
-      <Vlog videoId={SequenceManager.instance.getCurrentVideoId()}/>
-    </div>
+    <div className={css.root} ref={rootRef} />
   );
 };
 
-export default VlogPage;
-
-
-
-
-
-
+export default TransitionPage;

@@ -5,6 +5,8 @@ import {AssetMemory} from "../../assets/AssetMemory";
 import {InstancedMesh, Mesh, Object3D} from "three";
 import {createElement} from "react";
 
+const debug = require("debug")(`front:MeshObjectSceneElement`);
+
 export class MeshObjectSceneElement extends SceneElement {
     private gltfId: any;
     private positions: SceneElementOption[];
@@ -32,10 +34,12 @@ export class MeshObjectSceneElement extends SceneElement {
 
     prepareElements(): Object3D[] {
         let element = this.createElement();
+        debug(element);
         element.userData.internalId = this.id;
 
         let i = 0;
         this.positions.forEach((v) => {
+            debug(v);
             this._dummy.position.set( v.position[0], v.position[1], v.position[2] );
             this._dummy.scale.set(v.scale[0], v.scale[1], v.scale[2]);
             this._dummy.rotation.set(v.rotation.x, v.rotation.y, v.rotation.z);

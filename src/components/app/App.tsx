@@ -8,6 +8,7 @@ import {
   languageToString,
 } from "../../lib/services/LanguageService";
 import {Game} from "../../mainClasses/Game";
+import {WebGlManager} from "../webGlCanvas/WebGlManagerClasses/WebGlManager";
 
 const componentName = "App";
 const debug = require("debug")(`front:${componentName}`);
@@ -82,7 +83,8 @@ class App extends Component<IProps, IStates> {
     pNewPage: TPageRegisterObject
   ): Promise<void> {
     return new Promise(async (resolve) => {
-      // debug({ pOldPage, pNewPage });
+      debug("transitionControl");
+      debug("{ pOldPage, pNewPage }", { pOldPage, pNewPage });
       const oldPageRef = pOldPage?.rootRef?.current;
       const newPageRef = pNewPage?.rootRef?.current;
 

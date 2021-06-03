@@ -13,6 +13,7 @@ import {activeScenery, addScenery, getState, store} from "../../../store/store";
 import {RaycastEvent} from "./events/RaycastEvent";
 import {SceneryUtils} from "./scenery/SceneryUtils";
 import {selectScene, selectUserActiveScene} from "../../../store/store_selector";
+import {CAMERA_ASPECT, CAMERA_FAR, CAMERA_FOV, CAMERA_NEAR, STATS_FPS} from "./WebGlVars";
 import LightUtils from "./scenery/LightUtils";
 import {createEmptyScenery} from "../../../store/store_helper";
 import {HdrUtils} from "./scenery/HdrUtils";
@@ -22,11 +23,6 @@ import {Signal} from "../../../lib/helpers/Signal";
 import {AudioHandler} from "../../../lib/audio/AudioHandler";
 
 const debug = require("debug")(`front:WebGlManager`);
-
-const CAMERA_FOV = 75;
-const CAMERA_ASPECT = window.innerWidth / window.innerHeight;
-const CAMERA_NEAR = 0.1;
-const CAMERA_FAR = 10000;
 
 export class WebGlManager {
     private static instance: WebGlManager;
@@ -42,10 +38,14 @@ export class WebGlManager {
     private _control : OrbitControls = null;
     private _raycast : RaycastEvent  = null;
 
+    private _isRunning: boolean = false;
+
+    private _effect: OutlineEffect = null;
     private _effects:  (OutlineEffect|any)[] = [];
 
     // todo refacto
     public static scene: Scene = null;
+
 
     public onChangeScenery: Signal = new Signal();
 
@@ -55,6 +55,7 @@ export class WebGlManager {
 
     public static getInstance(): WebGlManager {
         if (!WebGlManager.instance) {
+            debug("new instance");
             WebGlManager.instance = new WebGlManager();
         }
 
@@ -64,13 +65,16 @@ export class WebGlManager {
 
     // --------------------------------------------------------------------------- SETUP
 
+
     /**
      * Init params & start webgl
      * @param pWrapper div container of canvas
+     * @param pSceneryName name of the scenery to be loaded
      */
-    public initAndStart(pWrapper: HTMLDivElement):void {
+    public initAndStart(pWrapper: HTMLDivElement, pSceneryName?: string):void {
         debug("Init WebGlManager", pWrapper);
         debug("ThreeJS version:", REVISION);
+        debug("pSceneryName", pSceneryName);
 
         this._wrapper = pWrapper;
 
@@ -82,7 +86,7 @@ export class WebGlManager {
         this._startWebGlLoop();
         this._setupStats();
 
-        this.toggleScenery(DEFAULT_SCENE);
+        pSceneryName && this.toggleScenery(pSceneryName);
 
         window.addEventListener('resize', this._resizeHandler.bind(this));
     }
@@ -143,7 +147,8 @@ export class WebGlManager {
      * @private
      */
     private _startWebGlLoop():void {
-        this._animationLoopId = requestAnimationFrame(this._animationFrame.bind(this));
+        if(!this._isRunning) this._animationLoopId = requestAnimationFrame(this._animationFrame.bind(this));
+        this._isRunning = true;
     }
 
     /**
@@ -152,6 +157,7 @@ export class WebGlManager {
      */
     private _stopWebGlLoop():void {
         cancelAnimationFrame(this._animationLoopId);
+        this._isRunning = false;
     }
 
     /**
@@ -211,9 +217,6 @@ export class WebGlManager {
     public toggleScenery(scene_id: string): void {
         // GET NEW SCENE
         const scene = selectScene(scene_id)(getState().data);
-
-        // ADD SCENE TO STORE
-        store.dispatch(addScenery(createEmptyScenery(scene_id)));
 
         // last scenery
         const previous_scene = selectUserActiveScene(getState());

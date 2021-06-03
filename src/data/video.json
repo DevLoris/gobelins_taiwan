@@ -1,5 +1,9 @@
 [
     {
+      "id": "loris",
+      "path": "/public/videos/loris.mp4"
+    },
+    {
         "id": "opening",
         "path": "/public/videos/ar-showreel.mp4"
     },
