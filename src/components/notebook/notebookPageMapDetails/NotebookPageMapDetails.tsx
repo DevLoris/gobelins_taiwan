@@ -6,6 +6,8 @@ import {getState} from "../../../store/store";
 import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
 import {useTranslation} from "react-i18next";
 import {WebGlManager} from "../../webGlCanvas/WebGlManagerClasses/WebGlManager";
+import Button, {ButtonStyle} from "../../button/Button";
+import NotebookSignal from "../notebook-signal";
 
 interface IProps {
   className?: string,
@@ -34,18 +36,13 @@ function NotebookPageMapDetails (props: IProps) {
   // filter bc many by scene
   const hints = collectibles.filter(value => value.type == IStateDataSceneCollectibleType.HINT);
 
-  return <div className={merge([css.root, props.className])}>
-    <h2>{sceneData.name}</h2>
-    <div>
-      <strong>{t("notebook__page__map__label__pickup")} : {pickup !== undefined && pickup.pickup ? 1 : 0} / 1</strong>
-    </div>
-    <div>
-      <strong>{t("notebook__page__map__label__hints")} : {hints.filter(value => value.pickup).length} / {hints.length}</strong>
-    </div>
-    <div>
-      <button className={""} onClick={() => {
-        WebGlManager.getInstance().toggleScenery(sceneData.id);
-      }}>{t("notebook__page__map__label__goto")}</button>
+  return <div className={merge([css.root, props.className, "popup mapPopup"])}>
+    <p>
+      Partir à la découverte de la zone {sceneData.name} ?
+    </p>
+    <div className={"buttonGroup"}>
+    <Button style={ButtonStyle.DEFAULT} onClick={() =>  { NotebookSignal.getInstance().onToggle.dispatch(true);}} label={"Rester ici"}/>
+    <Button style={ButtonStyle.PATTERN} onClick={() =>  {WebGlManager.getInstance().toggleScenery(sceneData.id);}} label={"Let's go"}/>
     </div>
   </div>
 }

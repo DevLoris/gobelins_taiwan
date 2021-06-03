@@ -51,9 +51,8 @@ function NotebookPageMap (props: IProps) {
                     chinese_title={value.chinese_name}
                     total={collectibles.length}
                     picked={collectibles.filter(value => value.pickup).length}
-                    /*onClick={() => {
-                      setDetailsScene(value.id);
-                  }}*/
+                    onClick={() => {
+                      setDetailsScene(value.id);}}
                 />
             })
         }

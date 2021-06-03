@@ -8,7 +8,8 @@ interface IProps {
   chinese_title?:string,
   phonetic?:string,
   picked?: number,
-  total?: number
+  total?: number,
+  onClick?: () => void
 }
 
 const componentName = "NotebookTitle";
@@ -18,7 +19,7 @@ const debug = require("debug")(`front:${componentName}`);
  * @name NotebookTitle
  */
 function NotebookTitle (props: IProps) {
-  return <div className={merge([css.root, props.className, "big-title-block"])}>
+  return <div onClick={props.onClick} className={merge([css.root, props.className, "big-title-block"])}>
     <div className={"title-block-mandarin"}>{props.chinese_title}</div>
     <div>
       <h1>{props.title}</h1>

@@ -14,5 +14,11 @@
 
   "notebook__page__map__label__pickup": "Enigme",
   "notebook__page__map__label__hints": "Objets",
-  "notebook__page__map__label__goto": "go to"
+  "notebook__page__map__label__goto": "go to",
+
+  "onboard__notebook": "Ton carnet de bord contient des infos concernant les énigmes et les particularités de la culture Taiwanaise",
+  "onboard__resolve": "Résout l’énigme en fouillant les quartiers de Taipei !",
+  "onboard__resolve__button": "Let's go",
+  "onboard__move": "Pour te déplacer, tu peux swiper et zoomer",
+  "onboard__move__button": "Compris"
 }

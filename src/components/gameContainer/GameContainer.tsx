@@ -10,6 +10,9 @@ import {bool} from "prop-types";
 import PrePickupElement from "../prePickupElement/PrePickupElement";
 import YouNeedElement from "../youNeedElement/YouNeedElement";
 import {WebGlManager} from "../webGlCanvas/WebGlManagerClasses/WebGlManager";
+import Tutorial from "../tutorial/Tutorial";
+import {getState} from "../../store/store";
+import {selectTutorial} from "../../store/store_selector";
 
 interface IProps {
   className?: string
@@ -60,7 +63,12 @@ function GameContainer (props: IProps) {
 
   return <div ref={rootRef}>
     <InteractedElement/>
-    <Notebook show={menuOpen}/>
+    {!selectTutorial(getState()) && (
+        <Tutorial/>
+    )}
+    <Notebook show={menuOpen} onClose={() => {
+      setMenuOpen(false);
+    }}/>
     <NotebookToggler onClick={() => {
       setMenuOpen(!menuOpen);
     }} />

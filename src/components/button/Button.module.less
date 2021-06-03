@@ -1,0 +1,19 @@
+@import (reference) "../../references.less";
+
+.root {
+  width: 220px;
+  position: relative;
+  margin-bottom: 0.7rem;
+  cursor: pointer;
+  pointer-events: initial;
+  p {
+    position: absolute;
+    left: 50%;
+    top: calc(50% - 2px);
+    width: 100%;
+    font-family: @font-text;
+    font-size: 1.2rem;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+}
