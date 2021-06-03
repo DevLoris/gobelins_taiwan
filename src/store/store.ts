@@ -38,6 +38,9 @@ const experienceSlice = createSlice({
         activeScenery: (state: ICustomState, action: PayloadAction<string>) => {
             state.active_scene = action.payload
         },
+        tutorial: (state: ICustomState, action: PayloadAction<boolean>) => {
+            state.tutorial = action.payload
+        },
         addScenery: (state: ICustomState, scene: PayloadAction<ICustomStateScene>) =>  {
             // ajout  d'une scène dans le store, si elle existe déjà on l'ajoute pas
             let found = state.scenes.find(value => value.scene == scene.payload.scene);
@@ -111,7 +114,7 @@ store.subscribe(() => {
 // exports rapides des méthodes de store
 export {store};
 export const { getState, dispatch } = store;
-export const { activeScenery, addScenery, addPickElementScene, pickupHint, pickupPreHint, toggleOnMap, vlogIntro, vlogOutro } = experienceSlice.actions;
+export const { tutorial, activeScenery, addScenery, addPickElementScene, pickupHint, pickupPreHint, toggleOnMap, vlogIntro, vlogOutro } = experienceSlice.actions;
 
 // Types relatifs au store
 export type RootState = ReturnType<typeof store.getState>

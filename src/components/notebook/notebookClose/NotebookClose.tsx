@@ -3,7 +3,8 @@ import React from 'react';
 import { merge } from "../../../lib/utils/arrayUtils";
 
 interface IProps {
-  className?: string
+  className?: string,
+  onClick: () => void,
 }
 
 const componentName = "NotebookClose";
@@ -13,7 +14,7 @@ const debug = require("debug")(`front:${componentName}`);
  * @name NotebookClose
  */
 function NotebookClose (props: IProps) {
-  return <div className={merge([css.root, props.className])}>
+  return <div className={merge([css.root, props.className])} onClick={props.onClick}>
     <svg width="100%" height="100%" viewBox="0 0 63 65" version="1.1"  style={{"fillRule":"evenodd", clipRule:"evenodd", strokeMiterlimit:10}}>
         <g id="Groupe_370" transform="matrix(1,0,0,1,-1277.58,321.44)">
             <g transform="matrix(1,0,0,1,-0.237,-0.671)">

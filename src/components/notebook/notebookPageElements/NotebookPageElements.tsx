@@ -43,7 +43,7 @@ function NotebookPageElements (props: IProps) {
   })
 
   if(showPage) {
-    return <NotebookPageElementsDetails leaveButton={true} data={page} onExit={() => { toggleShowPage(false); }} />
+    return <NotebookPageElementsDetails className={"light"} leaveButton={true} data={page} onExit={() => { toggleShowPage(false); }} />
   }
   else {
     return <div className={merge([css.root, props.className])}>
@@ -58,8 +58,10 @@ function NotebookPageElements (props: IProps) {
       <div className={css.notebookList}>
         {collectibles.map((data, i) => {
           return (<NotebookElement callback={() => {
-            setPage(data);
-            toggleShowPage(true)
+            if(data.pickup) {
+              setPage(data);
+              toggleShowPage(true)
+            }
           }}  data={data} key={i}/>)
         })}
       </div>

@@ -20,12 +20,17 @@ const debug = require("debug")(`front:${componentName}`);
  * @name NotebookPageElementsDetails
  */
 function NotebookPageElementsDetails (props: IProps) {
-  return <div className={merge([css.root, props.className])}>
+  return <div className={merge([css.root, css[props.className]])}>
 
     <div className={css.elementHeader}>
+      {props.onExit && (
+          <img src={"/public/da/go_back.png"} className={css.exit} onClick={props.onExit}/>
+      )}
       <div>
         <div className={css.elementHeaderStamp}>
-          <img src={props.data.asset} alt={props.data.name} />
+          {(props.data.pickup)  && (
+            <img src={props.data.asset} alt={props.data.name} />
+          )}
         </div>
         <div className={css.elementHeaderTitle}>{props.data.pickup && props.data.name}</div>
       </div>
@@ -33,19 +38,18 @@ function NotebookPageElementsDetails (props: IProps) {
 
     <div className={merge([css.contentBlockBorder, css.contentBlock])}>
 
-      <div className={"title-block"}>
-        <div className={"title-block-mandarin"}>信息</div>
-        <div className={"title-block-name"}>
-          <h2>Info</h2>
-          <div className={"title-block-phonetic"}><span>zn.</span> [Xinxi]</div>
-        </div>
-      </div>
-
       {(props.data.pickup)  && (
-          <>
-            <p className={"bigger"}>{props.data.text}</p>
-            <NotebookPhonetic/>
-          </>
+        <>
+          <div className={"title-block"}>
+            <div className={"title-block-mandarin"}>信息</div>
+            <div className={"title-block-name"}>
+              <h2>Info</h2>
+              <div className={"title-block-phonetic"}><span>zn.</span> [Xinxi]</div>
+            </div>
+          </div>
+          <p className={"bigger"}>{props.data.text}</p>
+          <NotebookPhonetic/>
+        </>
       )}
     </div>
 

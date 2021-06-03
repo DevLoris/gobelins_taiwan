@@ -14,10 +14,10 @@
   width: 110%;
   padding-bottom: 30px;
   transform: translate(-5%) rotate(-1deg);
-}
 
-.elementHeader  > div {
-  transform: rotate(1deg);
+  > div {
+    transform: rotate(1deg);
+  }
 }
 
 .elementHeaderStamp {
@@ -109,4 +109,22 @@
 .typeyoutube iframe {
   border: 0;
   max-width: 100%;
+}
+
+.exit {
+  position: absolute;
+  left: 2.8rem;
+  top: 1.4rem;
+  cursor: pointer;
+}
+
+.light {
+  .elementHeader {
+    background: transparent;
+    transform: translate(-5%) rotate(1deg);
+
+    > div, > img {
+      transform: rotate(-1deg);
+    }
+  }
 }

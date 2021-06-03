@@ -14,7 +14,8 @@ import NotebookClose from "./notebookClose/NotebookClose";
 
 interface IProps {
     className?: string,
-    show?: boolean
+    show?: boolean,
+    onClose: () => void,
 }
 
 enum NotebookPages {
@@ -27,7 +28,8 @@ const componentName = "Notebook";
 const debug = require("debug")(`front:${componentName}`);
 
 Notebook.defaultProps = {
-    show: false
+    show: false,
+    onClose: () => {}
 };
 
 /**
@@ -65,7 +67,7 @@ function Notebook (props: IProps) {
                     setPage(NotebookPages.MAP);
                 }}/>
             )}
-            <NotebookClose/>
+            <NotebookClose onClick={props.onClose}/>
         </div>
 
         <div className={css.outer}>

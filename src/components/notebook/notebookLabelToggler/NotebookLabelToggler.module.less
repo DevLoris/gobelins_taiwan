@@ -13,6 +13,7 @@
   position: relative;
   padding: 0 1rem;
   margin-right: 0.2rem;
+  overflow: hidden;
 }
 
 .root:before {
@@ -25,7 +26,7 @@
 .root:nth-child(1) {
   transform: rotate(-1deg);
   &:before{
-    background: url("../../../public/da/texture_wave.png") no-repeat -42px 0;
+    background: @lighter-color  url("../../../public/da/texture_wave_white.png") no-repeat -82px -10px;
   }
 }
 .root:nth-child(2) {
@@ -40,4 +41,15 @@
 .root > span {
   position: relative;
   z-index: 1;
+}
+
+
+.root:nth-child(1).active{
+  &:before {
+    background: white url("../../../public/da/texture_wave.png") no-repeat -82px -10px;
+  }
+}
+
+.root:nth-child(2).active, .root:nth-child(3).active {
+  background: white;
 }

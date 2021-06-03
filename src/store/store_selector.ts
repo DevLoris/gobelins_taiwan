@@ -10,9 +10,12 @@ import {
 import {IStateDataSceneCollectibleType} from "./state_enums";
 
 // RELATIVE TO USER DATA
-// Select user save related data
 
+// Select user save related data
 export const selectUserActiveScene = (state: RootState) => state.user_data.active_scene;
+
+// Select tutorial state
+export const selectTutorial = (state: RootState) => state.user_data.tutorial;
 
 // get store version
 export const selectUserStoreVersion = (state: RootState) => state.user_data.version;
