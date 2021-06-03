@@ -36,7 +36,6 @@ export interface ISequenceStep {
     sceneId?: string
 }
 
-// TODO mettre dans les data !!!!!!!!!!
 export const CHAPTERS: ISequenceChapter[] = [
     {
         name: EChapterName.FIRST_ENIGMA,
@@ -150,6 +149,10 @@ export class SequenceManager {
         debug("New active step index is", this.activeStepIndex);
     }
 
+    /**
+     * The active video ID, if the current step is vlog
+     * @private
+     */
     private _activeVideoId: string = "";
     get activeVideoId(): string {
         return this._activeVideoId;
@@ -245,6 +248,9 @@ export class SequenceManager {
         return sceneId;
     }
 
+    /**
+     * Get the video ID of the last or current vlog
+     */
     public getCurrentVideoId(): string {
         if(!CHAPTERS[this._activeChapterIndex].steps[this.activeStepIndex]?.id) {
             console.error("No video for current step");
