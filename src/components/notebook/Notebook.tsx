@@ -10,6 +10,7 @@ import NotebookSignal from "./notebook-signal";
 import {selectUserScenes} from "../../store/store_selector";
 import {getState} from "../../store/store";
 import {AudioHandler} from "../../lib/audio/AudioHandler";
+import NotebookClose from "./notebookClose/NotebookClose";
 
 interface IProps {
     className?: string,
@@ -64,6 +65,7 @@ function Notebook (props: IProps) {
                     setPage(NotebookPages.MAP);
                 }}/>
             )}
+            <NotebookClose/>
         </div>
 
         <div className={css.outer}>

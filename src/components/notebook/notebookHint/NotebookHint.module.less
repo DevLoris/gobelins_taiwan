@@ -1,4 +1,44 @@
 @import (reference) "../../../references.less";
 
 .root {
+  background: url("../../../public/da/open_hint.png") no-repeat top center;
+  position: fixed;
+  bottom: 0rem;
+  width: 100%;
+  padding-top: 6rem;
+  padding-bottom: 0rem;
+  min-height: 340px;
+}
+
+.contentBlock {
+  margin: 2rem 0 2rem 2.2rem;
+  display: flex;
+}
+
+.hintAudio {
+  cursor: pointer;
+  margin-right: 1.3rem;
+}
+
+.hintDetails {
+  font-size: 1rem;
+  line-height: 1.2rem;
+  padding-right: 2.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dotted @text-color;
+}
+
+.close{
+  position: absolute;
+  top: 1.8rem;
+  left: 50%;
+  cursor: pointer;
+  transform: translateX(-50%);
+}
+
+.enigmaButton {
+  position: fixed;
+  left: 1.5rem;
+  bottom: 1.5rem;
+  cursor: pointer;
 }

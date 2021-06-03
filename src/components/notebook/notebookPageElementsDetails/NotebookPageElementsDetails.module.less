@@ -25,11 +25,18 @@
   height: 128px;
   border: 2px dashed @text-color;
   margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    height: 120%;
+  }
 }
 
 .elementHeaderTitle {
   text-align: center;
-  font-weight: bold;
+  font-weight: 500;
   color: @text-color;
   font-family: Fuji;
   font-size: 22px;
@@ -60,4 +67,46 @@
   margin: 2rem -1rem;
   width: calc(100% + 2rem);
   max-width: initial !important;
+}
+
+.credits {
+  position: relative;
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+  font-family: Fuji;
+  color: @text-color;
+  width: 80%;
+  margin-left: 20%;
+  transform: rotate(-1deg) translate(5%, -1rem);
+  padding: 1rem 1.5rem;
+  &:before, &:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    clip-path: @clip-path;
+    top: 0;
+  }
+  &:before {
+    transform: translate(-2px, 2px);
+    filter: blur(1px);
+    background: @text-color_20;
+  }
+  &:after {
+    background: white url("../../../public/da/pattern_beige.png") no-repeat center;
+
+  }
+  > span {
+    position: relative;
+    z-index: 2;
+    display: block;
+    border-bottom: 1px dotted @text-color;
+    padding-bottom: 0.5rem;
+  }
+}
+
+.typeyoutube iframe {
+  border: 0;
+  max-width: 100%;
 }

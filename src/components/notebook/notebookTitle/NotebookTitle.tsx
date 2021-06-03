@@ -4,7 +4,11 @@ import { merge } from "../../../lib/utils/arrayUtils";
 
 interface IProps {
   className?: string,
-  title?: string
+  title?: string,
+  chinese_title?:string,
+  phonetic?:string,
+  picked?: number,
+  total?: number
 }
 
 const componentName = "NotebookTitle";
@@ -14,9 +18,19 @@ const debug = require("debug")(`front:${componentName}`);
  * @name NotebookTitle
  */
 function NotebookTitle (props: IProps) {
-  return <h2 className={merge([css.root, props.className])}>
-    {props.title}
-  </h2>
+  return <div className={merge([css.root, props.className, "big-title-block"])}>
+    <div className={"title-block-mandarin"}>{props.chinese_title}</div>
+    <div>
+      <h1>{props.title}</h1>
+      <div className={"title-block-phonetic"}>
+        <span>zn.</span> [{props.phonetic}]
+      </div>
+    </div>
+    <div className={"title-block-counter"}>
+      <span>{props.picked}</span>
+      <span>/{props.total}</span>
+    </div>
+  </div>
 }
 
 export default NotebookTitle

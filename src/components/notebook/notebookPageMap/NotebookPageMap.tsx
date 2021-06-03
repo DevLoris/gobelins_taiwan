@@ -3,11 +3,12 @@ import React, {useState} from 'react';
 import { merge } from "../../../lib/utils/arrayUtils";
 import NotebookTitle from "../notebookTitle/NotebookTitle";
 import {useTranslation} from "react-i18next";
-import {selectScene, selectScenes} from "../../../store/store_selector";
+import {selectCollectiblesOfSceneWithPickup, selectScene, selectScenes} from "../../../store/store_selector";
 import {getState} from "../../../store/store";
 import {IStateDataScene} from "../../../store/state_interface_data";
 import NotebookPageMapDetails from "../notebookPageMapDetails/NotebookPageMapDetails";
 import NotebookSignal from "../notebook-signal";
+import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
 
 interface IProps {
   className?: string
@@ -36,18 +37,29 @@ function NotebookPageMap (props: IProps) {
     })
 
     return <div className={merge([css.root, props.className])}>
-      <NotebookTitle title={t('notebook__page__map__title')}/>
-      <div>
-          {
-              scenes.map((value, key) => {
-                  return (<div key={key} onClick={() => {
+        <div>
+        {
+            scenes.map((value, key) => {
+                const collectibles  = selectCollectiblesOfSceneWithPickup(value.id)(getState().data, getState().user_data).filter(value => {
+                    return value.type == IStateDataSceneCollectibleType.HINT;
+                });
+
+                return <NotebookTitle
+                    title={value.name}
+                    key={key}
+                    phonetic={value.phonetic}
+                    chinese_title={value.chinese_name}
+                    total={collectibles.length}
+                    picked={collectibles.filter(value => value.pickup).length}
+                    /*onClick={() => {
                       setDetailsScene(value.id);
-                  }}>Voir : {value.name}</div>)
-              })
-          }
+                  }}*/
+                />
+            })
+        }
       </div>
       <div>
-          <img src={"/public/images/taiwan.jpeg"} />
+          <img src={"/public/images/map.png"} alt={"Map"} className={css.map} />
       </div>
         {
             (detailsScene !== null &&

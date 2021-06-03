@@ -1,4 +1,45 @@
 @import (reference) "../../../references.less";
 
 .root {
+  text-align: center;
+}
+
+.element {
+  width: 80px;
+  height: 80px;
+  margin: auto;
+  border: 2px dashed  @text-color;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:before {
+    content: '';
+    width: 68px;
+    height: 68px;
+    position: absolute;
+    opacity: 0.04;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: @text-color;
+  }
+
+  span {
+    font-size: 60px;
+    font-family: @font-text;
+    opacity: 0.16;
+    color: @light-color;
+  }
+  img {
+    height: 120%;
+  }
+}
+
+.name {
+  font-family: @font-text;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  font-weight: 300;
+  margin-top: 0.7rem;
 }

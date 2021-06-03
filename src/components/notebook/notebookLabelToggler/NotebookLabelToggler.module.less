@@ -6,17 +6,17 @@
   font-family: 'Fuji';
   font-size: 20px;
   color: #121D30;
-  width: 95px;
   height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  padding: 0 1rem;
+  margin-right: 0.2rem;
 }
 
 .root:before {
   content: '';
-  background: url("../../../public/da/texture_wave.png") no-repeat left top;
   height: 100%;
   width: 100%;
   position: absolute;
@@ -24,9 +24,17 @@
 
 .root:nth-child(1) {
   transform: rotate(-1deg);
+  &:before{
+    background: url("../../../public/da/texture_wave.png") no-repeat -42px 0;
+  }
 }
 .root:nth-child(2) {
+  transform: rotate(0deg);
+  background: white url("../../../public/da/pattern_white_beige.png") no-repeat center;
+}
+.root:nth-child(3) {
   transform: rotate(1deg);
+  background: white url("../../../public/da/pattern_white_beige.png") no-repeat center;
 }
 
 .root > span {

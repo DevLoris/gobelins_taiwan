@@ -17,9 +17,11 @@ const debug = require("debug")(`front:${componentName}`);
  */
 function NotebookElement (props: IProps) {
   return <div onClick={props.callback} className={merge([css.root, props.className])}>
-    <img src={props.data.asset} title={props.data.name} />
-    {props.data.pickup && ("Ramassé")}
-    {!props.data.pickup && ("Pas ramassé")}
+    <div className={css.element}>
+      {props.data.pickup && (<img src={props.data.asset} title={props.data.name} />)}
+      {!props.data.pickup && (<span>?</span>)}
+    </div>
+    <div className={css.name}>{props.data.name}</div>
   </div>
 }
 
