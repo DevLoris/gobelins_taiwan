@@ -48,7 +48,7 @@ function Tutorial (props: IProps) {
     else if(step == 3) {
       gsap.to(tutorialElement.current, {autoAlpha: 0, onComplete: () => {
           // @ts-ignore
-          tutorialElement.current !== undefined && tutorialElement.current.remove();
+          //tutorialElement.current !== undefined && tutorialElement.current.remove();
           store.dispatch(tutorial(true));
       }})
     }
