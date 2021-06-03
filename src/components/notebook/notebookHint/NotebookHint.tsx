@@ -23,10 +23,10 @@ function NotebookHint (props: IProps) {
 
   useEffect(() => {
     if(visible) {
-      gsap.fromTo(ref.current, {y: "100%", opacity: 0}, {y: 0, opacity: 1});
+      gsap.to(ref.current,   {y: 0, opacity: 1});
     }
     else  {
-      gsap.fromTo(ref.current, {y: 0, opacity: 1}, {y: "100%", opacity: 0});
+      gsap.to(ref.current,  {y: "100%", opacity: 0});
     }
   },  [visible]);
 

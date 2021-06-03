@@ -21,7 +21,7 @@ function NotebookElement (props: IProps) {
       {props.data.pickup && (<img src={props.data.asset} title={props.data.name} />)}
       {!props.data.pickup && (<span>?</span>)}
     </div>
-    <div className={css.name}>{props.data.name}</div>
+    <div className={css.name}>{props.data.pickup && props.data.name}</div>
   </div>
 }
 

@@ -5,6 +5,7 @@ import RaycastManager from "../webGlCanvas/WebGlManagerClasses/events/RaycastMan
 import {IStateDataCollectible} from "../../store/state_interface_data";
 import FocusUtils from "../webGlCanvas/WebGlManagerClasses/scenery/FocusUtils";
 import {IStateDataSceneCollectibleType} from "../../store/state_enums";
+import Button, {ButtonStyle} from "../button/Button";
 
 interface IProps {
   className?: string
@@ -35,9 +36,21 @@ function InteractedElement (props: IProps) {
       <button onClick={() => {
         toggleShowed(false);
         FocusUtils.restore();
-      }}>Fermer</button>
-      <h2>{ collectible.name }</h2>
-      <p>{ collectible.text }</p>
+      }}>
+        <img src={"/public/da/close.png"} alt={"Close"}/>
+      </button>
+
+      <div className={css.picture}>
+        <img src={collectible.asset} alt={"Asset"}/>
+        <img src={collectible.stamp} alt={"Stamp"}/>
+      </div>
+
+      <div className={css.contentBlock}>
+        <h1>{ collectible.name }</h1>
+        <p>{ collectible.text }</p>
+        <Button onClick={() => {}} style={ButtonStyle.DEFAULT} label={"En apprendre plus"}></Button>
+      </div>
+
     </div>
   }
   else {
