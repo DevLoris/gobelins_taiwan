@@ -1,13 +1,12 @@
-import {AudioHandler} from "../lib/audio/AudioHandler";
 import {addScenery, getState, store, vlogIntro, vlogOutro} from "../store/store";
-import {selectScene, selectUserScene} from "../store/store_selector";
+import {selectUserScene} from "../store/store_selector";
 import {SequenceManager} from "./Sequencer/SequenceManager";
-import {getChapterAndStepInUrl, isLocal, isUrlDebug} from "../helpers/DebugHelpers";
+import {isLocal, isUrlDebug} from "../helpers/DebugHelpers";
 import {ERouterPage} from "../routes";
 import {Router} from "../lib/router/Router";
 import {EChapterStep} from "./Sequencer/SequenceChapterStep";
-import {WebGlManager} from "../components/webGlCanvas/WebGlManagerClasses/WebGlManager";
-import {DEFAULT_SCENE} from "../vars/scene_vars";
+import {SceneVars} from "../vars/scene_vars";
+import {createEmptyScenery} from "../store/store_helper";
 
 const debug = require("debug")(`front:Game`);
 
@@ -25,9 +24,12 @@ export class Game {
         isLocal() && debug("It's a local server!");
         isUrlDebug() && debug("Debug mode enabled!");
 
-        // Init sceneries
-        this._initSceneries();
+        // Init scene store
+        for(let truc in SceneVars) {
+            store.dispatch(addScenery(createEmptyScenery(SceneVars[truc])));
+        }
 
+        // Init sequencer
         SequenceManager.instance.onStepUpdated.add(this.sequenceStepUpdatedHandler);
         SequenceManager.instance.init();
     }
@@ -62,7 +64,7 @@ export class Game {
                 if(!vlogsStates?.intro) {
                     // Set vlog as viewed
                     store.dispatch(vlogIntro({bool: true, scene: sceneryIdentifier}));
-                    Router.openPage({page: ERouterPage.VLOG_PAGE});
+                    Router.openPage({page: ERouterPage.TRANSITION_PAGE});
                 }
                 else {
                     // Skip the vlog and go to the diorama
@@ -72,17 +74,19 @@ export class Game {
                 }
             }
             else if(currentStep === EChapterStep.OUTRO_VLOG) {
-                // Set vlog as viewed
-                store.dispatch(vlogOutro({bool: true, scene: sceneryIdentifier}));
-                Router.openPage({page: ERouterPage.VLOG_PAGE});
+                // If vlog hasn't been seen yet
+                if(!vlogsStates?.outro) {
+                    // Set vlog as viewed
+                    store.dispatch(vlogOutro({bool: true, scene: sceneryIdentifier}));
+                    Router.openPage({page: ERouterPage.VLOG_PAGE});
+                }
+                else {
+                    // Skip the vlog and increment the game
+                    SequenceManager.instance.increment();
+                    debug(SequenceManager.instance.getCurrentPositionInSequence());
+                    Router.openPage({page: ERouterPage.TRANSITION_PAGE});
+                }
             }
         }
-    }
-
-    private _initSceneries() {
-
-
-        // let scene = selectScene("test")(getState().data);
-        // debug("scene", scene);
     }
 }

@@ -218,9 +218,6 @@ export class WebGlManager {
         // GET NEW SCENE
         const scene = selectScene(scene_id)(getState().data);
 
-        // ADD SCENE TO STORE
-        store.dispatch(addScenery(createEmptyScenery(scene_id)));
-
         // last scenery
         const previous_scene = selectUserActiveScene(getState());
         this.disableScenery(previous_scene);

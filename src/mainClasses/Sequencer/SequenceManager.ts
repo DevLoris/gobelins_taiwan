@@ -56,6 +56,24 @@ export const CHAPTERS: ISequenceChapter[] = [
             },
         ]
     },
+    {
+        name: EChapterName.SECOND_ENIGMA,
+        steps: [
+            {
+                identifier: EChapterStep.INTRO_VLOG,
+                id: "loris",
+            },
+            {
+                identifier: EChapterStep.DIORAMA,
+                id: "sceneTwo",
+                sceneId: SceneVars.WILD
+            },
+            {
+                identifier: EChapterStep.OUTRO_VLOG,
+                id: "opening"
+            },
+        ]
+    },
 ];
 
 // Nombre de chapitres dans le jeu
@@ -249,7 +267,7 @@ export class SequenceManager {
                         this.activeStepName = step.identifier;
                         this.activeStepIndex = stepIndex;
 
-                        const scenePickupState = selectUserScene(sceneId)(getState().user_data).hint.pickup;
+                        const scenePickupState = selectUserScene(sceneId)(getState().user_data)?.hint?.pickup;
 
                         // If main element has been picked, increment
                         if(scenePickupState) {
@@ -283,10 +301,8 @@ export class SequenceManager {
             debug("Switching to next chapter");
 
             this._activeChapterIndex += 1;
-
-            this.activeStepIndex = 0;
-
             this.activeChapterName = EChapterName[CHAPTERS[this._activeChapterIndex].name];
+            this.activeStepIndex = 0;
             this.activeStepName = CHAPTERS[this._activeChapterIndex].steps[this.activeStepIndex].identifier;
             debug("current chapter is", this.activeChapterName, "and current step is", this.activeStepName);
         }
