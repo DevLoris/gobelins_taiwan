@@ -95,6 +95,7 @@ export interface IStateDataCollectible {
     type: IStateDataSceneCollectibleType,
     name: string,
     asset: string,
+    stamp: string,
     text: string,
     hint?: string,
     additional?: IStateDataCollectibleAdditional[]

@@ -3,10 +3,64 @@
 .root {
   position: absolute;
   z-index: 2;
-  width: 300px;
+  width: 400px;
   padding: 10px;
-  top: 50%;
+  bottom: 0%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%,0);
   background: white;
+
+  button{
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(-20px, -50%);
+  }
+}
+
+.picture {
+  width: 260px;
+  margin: 1rem auto;
+  height: 150px;
+  border: 1px dashed @text-color;
+  position: relative;
+  &:before {
+    content: '';
+    width: 250px;
+    height: 140px;
+    opacity: 0.04;
+    position: absolute;
+    margin: 4px;
+    background: @text-color;
+  }
+  img {
+    position: absolute;
+    &:nth-child(1) {
+      width: 100%;
+      bottom: 0;
+      border: 6px solid white;
+      box-shadow: @text-color_20 -1px 1px;
+      transform: translate(-10%, -7%) rotate(-3deg);
+    }
+    &:nth-child(2) {
+      height: 100px;
+      right: 0;
+      bottom: 0;
+      transform: translate(10%, 10%) rotate(-3deg);
+    }
+  }
+}
+
+
+.contentBlock {
+  margin: 2rem 2.2rem;
+  > div {
+    margin: 2rem auto 0;
+  }
+  > h1 {
+    border-bottom: 1px dotted @text-color;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.2rem;
+  }
 }
