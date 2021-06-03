@@ -98,6 +98,7 @@ export interface IStateDataCollectible {
     stamp: string,
     text: string,
     hint?: string,
+    hint_audio?:string,
     additional?: IStateDataCollectibleAdditional[]
 }
 export interface IStateDataCollectibleWithPickup extends IStateDataCollectible {
