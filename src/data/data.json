@@ -82,6 +82,15 @@
               "scale": [1, 1, 1],
               "position": [0, 0, 0]
             }
+          },
+          {
+            "type": "sprite",
+            "id": "girl",
+            "sprite": "/public/sprites/Girl.png",
+            "options": {
+              "scale": [2, 2, 2],
+              "position": [0, 0.7, 0]
+            }
           }
         ],
         "lights": [

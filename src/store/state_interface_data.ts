@@ -63,7 +63,8 @@ export interface IStateDataSceneElement {
     id: string,
     gltf?: string,
     color? : string,
-    options: any
+    sprite?: string,
+    options: any,
 }
 
 export interface IStateDataSceneLight {

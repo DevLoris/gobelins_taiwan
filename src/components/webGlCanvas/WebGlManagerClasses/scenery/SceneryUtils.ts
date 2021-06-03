@@ -6,6 +6,7 @@ import {CubeSceneElement} from "./elements/CubeSceneElement";
 import {IStateDataSceneEffectsType, IStateDataSceneElementType} from "../../../../store/state_enums";
 import {WebGlManager} from "../WebGlManager";
 import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
+import { SpriteSceneElement } from "./elements/SpriteSceneElement";
 
 const debug = require("debug")(`front:SceneryUtils`);
 
@@ -61,6 +62,8 @@ export class SceneryUtils {
                     return new CubeSceneElement(value.id, value.color, value.options);
                 case IStateDataSceneElementType.OBJECT_CONTAINER:
                     return new ObjectContainerSceneElement(value.id, value.gltf, value.options);
+                case IStateDataSceneElementType.SPRITE:
+                    return new SpriteSceneElement(value.id, value.sprite, value.options);
             }
         })
     }
