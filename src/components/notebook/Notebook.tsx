@@ -6,7 +6,7 @@ import NotebookPageMap from "./notebookPageMap/NotebookPageMap";
 import NotebookPageElements from "./notebookPageElements/NotebookPageElements";
 import NotebookLabelToggler from "./notebookLabelToggler/NotebookLabelToggler";
 import {useTranslation} from "react-i18next";
-import NotebookSignal from "./notebook-signal";
+import NotebookSignal, {NOTEBOOK_SEND} from "./notebook-signal";
 import {selectUserScenes} from "../../store/store_selector";
 import {getState} from "../../store/store";
 import {AudioHandler} from "../../lib/audio/AudioHandler";
@@ -18,7 +18,7 @@ interface IProps {
     onClose: () => void,
 }
 
-enum NotebookPages {
+export enum NotebookPages {
     HINT,
     ELEMENTS,
     MAP
@@ -43,11 +43,17 @@ function Notebook (props: IProps) {
     // this effect reset book status to default one, for all page. a signal is send across all pages
     useEffect(() =>  {
         if(props.show) {
-            setPage(NotebookPages.HINT);
             AudioHandler.play("book");
         }
         NotebookSignal.getInstance().toggle(props.show);
     }, [props.show]);
+
+    useEffect(() =>  {
+        NotebookSignal.getInstance().notebookContent.add((type, data) => {
+            if(type == NOTEBOOK_SEND.PAGE)
+                setPage(data);
+        })
+    }, []);
 
     const userScenes = selectUserScenes(getState());
 

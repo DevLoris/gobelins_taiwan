@@ -19,7 +19,7 @@ const debug = require("debug")(`front:${componentName}`);
  * @name NotebookTitle
  */
 function NotebookTitle (props: IProps) {
-  return <div onClick={props.onClick} className={merge([css.root, props.className, "big-title-block"])}>
+  return <div className={props.className}><div onClick={props.onClick} className={merge([css.root, "big-title-block"])}>
     <div className={"title-block-mandarin"}>{props.chinese_title}</div>
     <div>
       <h1>{props.title}</h1>
@@ -31,7 +31,7 @@ function NotebookTitle (props: IProps) {
       <span>{props.picked}</span>
       <span>/{props.total}</span>
     </div>
-  </div>
+  </div></div>
 }
 
 export default NotebookTitle

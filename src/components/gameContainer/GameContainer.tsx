@@ -4,7 +4,7 @@ import { merge } from "../../lib/utils/arrayUtils";
 import WebGlCanvas from "../webGlCanvas/WebGlCanvas";
 import {gsap} from "gsap";
 import InteractedElement from "../interactedElement/InteractedElement";
-import Notebook from "../notebook/Notebook";
+import Notebook, {NotebookPages} from "../notebook/Notebook";
 import NotebookToggler from "../notebook/notebookToggler/NotebookToggler";
 import {bool} from "prop-types";
 import PrePickupElement from "../prePickupElement/PrePickupElement";
@@ -13,6 +13,7 @@ import {WebGlManager} from "../webGlCanvas/WebGlManagerClasses/WebGlManager";
 import Tutorial from "../tutorial/Tutorial";
 import {getState} from "../../store/store";
 import {selectTutorial} from "../../store/store_selector";
+import NotebookSignal, {NOTEBOOK_SEND} from "../notebook/notebook-signal";
 
 interface IProps {
   className?: string
@@ -35,9 +36,9 @@ function GameContainer (props: IProps) {
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
-  // when scene change -> close notebook
-  WebGlManager.getInstance().onChangeScenery.add(() => {
-    setMenuOpen(false);
+  NotebookSignal.getInstance().notebookContent.add((type, data) => {
+    if(type === NOTEBOOK_SEND.TOGGLE)
+      setMenuOpen(data);
   })
 
   /**
@@ -71,6 +72,8 @@ function GameContainer (props: IProps) {
     }}/>
     <NotebookToggler onClick={() => {
       setMenuOpen(!menuOpen);
+      if(!menuOpen)
+        NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.PAGE, NotebookPages.HINT);
     }} />
     <PrePickupElement/>
     <YouNeedElement/>
