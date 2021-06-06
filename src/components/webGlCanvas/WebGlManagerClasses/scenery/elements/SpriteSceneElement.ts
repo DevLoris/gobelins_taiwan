@@ -12,8 +12,8 @@ export class SpriteSceneElement extends SceneElement {
     createElement() {
         const map = new TextureLoader().load( this.path );
 
-        const geometry = new PlaneGeometry( 1, 1);
-        const material = new MeshBasicMaterial( { map, transparent: true, side: DoubleSide, } );
+        const geometry = new PlaneGeometry(1, 1, 1, 1);
+        const material = new MeshBasicMaterial( { map, transparent: true, side: DoubleSide, aoMapIntensity: 0 } );
         const plane = new Mesh(geometry, material);
         plane.scale.set(...this.scale);
         return plane;
