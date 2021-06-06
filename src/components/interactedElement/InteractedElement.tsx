@@ -8,6 +8,8 @@ import {IStateDataSceneCollectibleType} from "../../store/state_enums";
 import {gsap} from "gsap";
 import {SequenceManager} from "../../mainClasses/Sequencer/SequenceManager";
 import Button, {ButtonStyle} from "../button/Button";
+import NotebookSignal, {NOTEBOOK_SEND} from "../notebook/notebook-signal";
+import {NotebookPages} from "../notebook/Notebook";
 
 interface IProps {
   className?: string
@@ -60,7 +62,10 @@ function InteractedElement (props: IProps) {
       <div className={css.contentBlock}>
         <h1>{ collectible.name }</h1>
         <p>{ collectible.text }</p>
-        <Button onClick={() => {}} style={ButtonStyle.DEFAULT} label={"En apprendre plus"}></Button>
+        <Button onClick={() => {
+          NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.TOGGLE, true);
+          NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.PAGE, NotebookPages.ELEMENTS);
+        }} style={ButtonStyle.DEFAULT} label={"En apprendre plus"}></Button>
       </div>
 
     </div>
