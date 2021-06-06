@@ -4,20 +4,34 @@
 }
 
 .elementHeader {
-  background: url("../../../public/da/texture_wave.png") left top;
+  background: white url("../../../public/da/texture_wave.png") left top;
   height: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   position: relative;
+  z-index: 2;
   width: 110%;
   padding-bottom: 30px;
   transform: translate(-5%) rotate(-1deg);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 92% 99%, 86% 100%, 81% 99%, 76% 99%, 69% 99%, 63% 100%, 56% 99%, 50% 100%, 42% 99%, 37% 100%, 28% 99%, 22% 100%, 15% 99%, 8% 100%, 3% 99%, 0% 100%);
 
   > div {
-    transform: rotate(1deg);
+    transform: rotate(1deg); ;
   }
+}
+
+.elementHeaderBg {
+  background: @light-color;
+  transform: translate(-5%, 2px) rotate(-1deg);
+  position: absolute;
+  height: 280px;
+  width: 110%;
+  padding-bottom: 30px;
+  filter: blur(1px);
+  top: 0;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 92% 99%, 86% 100%, 81% 99%, 76% 99%, 69% 99%, 63% 100%, 56% 99%, 50% 100%, 42% 99%, 37% 100%, 28% 99%, 22% 100%, 15% 99%, 8% 100%, 3% 99%, 0% 100%);
 }
 
 .elementHeaderStamp {
@@ -28,6 +42,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+
+  &:before {
+    text-transform: uppercase;
+    content: 'Tampon';
+    color: @light-color;
+    font-size: 0.7rem;
+    font-family: @font-text;
+    position: absolute;
+    opacity: 0.6;
+    left: 8px;
+    top: 8px;
+  }
+
+  &:after {
+    content: '';
+    height: 116px;
+    width: 116px;
+    opacity: 0.05;
+    position: absolute;
+    left: 4px;
+    background: @text-color;
+
+  }
+
+  span {
+    font-size: 100px;
+    opacity: 0.16;
+    color: @light-color;
+  }
 
   img {
     height: 120%;

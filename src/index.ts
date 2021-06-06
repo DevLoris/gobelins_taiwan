@@ -41,4 +41,8 @@ const debug = require("debug")(`front:${fileName}`);
     React.createElement(Provider, {store: store}, React.createElement(App, {}, null)),
     document.getElementById("AppContainer")
   );
+
+  /mobile/i.test(navigator.userAgent) && !location.hash && setTimeout(function() {
+    window.scrollTo(0, 1);
+  }, 1000);
 })();

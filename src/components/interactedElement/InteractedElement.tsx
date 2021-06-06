@@ -32,7 +32,7 @@ function InteractedElement (props: IProps) {
       setTimeout(() => {
         setCollectible(value);
         toggleShowed(true);
-        setIsPickup(true);
+        setIsPickup(value.type == IStateDataSceneCollectibleType.PICKUP);
       }, 2000);
     }
   });

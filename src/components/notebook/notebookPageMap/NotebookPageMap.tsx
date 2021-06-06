@@ -47,6 +47,7 @@ function NotebookPageMap (props: IProps) {
                 return <NotebookTitle
                     title={value.name}
                     key={key}
+                    className={"border"}
                     phonetic={value.phonetic}
                     chinese_title={value.chinese_name}
                     total={collectibles.length}

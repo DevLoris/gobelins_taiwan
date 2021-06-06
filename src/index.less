@@ -74,6 +74,8 @@ p.bigger {
   padding-left: 2.8rem;
   padding-right: 5rem;
   display:flex;
+
+
   &:before, &:after {
     content: '';
     position: absolute;
@@ -178,4 +180,9 @@ p.bigger {
       transform: rotate(-3deg) translate(-50%,calc(-50% + 5px));
     }
   }
+}
+
+
+.border {
+  border-bottom: 1px dotted @text-color;
 }
