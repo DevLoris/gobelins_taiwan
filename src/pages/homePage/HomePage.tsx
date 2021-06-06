@@ -5,11 +5,19 @@ import WebGlCanvas from "../../components/webGlCanvas/WebGlCanvas";
 import Loader from "../../components/loader/Loader";
 import InteractedElement from "../../components/interactedElement/InteractedElement";
 import GameContainer from "../../components/gameContainer/GameContainer";
+import HomeSplash from "../../components/homeSplash/HomeSplash";
 
 interface IProps {}
 
 const componentName = "HomePage";
 const debug = require("debug")(`front:${componentName}`);
+
+
+enum PLAYING_STATE {
+  HOME,
+  LOADING,
+  GAME
+}
 
 /**
  * @name HomePage
@@ -17,7 +25,8 @@ const debug = require("debug")(`front:${componentName}`);
 const HomePage = (props: IProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
 
-  const [loadingDone, setLoadingDone] = useState<boolean>(false);
+  const [playingState, setPlayingState] = useState<PLAYING_STATE>(PLAYING_STATE.HOME);
+
 
   // -------------------–-------------------–-------------------–--------------- REGISTER PAGE
 
@@ -46,17 +55,24 @@ const HomePage = (props: IProps) => {
   usePageRegister({ componentName, rootRef, playIn, playOut });
 
   function onModelsLoaded() {
-    setLoadingDone(true);
+    setPlayingState(PLAYING_STATE.GAME);
   }
 
   // -------------------–-------------------–-------------------–--------------- RENDER
 
   return (
     <div className={css.root} ref={rootRef}>
-      <Loader modelsLoadedCallback={onModelsLoaded} />
-      {
-        loadingDone && (<GameContainer show={loadingDone} />)
-      }
+      {playingState == PLAYING_STATE.HOME && (
+          <HomeSplash startCallback={() =>  {
+            setPlayingState(PLAYING_STATE.LOADING);
+          }}/>
+      )}
+      {playingState == PLAYING_STATE.LOADING && (
+          <Loader modelsLoadedCallback={onModelsLoaded} />
+      )}
+      {playingState == PLAYING_STATE.GAME && (
+          <GameContainer show={true} />
+      )}
     </div>
   );
 }
