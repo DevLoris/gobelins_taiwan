@@ -3,3 +3,22 @@
 .root {
   margin: 1.5rem 0;
 }
+
+.pins  {
+  position: absolute;
+  background: @text-color;
+  border: 2px solid white;
+  width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 12px;
+  &.pin_0 {
+    &:before {
+      content: '-';
+    }
+  }
+}
