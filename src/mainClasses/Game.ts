@@ -25,8 +25,8 @@ export class Game {
         isUrlDebug() && debug("Debug mode enabled!");
 
         // Init scene store
-        for(let truc in SceneVars) {
-            store.dispatch(addScenery(createEmptyScenery(SceneVars[truc])));
+        for(let scenery in SceneVars) {
+            store.dispatch(addScenery(createEmptyScenery(SceneVars[scenery])));
         }
 
         // Init sequencer
