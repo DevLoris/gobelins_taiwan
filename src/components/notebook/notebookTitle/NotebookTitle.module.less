@@ -19,14 +19,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: @font-chinese;
   &.pin_0 {
     &:before {
       content: '-';
+      transform: translateY(0px);
     }
   }
-  &.pin_0 {
+  &.pin_1 {
     &:before {
       content: '=';
+      transform: translateY(0px);
     }
   }
 }
