@@ -29,6 +29,11 @@ export interface IStateDataScene {
     phonetic: string,
     ambient: string,
     collectibles: IStateDataSceneCollectible[],
+    map: {
+        pin: string,
+        x: number,
+        y: number
+    },
     scene: {
         background: string,
         skybox: {

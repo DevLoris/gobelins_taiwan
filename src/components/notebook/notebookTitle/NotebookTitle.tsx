@@ -21,7 +21,7 @@ const debug = require("debug")(`front:${componentName}`);
  */
 function NotebookTitle (props: IProps) {
   return <div className={props.className}><div onClick={props.onClick} className={merge([(props.pin !== undefined) ? "big-title-block_pin": "", css.root, "big-title-block"])}>
-    {(props.pin !== undefined) && (<div className={merge([css.pins, css[props.pin]])}></div>)}
+    {(props.pin !== undefined) && (<div className={merge([css.pins])}>{props.pin}</div>)}
     <div className={"title-block-mandarin"}>{props.chinese_title}</div>
     <div>
       <h1>{props.title}</h1>
