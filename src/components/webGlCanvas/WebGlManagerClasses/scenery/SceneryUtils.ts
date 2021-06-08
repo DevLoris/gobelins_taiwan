@@ -5,8 +5,8 @@ import {IStateDataScene, IStateDataSceneEffect, IStateDataSceneElement} from "..
 import {CubeSceneElement} from "./elements/CubeSceneElement";
 import {IStateDataSceneEffectsType, IStateDataSceneElementType} from "../../../../store/state_enums";
 import {WebGlManager} from "../WebGlManager";
-import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
 import { SpriteSceneElement } from "./elements/SpriteSceneElement";
+import { OutlineCustomEffect } from "./OutlineCustomEffect";
 
 const debug = require("debug")(`front:SceneryUtils`);
 
@@ -76,7 +76,7 @@ export class SceneryUtils {
         return scene_effect.map((effect: IStateDataSceneEffect) => {
             switch (effect.type) {
                 case IStateDataSceneEffectsType.OUTLINE:
-                    return new OutlineEffect(WebGlManager.getInstance().getRenderer());
+                    return new OutlineCustomEffect(WebGlManager.getInstance().getRenderer());
             }
         });
     }

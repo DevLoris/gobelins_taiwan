@@ -1,4 +1,4 @@
-import { DoubleSide, Mesh, MeshBasicMaterial, PlaneGeometry, Sprite, SpriteMaterial, TextureLoader } from "three";
+import { DoubleSide, Mesh, MeshStandardMaterial, PlaneGeometry, TextureLoader } from "three";
 import { SceneElement } from "./SceneElement";
 import { SceneElementOption } from "./SceneElementOption";
 export class SpriteSceneElement extends SceneElement {
@@ -11,11 +11,14 @@ export class SpriteSceneElement extends SceneElement {
 
     createElement() {
         const map = new TextureLoader().load( this.path );
-
-        const geometry = new PlaneGeometry(1, 1, 1, 1);
-        const material = new MeshBasicMaterial( { map, transparent: true, side: DoubleSide, aoMapIntensity: 0 } );
+        const geometry = new PlaneGeometry(1, 1);
+        const material = new MeshStandardMaterial( { map, transparent: true, side: DoubleSide } );
+        material.metalness = 1;
         const plane = new Mesh(geometry, material);
-        plane.scale.set(...this.scale);
+        material.name = 'invisible'
+        plane.userData = {sprite: true};
+        plane.scale.set(this.scale[0], this.scale[1] * (this.size.h / this.size.w), this.scale[2]);
+        plane.rotation.set(this.rotation.x, this.rotation.y, this.rotation.z);
         return plane;
     }
 }
