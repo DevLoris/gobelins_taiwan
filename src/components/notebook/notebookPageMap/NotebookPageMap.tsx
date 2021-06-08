@@ -65,7 +65,7 @@ function NotebookPageMap (props: IProps) {
           {
               scenes.map((value, key) => {
                   return(
-                      <NotebookPageMapPin x={value.map.x} y={value.map.y} content={value.map.pin} onClick={() =>  {
+                      <NotebookPageMapPin key={key} x={value.map.x} y={value.map.y} content={value.map.pin} onClick={() =>  {
                           setDetailsScene(value.id);
                       }}/>
                   )

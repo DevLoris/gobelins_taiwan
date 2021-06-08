@@ -6,6 +6,7 @@ import Loader from "../../components/loader/Loader";
 import InteractedElement from "../../components/interactedElement/InteractedElement";
 import GameContainer from "../../components/gameContainer/GameContainer";
 import HomeSplash from "../../components/homeSplash/HomeSplash";
+import {SequenceManager} from "../../mainClasses/Sequencer/SequenceManager";
 
 interface IProps {}
 
@@ -55,6 +56,7 @@ const HomePage = (props: IProps) => {
   usePageRegister({ componentName, rootRef, playIn, playOut });
 
   function onModelsLoaded() {
+    SequenceManager.instance.init();
     setPlayingState(PLAYING_STATE.GAME);
   }
 
