@@ -31,7 +31,6 @@ export class Game {
 
         // Init sequencer
         SequenceManager.instance.onStepUpdated.add(this.sequenceStepUpdatedHandler);
-        SequenceManager.instance.init();
     }
 
     /**
