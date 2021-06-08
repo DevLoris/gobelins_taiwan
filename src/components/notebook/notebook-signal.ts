@@ -1,9 +1,17 @@
 import {Signal} from "../../lib/helpers/Signal";
+import {NotebookPages} from "./Notebook";
+
+export enum NOTEBOOK_SEND {
+    TOGGLE,
+    PAGE,
+    CONTENT,
+}
 
 class NotebookSignal {
     private static instance: NotebookSignal;
 
     public onToggle: Signal = new Signal();
+    public notebookContent: Signal = new Signal();
 
     private constructor() { }
 
@@ -17,6 +25,10 @@ class NotebookSignal {
 
     public toggle(status:boolean) {
         this.onToggle.dispatch(status);
+    }
+
+    public sendToNotebook(type: NOTEBOOK_SEND, page:any) {
+        this.notebookContent.dispatch(type, page);
     }
 }
 

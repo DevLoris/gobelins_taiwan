@@ -35,6 +35,11 @@
       "scene": {
         "background": "#bfe3dd"
       },
+      "map": {
+        "pin": "-",
+        "x": 56,
+        "y": 17
+      },
       "camera": {
         "position": {
           "x": 0,
@@ -139,6 +144,11 @@
       "scene": {
         "background": "#bfe3dd"
       },
+      "map": {
+        "pin": "=",
+        "x": 57,
+        "y": 49
+      },
       "camera": {
         "position": {
           "x": 0,
@@ -207,6 +217,7 @@
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
       "hint": "Ces si petits magasins ouverts jours et nuits sont de véritables cavernes d'Ali Baba",
+      "hint_audio": "",
       "text": "Ces magasins permettent d’absolument tout faire : tu peux faire tes courses du quotidien, manger des repas complets sur place, faire des photocopies, retirer de l’argent ou avoir du wifi gratuitement. Et tout ça, à n’importe quelle heure de la journée c’est ouvert 24h/24 et 7j/7 !",
       "additional": [
         {
@@ -230,8 +241,7 @@
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
       "text": "Nouveau dollar Taiwanais",
-      "additional": [
-      ]
+      "additional": []
     },
     {
       "id": "camion_poubelle",

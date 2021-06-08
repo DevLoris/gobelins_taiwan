@@ -22,6 +22,8 @@ import {ConfigureGui} from "./ConfigureGui";
 import {DEFAULT_SCENE} from "../../../vars/scene_vars";
 import {Signal} from "../../../lib/helpers/Signal";
 import {AudioHandler} from "../../../lib/audio/AudioHandler";
+import NotebookSignal, {NOTEBOOK_SEND} from "../../notebook/notebook-signal";
+import {NotebookPages} from "../../notebook/Notebook";
 
 const debug = require("debug")(`front:WebGlManager`);
 
@@ -340,6 +342,7 @@ export class WebGlManager {
         // SCENE IS NOW BUILD, UPDATE STORE
         store.dispatch(activeScenery(scene_id));
 
+        NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.TOGGLE, false);
         this.onChangeScenery.dispatch(scene_id);
     }
 

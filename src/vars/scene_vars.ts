@@ -1,5 +1,4 @@
 export enum SceneVars {
-    TEST =  "test",
     TAIPEI = "taipei",
     WILD = "wild"
 }

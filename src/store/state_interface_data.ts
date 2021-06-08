@@ -29,6 +29,11 @@ export interface IStateDataScene {
     phonetic: string,
     ambient: string,
     collectibles: IStateDataSceneCollectible[],
+    map: {
+        pin: string,
+        x: number,
+        y: number
+    },
     scene: {
         background: string,
         skybox: {
@@ -98,6 +103,7 @@ export interface IStateDataCollectible {
     stamp: string,
     text: string,
     hint?: string,
+    hint_audio?:string,
     additional?: IStateDataCollectibleAdditional[]
 }
 export interface IStateDataCollectibleWithPickup extends IStateDataCollectible {

@@ -9,6 +9,7 @@ import {IStateDataScene} from "../../../store/state_interface_data";
 import NotebookPageMapDetails from "../notebookPageMapDetails/NotebookPageMapDetails";
 import NotebookSignal from "../notebook-signal";
 import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
+import NotebookPageMapPin from "../notebookPageMapPin/NotebookPageMapPin";
 
 interface IProps {
   className?: string
@@ -47,17 +48,29 @@ function NotebookPageMap (props: IProps) {
                 return <NotebookTitle
                     title={value.name}
                     key={key}
+                    className={"border"}
+                    pin={value.map.pin}
                     phonetic={value.phonetic}
                     chinese_title={value.chinese_name}
                     total={collectibles.length}
                     picked={collectibles.filter(value => value.pickup).length}
                     onClick={() => {
-                      setDetailsScene(value.id);}}
+                      setDetailsScene(value.id);
+                    }}
                 />
             })
         }
       </div>
-      <div>
+      <div className={css.mapContainer}>
+          {
+              scenes.map((value, key) => {
+                  return(
+                      <NotebookPageMapPin key={key} x={value.map.x} y={value.map.y} content={value.map.pin} onClick={() =>  {
+                          setDetailsScene(value.id);
+                      }}/>
+                  )
+              })
+          }
           <img src={"/public/images/map.png"} alt={"Map"} className={css.map} />
       </div>
         {

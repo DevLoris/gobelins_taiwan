@@ -31,10 +31,14 @@ function NotebookPageElementsDetails (props: IProps) {
           {(props.data.pickup)  && (
             <img src={props.data.asset} alt={props.data.name} />
           )}
+          {(!props.data.pickup)  && (
+              <span>?</span>
+          )}
         </div>
         <div className={css.elementHeaderTitle}>{props.data.pickup && props.data.name}</div>
       </div>
     </div>
+    <div className={css.elementHeaderBg}/>
 
     <div className={merge([css.contentBlockBorder, css.contentBlock])}>
 
