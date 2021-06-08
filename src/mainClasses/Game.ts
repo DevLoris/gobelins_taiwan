@@ -29,63 +29,15 @@ export class Game {
             store.dispatch(addScenery(createEmptyScenery(SceneVars[element])));
         }
 
-        // Init sequencer
-        SequenceManager.instance.onStepUpdated.add(this.sequenceStepUpdatedHandler);
+
     }
 
     /**
      * Destroy instances
      */
     public destroy(): void {
-        SequenceManager.instance.onStepUpdated.remove(this.sequenceStepUpdatedHandler);
+
     }
 
-    /**
-     * On sequence updated
-     */
-    public sequenceStepUpdatedHandler() {
-        // Get current step
-        const currentStep = SequenceManager.instance.getCurrentPositionInSequence()[1];
 
-        debug("sequenceStepUpdatedHandler", SequenceManager.instance.getCurrentPositionInSequence());
-
-        // Show page related to current step type
-        // Is 3d scene
-        if(currentStep === EChapterStep.DIORAMA) {
-            Router.openPage({page: ERouterPage.WEBGL_PAGE});
-        }
-        // Is vlog
-        else {
-            const sceneryIdentifier = SequenceManager.instance.getCurrentChapterSceneFromDiorama();
-            const vlogsStates = selectUserScene(sceneryIdentifier)(getState().user_data)?.vlog;
-            if(currentStep === EChapterStep.INTRO_VLOG) {
-                // If vlog hasn't been seen yet
-                if(!vlogsStates?.intro) {
-                    // Set vlog as viewed
-                    store.dispatch(vlogIntro({bool: true, scene: sceneryIdentifier}));
-                    Router.openPage({page: ERouterPage.TRANSITION_PAGE});
-                }
-                else {
-                    // Skip the vlog and go to the diorama
-                    SequenceManager.instance.increment();
-                    debug(SequenceManager.instance.getCurrentPositionInSequence());
-                    Router.openPage({page: ERouterPage.WEBGL_PAGE});
-                }
-            }
-            else if(currentStep === EChapterStep.OUTRO_VLOG) {
-                // If vlog hasn't been seen yet
-                if(!vlogsStates?.outro) {
-                    // Set vlog as viewed
-                    store.dispatch(vlogOutro({bool: true, scene: sceneryIdentifier}));
-                    Router.openPage({page: ERouterPage.VLOG_PAGE});
-                }
-                else {
-                    // Skip the vlog and increment the game
-                    SequenceManager.instance.increment();
-                    debug(SequenceManager.instance.getCurrentPositionInSequence());
-                    Router.openPage({page: ERouterPage.TRANSITION_PAGE});
-                }
-            }
-        }
-    }
 }
