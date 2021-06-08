@@ -6,6 +6,7 @@ import {
     REVISION,
     Scene, sRGBEncoding,
     WebGLRenderer,
+    Box3, Vector3, BoxGeometry, MeshBasicMaterial, Mesh, AxesHelper, Object3D
 } from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
@@ -88,7 +89,12 @@ export class WebGlManager {
 
         pSceneryName && this.toggleScenery(pSceneryName);
 
+        this._setupSceneChildrenArrays();
+
         window.addEventListener('resize', this._resizeHandler.bind(this));
+
+        const axesHelper = new AxesHelper( 5 );
+        this._scene.add( axesHelper );
     }
 
     /**
@@ -138,6 +144,66 @@ export class WebGlManager {
      */
     private _setupOrbitControls():void {
         this._control = new OrbitControls(this._camera, this._renderer.domElement);
+        this._control.addEventListener("change", this._controlsChangeHandlers.bind(this));
+    }
+
+    public xEnds;
+    public yEnds;
+    public zEnds; // TODO
+
+    /**
+     * Setup scene children array for later identification
+     * @private
+     */
+    private _setupSceneChildrenArrays(): void {
+        console.log(this.getScene().children);
+
+        this.getScene().children.forEach(childElement => {
+            // Meshes can be found in the Group child
+            if(childElement.type === "Group") {
+                childElement.children.forEach(object => {
+                    // Objects we are looking for (buildings) are Mesh type
+                    if(object.type === "Mesh" && object.name === "SandraBatiment004") {
+                        console.log(object.name, "position:", object.position);
+
+                        // Get size of mesh
+                        // 1. Convert object in box
+                        // 2. Get size of box
+                        const boxFromObject: Box3 = new Box3().setFromObject(object);
+                        const boxSize: Vector3 = boxFromObject.getSize(new Vector3());
+
+                        const geometry = new BoxGeometry( boxSize.x, boxSize.y, boxSize.z );
+                        const material = new MeshBasicMaterial( {color: 0x00ff00} );
+                        const cube = new Mesh( geometry, material );
+                        cube.position.set(object.position.x, object.position.y, object.position.z);
+
+                        this._scene.add(cube);
+
+                        this.xEnds = [ object.position.x - boxSize.x / 20, object.position.x + boxSize.x / 20 ];
+                        this.yEnds = [ object.position.y - boxSize.y / 20, object.position.y + boxSize.y / 20 ];
+                        this.zEnds = [ object.position.z - boxSize.z / 20, object.position.z + boxSize.z / 20 ];
+                    }
+                });
+            }
+        });
+    }
+
+    // --------------------------------------------------------------------------- HANDLERS
+
+    /**
+     * On orbit controls move
+     * @private
+     */
+    private _controlsChangeHandlers(): void {
+        // Check if camera is inside a building
+        const cameraPosition = this._getCameraPosition();
+        if(
+            cameraPosition.x >= this.xEnds[0] && cameraPosition.x <= this.xEnds[1]
+            // cameraPosition.y >= this.yEnds[0] && cameraPosition.y <= this.yEnds[1]
+            // cameraPosition.z >= this.zEnds[0] && cameraPosition.z <= this.zEnds[1]
+        ) {
+            console.log("in building");
+        }
     }
 
     // --------------------------------------------------------------------------- LOOP
@@ -202,6 +268,7 @@ export class WebGlManager {
         this._stopWebGlLoop();
         this._configureGui.destroy();
         this._wrapper.removeChild( this._renderer.domElement );
+        this._control.removeEventListener("change", this._controlsChangeHandlers);
     }
 
     public disableScenery(scene_id: string): void  {
@@ -212,6 +279,20 @@ export class WebGlManager {
 
         // AMBIENT SOUND DISABLE
         AudioHandler.stop(previous_scene.ambient);
+    }
+
+    // --------------------------------------------------------------------------- UTILS
+
+    /**
+     * Get x, y and z of camera
+     * @private
+     */
+    private _getCameraPosition() {
+        return {
+            x: this._camera.position.x,
+            y: this._camera.position.y,
+            z: this._camera.position.z
+        };
     }
 
     public toggleScenery(scene_id: string): void {

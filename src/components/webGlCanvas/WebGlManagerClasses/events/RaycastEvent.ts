@@ -76,7 +76,7 @@ export class RaycastEvent {
      * @param event
      */
     onTouchStart(event) {
-        debug("event", event);
+        // debug("event", event);
         let touches = event.changedTouches !== undefined ? event.changedTouches[0] : {clientX: event.clientX, clientY: event.clientY};
         // calculate mouse position in normalized device coordinates
         // (-1 to +1) for both components
