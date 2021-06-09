@@ -20,11 +20,8 @@ function Vlog (props: IProps) {
     const [videoPath, setVideoPath] = useState<string>(null);
 
     useEffect(() => {
-        let video = videos.find((value: VideoElement) => {
-            return (props.videoId === value.id);
-        });
-
-        if(video !== undefined)
+        let video = videos.find((value: VideoElement) => (props.videoId === value.id));
+        if (video !== undefined)
             setVideoPath(video.path);
     }, []);
 
