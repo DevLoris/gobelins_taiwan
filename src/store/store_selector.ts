@@ -76,7 +76,6 @@ export const selectCollectibleOfType = (type: IStateDataSceneCollectibleType) =>
     );
 };
 
-// todo refacto this selector
 export const selectCollectiblesOfSceneWithPickup = (scene: string) => {
     return createSelector<IStateData, ICustomState, IStateDataScene[],  IStateDataCollectible[], ICustomStateScene[], IStateDataCollectibleWithPickup[]>(
         selectScenes,

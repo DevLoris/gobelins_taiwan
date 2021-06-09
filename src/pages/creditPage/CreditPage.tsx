@@ -1,20 +1,18 @@
-import css from "./VlogPage.module.less";
+import css from "./CreditPage.module.less";
 import React, { useRef } from "react";
 import { usePageRegister } from "../../lib/router/usePageRegister";
-import Vlog from "../../components/vlog/Vlog";
-import {SequenceManager} from "../../mainClasses/Sequencer/SequenceManager";
 
 interface IProps {
   className: string;
 }
 
-const componentName = "VlogPage";
+const componentName = "CreditPage";
 const debug = require("debug")(`front:${componentName}`);
 
 /**
- * @name VlogPage
+ * @name CreditPage
  */
-const VlogPage = (props: IProps) => {
+const CreditPage = (props: IProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
 
   // -------------------–-------------------–-------------------–--------------- REGISTER PAGE
@@ -47,12 +45,38 @@ const VlogPage = (props: IProps) => {
 
   return (
     <div className={css.root} ref={rootRef}>
-      <Vlog videoId={SequenceManager.instance.getCurrentVideoId()}/>
+      <h3>Vlogueurs</h3>
+      <ul>
+        <li><a>Jimmy Beunardeau</a></li>
+        <li><a>Rodolphe Miez</a></li>
+      </ul>
+      <h3>Sound designers</h3>
+      <ul>
+        <li><a>???</a></li>
+      </ul>
+      <h3>Voix</h3>
+      <ul>
+        <li><a>???</a></li>
+      </ul>
+      <h3>Développeurs</h3>
+      <ul>
+        <li><a>Loris Pinna</a></li>
+        <li><a>Mickaël Debalme</a></li>
+        <li><a>Sonia Rouabhi</a></li>
+      </ul>
+      <h3>Designers</h3>
+      <ul>
+        <li><a>Antoine Rault</a></li>
+        <li><a>Sulyvan Batt</a></li>
+        <li><a>Sandra Pereira da Costa</a></li>
+      </ul>
+        <h3>Remerciements</h3>
+        <p>mettre logos</p>
     </div>
   );
 };
 
-export default VlogPage;
+export default CreditPage;
 
 
 

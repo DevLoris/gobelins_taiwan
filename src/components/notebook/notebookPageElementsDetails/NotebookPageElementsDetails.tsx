@@ -2,7 +2,6 @@ import css from './NotebookPageElementsDetails.module.less';
 import React from 'react';
 import { merge } from "../../../lib/utils/arrayUtils";
 import {IStateDataCollectibleWithPickup} from "../../../store/state_interface_data";
-import NotebookTitle from "../notebookTitle/NotebookTitle";
 import NotebookPhonetic from "../notebookPhonetic/NotebookPhonetic";
 import NotebookAudio from "../notebookAudio/NotebookAudio";
 
@@ -18,6 +17,7 @@ const debug = require("debug")(`front:${componentName}`);
 
 /**
  * @name NotebookPageElementsDetails
+ * @desc Element détaillé avec les champs additionnels etc
  */
 function NotebookPageElementsDetails (props: IProps) {
   return <div className={merge([css.root, css[props.className]])}>

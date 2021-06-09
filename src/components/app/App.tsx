@@ -1,5 +1,5 @@
 import css from "./App.module.less";
-import React, {Component, useRef} from "react";
+import React, {Component, MutableRefObject} from "react";
 import { ETransitionType, ViewStack } from "../../lib/router/ViewStack";
 import { IRouteMatch, Router } from "../../lib/router/Router";
 import { TPageRegisterObject } from "../../lib/router/usePageRegister";
@@ -24,7 +24,7 @@ export interface IStates {}
 class App extends Component<IProps, IStates> {
   protected _viewStack: ViewStack;
 
-  private gameInstanceRef: any; // TODO typage ?
+  private gameInstanceRef: MutableRefObject<Game>;
 
   /**
    * Constructor
@@ -38,7 +38,7 @@ class App extends Component<IProps, IStates> {
       // initialize states...
     } as IStates;
 
-    this.gameInstanceRef = React.createRef();
+    this.gameInstanceRef = React.createRef<Game>();
     this.gameInstanceRef.current = new Game();
     this.gameInstanceRef.current.init();
   }

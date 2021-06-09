@@ -947,7 +947,6 @@ export class Router {
 
     // Throw error if URL is not found for this route
     if (url == null) {
-      // TODO : Doit-on déclancher une erreur / balancer un notFound / console.error / ignorer ?
       throw new Error(`Router.openPage // Route not found.`);
     }
 

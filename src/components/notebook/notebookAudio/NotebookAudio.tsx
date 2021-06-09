@@ -8,16 +8,17 @@ interface IProps {
   audio: string
 }
 
-const componentName = "NotebookAudio";
-const debug = require("debug")(`front:${componentName}`);
-
 /**
  * @name NotebookAudio
+ * @desc Element du notebook où l'on a un bouton pour jouer le son et une barre de progression
  */
 function NotebookAudio (props: IProps) {
+  //  play sound
   const play = () => {
+    // get sound by id
     let audio = AudioHandler.get(props.audio);
 
+    // hide all elements
     let elements =  document.querySelectorAll("#Groupe_295 line");
     elements.forEach(value => {
       // @ts-ignore
@@ -26,6 +27,7 @@ function NotebookAudio (props: IProps) {
 
     audio.play();
 
+    // show bars progressively based on time
     setInterval(() => {
       if (audio.playing()) {
         let toShow = Math.ceil((audio.seek()/audio.duration())*elements.length);

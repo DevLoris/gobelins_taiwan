@@ -20,6 +20,7 @@ const debug = require("debug")(`front:${componentName}`);
 
 /**
  * @name NotebookPageElements
+ * @desc Page objets, listing des contenus de la scène
  */
 function NotebookPageElements (props: IProps) {
   // translation mobule

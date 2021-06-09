@@ -1,5 +1,5 @@
 import css from './Loader.module.less';
-import React, {LegacyRef, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { merge } from "../../lib/utils/arrayUtils";
 import {AssetMemory} from "../webGlCanvas/WebGlManagerClasses/assets/AssetMemory";
 import {selectAudios, selectModels} from "../../store/store_selector";
@@ -18,6 +18,7 @@ const debug = require("debug")(`front:${componentName}`);
 
 /**
  * @name Loader
+ * @desc Loader de les Assets
  */
 function Loader (props: IProps) {
 

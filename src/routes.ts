@@ -5,7 +5,8 @@ export enum ERouterPage {
   NOTEBOOK_PAGE = "NotebookPage",
   VLOG_PAGE = "VlogPage",
   ELIGIBILITY_PAGE = "EligibilityPage",
-  TRANSITION_PAGE = "TransitionPage"
+  TRANSITION_PAGE = "TransitionPage",
+  CREDIT_PAGE = "CreditPage",
 }
 
 export const routes: IRoute[] = [
@@ -33,5 +34,10 @@ export const routes: IRoute[] = [
     url: "/transition",
     page: ERouterPage.TRANSITION_PAGE,
     importer: () => require("./pages/transitionPage/TransitionPage"),
+  },
+  {
+    url: "/credit",
+    page: ERouterPage.CREDIT_PAGE,
+    importer: () => require("./pages/creditPage/CreditPage"),
   },
 ];

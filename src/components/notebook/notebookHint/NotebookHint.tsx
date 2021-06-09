@@ -11,11 +11,9 @@ interface IProps {
   hint_audio: string
 }
 
-const componentName = "NotebookHint";
-const debug = require("debug")(`front:${componentName}`);
-
 /**
  * @name NotebookHint
+ * @desc Petite popup avec l'indice qui s'ouvre par dessus la page du carnet
  */
 function NotebookHint (props: IProps) {
   const [visible, toggleVisible] = useState<boolean>(props.showDefault);
@@ -31,11 +29,11 @@ function NotebookHint (props: IProps) {
   },  [visible]);
 
   return <>
-    <img onClick={() =>  {toggleVisible(true)}} className={css.enigmaButton} src={"../../public/da/enigme_button.png"}/>
+    <img alt={"Enigme button"} onClick={() =>  {toggleVisible(true)}} className={css.enigmaButton} src={"../../public/da/enigme_button.png"}/>
 
     <div ref={ref} className={merge([css.root, props.className])}>
     {(props.showClose) && (
-        <img onClick={() =>  {toggleVisible(false)}} className={css.close} src={"../../public/da/close.png"}/>
+        <img alt={"Close"} onClick={() =>  {toggleVisible(false)}} className={css.close} src={"../../public/da/close.png"}/>
     )}
     <div className={"big-title-block"}>
       <div className={"title-block-mandarin"}>信息</div>

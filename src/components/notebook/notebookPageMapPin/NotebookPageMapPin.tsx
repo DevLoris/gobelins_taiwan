@@ -10,11 +10,9 @@ interface IProps {
   onClick: () => void,
 }
 
-const componentName = "NotebookPageMapPin";
-const debug = require("debug")(`front:${componentName}`);
-
 /**
  * @name NotebookPageMapPin
+ * @desc Affiche une pin localisée sur la map, avec un clic possible dessus
  */
 function NotebookPageMapPin (props: IProps) {
   return <div onClick={props.onClick} style={{top: props.y + "%", left: props.x + "%"}} className={merge([css.root, props.className])}>

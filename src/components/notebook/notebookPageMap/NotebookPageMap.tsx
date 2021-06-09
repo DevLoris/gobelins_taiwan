@@ -2,10 +2,8 @@ import css from './NotebookPageMap.module.less';
 import React, {useState} from 'react';
 import { merge } from "../../../lib/utils/arrayUtils";
 import NotebookTitle from "../notebookTitle/NotebookTitle";
-import {useTranslation} from "react-i18next";
-import {selectCollectiblesOfSceneWithPickup, selectScene, selectScenes} from "../../../store/store_selector";
+import {selectCollectiblesOfSceneWithPickup, selectScenes} from "../../../store/store_selector";
 import {getState} from "../../../store/store";
-import {IStateDataScene} from "../../../store/state_interface_data";
 import NotebookPageMapDetails from "../notebookPageMapDetails/NotebookPageMapDetails";
 import NotebookSignal from "../notebook-signal";
 import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
@@ -15,16 +13,11 @@ interface IProps {
   className?: string
 }
 
-const componentName = "NotebookPageMap";
-const debug = require("debug")(`front:${componentName}`);
-
 /**
  * @name NotebookPageMap
+ * @desc Page map du carnet
  */
 function NotebookPageMap (props: IProps) {
-    // use translation
-    const { t } = useTranslation();
-
     // get all scenes (for map pins)
     let scenes = selectScenes(getState());
 

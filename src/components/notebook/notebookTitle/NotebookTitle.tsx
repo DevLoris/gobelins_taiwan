@@ -13,11 +13,9 @@ interface IProps {
   onClick?: () => void
 }
 
-const componentName = "NotebookTitle";
-const debug = require("debug")(`front:${componentName}`);
-
 /**
  * @name NotebookTitle
+ * @desc Affiche un titre, avec son équivalent chinois et la phonétique,  possibilité d'afficher une pin aussi
  */
 function NotebookTitle (props: IProps) {
   return <div className={props.className}><div onClick={props.onClick} className={merge([(props.pin !== undefined) ? "big-title-block_pin": "", css.root, "big-title-block"])}>
