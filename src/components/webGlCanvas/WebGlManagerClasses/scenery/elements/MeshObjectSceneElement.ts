@@ -22,11 +22,11 @@ export class MeshObjectSceneElement extends SceneElement {
         const asset: AssetGLTF = AssetMemory.instance.get(this.gltfId);
         let model =  asset.gltf.scene.children[0];
         if(model instanceof Mesh) {
-            let materiel = model.material;
+            let material = model.material;
             let geometry = model.geometry.clone();
             let amount = 1000;
 
-            let mesh = new InstancedMesh(geometry, materiel, this.positions.length);
+            let mesh = new InstancedMesh(geometry, material, this.positions.length);
             return mesh;
         }
         return null;
