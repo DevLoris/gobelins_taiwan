@@ -1,7 +1,6 @@
 import css from './PrePickupElement.module.less';
 import React, {useState} from 'react';
 import { merge } from "../../lib/utils/arrayUtils";
-import {bool} from "prop-types";
 import {IStateDataCollectible} from "../../store/state_interface_data";
 import RaycastManager from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
 import {IStateDataSceneCollectibleType} from "../../store/state_enums";
@@ -10,11 +9,9 @@ interface IProps {
   className?: string
 }
 
-const componentName = "PrePickupElement";
-const debug = require("debug")(`front:${componentName}`);
-
 /**
  * @name PrePickupElement
+ * @desc Overlay en haut à gauche de l'écran permettant d'afficher l'élément récupéré
  */
 function PrePickupElement (props: IProps) {
   const [showed, toggleShowed] = useState<boolean>(false);

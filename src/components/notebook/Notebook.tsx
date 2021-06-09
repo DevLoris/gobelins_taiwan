@@ -24,9 +24,6 @@ export enum NotebookPages {
     MAP
 }
 
-const componentName = "Notebook";
-const debug = require("debug")(`front:${componentName}`);
-
 Notebook.defaultProps = {
     show: false,
     onClose: () => {}
@@ -34,6 +31,7 @@ Notebook.defaultProps = {
 
 /**
  * @name Notebook
+ * @desc Carnet
  */
 function Notebook (props: IProps) {
     const [page, setPage] : [NotebookPages, (NotebookPages) => void]= useState(NotebookPages.ELEMENTS);
@@ -48,6 +46,7 @@ function Notebook (props: IProps) {
         NotebookSignal.getInstance().toggle(props.show);
     }, [props.show]);
 
+    // signal for forcing page change
     useEffect(() =>  {
         NotebookSignal.getInstance().notebookContent.add((type, data) => {
             if(type == NOTEBOOK_SEND.PAGE)
