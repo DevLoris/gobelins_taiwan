@@ -1,7 +1,6 @@
 import {
     Camera,
     Color,
-    CubeTextureLoader,
     PerspectiveCamera,
     REVISION,
     Scene, sRGBEncoding,
@@ -9,20 +8,17 @@ import {
 } from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
-import {activeScenery, addScenery, getState, store} from "../../../store/store";
+import {activeScenery, getState, store} from "../../../store/store";
 import {RaycastEvent} from "./events/RaycastEvent";
 import {SceneryUtils} from "./scenery/SceneryUtils";
 import {selectScene, selectUserActiveScene} from "../../../store/store_selector";
-import {CAMERA_ASPECT, CAMERA_FAR, CAMERA_FOV, CAMERA_NEAR, STATS_FPS} from "./WebGlVars";
+import {CAMERA_ASPECT, CAMERA_FAR, CAMERA_FOV, CAMERA_NEAR} from "./WebGlVars";
 import LightUtils from "./scenery/LightUtils";
-import {createEmptyScenery} from "../../../store/store_helper";
 import {HdrUtils} from "./scenery/HdrUtils";
 import {ConfigureGui} from "./ConfigureGui";
-import {DEFAULT_SCENE} from "../../../vars/scene_vars";
 import {Signal} from "../../../lib/helpers/Signal";
 import {AudioHandler} from "../../../lib/audio/AudioHandler";
 import NotebookSignal, {NOTEBOOK_SEND} from "../../notebook/notebook-signal";
-import {NotebookPages} from "../../notebook/Notebook";
 
 const debug = require("debug")(`front:WebGlManager`);
 
@@ -117,6 +113,7 @@ export class WebGlManager {
      */
     private _setupRenderer():void {
         this._renderer = new WebGLRenderer({ antialias: true });
+        this._renderer.physicallyCorrectLights = true;
         this._renderer.outputEncoding = sRGBEncoding;
         this._renderer.setSize( window.innerWidth, window.innerHeight );
         // Add canvas to dom
