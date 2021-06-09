@@ -9,11 +9,9 @@ interface IProps {
   onSelectResponse: (resp: IEligibiltyResponse) => void;
 }
 
-const componentName = "EligibilityQuestion";
-const debug = require("debug")(`front:${componentName}`);
-
 /**
  * @name EligibilityQuestion
+ * @desc Question du test l'éligibilité
  */
 function EligibilityQuestion (props: IProps) {
   return <div className={merge([css.root, props.className])}>

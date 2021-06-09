@@ -96,29 +96,34 @@ function GameContainer (props: IProps) {
     else {
       const sceneryIdentifier = SequenceManager.instance.getCurrentChapterSceneFromDiorama();
       const vlogsStates = selectUserScene(sceneryIdentifier)(getState().user_data)?.vlog;
-      if(currentStep === EChapterStep.INTRO_VLOG) {
-        // If vlog hasn't been seen yet
-        if(!vlogsStates?.intro) {
-          // Set vlog as viewed
-          store.dispatch(vlogIntro({bool: true, scene: sceneryIdentifier}));
-        }
-        else {
-          // Skip the vlog and go to the diorama
-          SequenceManager.instance.increment();
-          debug(SequenceManager.instance.getCurrentPositionInSequence());
-        }
-      }
-      else if(currentStep === EChapterStep.OUTRO_VLOG) {
-        // If vlog hasn't been seen yet
-        if(!vlogsStates?.outro) {
-          // Set vlog as viewed
-          store.dispatch(vlogOutro({bool: true, scene: sceneryIdentifier}));
-        }
-        else {
-          // Skip the vlog and increment the game
-          SequenceManager.instance.increment();
-          debug(SequenceManager.instance.getCurrentPositionInSequence());
-        }
+
+      switch (currentStep) {
+        case EChapterStep.INTRO_VLOG:
+          // If vlog hasn't been seen yet
+          if(!vlogsStates?.intro) {
+            // Set vlog as viewed
+            store.dispatch(vlogIntro({bool: true, scene: sceneryIdentifier}));
+          }
+          else {
+            // Skip the vlog and go to the diorama
+            SequenceManager.instance.increment();
+            debug(SequenceManager.instance.getCurrentPositionInSequence());
+          }
+          break;
+        case EChapterStep.OUTRO_VLOG:
+          // If vlog hasn't been seen yet
+          if(!vlogsStates?.outro) {
+            // Set vlog as viewed
+            store.dispatch(vlogOutro({bool: true, scene: sceneryIdentifier}));
+          }
+          else {
+            // Skip the vlog and increment the game
+            SequenceManager.instance.increment();
+            debug(SequenceManager.instance.getCurrentPositionInSequence());
+          }
+          break;
+        default:
+          break;
       }
     }
     switchTo(EChapterStep[currentStep]);

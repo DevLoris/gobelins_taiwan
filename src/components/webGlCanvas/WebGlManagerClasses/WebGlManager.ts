@@ -41,10 +41,6 @@ export class WebGlManager {
     private _effect: OutlineEffect = null;
     private _effects:  (OutlineEffect|any)[] = [];
 
-    // todo refacto
-    public static scene: Scene = null;
-
-
     public onChangeScenery: Signal = new Signal();
 
     constructor() {

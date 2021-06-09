@@ -8,9 +8,6 @@ interface IProps {
   className?: string
 }
 
-const componentName = "Eligibility";
-const debug = require("debug")(`front:${componentName}`);
-
 enum EligibilityProgression {
   FILLING,
   SUBMITTED_OK,
@@ -20,6 +17,7 @@ enum EligibilityProgression {
 
 /**
  * @name Eligibility
+ * @desc Test éligiblité
  */
 function Eligibility (props: IProps) {
   const [questionIndex, setQuestionIndex] = useState<number>(0);

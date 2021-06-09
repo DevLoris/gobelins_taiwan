@@ -10,11 +10,9 @@ interface IProps {
   className?: string
 }
 
-const componentName = "YouNeedElement";
-const debug = require("debug")(`front:${componentName}`);
-
 /**
  * @name YouNeedElement
+ * @desc Petite popup permettant d'indiquer l'élément à pickup
  */
 function YouNeedElement (props: IProps) {
   const [showed, toggleShowed] = useState<boolean>(false);
