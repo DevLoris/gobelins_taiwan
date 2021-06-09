@@ -1,7 +1,8 @@
 
 export enum IStateDataSceneElementType {
     CUBE = "cube",
-    OBJECT_CONTAINER = "object_container"
+    OBJECT_CONTAINER = "object_container",
+    SPRITE = "sprite"
 }
 
 
