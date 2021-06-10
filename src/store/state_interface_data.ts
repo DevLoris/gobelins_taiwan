@@ -2,7 +2,7 @@ import {
     IStateDataSceneEffectsType,
     IStateDataSceneCollectibleType,
     IStateDataSceneElementType,
-    IStateDataSceneLightType
+    IStateDataSceneLightType, IStateDataCollectibleAdditionalDataType
 } from "./state_enums";
 import {IStateDataAudio} from "./state_interface_data_audio";
 
@@ -112,7 +112,13 @@ export interface IStateDataCollectibleWithPickup extends IStateDataCollectible {
 }
 
 export interface IStateDataCollectibleAdditional {
-    type: string,
-    value: any|string[],
+    type: IStateDataCollectibleAdditionalDataType,
+    value: any|string[]|IStateDataCollectibleAdditionalPhonetic,
     credits?: string
+}
+
+export interface IStateDataCollectibleAdditionalPhonetic {
+    chinese: string,
+    phonetic: string,
+    english: string
 }

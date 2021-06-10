@@ -11,6 +11,7 @@ import {selectUserScenes} from "../../store/store_selector";
 import {getState} from "../../store/store";
 import {AudioHandler} from "../../lib/audio/AudioHandler";
 import NotebookClose from "./notebookClose/NotebookClose";
+import {WebGlManager} from "../webGlCanvas/WebGlManagerClasses/WebGlManager";
 
 interface IProps {
     className?: string,
@@ -44,6 +45,7 @@ function Notebook (props: IProps) {
             AudioHandler.play("book");
         }
         NotebookSignal.getInstance().toggle(props.show);
+        WebGlManager.getInstance().toggleRendering(!props.show);
     }, [props.show]);
 
     // signal for forcing page change

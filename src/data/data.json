@@ -32,6 +32,11 @@
           }
         }
       ],
+      "map": {
+        "pin": "-",
+        "x": 56,
+        "y": 17
+      },
       "scene": {
         "background": "#bfe3dd"
       },
@@ -156,6 +161,11 @@
           }
         }
       ],
+      "map": {
+        "pin": "=",
+        "x": 57,
+        "y": 49
+      },
       "scene": {
         "background": "#bfe3dd"
       },
@@ -267,8 +277,20 @@
           "credits": "copyright wola"
         },
         {
+          "type": "separator",
+          "value": null
+        },
+        {
           "type": "text",
           "value": "Ils jouent du beethoven"
+        },
+        {
+          "type": "tips",
+          "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "type": "testimonial",
+          "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         },
         {
           "type": "image",

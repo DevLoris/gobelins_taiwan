@@ -13,6 +13,7 @@ import NotebookSignal, {NOTEBOOK_SEND} from "../notebook/notebook-signal";
 import {SequenceManager} from "../../mainClasses/Sequencer/SequenceManager";
 import {EChapterStep} from "../../mainClasses/Sequencer/SequenceChapterStep";
 import Vlog from "../vlog/Vlog";
+import {WebGlManager} from "../webGlCanvas/WebGlManagerClasses/WebGlManager";
 
 interface IProps {
   className?: string
@@ -41,8 +42,9 @@ function GameContainer (props: IProps) {
 
   useEffect(() => {
     NotebookSignal.getInstance().notebookContent.add((type, data) => {
-      if(type === NOTEBOOK_SEND.TOGGLE)
+      if(type === NOTEBOOK_SEND.TOGGLE) {
         setMenuOpen(data);
+      }
     });
 
     // Init sequencer

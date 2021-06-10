@@ -5,7 +5,6 @@ export enum IStateDataSceneElementType {
     SPRITE = "sprite"
 }
 
-
 export enum IStateDataSceneLightType {
     HEMISPHERE = "hemisphere",
     DIRECTIONAL = "directional",
@@ -20,4 +19,16 @@ export enum IStateDataSceneCollectibleType {
 
 export enum IStateDataSceneEffectsType {
     OUTLINE = "outline"
+}
+
+export enum IStateDataCollectibleAdditionalDataType {
+    TIPS = "tips",
+    TEXT = "text",
+    IMAGE = "image",
+    GALLERY  = "gallery",
+    AUDIO = "audio",
+    PHONETIC = "phonetic",
+    TESTIMONIAL = "testimonial",
+    YOUTUBE  = "youtube",
+    SEPARATOR = "separator"
 }

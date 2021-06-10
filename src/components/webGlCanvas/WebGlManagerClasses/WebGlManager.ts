@@ -43,6 +43,8 @@ export class WebGlManager {
 
     public onChangeScenery: Signal = new Signal();
 
+    private _renderEnabled: boolean = true;
+
     constructor() {
     }
 
@@ -162,12 +164,14 @@ export class WebGlManager {
     private _animationFrame():void {
         this._configureGui.getStats().begin();
 
-        this._control.update();
+        if(this._renderEnabled) {
+            this._control.update();
 
-        if (this._effects.length == 0) {
-            this._renderer.render(this._scene, this._camera);
-        } else {
-            this._effects.forEach(value => value.render(this._scene, this._camera));
+            if (this._effects.length == 0) {
+                this._renderer.render(this._scene, this._camera);
+            } else {
+                this._effects.forEach(value => value.render(this._scene, this._camera));
+            }
         }
 
         this._configureGui.getStats().end();
@@ -221,7 +225,7 @@ export class WebGlManager {
         SceneryUtils.buildElementsOf(this._scene, scene.content.elements);
 
         // ADD EFFECTS
-        this._effects = SceneryUtils.addEffects(scene.content.effects);
+        //this._effects = SceneryUtils.addEffects(scene.content.effects);
         HdrUtils.loadEnvironment('wow');
 
         // AMBIENT SOUND
@@ -276,5 +280,11 @@ export class WebGlManager {
 
     public getEffects() {
         return this._effects;
+    }
+
+    public toggleRendering(bool: boolean)  {
+        this._renderEnabled = bool;
+        if(this._control instanceof OrbitControls)
+            this._control.enabled = bool;
     }
 }
