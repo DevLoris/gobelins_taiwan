@@ -38,6 +38,8 @@ function NotebookPageMap (props: IProps) {
                     return value.type == IStateDataSceneCollectibleType.HINT;
                 });
 
+                console.log(value);
+
                 return <NotebookTitle
                     title={value.name}
                     key={key}
