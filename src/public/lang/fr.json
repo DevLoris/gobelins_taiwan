@@ -17,8 +17,8 @@
   "notebook__page__map__popup__title": "Partir à la découverte de la zone {{area}} ?",
 
   "notebook__page__elements__details__info": "Info",
-  "notebook__page__elements__details__additional_tips": "PVTips",
-  "notebook__page__elements__details__additional_testimonial": "Histoire de PVTiste",
+  "notebook__page__elements__details__additional__tips": "PVTips",
+  "notebook__page__elements__details__additional__testimonial": "Histoire de PVTiste",
 
   "onboard__notebook": "Ton carnet de bord contient des infos concernant les énigmes et les particularités de la culture Taiwanaise",
   "onboard__resolve": "Résout l’énigme en fouillant les quartiers de Taipei !",

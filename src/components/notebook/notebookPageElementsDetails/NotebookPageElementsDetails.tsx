@@ -84,13 +84,13 @@ function NotebookPageElementsDetails (props: IProps) {
               break;
             case IStateDataCollectibleAdditionalDataType.TESTIMONIAL:
               content = (<>
-                <div className={css["type" + value.type + "_title"]}>{t('notebook__page__elements__details__additional_testimonial')}</div>
+                <div className={css["type" + value.type + "_title"]}>{t('notebook__page__elements__details__additional__testimonial')}</div>
                 <p>{value.value}</p>
               </>);
               break;
             case IStateDataCollectibleAdditionalDataType.TIPS:
               content = (<>
-                <div className={css["type" + value.type + "_title"]}><span>詭計</span>{t('notebook__page__elements__details__additional_tips')}</div>
+                <div className={css["type" + value.type + "_title"]}><span>詭計</span>{t('notebook__page__elements__details__additional__tips')}</div>
                 <p>{value.value}</p>
               </>);
               break;
