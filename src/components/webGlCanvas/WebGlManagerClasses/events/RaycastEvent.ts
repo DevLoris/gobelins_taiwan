@@ -1,5 +1,7 @@
 import {Camera, Raycaster, Scene} from "three";
 import RaycastManager from "./RaycastManager";
+import {WebGlManager} from "../WebGlManager";
+import {gsap} from "gsap";
 
 const debug = require("debug")(`front:RaycastEvent`);
 
@@ -15,7 +17,13 @@ export class RaycastEvent {
         this._camera = _camera;
     }
 
-    getTouchedElementIdentifier(scene : Scene, mouse, camera : Camera) {
+    /**
+     * Returns identifier of touched 3D element.
+     * @param scene
+     * @param mouse
+     * @param camera
+     */
+    getTouchedElementIdentifier(scene : Scene, mouse, camera : Camera): string {
         // update the picking ray with the camera and mouse position
         this.raycast.setFromCamera(mouse, camera);
 
@@ -33,7 +41,9 @@ export class RaycastEvent {
                 //      -> parent (no identifier)
                 //          -> parent (has identifier!)
                 let lastParent = intersects[i].object;
-                if (lastParent !== undefined) {
+                // @ts-ignore
+                // If object has opacity of 0.2 (when camera is inside), it must be ignored
+                if (lastParent !== undefined && lastParent.material.opacity !== 0.2) {
                     const maxIterations = 10;
                     parentsloop: for (let j = maxIterations; j > 0; j--) {
                         if (lastParent.userData.internalId !== undefined) {
@@ -55,6 +65,10 @@ export class RaycastEvent {
         return identifier;
     }
 
+    /**
+     * Touch end event callback.
+     * @param event
+     */
     onTouchEnd(event) {
         let touches = event.changedTouches !== undefined ? event.changedTouches[0] : {clientX: event.clientX, clientY: event.clientY};
         // calculate mouse position in normalized device coordinates
@@ -72,11 +86,43 @@ export class RaycastEvent {
 
 
     /**
-     * Touch event callback.
+     * Touch start event callback.
+     * If camera has moved after the delay given in delayedCall, it was not a click, it was a drag.
+     *  -> In that case, don't do anything.
      * @param event
      */
     onTouchStart(event) {
-        // debug("event", event);
+        const camera = WebGlManager.getInstance().getCamera();
+        // Get position at time of click
+        // Note: we use the following syntax because we need to save the value, not just a reference
+        const onTouchCameraPosition = {...camera.position};
+
+        gsap.delayedCall(.3, () => {
+            // Get position after delay
+            const newCameraPosition = {...camera.position};
+
+            // Remove excessive decimals in coordinates
+            this.toFixedHelper(onTouchCameraPosition);
+            this.toFixedHelper(newCameraPosition);
+
+            // Since camera is moved by gsap, sometimes we can find a _gsap key inside the camera position object
+            // So we remove it to avoid problems with json stringify coming next
+            delete onTouchCameraPosition["_gsap"];
+            delete newCameraPosition["_gsap"];
+
+            // Compare stringified positions
+            if (JSON.stringify(onTouchCameraPosition) === JSON.stringify(newCameraPosition)) {
+                // Handle touch if camera isn't moving
+                this.handleOnTouchStartEvent(event);
+            }
+        });
+    }
+
+    /**
+     * Executed if onTouchStart event is valid
+     * @param event
+     */
+    handleOnTouchStartEvent(event) {
         let touches = event.changedTouches !== undefined ? event.changedTouches[0] : {clientX: event.clientX, clientY: event.clientY};
         // calculate mouse position in normalized device coordinates
         // (-1 to +1) for both components
@@ -91,6 +137,17 @@ export class RaycastEvent {
         );
 
         RaycastManager.getInstance().clickProcessing(touchedElementIdentifier);
-        debug(this._mouse, touchedElementIdentifier);
+    }
+
+    /**
+     * Set number of decimals to 1 in values of given object
+     * @param object
+     */
+    toFixedHelper(object) {
+        Object.entries(object).forEach(([key, value]) => {
+            if(typeof value === "number") {
+                object[key] = value.toFixed(1);
+            }
+        });
     }
 }
