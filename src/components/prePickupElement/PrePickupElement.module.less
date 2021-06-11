@@ -2,21 +2,24 @@
 
 .root {
   position: absolute;
-  z-index: 100000;
+  z-index: 1;
   left: 10px;
   top: 10px;
   background: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
   padding: 5px;
+  border: 1px dotted @text-color;
 }
 
 .root img {
-  background: darkblue;
-  border-radius: 10px;
   object-fit: contain;
   height: 60px;
   width: 60px;
+}
+
+.root span {
+  padding-left: 0.5rem;
+  padding-right: 0.3rem;
 }

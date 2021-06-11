@@ -16,7 +16,7 @@ const debug = require("debug")(`front:${componentName}`);
  */
 function HomeSplash (props: IProps) {
   return <div className={merge([css.root, props.className])}>
-    <h1>Départ pour Taïwan</h1>
+    <img src={"/public/logo.png"} className={css.logo}/>
     <Button onClick={props.startCallback} label={"Commencer"} style={ButtonStyle.DEFAULT}/>
   </div>
 }

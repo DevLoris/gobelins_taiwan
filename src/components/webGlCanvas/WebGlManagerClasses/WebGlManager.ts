@@ -38,7 +38,6 @@ export class WebGlManager {
 
     private _isRunning: boolean = false;
 
-    private _effect: OutlineEffect = null;
     private _effects:  (OutlineEffect|any)[] = [];
 
     public onChangeScenery: Signal = new Signal();
@@ -258,7 +257,10 @@ export class WebGlManager {
         // SCENE IS NOW BUILD, UPDATE STORE
         store.dispatch(activeScenery(scene_id));
 
+        // Close notebook
         NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.TOGGLE, false);
+
+        // Signal update scene
         this.onChangeScenery.dispatch(scene_id);
     }
 
