@@ -68,7 +68,7 @@ function Notebook (props: IProps) {
                 AudioHandler.play("page");
                 setPage(NotebookPages.ELEMENTS);
             }}/>
-            {userScenes.length > 0 && (
+            {userScenes.filter(value => value.visible_on_map).length > 1 && (
                 <NotebookLabelToggler active={NotebookPages.MAP == page} label={t('notebook__menu__map')} onClick={() => {
                     AudioHandler.play("page");
                     setPage(NotebookPages.MAP);

@@ -31,7 +31,7 @@ function PrePickupElement (props: IProps) {
     return (<></>);
 
   return <div className={merge([css.root, props.className])}>
-      <img src={collectible.asset} /> { (hasPickup ? 'Ramassé': 'A trouver') }
+      <img src={collectible.asset} /><span>{ (hasPickup ? 'Ramassé': 'A trouver') }</span>
   </div>
 }
 
