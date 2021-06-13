@@ -1,5 +1,5 @@
 import css from './InteractedElement.module.less';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {merge} from "../../lib/utils/arrayUtils";
 import RaycastManager from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
 import {IStateDataCollectible} from "../../store/state_interface_data";
@@ -27,18 +27,25 @@ function InteractedElement (props: IProps) {
 
   const [isPickup, setIsPickup] = useState(false);
 
+  const showCollectibleInfoTimeout = useRef(null);
+
   useEffect(() => {
     RaycastManager.getInstance().onInteract.add((value: IStateDataCollectible) => {
       debug("value", value)
       // On affiche si on clique sur un HINT sinon ignoré ici
       if([IStateDataSceneCollectibleType.HINT, IStateDataSceneCollectibleType.PICKUP].includes(value.type)) {
-        setTimeout(() => {
+        showCollectibleInfoTimeout.current = setTimeout(() => {
           setCollectible(value);
           toggleShowed(true);
           setIsPickup(value.type == IStateDataSceneCollectibleType.PICKUP);
         }, 2000);
       }
     });
+
+    // Clear timeout on unmount
+    return () => {
+      clearTimeout(showCollectibleInfoTimeout.current);
+    }
   }, []);
 
   if(showed) {
