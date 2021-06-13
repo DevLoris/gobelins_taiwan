@@ -111,13 +111,9 @@ export class WebGlManager {
 
         window.addEventListener('resize', this._resizeHandler.bind(this));
 
-        const axesHelper = new AxesHelper( 5 );
-        this._scene.add( axesHelper );
-
-        const gridHelper = new GridHelper( 100, 100 );
-        this._scene.add( gridHelper );
-
         this.cameraMovingLoop();
+
+        this._setDebugHelpers();
     }
 
     /**
@@ -216,6 +212,15 @@ export class WebGlManager {
                 });
             }
         });
+    }
+
+    private _setDebugHelpers() {
+        const axesHelper = new AxesHelper( 5 );
+        this._scene.add( axesHelper );
+
+        const gridHelper = new GridHelper( 100, 100 );
+        this._scene.add( gridHelper );
+
     }
 
     // --------------------------------------------------------------------------- HANDLERS

@@ -15,6 +15,8 @@ export class RaycastEvent {
     // Whether click is held or not
     private _clickHeld: boolean = false;
 
+    private _mouseReleasedOn: string = "";
+
     constructor(_scene: Scene, _camera: Camera) {
         this._scene = _scene;
         this._camera = _camera;
@@ -74,6 +76,8 @@ export class RaycastEvent {
      */
     onTouchEnd(event) {
         this._clickHeld = false;
+
+        this._mouseReleasedOn = this.getPointedElementIdentifier(event);
     }
 
     /**
@@ -85,22 +89,14 @@ export class RaycastEvent {
     onTouchStart(event) {
         this._clickHeld = true;
 
-        const camera = WebGlManager.getInstance().getCamera();
-
-        // Get position at time of click
-        // Note: we use the following syntax because we need to save the value, not just a reference
-        const onTouchCameraPosition = {...camera.position};
-
         gsap.delayedCall(.2, () => {
-            // Get position after delay
-            // We save the value because we may need to remove _gsap attribute inside object (see in hasCameraMoved function)
-            const newCameraPosition = {...camera.position};
+            const cameraMoving = WebGlManager.getInstance().getCameraMoving();
 
             if (
                 // Camera is still, hasn't moved since delay
-                !WebGlManager.getInstance().hasCameraMoved(onTouchCameraPosition, newCameraPosition)
+                !cameraMoving
                 // Or camera moving and user is not dragging (just a click while camera is moving)
-                || !this._clickHeld && WebGlManager.getInstance().getCameraMoving()
+                || !this._clickHeld && cameraMoving
             ) {
                 this.handleOnTouchStartEvent(event);
             }
