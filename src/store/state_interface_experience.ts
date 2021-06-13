@@ -1,6 +1,6 @@
 import {DEFAULT_SCENE} from "../vars/scene_vars";
 
-export const STORE_VERSION = 5;
+export const STORE_VERSION = 6;
 
 // Store state
 export interface ICustomState {
@@ -8,6 +8,12 @@ export interface ICustomState {
     tutorial: boolean,
     version: number,
     scenes: ICustomStateScene[],
+    settings: ICustomStateSettings
+}
+
+export interface ICustomStateSettings  {
+    antialiasing: boolean,
+    outline: boolean
 }
 
 // Scene definition
@@ -42,5 +48,9 @@ export const initialState: ICustomState = {
     active_scene: DEFAULT_SCENE,
     tutorial: false,
     version: STORE_VERSION,
-    scenes: []
+    scenes: [],
+    settings: {
+        antialiasing: true,
+        outline: true
+    }
 };

@@ -1,4 +1,7 @@
 {
+  "homesplash__title": "Départ pour Taïwan",
+  "homesplash__button_start": "Commencer",
+
   "notebook__menu__hint": "Objectif",
   "notebook__menu__elements": "Objets",
   "notebook__menu__map": "Carte",
@@ -24,5 +27,10 @@
   "onboard__resolve": "Résout l’énigme en fouillant les quartiers de Taipei !",
   "onboard__resolve__button": "Let's go",
   "onboard__move": "Pour te déplacer, tu peux swiper et zoomer",
-  "onboard__move__button": "Compris"
+  "onboard__move__button": "Compris",
+
+  "settings__label__select": "Sélectionnez une qualité :",
+  "settings__label__high_q": "Haute qualité",
+  "settings__label__low_q": "Basse qualité",
+  "settings__button__save": "Sauvegarder"
 }

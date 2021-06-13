@@ -24,14 +24,6 @@
         "path": "/public/videos/"
     },
     {
-        "id": "history-intro",
-        "path": "/public/videos/"
-    },
-    {
-        "id": "history-outro",
-        "path": "/public/videos/"
-    },
-    {
         "id": "ending",
         "path": "/public/videos/"
     }

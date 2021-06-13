@@ -19,6 +19,7 @@ import {ConfigureGui} from "./ConfigureGui";
 import {Signal} from "../../../lib/helpers/Signal";
 import {AudioHandler} from "../../../lib/audio/AudioHandler";
 import NotebookSignal, {NOTEBOOK_SEND} from "../../notebook/notebook-signal";
+import {ICustomStateSettings} from "../../../store/state_interface_experience";
 
 const debug = require("debug")(`front:WebGlManager`);
 
@@ -26,6 +27,7 @@ export class WebGlManager {
     private static instance: WebGlManager;
 
     private _wrapper:HTMLDivElement = null;
+    private _settings:ICustomStateSettings = null;
 
     private _animationLoopId:number = 0;
     private _configureGui:ConfigureGui = null;
@@ -71,6 +73,8 @@ export class WebGlManager {
         debug("ThreeJS version:", REVISION);
         debug("pSceneryName", pSceneryName);
 
+        this._settings = store.getState().user_data.settings;
+
         this._wrapper = pWrapper;
 
         this._setupScene();
@@ -109,7 +113,7 @@ export class WebGlManager {
      * @private
      */
     private _setupRenderer():void {
-        this._renderer = new WebGLRenderer({ antialias: true });
+        this._renderer = new WebGLRenderer({ antialias: this._settings.antialiasing });
         this._renderer.physicallyCorrectLights = true;
         this._renderer.outputEncoding = sRGBEncoding;
         this._renderer.setSize( window.innerWidth, window.innerHeight );
@@ -224,7 +228,9 @@ export class WebGlManager {
         SceneryUtils.buildElementsOf(this._scene, scene.content.elements);
 
         // ADD EFFECTS
-        //this._effects = SceneryUtils.addEffects(scene.content.effects);
+        if (this._settings.outline) {
+            this._effects = SceneryUtils.addEffects(scene.content.effects);
+        }
         HdrUtils.loadEnvironment('wow');
 
         // AMBIENT SOUND
