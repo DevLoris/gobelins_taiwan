@@ -20,6 +20,7 @@ export class MeshObjectSceneElement extends SceneElement {
 
     createElement() {
         const asset: AssetGLTF = AssetMemory.instance.get(this.gltfId);
+        debug(this.gltfId, asset)
         let model =  asset.gltf.scene.children[0];
         if(model instanceof Mesh) {
             let material = model.material;

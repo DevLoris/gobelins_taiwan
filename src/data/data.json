@@ -82,7 +82,7 @@
           {
             "type": "object_container",
             "id": "scene",
-            "gltf": "appart",
+            "gltf": "TaipeiMain",
             "options": {
               "scale": [1, 1, 1],
               "position": [0, 0, 0]
@@ -193,32 +193,32 @@
   ],
   "models": [
     {
-      "id": "appart",
-      "path": "/public/sceneries/demo/QuartierAffaire.glb"
+      "id": "TaipeiMain",
+      "path": "/public/sceneries/demo/TaipeiV3.glb"
     },
     {
       "id": "GridBottom",
-      "path": "/public/sceneries/demo/GridBottom.glb"
+      "path": "/public/sceneries/demo/V3_Instances/GridBottom.glb"
     },
     {
       "id": "GridSolo",
-      "path": "/public/sceneries/demo/GridSolo.glb"
+      "path": "/public/sceneries/demo/V3_Instances/GridSolo.glb"
     },
     {
       "id": "GridTop",
-      "path": "/public/sceneries/demo/GridTop.glb"
+      "path": "/public/sceneries/demo/V3_Instances/GridTop.glb"
     },
     {
       "id": "GridDouble",
-      "path": "/public/sceneries/demo/GridDouble.glb"
+      "path": "/public/sceneries/demo/V3_Instances/GridDouble.glb"
     },
     {
       "id": "FleurA",
-      "path": "/public/sceneries/demo/FleurA.glb"
+      "path": "/public/sceneries/demo/V3_Instances/FleurA.glb"
     },
     {
       "id": "FleurB",
-      "path": "/public/sceneries/demo/FleurB.glb"
+      "path": "/public/sceneries/demo/V3_Instances/FleurB.glb"
     },
     {
       "id": "RaoheGate",
@@ -226,8 +226,81 @@
     },
     {
       "id": "Clim",
-      "path": "/public/sceneries/demo/clim.glb"
+      "path": "/public/sceneries/demo/V3_Instances/clim.glb"
+    },
+    {
+      "id": "Feux",
+      "path": "/public/sceneries/demo/V3_Instances/Feux.glb"
+    },
+    {
+      "id": "Lampadaire",
+      "path": "/public/sceneries/demo/V3_Instances/Lampadaire.glb"
+    },
+    {
+      "id": "Poteau",
+      "path": "/public/sceneries/demo/V3_Instances/Poteau.glb"
+    },
+    {
+      "id": "Tree",
+      "path": "/public/sceneries/demo/V3_Instances/Tree.glb"
+    },
+    {
+      "id": "TreeBase",
+      "path": "/public/sceneries/demo/V3_Instances/Tree_base.glb"
+    },
+    {
+      "id": "Plant",
+      "path": "/public/sceneries/demo/V3_Instances/Plante.glb"
+    },
+    {
+      "id": "BeigeScooter",
+      "path": "/public/sceneries/demo/V3_Instances/Beige_scooter.glb"
+    },
+    {
+      "id": "BlackScooter",
+      "path": "/public/sceneries/demo/V3_Instances/Black_scooter.glb"
+    },
+    {
+      "id": "BlueScooter",
+      "path": "/public/sceneries/demo/V3_Instances/Blue_scooter.glb"
+    },
+    {
+      "id": "YellowScooter",
+      "path": "/public/sceneries/demo/V3_Instances/Yellow_scooter.glb"
+    },
+    {
+      "id": "DarkGreenScooter",
+      "path": "/public/sceneries/demo/V3_Instances/Darkgreen_scooter.glb"
+    },
+    {
+      "id": "GreenScooter",
+      "path": "/public/sceneries/demo/V3_Instances/Green_scooter.glb"
+    },
+    {
+      "id": "RedScooter",
+      "path": "/public/sceneries/demo/V3_Instances/Red_scooter.glb"
+    },
+    {
+      "id": "Stand1",
+      "path": "/public/sceneries/demo/V3_Instances/Stand_1.glb"
+    },
+    {
+      "id": "Stand2",
+      "path": "/public/sceneries/demo/V3_Instances/Stand_2.glb"
+    },
+    {
+      "id": "Stand3",
+      "path": "/public/sceneries/demo/V3_Instances/Stand_3.glb"
+    },
+    {
+      "id": "Stand4",
+      "path": "/public/sceneries/demo/V3_Instances/Stand_4.glb"
+    },
+    {
+      "id": "Ornement",
+      "path": "/public/sceneries/demo/V3_Instances/Ornement.glb"
     }
+
   ],
   "collectibles": [
     {
