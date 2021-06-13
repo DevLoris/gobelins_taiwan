@@ -200,14 +200,14 @@ export class WebGlManager {
 
                         // Debug cube
                         // @ts-ignore
-                        function tempRandom() {
-                            return Math.random() * (1 - 0) + 0;
-                        }
-                        const geometry = new BoxGeometry( boxSize.x + offset, boxSize.y + offset, boxSize.z + offset );
-                        const material = new MeshBasicMaterial( {color: new Color(tempRandom(), tempRandom(), tempRandom())} );
-                        const cube = new Mesh( geometry, material );
-                        cube.position.set(object.position.x - offset / 2, object.position.y - offset / 2, object.position.z - offset / 2);
-                        this._scene.add(cube);
+                        // function tempRandom() {
+                        //     return Math.random() * (1 - 0) + 0;
+                        // }
+                        // const geometry = new BoxGeometry( boxSize.x + offset, boxSize.y + offset, boxSize.z + offset );
+                        // const material = new MeshBasicMaterial( {color: new Color(tempRandom(), tempRandom(), tempRandom())} );
+                        // const cube = new Mesh( geometry, material );
+                        // cube.position.set(object.position.x - offset / 2, object.position.y - offset / 2, object.position.z - offset / 2);
+                        // this._scene.add(cube);
                     }
                 });
             }
