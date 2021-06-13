@@ -11,6 +11,7 @@ import {selectUserScenes} from "../../store/store_selector";
 import {getState} from "../../store/store";
 import {AudioHandler} from "../../lib/audio/AudioHandler";
 import NotebookClose from "./notebookClose/NotebookClose";
+import {WebGlManager} from "../webGlCanvas/WebGlManagerClasses/WebGlManager";
 
 interface IProps {
     className?: string,
@@ -24,9 +25,6 @@ export enum NotebookPages {
     MAP
 }
 
-const componentName = "Notebook";
-const debug = require("debug")(`front:${componentName}`);
-
 Notebook.defaultProps = {
     show: false,
     onClose: () => {}
@@ -34,6 +32,7 @@ Notebook.defaultProps = {
 
 /**
  * @name Notebook
+ * @desc Carnet
  */
 function Notebook (props: IProps) {
     const [page, setPage] : [NotebookPages, (NotebookPages) => void]= useState(NotebookPages.ELEMENTS);
@@ -46,8 +45,10 @@ function Notebook (props: IProps) {
             AudioHandler.play("book");
         }
         NotebookSignal.getInstance().toggle(props.show);
+        WebGlManager.getInstance().toggleRendering(!props.show);
     }, [props.show]);
 
+    // signal for forcing page change
     useEffect(() =>  {
         NotebookSignal.getInstance().notebookContent.add((type, data) => {
             if(type == NOTEBOOK_SEND.PAGE)
@@ -67,7 +68,7 @@ function Notebook (props: IProps) {
                 AudioHandler.play("page");
                 setPage(NotebookPages.ELEMENTS);
             }}/>
-            {userScenes.length > 0 && (
+            {userScenes.filter(value => value.visible_on_map).length > 1 && (
                 <NotebookLabelToggler active={NotebookPages.MAP == page} label={t('notebook__menu__map')} onClick={() => {
                     AudioHandler.play("page");
                     setPage(NotebookPages.MAP);

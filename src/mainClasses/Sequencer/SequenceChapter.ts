@@ -1,5 +1,5 @@
 import {SequenceChapterStep} from "./SequenceChapterStep";
-import {EChapterName} from "./SequenceManager";
+import {EChapterName, ISequenceChapter} from "./SequenceManager";
 
 const debug = require("debug")(`front:SequenceChapter`);
 
@@ -12,8 +12,7 @@ export class SequenceChapter {
 
     private _steps = new Array<SequenceChapterStep>();
 
-    // TODO typage
-    constructor(chapterData: any) {
+    constructor(chapterData: ISequenceChapter) {
         debug("SequenceChapter init ", chapterData.name);
 
         this._identifier = chapterData.name;

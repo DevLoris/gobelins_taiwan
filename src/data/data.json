@@ -32,13 +32,13 @@
           }
         }
       ],
-      "scene": {
-        "background": "#bfe3dd"
-      },
       "map": {
         "pin": "-",
         "x": 56,
         "y": 17
+      },
+      "scene": {
+        "background": "#bfe3dd"
       },
       "camera": {
         "position": {
@@ -87,6 +87,26 @@
               "scale": [1, 1, 1],
               "position": [0, 0, 0]
             }
+          },
+          {
+            "type": "sprite",
+            "id": "obasan",
+            "sprite": "/public/sprites/Obasan/Obasan_01.png",
+            "options": {
+              "scale": [1, 1, 1],
+              "position":[4, 0.8, 0],
+              "size": {"w": 98, "h": 215}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "serveur",
+            "sprite": "/public/sprites/Serveur/Serveur_2.png",
+            "options": {
+              "scale": [0.8, 0.8, 0.8],
+              "position": [3, 1.1, 0],
+              "size": {"w": 69, "h": 245}
+            }
           }
         ],
         "lights": [
@@ -94,7 +114,7 @@
             "type": "hemisphere",
             "coords": {
               "x": 0,
-              "y": 50,
+              "y": 100,
               "z": 0
             },
             "color": "#ffffff",
@@ -141,13 +161,13 @@
           }
         }
       ],
-      "scene": {
-        "background": "#bfe3dd"
-      },
       "map": {
         "pin": "=",
         "x": 57,
         "y": 49
+      },
+      "scene": {
+        "background": "#bfe3dd"
       },
       "camera": {
         "position": {
@@ -257,8 +277,20 @@
           "credits": "copyright wola"
         },
         {
+          "type": "separator",
+          "value": null
+        },
+        {
           "type": "text",
           "value": "Ils jouent du beethoven"
+        },
+        {
+          "type": "tips",
+          "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "type": "testimonial",
+          "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         },
         {
           "type": "image",

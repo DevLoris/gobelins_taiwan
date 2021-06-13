@@ -10,9 +10,6 @@ interface IProps {
   className?: string
 }
 
-const componentName = "Tutorial";
-const debug = require("debug")(`front:${componentName}`);
-
 /**
  * @name Tutorial
  */
@@ -20,6 +17,7 @@ function Tutorial (props: IProps) {
   const  { t }  = useTranslation();
   const [step, setStep] = useState<number>(0);
 
+  // refs
   const tutorialElement =  useRef();
   const notebookTutorial = useRef();
   const popupTutorial = useRef();
@@ -30,6 +28,9 @@ function Tutorial (props: IProps) {
     setStep(0);
   }, [])
 
+  /**
+   * animation des morceaux du tutorial
+   */
   useEffect(() =>  {
     if(step == 0) {
       gsap.fromTo(popupTutorial.current, {autoAlpha:  0}, {autoAlpha: 1});

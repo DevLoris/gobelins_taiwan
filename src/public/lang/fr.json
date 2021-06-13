@@ -12,9 +12,13 @@
 
   "notebook__page__pvt__title": "PVT",
 
-  "notebook__page__map__label__pickup": "Enigme",
-  "notebook__page__map__label__hints": "Objets",
-  "notebook__page__map__label__goto": "go to",
+  "notebook__page__map__label__goto": "Let's go",
+  "notebook__page__map__label__stay": "Rester ici",
+  "notebook__page__map__popup__title": "Partir à la découverte de la zone {{area}} ?",
+
+  "notebook__page__elements__details__info": "Info",
+  "notebook__page__elements__details__additional__tips": "PVTips",
+  "notebook__page__elements__details__additional__testimonial": "Histoire de PVTiste",
 
   "onboard__notebook": "Ton carnet de bord contient des infos concernant les énigmes et les particularités de la culture Taiwanaise",
   "onboard__resolve": "Résout l’énigme en fouillant les quartiers de Taipei !",

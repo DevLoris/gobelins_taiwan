@@ -9,11 +9,9 @@ interface IProps {
   onClick?: () => void,
 }
 
-const componentName = "NotebookLabelToggler";
-const debug = require("debug")(`front:${componentName}`);
-
 /**
  * @name NotebookLabelToggler
+ * @desc Bouton pour changer de page
  */
 function NotebookLabelToggler (props: IProps) {
   return <div onClick={props.onClick} className={merge([css.root, props.className, props.active ? css.active : ''])}>

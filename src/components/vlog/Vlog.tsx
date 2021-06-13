@@ -1,32 +1,28 @@
-import css from './Vlog.module.less';
 import React, {useEffect, useState} from 'react';
 import Video from "./video/Video";
-import video from '../../data/video.json';
+import videos from '../../data/video.json';
+
+type VideoElement = {
+    id: string,
+    path: string
+}
 
 interface IProps {
     className?: string;
     videoId: string;
-  }
-
-
-const componentName = "Vlog";
-const debug = require("debug")(`front:${componentName}`);
+}
 
 /**
  * @name Vlog
+ * Gère les vidéos
  */
 function Vlog (props: IProps) {
-
-    const [videoPath, setVideoPath] = useState("");
+    const [videoPath, setVideoPath] = useState<string>(null);
 
     useEffect(() => {
-
-        video.forEach((value: {id: string, path: string}) => {
-            if (props.videoId === value.id) {
-                setVideoPath(value.path);
-            }
-        });
-
+        let video = videos.find((value: VideoElement) => (props.videoId === value.id));
+        if (video !== undefined)
+            setVideoPath(video.path);
     }, []);
 
     return <Video path={videoPath}/>

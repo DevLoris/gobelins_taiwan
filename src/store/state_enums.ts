@@ -1,9 +1,9 @@
 
 export enum IStateDataSceneElementType {
     CUBE = "cube",
-    OBJECT_CONTAINER = "object_container"
+    OBJECT_CONTAINER = "object_container",
+    SPRITE = "sprite"
 }
-
 
 export enum IStateDataSceneLightType {
     HEMISPHERE = "hemisphere",
@@ -19,4 +19,16 @@ export enum IStateDataSceneCollectibleType {
 
 export enum IStateDataSceneEffectsType {
     OUTLINE = "outline"
+}
+
+export enum IStateDataCollectibleAdditionalDataType {
+    TIPS = "tips",
+    TEXT = "text",
+    IMAGE = "image",
+    GALLERY  = "gallery",
+    AUDIO = "audio",
+    PHONETIC = "phonetic",
+    TESTIMONIAL = "testimonial",
+    YOUTUBE  = "youtube",
+    SEPARATOR = "separator"
 }

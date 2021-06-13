@@ -13,6 +13,7 @@ import NotebookSignal, {NOTEBOOK_SEND} from "../notebook/notebook-signal";
 import {SequenceManager} from "../../mainClasses/Sequencer/SequenceManager";
 import {EChapterStep} from "../../mainClasses/Sequencer/SequenceChapterStep";
 import Vlog from "../vlog/Vlog";
+import {WebGlManager} from "../webGlCanvas/WebGlManagerClasses/WebGlManager";
 
 interface IProps {
   className?: string
@@ -41,8 +42,9 @@ function GameContainer (props: IProps) {
 
   useEffect(() => {
     NotebookSignal.getInstance().notebookContent.add((type, data) => {
-      if(type === NOTEBOOK_SEND.TOGGLE)
+      if(type === NOTEBOOK_SEND.TOGGLE) {
         setMenuOpen(data);
+      }
     });
 
     // Init sequencer
@@ -96,29 +98,34 @@ function GameContainer (props: IProps) {
     else {
       const sceneryIdentifier = SequenceManager.instance.getCurrentChapterSceneFromDiorama();
       const vlogsStates = selectUserScene(sceneryIdentifier)(getState().user_data)?.vlog;
-      if(currentStep === EChapterStep.INTRO_VLOG) {
-        // If vlog hasn't been seen yet
-        if(!vlogsStates?.intro) {
-          // Set vlog as viewed
-          store.dispatch(vlogIntro({bool: true, scene: sceneryIdentifier}));
-        }
-        else {
-          // Skip the vlog and go to the diorama
-          SequenceManager.instance.increment();
-          debug(SequenceManager.instance.getCurrentPositionInSequence());
-        }
-      }
-      else if(currentStep === EChapterStep.OUTRO_VLOG) {
-        // If vlog hasn't been seen yet
-        if(!vlogsStates?.outro) {
-          // Set vlog as viewed
-          store.dispatch(vlogOutro({bool: true, scene: sceneryIdentifier}));
-        }
-        else {
-          // Skip the vlog and increment the game
-          SequenceManager.instance.increment();
-          debug(SequenceManager.instance.getCurrentPositionInSequence());
-        }
+
+      switch (currentStep) {
+        case EChapterStep.INTRO_VLOG:
+          // If vlog hasn't been seen yet
+          if(!vlogsStates?.intro) {
+            // Set vlog as viewed
+            store.dispatch(vlogIntro({bool: true, scene: sceneryIdentifier}));
+          }
+          else {
+            // Skip the vlog and go to the diorama
+            SequenceManager.instance.increment();
+            debug(SequenceManager.instance.getCurrentPositionInSequence());
+          }
+          break;
+        case EChapterStep.OUTRO_VLOG:
+          // If vlog hasn't been seen yet
+          if(!vlogsStates?.outro) {
+            // Set vlog as viewed
+            store.dispatch(vlogOutro({bool: true, scene: sceneryIdentifier}));
+          }
+          else {
+            // Skip the vlog and increment the game
+            SequenceManager.instance.increment();
+            debug(SequenceManager.instance.getCurrentPositionInSequence());
+          }
+          break;
+        default:
+          break;
       }
     }
     switchTo(EChapterStep[currentStep]);

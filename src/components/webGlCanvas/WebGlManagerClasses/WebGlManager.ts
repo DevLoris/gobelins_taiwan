@@ -66,6 +66,8 @@ export class WebGlManager {
 
     public onChangeScenery: Signal = new Signal();
 
+    private _renderEnabled: boolean = true;
+
     constructor() {
     }
 
@@ -142,6 +144,7 @@ export class WebGlManager {
      */
     private _setupRenderer():void {
         this._renderer = new WebGLRenderer({ antialias: true });
+        this._renderer.physicallyCorrectLights = true;
         this._renderer.outputEncoding = sRGBEncoding;
         this._renderer.setSize( window.innerWidth, window.innerHeight );
         this._renderer.setPixelRatio(.9);
@@ -295,12 +298,14 @@ export class WebGlManager {
     private _animationFrame():void {
         this._configureGui.getStats().begin();
 
-        this._control.update();
+        if(this._renderEnabled) {
+            this._control.update();
 
-        if (this._effects.length == 0) {
-            this._renderer.render(this._scene, this._camera);
-        } else {
-            this._effects.forEach(value => value.render(this._scene, this._camera));
+            if (this._effects.length == 0) {
+                this._renderer.render(this._scene, this._camera);
+            } else {
+                this._effects.forEach(value => value.render(this._scene, this._camera));
+            }
         }
 
         this._configureGui.getStats().end();
@@ -445,7 +450,10 @@ export class WebGlManager {
         // SCENE IS NOW BUILD, UPDATE STORE
         store.dispatch(activeScenery(scene_id));
 
+        // Close notebook
         NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.TOGGLE, false);
+
+        // Signal update scene
         this.onChangeScenery.dispatch(scene_id);
     }
 
@@ -471,5 +479,11 @@ export class WebGlManager {
 
     public getCameraMoving() {
         return this._cameraMoving;
+    }
+
+    public toggleRendering(bool: boolean)  {
+        this._renderEnabled = bool;
+        if(this._control instanceof OrbitControls)
+            this._control.enabled = bool;
     }
 }

@@ -1,20 +1,19 @@
 import css from './YouNeedElement.module.less';
 import React, {useState} from 'react';
-import { merge } from "../../lib/utils/arrayUtils";
+import {merge} from "../../lib/utils/arrayUtils";
 import {IStateDataCollectible} from "../../store/state_interface_data";
 import RaycastManager from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
 import {IStateDataSceneCollectibleType} from "../../store/state_enums";
 import FocusUtils from "../webGlCanvas/WebGlManagerClasses/scenery/FocusUtils";
+import Button, {ButtonStyle} from "../button/Button";
 
 interface IProps {
   className?: string
 }
 
-const componentName = "YouNeedElement";
-const debug = require("debug")(`front:${componentName}`);
-
 /**
  * @name YouNeedElement
+ * @desc Petite popup permettant d'indiquer l'élément à pickup
  */
 function YouNeedElement (props: IProps) {
   const [showed, toggleShowed] = useState<boolean>(false);
@@ -32,11 +31,13 @@ function YouNeedElement (props: IProps) {
     return (<></>);
 
   return <div className={merge([css.root, props.className])}>
-    <img src={collectible.asset} />
-    <button onClick={() => {
-      toggleShowed(false);
-      FocusUtils.restore();
-    }}>Fermer</button>
+    <div className={"popup"}>
+      <img src={collectible.asset} alt={"Collectible"} />
+      <Button onClick={() => {
+        toggleShowed(false);
+        FocusUtils.restore();
+      }} style={ButtonStyle.PATTERN} label={"Je vais trouver"}/>
+    </div>
   </div>
 }
 

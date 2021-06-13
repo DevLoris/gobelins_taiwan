@@ -23,7 +23,7 @@ export enum EChapterName {
  * Chapter data
  */
 export interface ISequenceChapter {
-    name: string,
+    name: EChapterName,
     steps: ISequenceStep[],
 }
 

@@ -9,11 +9,9 @@ interface IProps {
   callback?: () => any;
 }
 
-const componentName = "NotebookElement";
-const debug = require("debug")(`front:${componentName}`);
-
 /**
  * @name NotebookElement
+ * @desc Un élément du listing du carnet, une petite case où l'on a titre et image si on a ramassé, sinon rien
  */
 function NotebookElement (props: IProps) {
   return <div onClick={props.callback} className={merge([css.root, props.className])}>

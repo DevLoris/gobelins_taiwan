@@ -1,6 +1,5 @@
 import css from './Video.module.less';
 import React from 'react';
-import { merge } from "../../../lib/utils/arrayUtils";
 import {gsap} from "gsap";
 import {SequenceManager} from "../../../mainClasses/Sequencer/SequenceManager";
 
@@ -9,16 +8,14 @@ interface IProps {
   path: string;
 }
 
-const componentName = "Video";
-const debug = require("debug")(`front:${componentName}`);
-
 /**
  * @name Video
+ * @desc Display a youtube video
  */
 function Video (props: IProps) {
 
   /**
-   * On video finished, increment in sequence
+   * Once video finished, increment in sequence
    */
   function videoFinishedHandler() {
     gsap.delayedCall(.1, () => {

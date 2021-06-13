@@ -7,11 +7,9 @@ interface IProps {
   onClick: () => void,
 }
 
-const componentName = "NotebookClose";
-const debug = require("debug")(`front:${componentName}`);
-
 /**
  * @name NotebookClose
+ * @desc Bouton pour la fermeture du carnet
  */
 function NotebookClose (props: IProps) {
   return <div className={merge([css.root, props.className])} onClick={props.onClick}>

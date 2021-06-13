@@ -7,15 +7,13 @@ interface IProps {
   onClick: () => void,
 }
 
-const componentName = "NotebookToggler";
-const debug = require("debug")(`front:${componentName}`);
-
 /**
  * @name NotebookToggler
+ * @desc Ouvre ou ferme le carnet
  */
 function NotebookToggler (props: IProps) {
   return <div onClick={props.onClick} className={merge([css.root, props.className])}>
-    <svg xmlns="http://www.w3.org/2000/svg" width="62.951" height="64.347" viewBox="0 0 62.951 64.347">
+    <svg width="62.951" height="64.347" viewBox="0 0 62.951 64.347">
       <g id="Groupe_108" data-name="Groupe 108" transform="translate(-309.499 -71.5)">
         <g id="Groupe_60" data-name="Groupe 60" transform="translate(-968.083 392.94)">
           <g id="Groupe_58" data-name="Groupe 58" transform="translate(1278.903 -318.611)">
