@@ -37,6 +37,8 @@ export class MeshObjectSceneElement extends SceneElement {
         let element = this.createElement();
         debug(element);
         element.userData.internalId = this.id;
+        // Exclue les grilles parce qu'elles sont en noir
+        // TODO: Retirer une fois qu'on a trouvé une solution
         if (this.id == 'scene__GridSolo' || this.id == 'scene__GridDouble') {
             element.userData.sprite = true;
         }

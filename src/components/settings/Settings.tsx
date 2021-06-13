@@ -1,9 +1,8 @@
 import css from './Settings.module.less';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {merge} from "../../lib/utils/arrayUtils";
 import SettingsClose from "./settingsClose/SettingsClose";
 import SettingsForm from "./settingsForm/SettingsForm";
-import SettingsSignal from "./settings-signal";
 
 interface IProps {
     className?: string,
@@ -20,13 +19,10 @@ const componentName = "Settings";
 const debug = require("debug")(`front:${componentName}`);
 
 /**
+ * Options de qualité du jeu
  * @name Settings
  */
 function Settings(props: IProps) {
-    useEffect(() => {
-        SettingsSignal.getInstance().toggle(props.show);
-    }, [props.show]);
-
     return <div className={merge([css.root, props.className, props.show ? css.open : null])}>
         <div className={css.menu}>
             <SettingsClose onClick={props.onClose}/>

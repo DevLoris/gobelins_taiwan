@@ -13,7 +13,7 @@ const debug = require("debug")(`front:${componentName}`);
 /**
  * @name SettingsToggler
  */
-function SettingsToggler (props: IProps) {
+function SettingsToggler (props: IProps) { // TODO: Design & Intégration
   return <div onClick={props.onClick} className={merge([css.root, props.className])}>
       Paramètres
   </div>
