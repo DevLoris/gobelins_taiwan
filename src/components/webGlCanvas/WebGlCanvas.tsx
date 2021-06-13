@@ -38,8 +38,6 @@ function WebGlCanvas (props: IProps) {
     }
   }, []);
 
-
-
   // -------------------–-------------------–-------------------–--------------- RENDER
 
   return <div ref={rootRef} className={merge([css.root, props.className])} />

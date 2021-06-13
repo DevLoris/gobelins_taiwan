@@ -9,8 +9,11 @@ export class RaycastEvent {
     private raycast: Raycaster = new Raycaster();
     private _mouse: {x: number, y: number} = {x: 0, y: 0};
 
-    private _scene: Scene;
-    private _camera: Camera;
+    private readonly _scene: Scene;
+    private readonly _camera: Camera;
+
+    // Whether click is held or not
+    private _clickHeld: boolean = false;
 
     constructor(_scene: Scene, _camera: Camera) {
         this._scene = _scene;
@@ -23,7 +26,7 @@ export class RaycastEvent {
      * @param mouse
      * @param camera
      */
-    getTouchedElementIdentifier(scene : Scene, mouse, camera : Camera): string {
+    getTouchedElementIdentifierFrom(scene : Scene, mouse, camera : Camera): string {
         // update the picking ray with the camera and mouse position
         this.raycast.setFromCamera(mouse, camera);
 
@@ -70,49 +73,35 @@ export class RaycastEvent {
      * @param event
      */
     onTouchEnd(event) {
-        let touches = event.changedTouches !== undefined ? event.changedTouches[0] : {clientX: event.clientX, clientY: event.clientY};
-        // calculate mouse position in normalized device coordinates
-        // (-1 to +1) for both components
-        this._mouse.x = (touches.clientX / window.innerWidth) * 2 - 1;
-        this._mouse.y = -(touches.clientY / window.innerHeight) * 2 + 1;
-
-        // Get the element identifier
-        const touchedElementIdentifier = this.getTouchedElementIdentifier(
-            this._scene,
-            this._mouse,
-            this._camera
-        );
+        this._clickHeld = false;
     }
-
 
     /**
      * Touch start event callback.
      * If camera has moved after the delay given in delayedCall, it was not a click, it was a drag.
-     *  -> In that case, don't do anything.
+     * If camera is moving, but click was released at the time of click, consider it.
      * @param event
      */
     onTouchStart(event) {
+        this._clickHeld = true;
+
         const camera = WebGlManager.getInstance().getCamera();
+
         // Get position at time of click
         // Note: we use the following syntax because we need to save the value, not just a reference
         const onTouchCameraPosition = {...camera.position};
 
-        gsap.delayedCall(.3, () => {
+        gsap.delayedCall(.2, () => {
             // Get position after delay
+            // We save the value because we may need to remove _gsap attribute inside object (see in hasCameraMoved function)
             const newCameraPosition = {...camera.position};
 
-            // Remove excessive decimals in coordinates
-            this.toFixedHelper(onTouchCameraPosition);
-            this.toFixedHelper(newCameraPosition);
-
-            // Since camera is moved by gsap, sometimes we can find a _gsap key inside the camera position object
-            // So we remove it to avoid problems with json stringify coming next
-            delete onTouchCameraPosition["_gsap"];
-            delete newCameraPosition["_gsap"];
-
-            // Compare stringified positions
-            if (JSON.stringify(onTouchCameraPosition) === JSON.stringify(newCameraPosition)) {
-                // Handle touch if camera isn't moving
+            if (
+                // Camera is still, hasn't moved since delay
+                !WebGlManager.getInstance().hasCameraMoved(onTouchCameraPosition, newCameraPosition)
+                // Or camera moving and user is not dragging (just a click while camera is moving)
+                || !this._clickHeld && WebGlManager.getInstance().getCameraMoving()
+            ) {
                 this.handleOnTouchStartEvent(event);
             }
         });
@@ -122,32 +111,28 @@ export class RaycastEvent {
      * Executed if onTouchStart event is valid
      * @param event
      */
-    handleOnTouchStartEvent(event) {
+    handleOnTouchStartEvent(event: PointerEvent) {
+        // If object pointed is different that at the time of initial click, process
+        RaycastManager.getInstance().clickProcessing(this.getPointedElementIdentifier(event));
+    }
+
+    /**
+     * Returns the object identifier found in event param
+     * @param event
+     */
+    getPointedElementIdentifier(event: PointerEvent) {
+        // @ts-ignore
         let touches = event.changedTouches !== undefined ? event.changedTouches[0] : {clientX: event.clientX, clientY: event.clientY};
         // calculate mouse position in normalized device coordinates
         // (-1 to +1) for both components
         this._mouse.x = (touches.clientX / window.innerWidth) * 2 - 1;
         this._mouse.y = -(touches.clientY / window.innerHeight) * 2 + 1;
 
-        // Get the element identifier
-        const touchedElementIdentifier = this.getTouchedElementIdentifier(
+        // Return the element identifier
+        return this.getTouchedElementIdentifierFrom(
             this._scene,
             this._mouse,
             this._camera
         );
-
-        RaycastManager.getInstance().clickProcessing(touchedElementIdentifier);
-    }
-
-    /**
-     * Set number of decimals to 1 in values of given object
-     * @param object
-     */
-    toFixedHelper(object) {
-        Object.entries(object).forEach(([key, value]) => {
-            if(typeof value === "number") {
-                object[key] = value.toFixed(1);
-            }
-        });
     }
 }
