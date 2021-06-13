@@ -18,7 +18,7 @@ export class ObjectContainerSceneElement extends SceneElement {
     createElement() {
         const asset: AssetGLTF = AssetMemory.instance.get(this.gltfId);
 
-        let toModify: ObjectContainerMeshInstance[] = [];
+        let toModify: IObjectContainerMeshInstance[] = [];
 
         // pré-traitement
         asset.gltf.scene.children.forEach(value => {
@@ -66,7 +66,7 @@ export class ObjectContainerSceneElement extends SceneElement {
     }
 }
 
-interface ObjectContainerMeshInstance {
+interface IObjectContainerMeshInstance {
     id: string;
     amount: number;
     objects: Object3D[]
