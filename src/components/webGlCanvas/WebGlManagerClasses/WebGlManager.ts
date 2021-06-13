@@ -5,7 +5,7 @@ import {
     REVISION,
     Scene, sRGBEncoding,
     WebGLRenderer,
-    Box3, Vector3, AxesHelper, Object3D, GridHelper, InstancedMesh
+    Box3, Vector3, AxesHelper, Object3D, GridHelper, InstancedMesh, BoxGeometry, MeshBasicMaterial, Mesh
 } from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
@@ -200,14 +200,14 @@ export class WebGlManager {
 
                         // Debug cube
                         // @ts-ignore
-                        // function tempRandom() {
-                        //     return Math.random() * (1 - 0) + 0;
-                        // }
-                        // const geometry = new BoxGeometry( boxSize.x + offset, boxSize.y + offset, boxSize.z + offset );
-                        // const material = new MeshBasicMaterial( {color: new Color(tempRandom(), tempRandom(), tempRandom())} );
-                        // const cube = new Mesh( geometry, material );
-                        // cube.position.set(object.position.x - offset / 2, object.position.y - offset / 2, object.position.z - offset / 2);
-                        // this._scene.add(cube);
+                        function tempRandom() {
+                            return Math.random() * (1 - 0) + 0;
+                        }
+                        const geometry = new BoxGeometry( boxSize.x + offset, boxSize.y + offset, boxSize.z + offset );
+                        const material = new MeshBasicMaterial( {color: new Color(tempRandom(), tempRandom(), tempRandom())} );
+                        const cube = new Mesh( geometry, material );
+                        cube.position.set(object.position.x - offset / 2, object.position.y - offset / 2, object.position.z - offset / 2);
+                        this._scene.add(cube);
                     }
                 });
             }
@@ -242,7 +242,7 @@ export class WebGlManager {
                     if(obj.object.material.opacity !== .2) obj.object.material.opacity = .2
 
                     // Set all instanced meshes opacity
-                    this._toggleInstancedMeshesOpacity(false);
+                    // this._toggleInstancedMeshesOpacity(false);
                 }
                 // If camera is not inside the building
                 else {
