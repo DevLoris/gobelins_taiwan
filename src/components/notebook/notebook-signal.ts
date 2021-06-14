@@ -1,5 +1,4 @@
 import {Signal} from "../../lib/helpers/Signal";
-import {NotebookPages} from "./Notebook";
 
 export enum NOTEBOOK_SEND {
     TOGGLE,

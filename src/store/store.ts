@@ -87,7 +87,13 @@ const experienceSlice = createSlice({
                if(found) {
                 found.vlog.outro = payload.payload.bool;
             }
-        }
+        },
+        toggleAntiAliasing: (state: ICustomState, payload: PayloadAction<boolean>) => {
+            state.settings.antialiasing = payload.payload;
+        },
+        toggleOutlineEffect: (state: ICustomState, payload: PayloadAction<boolean>) => {
+            state.settings.outline = payload.payload;
+        },
     }
 });
 
@@ -114,7 +120,7 @@ store.subscribe(() => {
 // exports rapides des méthodes de store
 export {store};
 export const { getState, dispatch } = store;
-export const { tutorial, activeScenery, addScenery, addPickElementScene, pickupHint, pickupPreHint, toggleOnMap, vlogIntro, vlogOutro } = experienceSlice.actions;
+export const { tutorial, activeScenery, addScenery, addPickElementScene, pickupHint, pickupPreHint, toggleOnMap, vlogIntro, vlogOutro, toggleAntiAliasing, toggleOutlineEffect } = experienceSlice.actions;
 
 // Types relatifs au store
 export type RootState = ReturnType<typeof store.getState>

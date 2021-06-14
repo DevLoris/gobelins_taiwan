@@ -31,7 +31,6 @@ const debug = require("debug")(`front:${componentName}`);
  * @name GameContainer
  */
 function GameContainer (props: IProps) {
-
   const rootRef = useRef<HTMLDivElement>(null);
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -166,7 +165,7 @@ function GameContainer (props: IProps) {
           </>
     }
     {
-      showVlog &&  <Vlog videoId={SequenceManager.instance.getCurrentVideoId()}/>
+      showVlog && <Vlog videoId={SequenceManager.instance.getCurrentVideoId()}/>
     }
   </div>
 }
