@@ -5,7 +5,7 @@ import {
     REVISION,
     Scene, sRGBEncoding,
     WebGLRenderer,
-    Box3, Vector3, AxesHelper, Object3D, GridHelper, InstancedMesh, BoxGeometry, MeshBasicMaterial, Mesh
+    Box3, Vector3, AxesHelper, Object3D, GridHelper, InstancedMesh, BoxGeometry, MeshBasicMaterial, Mesh, PlaneGeometry
 } from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
@@ -23,6 +23,8 @@ import NotebookSignal, {NOTEBOOK_SEND} from "../../notebook/notebook-signal";
 import {gsap} from "gsap";
 import {objectNumberValuesToFixed} from "../../../lib/utils/objectUtils";
 import {ICustomStateSettings} from "../../../store/state_interface_experience";
+import {SpriteSceneElement} from "./scenery/elements/SpriteSceneElement";
+import {Geometry} from "three/examples/jsm/deprecated/Geometry";
 
 const debug = require("debug")(`front:WebGlManager`);
 
@@ -307,6 +309,12 @@ export class WebGlManager {
 
         if(this._renderEnabled) {
             this._control.update();
+
+            this.getScene().children.forEach(value => {
+                if (value instanceof Mesh && value.geometry instanceof PlaneGeometry && value.userData.sprite) {
+                    value.rotation.y = Math.atan2( ( this._camera.position.x - value.position.x ), (  this._camera.position.z - value.position.z ) );
+                }
+            })
 
             if (this._effects.length == 0) {
                 this._renderer.render(this._scene, this._camera);
