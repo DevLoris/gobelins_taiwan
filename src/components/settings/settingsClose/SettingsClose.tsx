@@ -11,6 +11,7 @@ const componentName = "SettingsClose";
 const debug = require("debug")(`front:${componentName}`);
 
 /**
+ * Fermeture de la popup des options
  * @name SettingsClose
  */
 function SettingsClose (props: IProps) {

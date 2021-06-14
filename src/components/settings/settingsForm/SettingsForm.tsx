@@ -19,11 +19,12 @@ enum QUALITY_LEVEL {
 }
 
 /**
+ * Settings form which allows quality selection and save
  * @name SettingsForm
  */
 function SettingsForm(props: IProps) {
     const {t} = useTranslation();
-    // On récupère les paramètres antialiasing et outlineeffect
+    // On récupère les paramètres antialiasing et outline effect
     const states = {...store.getState().user_data.settings};
 
     return <div className={merge([css.root, props.className])}>
@@ -31,11 +32,8 @@ function SettingsForm(props: IProps) {
             <label>
                 {t("settings__label__select")}
                 <select onChange={(e) => {
-                    for (const prop in states) {
-                        if (Object.prototype.hasOwnProperty.call(states, prop)) {
-                            states[prop] = e.target.value === QUALITY_LEVEL.HIGH_QUALITY.toString();
-                        }
-                    }
+                    states.outline = e.target.value === QUALITY_LEVEL.HIGH_QUALITY.toString();
+                    states.antialiasing = e.target.value === QUALITY_LEVEL.HIGH_QUALITY.toString();
                 }}
                 defaultValue={states.outline && states.antialiasing ? QUALITY_LEVEL.HIGH_QUALITY : QUALITY_LEVEL.LOW_QUALITY}>
                     <option value={QUALITY_LEVEL.HIGH_QUALITY}>{t("settings__label__highq")}</option>
