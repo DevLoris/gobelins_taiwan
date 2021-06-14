@@ -3,7 +3,7 @@ import {getChapterAndStepInUrl} from "../../helpers/DebugHelpers";
 import {Signal} from "../../lib/helpers/Signal";
 import {SceneVars} from "../../vars/scene_vars";
 import {selectUserActiveScene, selectUserScene} from "../../store/store_selector";
-import {getState} from "../../store/store";
+import {getState, store, toggleOnMap} from "../../store/store";
 
 const debug = require("debug")(`front:SequenceManager`);
 
@@ -24,6 +24,7 @@ export enum EChapterName {
  */
 export interface ISequenceChapter {
     name: EChapterName,
+    scene: string,
     steps: ISequenceStep[],
 }
 
@@ -39,6 +40,7 @@ export interface ISequenceStep {
 export const CHAPTERS: ISequenceChapter[] = [
     {
         name: EChapterName.FIRST_ENIGMA,
+        scene: SceneVars.TAIPEI,
         steps: [
             {
                 identifier: EChapterStep.INTRO_VLOG,
@@ -57,6 +59,7 @@ export const CHAPTERS: ISequenceChapter[] = [
     },
     {
         name: EChapterName.SECOND_ENIGMA,
+        scene: SceneVars.WILD,
         steps: [
             {
                 identifier: EChapterStep.INTRO_VLOG,
@@ -310,6 +313,10 @@ export class SequenceManager {
             this.activeChapterName = EChapterName[CHAPTERS[this._activeChapterIndex].name];
             this.activeStepIndex = 0;
             this.activeStepName = CHAPTERS[this._activeChapterIndex].steps[this.activeStepIndex].identifier;
+
+            // Add chapter to map
+            store.dispatch(toggleOnMap({bool: true,  scene: CHAPTERS[this._activeChapterIndex].scene}));
+
             debug("current chapter is", this.activeChapterName, "and current step is", this.activeStepName);
         }
     }

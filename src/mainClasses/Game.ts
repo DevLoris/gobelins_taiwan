@@ -5,8 +5,9 @@ import {isLocal, isUrlDebug} from "../helpers/DebugHelpers";
 import {ERouterPage} from "../routes";
 import {Router} from "../lib/router/Router";
 import {EChapterStep} from "./Sequencer/SequenceChapterStep";
-import {SceneVars} from "../vars/scene_vars";
+import {DEFAULT_SCENE, SceneVars} from "../vars/scene_vars";
 import {createEmptyScenery} from "../store/store_helper";
+import {Scene} from "three";
 
 const debug = require("debug")(`front:Game`);
 
@@ -26,7 +27,7 @@ export class Game {
 
         // Init scene store
         for(let scenery in SceneVars) {
-            store.dispatch(addScenery(createEmptyScenery(SceneVars[scenery])));
+            store.dispatch(addScenery(createEmptyScenery(SceneVars[scenery], SceneVars[scenery] == DEFAULT_SCENE)));
         }
 
 
