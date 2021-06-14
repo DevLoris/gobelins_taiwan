@@ -18,6 +18,10 @@ export class SpriteSceneElement extends SceneElement {
         plane.userData = {sprite: true};
         plane.scale.set(this.scale[0], this.scale[1] * (this.size.h / this.size.w), this.scale[2]);
         plane.rotation.set(this.rotation.x, this.rotation.y, this.rotation.z);
+
+        // custom data
+        plane.userData.sprite = true;
+
         return plane;
     }
 }
