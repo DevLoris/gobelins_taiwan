@@ -29,7 +29,7 @@ export class OutlineCustomEffect extends OutlineEffect {
 			outlineAlpha: { value: defaultAlpha }
 		};
 
-        const vertexShader = 
+        const vertexShader =
            `#include <common>
             #include <uv_pars_vertex>
             #include <displacementmap_pars_vertex>
@@ -72,7 +72,7 @@ export class OutlineCustomEffect extends OutlineEffect {
                 #include <fog_vertex>
             }`;
 
-        const fragmentShader = 
+        const fragmentShader =
            `#include <common>
             #include <fog_pars_fragment>
             #include <logdepthbuf_pars_fragment>
@@ -133,6 +133,10 @@ export class OutlineCustomEffect extends OutlineEffect {
 		}
 
 		function isCompatible(object) {
+			if (!!object.userData.outlineIgnore) {
+				return false;
+			}
+
 			const geometry = object.geometry;
 			let hasNormals = false;
 
@@ -147,15 +151,8 @@ export class OutlineCustomEffect extends OutlineEffect {
 			return (object.isMesh === true && object.material !== undefined && hasNormals === true);
 		}
 
-		function isSprite(object) {
-			if (!!object.userData.sprite) {
-                return true;
-            }
-			return false;
-		}
-
 		function setOutlineMaterial(object) {
-			if (isCompatible(object) === false || isSprite(object)) {
+			if (isCompatible(object) === false) {
 				return;
 			}
 			if (Array.isArray(object.material)) {
@@ -171,7 +168,7 @@ export class OutlineCustomEffect extends OutlineEffect {
 		}
 
 		function restoreOriginalMaterial(object) {
-			if (isCompatible(object) === false || isSprite(object)) {
+			if (isCompatible(object) === false) {
 				return;
 			};
 			if (Array.isArray(object.material)) {

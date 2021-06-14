@@ -38,11 +38,17 @@ export class MeshObjectSceneElement extends SceneElement {
         let element = this.createElement();
         debug(element);
         element.userData.internalId = this.id;
-        // Exclue les grilles parce qu'elles sont en noir
-        // TODO: Retirer une fois qu'on a trouvé une solution
-        if (this.id == 'scene__GridSolo' || this.id == 'scene__GridDouble') {
-            element.userData.sprite = true;
-        }
+        // Exclue les instances mesh qui sont affichés en noir avec le outline effect
+        const outlineExclusion = [
+            'scene__Grid',
+            'scene__Stand'
+        ]
+        // TODO: A retirer une fois qu'on a trouvé une solution
+        outlineExclusion.forEach((value) => {
+           if (this.id.startsWith(value)) {
+               element.userData.outlineIgnore = true;
+           }
+        });
 
         let i = 0;
         this.positions.forEach((v) => {

@@ -15,7 +15,7 @@ export class SpriteSceneElement extends SceneElement {
         const material = new MeshStandardMaterial( { map, transparent: true, side: DoubleSide } );
         material.metalness = 1;
         const plane = new Mesh(geometry, material);
-        plane.userData = {sprite: true};
+        plane.userData.outlineIgnore = true;
         plane.scale.set(this.scale[0], this.scale[1] * (this.size.h / this.size.w), this.scale[2]);
         plane.rotation.set(this.rotation.x, this.rotation.y, this.rotation.z);
         return plane;
