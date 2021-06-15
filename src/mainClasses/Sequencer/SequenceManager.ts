@@ -2,8 +2,9 @@ import {EChapterStep} from "./SequenceChapterStep";
 import {getChapterAndStepInUrl} from "../../helpers/DebugHelpers";
 import {Signal} from "../../lib/helpers/Signal";
 import {SceneVars} from "../../vars/scene_vars";
-import {selectUserActiveScene, selectUserScene} from "../../store/store_selector";
-import {getState} from "../../store/store";
+import {selectUserActiveScene, selectUserScene, selectUserSequencerProgression} from "../../store/store_selector";
+import {getState, sequencerProgression, store, toggleOnMap} from "../../store/store";
+import {TutorialState} from "../../store/state_interface_experience";
 
 const debug = require("debug")(`front:SequenceManager`);
 
@@ -16,7 +17,9 @@ export enum EChapterName {
     INTRO_VLOG = "INTRO_VLOG",
     FIRST_ENIGMA = "FIRST_ENIGMA",
     SECOND_ENIGMA = "SECOND_ENIGMA",
-    OUTRO_VLOG = "OUTRO_VLOG"
+    OUTRO_VLOG = "OUTRO_VLOG",
+    MAP_UNLOCK = "MAP_UNLOCK",
+    TUTORIAL = "TUTORIAL"
 }
 
 /**
@@ -24,6 +27,7 @@ export enum EChapterName {
  */
 export interface ISequenceChapter {
     name: EChapterName,
+    scene: string,
     steps: ISequenceStep[],
 }
 
@@ -33,12 +37,14 @@ export interface ISequenceChapter {
 export interface ISequenceStep {
     identifier: EChapterStep,
     id: string,
-    sceneId?: string
+    sceneId?: string,
+    tutorialState?: TutorialState,
 }
 
 export const CHAPTERS: ISequenceChapter[] = [
     {
         name: EChapterName.FIRST_ENIGMA,
+        scene: SceneVars.TAIPEI,
         steps: [
             {
                 identifier: EChapterStep.INTRO_VLOG,
@@ -49,31 +55,45 @@ export const CHAPTERS: ISequenceChapter[] = [
                 id: "centreVilleWesh",
                 sceneId: SceneVars.TAIPEI
             },
-            // {
-            //     identifier: EChapterStep.OUTRO_VLOG,
-            //     id: "opening"
-            // },
+            {
+                identifier: EChapterStep.OUTRO_VLOG,
+                id: "opening"
+            },
+            {
+                identifier: EChapterStep.MAP_UNLOCK,
+                id: "mapWildUnlock",
+                sceneId: SceneVars.WILD
+            },
+            {
+                identifier: EChapterStep.TUTORIAL,
+                id: "tutorialMap",
+                tutorialState: TutorialState.MAP
+            },
         ]
     },
-    // {
-    //     name: EChapterName.SECOND_ENIGMA,
-    //     steps: [
-    //         {
-    //             identifier: EChapterStep.INTRO_VLOG,
-    //             id: "loris",
-    //         },
-    //         {
-    //             identifier: EChapterStep.DIORAMA,
-    //             id: "sceneTwo",
-    //             sceneId: SceneVars.WILD
-    //         },
-    //         {
-    //             identifier: EChapterStep.OUTRO_VLOG,
-    //             id: "opening"
-    //         },
-    //     ]
-    // },
+    {
+        name: EChapterName.SECOND_ENIGMA,
+        scene: SceneVars.WILD,
+        steps: [
+            {
+                identifier: EChapterStep.INTRO_VLOG,
+                id: "loris",
+            },
+            {
+                identifier: EChapterStep.DIORAMA,
+                id: "sceneTwo",
+                sceneId: SceneVars.WILD
+            },
+            {
+                identifier: EChapterStep.OUTRO_VLOG,
+                id: "opening"
+            },
+        ]
+    },
 ];
+
+// Nombre de chapitres dans le jeu
+const SEQUENCE_COUNT = CHAPTERS.length;
 
 export class SequenceManager {
 
@@ -146,6 +166,18 @@ export class SequenceManager {
         debug("New active step index is", this.activeStepIndex);
     }
 
+    /**
+     * The active video ID, if the current step is vlog
+     * @private
+     */
+    private _activeVideoId: string = "";
+    get activeVideoId(): string {
+        return this._activeVideoId;
+    }
+    set activeVideoId(id:string) {
+        this._activeVideoId = id;
+    }
+
     // ---------------------------------------------------------------------------
 
     /**
@@ -210,6 +242,25 @@ export class SequenceManager {
     }
 
     /**
+     * If current step is diorama, return the name of the scenery
+     */
+    public getCurrentSceneId(): string {
+        const sceneId = CHAPTERS[this._activeChapterIndex].steps[this.activeStepIndex].sceneId;
+        debug("getCurrentSceneId()", sceneId);
+        if(sceneId === undefined) console.error("Scene ID is undefined. Maybe the current step is not diorama");
+        return sceneId;
+    }
+
+
+    /**
+     * If current step is diorama, return the name of the scenery
+     */
+    public getCurrentSceneData(): ISequenceStep {
+        const sceneData = CHAPTERS[this._activeChapterIndex].steps[this.activeStepIndex];
+        return sceneData;
+    }
+
+    /**
      * Get scene id from current chapter
      * @return string
      */
@@ -239,24 +290,15 @@ export class SequenceManager {
      * @private
      */
     private setPositionsFromStore(sceneId: string) {
-        CHAPTERS.forEach((chapter, chapterIndex) => {
-                chapter.steps.forEach((step, stepIndex) => {
-                    // Set current step as diorama scene
-                    if( step?.sceneId && step.sceneId === sceneId ) {
-                        this.activeChapterName = EChapterName[CHAPTERS[chapterIndex].name];
-                        this._activeChapterIndex = chapterIndex;
-                        this.activeStepName = step.identifier;
-                        this.activeStepIndex = stepIndex;
+        let store_data = selectUserSequencerProgression(getState());
 
-                        const scenePickupState = selectUserScene(sceneId)(getState().user_data)?.hint?.pickup;
+        let chapter = CHAPTERS.find((chapter, index) => { return index == store_data.chapter });
+        let step = chapter.steps.find((step, index) => { return index == store_data.step });
 
-                        // If main element has been picked, increment
-                        if(scenePickupState) {
-                            this.increment();
-                        }
-                    }
-                });
-        });
+        this.activeChapterName = EChapterName[CHAPTERS[store_data.chapter].name];
+        this._activeChapterIndex = store_data.chapter;
+        this.activeStepName = step.identifier;
+        this.activeStepIndex = store_data.step;
     }
 
     /**
@@ -285,7 +327,19 @@ export class SequenceManager {
             this.activeChapterName = EChapterName[CHAPTERS[this._activeChapterIndex].name];
             this.activeStepIndex = 0;
             this.activeStepName = CHAPTERS[this._activeChapterIndex].steps[this.activeStepIndex].identifier;
+
             debug("current chapter is", this.activeChapterName, "and current step is", this.activeStepName);
         }
+
+        store.dispatch(sequencerProgression({step: this.activeStepIndex, chapter: this._activeChapterIndex}))
+    }
+
+    public goTo(chapter_id: number, step_id: number = 0) {
+        this._activeChapterIndex = chapter_id;
+        this.activeChapterName = EChapterName[CHAPTERS[this._activeChapterIndex].name];
+        this.activeStepIndex = step_id;
+        this.activeStepName = CHAPTERS[this._activeChapterIndex].steps[this.activeStepIndex].identifier;
+
+        store.dispatch(sequencerProgression({step: this.activeStepIndex, chapter: this._activeChapterIndex}))
     }
 }

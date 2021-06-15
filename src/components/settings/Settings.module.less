@@ -1,0 +1,27 @@
+@import (reference) "../../references.less";
+
+.root {
+  max-width: 400px;
+  max-height: 200px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 3;
+  transform: translateX(calc(100vw + 10px)) rotate(-1deg);
+  padding: 20px 0 0;
+  transition: 1s;
+  top: calc(50% - 100px);
+  left: calc(50% - 200px);
+  background: @white-color url("../../public/da/texture_wave.png") no-repeat -82px -10px;
+}
+
+.menu {
+  position: absolute;
+  top: -25px;
+  right: -25px;
+  width: calc(100% - 40px);
+}
+
+.open {
+  transform: translate(0, 0%);
+}

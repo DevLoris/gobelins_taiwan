@@ -1,5 +1,8 @@
 @import (reference) "../../references.less";
 
+
+// PICKUP ELEMENT (OBJECT)
+
 .root {
   position: absolute;
   z-index: 2;
@@ -62,5 +65,53 @@
     display: inline-block;
     margin-bottom: 0.5rem;
     padding-bottom: 0.2rem;
+  }
+}
+
+// PICKUP ENIGMA CONCLUSION
+
+
+.rootEnigma {
+  position: absolute;
+  z-index: 2;
+  width: 400px;
+  padding: 10px;
+  bottom: 0%;
+  text-align: center;
+  left: 50%;
+  transform: translate(-50%,0);
+  background: url("../../public/da/picked_element.png") top;
+
+  button{
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(-20px, -50%);
+  }
+}
+
+.pictureEnigma {
+  height: 190px;
+  position: relative;
+  margin-top: 30px;
+  img {
+    position: absolute;
+    left: 50%;
+    &:nth-child(1) {
+      box-shadow: rgba(0, 0, 0, 0.16) -1px 1px 0;
+      border: 7px solid white;
+      transform:translate(calc(-50% + 55px), 0px) rotate(4deg);
+      z-index: 2;
+    }
+    &:nth-child(2) {
+      transform: translate(calc(-50% + -55px), 25px) rotate(-6deg);
+      z-index: 1;
+    }
+    &:nth-child(3) {
+      z-index: 3;
+      bottom: 0;
+      transform: translate(-50%, 0);
+      cursor: pointer;
+    }
   }
 }

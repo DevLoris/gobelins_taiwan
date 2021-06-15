@@ -4,8 +4,8 @@ import {
     ICustomState,
     ICustomStateScene,
     initialState,
-    IPickupElement,
-    STORE_VERSION
+    IPickupElement, ISequencerProgressionPayload,
+    STORE_VERSION, TutorialState
 } from "./state_interface_experience";
 import data from '../data/data.json';
 import {IStateData} from "./state_interface_data";
@@ -38,8 +38,12 @@ const experienceSlice = createSlice({
         activeScenery: (state: ICustomState, action: PayloadAction<string>) => {
             state.active_scene = action.payload
         },
-        tutorial: (state: ICustomState, action: PayloadAction<boolean>) => {
+        tutorial: (state: ICustomState, action: PayloadAction<TutorialState>) => {
             state.tutorial = action.payload
+        },
+        sequencerProgression: (state: ICustomState, payload: PayloadAction<ISequencerProgressionPayload>) => {
+            state.sequencer.step = payload.payload.step;
+            state.sequencer.chapter = payload.payload.chapter;
         },
         addScenery: (state: ICustomState, scene: PayloadAction<ICustomStateScene>) =>  {
             // ajout  d'une scène dans le store, si elle existe déjà on l'ajoute pas
@@ -87,7 +91,13 @@ const experienceSlice = createSlice({
                if(found) {
                 found.vlog.outro = payload.payload.bool;
             }
-        }
+        },
+        toggleAntiAliasing: (state: ICustomState, payload: PayloadAction<boolean>) => {
+            state.settings.antialiasing = payload.payload;
+        },
+        toggleOutlineEffect: (state: ICustomState, payload: PayloadAction<boolean>) => {
+            state.settings.outline = payload.payload;
+        },
     }
 });
 
@@ -114,7 +124,7 @@ store.subscribe(() => {
 // exports rapides des méthodes de store
 export {store};
 export const { getState, dispatch } = store;
-export const { tutorial, activeScenery, addScenery, addPickElementScene, pickupHint, pickupPreHint, toggleOnMap, vlogIntro, vlogOutro } = experienceSlice.actions;
+export const { sequencerProgression, tutorial, activeScenery, addScenery, addPickElementScene, pickupHint, pickupPreHint, toggleOnMap, vlogIntro, vlogOutro, toggleAntiAliasing, toggleOutlineEffect } = experienceSlice.actions;
 
 // Types relatifs au store
 export type RootState = ReturnType<typeof store.getState>

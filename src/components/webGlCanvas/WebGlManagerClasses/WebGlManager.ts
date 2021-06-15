@@ -5,14 +5,14 @@ import {
     REVISION,
     Scene, sRGBEncoding,
     WebGLRenderer,
-    Box3, Vector3, AxesHelper, Object3D, GridHelper, InstancedMesh, BoxGeometry, MeshBasicMaterial, Mesh,
+    Box3, Vector3, AxesHelper, Object3D, GridHelper, InstancedMesh, BoxGeometry, MeshBasicMaterial, Mesh, PlaneGeometry
 } from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
 import {activeScenery, getState, store} from "../../../store/store";
 import {RaycastEvent} from "./events/RaycastEvent";
 import {SceneryUtils} from "./scenery/SceneryUtils";
-import {selectScene, selectUserActiveScene} from "../../../store/store_selector";
+import {selectScene, selectUserActiveScene, selectUserSequencerProgression} from "../../../store/store_selector";
 import {CAMERA_ASPECT, CAMERA_FAR, CAMERA_FOV, CAMERA_NEAR} from "./WebGlVars";
 import LightUtils from "./scenery/LightUtils";
 import {HdrUtils} from "./scenery/HdrUtils";
@@ -22,6 +22,10 @@ import {AudioHandler} from "../../../lib/audio/AudioHandler";
 import NotebookSignal, {NOTEBOOK_SEND} from "../../notebook/notebook-signal";
 import {gsap} from "gsap";
 import {objectNumberValuesToFixed} from "../../../lib/utils/objectUtils";
+import {ICustomStateSettings} from "../../../store/state_interface_experience";
+import {SpriteSceneElement} from "./scenery/elements/SpriteSceneElement";
+import {Geometry} from "three/examples/jsm/deprecated/Geometry";
+import {CHAPTERS, SequenceManager} from "../../../mainClasses/Sequencer/SequenceManager";
 import {zeroToOneRandom} from "../../../lib/utils/mathUtils";
 
 const debug = require("debug")(`front:WebGlManager`);
@@ -45,6 +49,7 @@ export class WebGlManager {
     private static instance: WebGlManager;
 
     private _wrapper:HTMLDivElement = null;
+    private _settings:ICustomStateSettings = null;
 
     private _animationLoopId:number = 0;
     private _configureGui:ConfigureGui = null;
@@ -101,6 +106,8 @@ export class WebGlManager {
         debug("ThreeJS version:", REVISION);
         debug("pSceneryName", pSceneryName);
 
+        this._settings = store.getState().user_data.settings;
+
         this._wrapper = pWrapper;
 
         this._setupScene();
@@ -145,7 +152,7 @@ export class WebGlManager {
      * @private
      */
     private _setupRenderer():void {
-        this._renderer = new WebGLRenderer({ antialias: true });
+        this._renderer = new WebGLRenderer({ antialias: this._settings.antialiasing });
         this._renderer.physicallyCorrectLights = true;
         this._renderer.outputEncoding = sRGBEncoding;
         this._renderer.setSize( window.innerWidth, window.innerHeight );
@@ -353,6 +360,12 @@ export class WebGlManager {
         if(this._renderEnabled) {
             this._control.update();
 
+            this.getScene().children.forEach(value => {
+                if (value instanceof Mesh && value.geometry instanceof PlaneGeometry && value.userData.sprite) {
+                    value.rotation.y = Math.atan2( ( this._camera.position.x - value.position.x ), (  this._camera.position.z - value.position.z ) );
+                }
+            })
+
             if (this._effects.length == 0) {
                 this._renderer.render(this._scene, this._camera);
             } else {
@@ -473,7 +486,9 @@ export class WebGlManager {
         SceneryUtils.buildElementsOf(this._scene, scene.content.elements);
 
         // ADD EFFECTS
-        ENABLE_EFFECTS && (this._effects = SceneryUtils.addEffects(scene.content.effects));
+        if (this._settings.outline) {
+            this._effects = SceneryUtils.addEffects(scene.content.effects);
+        }
         HdrUtils.loadEnvironment('wow');
 
         // AMBIENT SOUND
@@ -511,6 +526,21 @@ export class WebGlManager {
 
         // Signal update scene
         this.onChangeScenery.dispatch(scene_id);
+
+        this.playSequencerOnScene(scene_id);
+    }
+
+    public playSequencerOnScene(scene_id: string) {
+        // on récup la progression actuelle
+        let progression = selectUserSequencerProgression(getState());
+
+        // on envoie dans le bon chapitre
+        CHAPTERS.forEach((v, k) => {
+            if(k > progression.chapter && v.scene == scene_id) {
+                SequenceManager.instance.goTo(k);
+                return;
+            }
+        });
     }
 
     public getCamera(): Camera {
