@@ -56,7 +56,7 @@ function GameContainer (props: IProps) {
   }, []);
 
   useEffect(() => {
-    console.log(showVlog, showWebGl);
+    debug(showVlog, showWebGl);
   }, [showVlog, showWebGl]);
 
   /**
@@ -134,8 +134,6 @@ function GameContainer (props: IProps) {
   }
 
   function switchTo(step: EChapterStep) {
-    console.log(step);
-
     setShowVlog(false);
     setShowWebgl(false);
 

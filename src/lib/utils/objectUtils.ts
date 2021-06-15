@@ -6,7 +6,7 @@
 export function objectNumberValuesToFixed(object, decimals) {
     Object.entries(object).forEach(([key, value]) => {
         if(typeof value === "number") {
-            object[key] = value.toFixed(1);
+            object[key] = value.toFixed(decimals);
         }
     });
 }

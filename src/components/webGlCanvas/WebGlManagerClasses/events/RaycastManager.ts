@@ -12,6 +12,8 @@ import FocusUtils from "../scenery/FocusUtils";
 import {SceneryUtils} from "../scenery/SceneryUtils";
 import {AudioHandler} from "../../../../lib/audio/AudioHandler";
 
+const debug = require("debug")(`front:RaycastManager`);
+
 class RaycastManager {
     private static instance: RaycastManager;
 
@@ -28,6 +30,7 @@ class RaycastManager {
     }
 
     public clickProcessing(id: string) {
+        debug("Clicked on", id);
         // SCENE
         const userSceneId = selectUserActiveScene(getState());
         const scene = selectScene(userSceneId)(getState().data);
@@ -39,6 +42,7 @@ class RaycastManager {
         if(collectibleSceneData !== undefined && !FocusUtils.isFocus) {
             // COLLECTIBLE EXIST ON SCENE
             let collectible = selectCollectible(collectibleSceneData.collectible_id)(getState().data);
+            
             if(collectible) {
                 switch (collectible.type) {
                     case IStateDataSceneCollectibleType.HINT:
