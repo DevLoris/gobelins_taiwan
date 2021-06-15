@@ -55,7 +55,7 @@
           "z": 0
         },
         "minPolar": 0,
-        "maxPolar": 1.65,
+        "maxPolar": 1.55,
         "minDistance": 0.2,
         "maxDistance": 100
       },
@@ -194,7 +194,7 @@
   "models": [
     {
       "id": "TaipeiMain",
-      "path": "/public/sceneries/demo/TaipeiV3.glb"
+      "path": "/public/sceneries/demo/TaipeiV9.glb"
     },
     {
       "id": "GridBottom",
@@ -299,6 +299,14 @@
     {
       "id": "Ornement",
       "path": "/public/sceneries/demo/V3_Instances/Ornement.glb"
+    },
+    {
+      "id": "GridSandra1",
+      "path": "/public/sceneries/demo/V3_Instances/Grid_Sandra_1.glb"
+    },
+    {
+      "id": "GridSandra2",
+      "path": "/public/sceneries/demo/V3_Instances/Grid_Sandra_2.glb"
     }
 
   ],
