@@ -103,6 +103,11 @@ export class RaycastEvent {
         gsap.delayedCall(.25, () => {
             const cameraMoving = WebGlManager.getInstance().getCameraMoving();
 
+            // TODO A TESTER
+            // si on a bougé entre le click et le relachement, on drag.
+            // Si on bouge déjà ET que on click, c'est un click validé.
+            // Si on bouge pas c'est un click validé
+
             if (
                 // If camera is not moving & click is not held (single click)
                 !cameraMoving && !this._clickHeld

@@ -30,6 +30,22 @@
             "coords": {"x": 2, "y": 4, "z": 5},
             "rotation": {"x": 3, "y": 1, "z":3}
           }
+        },
+        {
+          "collectible_id": "taipei_101",
+          "trigger": "pin101",
+          "focus": {
+            "coords": {"x": 25, "y": 28, "z": 25},
+            "rotation": {"x": -2, "y": 30, "z":-0.2}
+          }
+        },
+        {
+          "collectible_id": "lgbt",
+          "trigger": "pinlgbt",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": 19, "y": -0.5, "z": -5}
+          }
         }
       ],
       "map": {
@@ -137,30 +153,7 @@
       "chinese_name": "荒野",
       "phonetic": "Huāngyě",
       "collectibles": [
-        {
-          "collectible_id": "seven_eleven",
-          "trigger": "AntoineBatiment",
-          "focus": {
-            "coords": {"x": -20, "y": 20, "z": -5.5},
-            "rotation": {"x": -15.2, "y": 6.8, "z":  7.7}
-          }
-        },
-        {
-          "collectible_id": "camion_poubelle",
-          "trigger": "pickup",
-          "focus": {
-            "coords": {"x": 2, "y": 4, "z": 5},
-            "rotation": {"x": 3, "y": 1, "z":3}
-          }
-        },
-        {
-          "collectible_id": "coins",
-          "trigger": "coins",
-          "focus": {
-            "coords": {"x": 2, "y": 4, "z": 5},
-            "rotation": {"x": 3, "y": 1, "z":3}
-          }
-        }
+
       ],
       "map": {
         "pin": "=",
@@ -356,6 +349,76 @@
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
       "text": "A Taiwan, les camions poubelle jouent une petite mélodie quant ils passent. Ça te permet de savoir quand ils arrivent pour que tu ailles jeter tes poubelles. C’est l’occase de voir tous tes voisins en survêt claquettes.",
+      "additional": [
+        {
+          "type": "youtube",
+          "value": "0BjQIB7Zikk",
+          "credits": "copyright wola"
+        },
+        {
+          "type": "separator",
+          "value": null
+        },
+        {
+          "type": "text",
+          "value": "Ils jouent du beethoven"
+        },
+        {
+          "type": "tips",
+          "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "type": "testimonial",
+          "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        },
+        {
+          "type": "image",
+          "value": "/public/book.png"
+        }
+      ]
+    },
+    {
+      "id": "taipei_101",
+      "type": "hint",
+      "name": "Taipei 101",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
+      "text": "Tour eiffel go brrrrr",
+      "additional": [
+        {
+          "type": "youtube",
+          "value": "0BjQIB7Zikk",
+          "credits": "copyright wola"
+        },
+        {
+          "type": "separator",
+          "value": null
+        },
+        {
+          "type": "text",
+          "value": "Ils jouent du beethoven"
+        },
+        {
+          "type": "tips",
+          "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        },
+        {
+          "type": "testimonial",
+          "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        },
+        {
+          "type": "image",
+          "value": "/public/book.png"
+        }
+      ]
+    },
+    {
+      "id": "lgbt",
+      "type": "hint",
+      "name": "lgbt",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
+      "text": "Le passage piéton coloré permet aux conducteurs de mieux voir les piétons car les taiwanais ne savent pas conduire",
       "additional": [
         {
           "type": "youtube",

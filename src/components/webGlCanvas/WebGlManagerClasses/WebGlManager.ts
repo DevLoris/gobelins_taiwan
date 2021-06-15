@@ -3,9 +3,20 @@ import {
     Color,
     PerspectiveCamera,
     REVISION,
-    Scene, sRGBEncoding,
+    Scene,
+    sRGBEncoding,
     WebGLRenderer,
-    Box3, Vector3, AxesHelper, Object3D, GridHelper, InstancedMesh, BoxGeometry, MeshBasicMaterial, Mesh, PlaneGeometry
+    Box3,
+    Vector3,
+    AxesHelper,
+    Object3D,
+    GridHelper,
+    InstancedMesh,
+    BoxGeometry,
+    MeshBasicMaterial,
+    Mesh,
+    PlaneGeometry,
+    Clock, CubeTextureLoader, ImageUtils, TextureLoader
 } from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
@@ -75,6 +86,8 @@ export class WebGlManager {
     private _renderEnabled: boolean = true;
 
     private _controlsChangeCount: number = 0;
+
+    private _hintCubes: Object3D[] = Array();
 
     constructor() {
     }
@@ -244,13 +257,26 @@ export class WebGlManager {
                     }
                     else if(object.type === "Object3D") {
                         if(object.name.includes("pin")) {
-                            const name = object.name.replace("pin", "");
-                            debug(name)
+                            debug(object.name, object.position)
                             const geometry = new BoxGeometry( 1, 1, 1 );
-                            const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom())} );
+
+
+                            const loader = new TextureLoader();
+
+                            const textureCube = loader.load( '/public/info.png');
+
+                            const material = new MeshBasicMaterial( { color: 0xffffff, map: textureCube } );
+                            // const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom())} );
+
                             const cube = new Mesh( geometry, material );
-                            cube.position.set(object.position.x, object.position.y, object.position.z);
+                            cube.position.set(object.position.x, object.position.y + 2, object.position.z);
+                            cube["defaultYPos"] = object.position.y + 2;
+                            cube.userData = {
+                                internalId: object.name,
+                                name: object.name.replace("pin", ""),
+                            }
                             this._scene.add(cube);
+                            this._hintCubes.push(cube);
                         }
                     }
                 });
@@ -359,6 +385,10 @@ export class WebGlManager {
         this._isRunning = false;
     }
 
+    private _clock = new Clock();
+    private _time = 0;
+    private _delta = 0;
+
     /**
      * What happens in one frame
      * @private
@@ -375,6 +405,8 @@ export class WebGlManager {
                 }
             })
 
+            this._hintCubesAnimation();
+
             if (this._effects.length == 0) {
                 this._renderer.render(this._scene, this._camera);
             } else {
@@ -385,6 +417,17 @@ export class WebGlManager {
         this._configureGui.getStats().end();
 
         requestAnimationFrame(this._animationFrame.bind(this));
+    }
+
+    private _hintCubesAnimation() {
+        this._delta = this._clock.getDelta();
+        this._time += this._delta;
+
+        this._hintCubes.forEach((cube) => {
+            cube.rotation.y += 0.01;
+            // @ts-ignore
+            cube.position.y = cube.defaultYPos + Math.abs(Math.sin(this._time * 1.3)) * 1.001;
+        });
     }
 
     // --------------------------------------------------------------------------- SETUP
