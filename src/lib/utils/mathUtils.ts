@@ -3,6 +3,10 @@
  */
 // ----------------------------------------------------------------------------- GEOMETRY
 
+export function zeroToOneRandom() {
+  return Math.random() * (1 - 0) + 0;
+}
+
 /**
  * Limit a value between a min and a max
  * @param pMin Can't go bellow

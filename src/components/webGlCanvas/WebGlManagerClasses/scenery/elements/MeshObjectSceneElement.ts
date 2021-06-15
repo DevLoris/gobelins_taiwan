@@ -3,7 +3,6 @@ import { SceneElementOption } from "./SceneElementOption";
 import {AssetGLTF} from "../../assets/AssetGLTF";
 import {AssetMemory} from "../../assets/AssetMemory";
 import {InstancedMesh, Mesh, Object3D} from "three";
-import {createElement} from "react";
 
 const debug = require("debug")(`front:MeshObjectSceneElement`);
 
@@ -25,7 +24,6 @@ export class MeshObjectSceneElement extends SceneElement {
         if(model instanceof Mesh) {
             let material = model.material;
             let geometry = model.geometry.clone();
-            let amount = 1000;
 
             let mesh = new InstancedMesh(geometry, material, this.positions.length);
             return mesh;

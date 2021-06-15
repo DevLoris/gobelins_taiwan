@@ -9,10 +9,10 @@
       "collectibles": [
         {
           "collectible_id": "seven_eleven",
-          "trigger": "AntoineBatiment",
+          "trigger": "711-hitbox",
           "focus": {
-            "coords": {"x": -20, "y": 20, "z": -5.5},
-            "rotation": {"x": -15.2, "y": 6.8, "z":  7.7}
+            "coords": {"x": 35, "y": 4, "z": -6},
+            "rotation": {"x": 17.3, "y": 3.3, "z": -20}
           }
         },
         {
@@ -194,7 +194,7 @@
   "models": [
     {
       "id": "TaipeiMain",
-      "path": "/public/sceneries/demo/TaipeiV9.glb"
+      "path": "/public/sceneries/demo/TaipeiV10.glb"
     },
     {
       "id": "GridBottom",

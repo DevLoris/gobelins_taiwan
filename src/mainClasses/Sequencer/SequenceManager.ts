@@ -49,34 +49,31 @@ export const CHAPTERS: ISequenceChapter[] = [
                 id: "centreVilleWesh",
                 sceneId: SceneVars.TAIPEI
             },
-            {
-                identifier: EChapterStep.OUTRO_VLOG,
-                id: "opening"
-            },
+            // {
+            //     identifier: EChapterStep.OUTRO_VLOG,
+            //     id: "opening"
+            // },
         ]
     },
-    {
-        name: EChapterName.SECOND_ENIGMA,
-        steps: [
-            {
-                identifier: EChapterStep.INTRO_VLOG,
-                id: "loris",
-            },
-            {
-                identifier: EChapterStep.DIORAMA,
-                id: "sceneTwo",
-                sceneId: SceneVars.WILD
-            },
-            {
-                identifier: EChapterStep.OUTRO_VLOG,
-                id: "opening"
-            },
-        ]
-    },
+    // {
+    //     name: EChapterName.SECOND_ENIGMA,
+    //     steps: [
+    //         {
+    //             identifier: EChapterStep.INTRO_VLOG,
+    //             id: "loris",
+    //         },
+    //         {
+    //             identifier: EChapterStep.DIORAMA,
+    //             id: "sceneTwo",
+    //             sceneId: SceneVars.WILD
+    //         },
+    //         {
+    //             identifier: EChapterStep.OUTRO_VLOG,
+    //             id: "opening"
+    //         },
+    //     ]
+    // },
 ];
-
-// Nombre de chapitres dans le jeu
-const SEQUENCE_COUNT = CHAPTERS.length;
 
 export class SequenceManager {
 
@@ -149,18 +146,6 @@ export class SequenceManager {
         debug("New active step index is", this.activeStepIndex);
     }
 
-    /**
-     * The active video ID, if the current step is vlog
-     * @private
-     */
-    private _activeVideoId: string = "";
-    get activeVideoId(): string {
-        return this._activeVideoId;
-    }
-    set activeVideoId(id:string) {
-        this._activeVideoId = id;
-    }
-
     // ---------------------------------------------------------------------------
 
     /**
@@ -222,16 +207,6 @@ export class SequenceManager {
     public getCurrentPositionInSequence(): [string, string] {
         // if(this.activeChapterName === undefined || this.activeStepName === undefined) this.startFromBeginning();
         return [this.activeChapterName, this.activeStepName];
-    }
-
-    /**
-     * If current step is diorama, return the name of the scenery
-     */
-    public getCurrentSceneId(): string {
-        const sceneId = CHAPTERS[this._activeChapterIndex].steps[this.activeStepIndex].sceneId;
-        debug("getCurrentSceneId()", sceneId);
-        if(sceneId === undefined) console.error("Scene ID is undefined. Maybe the current step is not diorama");
-        return sceneId;
     }
 
     /**
