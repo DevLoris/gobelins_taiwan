@@ -23,14 +23,10 @@ import NotebookSignal, {NOTEBOOK_SEND} from "../../notebook/notebook-signal";
 import {gsap} from "gsap";
 import {objectNumberValuesToFixed} from "../../../lib/utils/objectUtils";
 import {ICustomStateSettings} from "../../../store/state_interface_experience";
-import {SpriteSceneElement} from "./scenery/elements/SpriteSceneElement";
-import {Geometry} from "three/examples/jsm/deprecated/Geometry";
 import {CHAPTERS, SequenceManager} from "../../../mainClasses/Sequencer/SequenceManager";
 import {zeroToOneRandom} from "../../../lib/utils/mathUtils";
 
 const debug = require("debug")(`front:WebGlManager`);
-
-const ENABLE_EFFECTS:boolean = false;
 
 /**
  * TODO split into smaller classes

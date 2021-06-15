@@ -3,8 +3,6 @@ import { SceneElementOption } from "./SceneElementOption";
 import {AssetGLTF} from "../../assets/AssetGLTF";
 import {AssetMemory} from "../../assets/AssetMemory";
 import {InstancedMesh, Mesh, Object3D} from "three";
-import {createElement} from "react";
-import { threadId } from "worker_threads";
 
 const debug = require("debug")(`front:MeshObjectSceneElement`);
 
