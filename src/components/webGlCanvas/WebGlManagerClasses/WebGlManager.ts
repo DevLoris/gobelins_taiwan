@@ -184,6 +184,8 @@ export class WebGlManager {
     private _setupSceneChildrenArrays(): void {
         this._instancedMeshes = this.getScene().children.filter(object => object instanceof InstancedMesh);
 
+        debug(this.getScene().children)
+
         this.getScene().children.forEach(childElement => {
             // Meshes can be found in the Group child
             if(childElement.type === "Group" && childElement.name === "Scene") {
@@ -239,6 +241,17 @@ export class WebGlManager {
 
                         // Add hitboxes
                         this._setHitbox(object, boxSize);
+                    }
+                    else if(object.type === "Object3D") {
+                        if(object.name.includes("pin")) {
+                            const name = object.name.replace("pin", "");
+                            debug(name)
+                            const geometry = new BoxGeometry( 1, 1, 1 );
+                            const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom())} );
+                            const cube = new Mesh( geometry, material );
+                            cube.position.set(object.position.x, object.position.y, object.position.z);
+                            this._scene.add(cube);
+                        }
                     }
                 });
             }
@@ -483,7 +496,8 @@ export class WebGlManager {
 
         // ADD EFFECTS
         if (this._settings.outline) {
-            this._effects = SceneryUtils.addEffects(scene.content.effects);
+            //non
+            //this._effects = SceneryUtils.addEffects(scene.content.effects);
         }
         HdrUtils.loadEnvironment('wow');
 
