@@ -309,7 +309,11 @@
       "type": "pickup",
       "name": "7-Eleven",
       "asset": "/public/images/pics/sample.png",
-      "stamp": "/public/images/stamp/stamp.png",
+      "stamp": "/public/images/stamp/seven_eleven.svg",
+      "vlogger": {
+        "face": "/public/images/vlogger/rodolphe.png",
+        "resolution": "Tu as trouvé un 7-eleven, un lieu comparable à une caverne d’Ali Baba !"
+      },
       "hint": "Ces si petits magasins ouverts jours et nuits sont de véritables cavernes d'Ali Baba",
       "hint_audio": "",
       "text": "Ces magasins permettent d’absolument tout faire : tu peux faire tes courses du quotidien, manger des repas complets sur place, faire des photocopies, retirer de l’argent ou avoir du wifi gratuitement. Et tout ça, à n’importe quelle heure de la journée c’est ouvert 24h/24 et 7j/7 !",
@@ -332,8 +336,8 @@
       "id": "coins",
       "type": "pre_pickup",
       "name": "Monnaie locale",
-      "asset": "/public/images/pics/sample.png",
-      "stamp": "/public/images/stamp/stamp.png",
+      "asset": "/public/images/pre-pickup/money.svg",
+      "hint": "<p>Un <strong>7-eleven</strong>, un lieu comparable à une caverne d’Ali Baba !</p><p>Mais, quel intérêt d’y entrer sans argent ?</p>",
       "text": "Nouveau dollar Taiwanais",
       "additional": []
     },

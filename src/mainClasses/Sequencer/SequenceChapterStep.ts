@@ -5,6 +5,8 @@ const debug = require("debug")(`front:SequenceChapterStep`);
 export enum EChapterStep {
     INTRO_VLOG = "INTRO_VLOG",
     DIORAMA = "DIORAMA",
+    TUTORIAL = "TUTORIAL",
+    MAP_UNLOCK = "MAP_UNLOCK",
     OUTRO_VLOG = "OUTRO_VLOG",
 }
 

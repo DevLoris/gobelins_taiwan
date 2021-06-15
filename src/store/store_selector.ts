@@ -20,6 +20,9 @@ export const selectTutorial = (state: RootState) => state.user_data.tutorial;
 // get store version
 export const selectUserStoreVersion = (state: RootState) => state.user_data.version;
 
+// get user sequencer progression
+export const selectUserSequencerProgression = (state: RootState) => state.user_data.sequencer;
+
 export const selectUserScenes = createSelector(
     getState,
     (state) => state.user_data.scenes,

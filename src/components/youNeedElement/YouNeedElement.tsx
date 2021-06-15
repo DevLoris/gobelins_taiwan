@@ -32,11 +32,12 @@ function YouNeedElement (props: IProps) {
 
   return <div className={merge([css.root, props.className])}>
     <div className={"popup"}>
-      <img src={collectible.asset} alt={"Collectible"} />
+      <img src={collectible.asset} className={css.picture} alt={"Collectible"} />
+      <div className={"popup-big-text popup-big-padding"} dangerouslySetInnerHTML={{ __html: collectible.hint}}/>
       <Button onClick={() => {
         toggleShowed(false);
         FocusUtils.restore();
-      }} style={ButtonStyle.PATTERN} label={"Je vais trouver"}/>
+      }} style={ButtonStyle.PATTERN} label={"Bien reçu"}/>
     </div>
   </div>
 }

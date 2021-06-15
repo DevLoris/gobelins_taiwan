@@ -103,6 +103,10 @@ export interface IStateDataCollectible {
     asset: string,
     stamp: string,
     text: string,
+    vlogger?: {
+        face: string,
+        resolution: string,
+    }
     hint?: string,
     hint_audio?:string,
     additional?: IStateDataCollectibleAdditional[]

@@ -12,7 +12,7 @@ import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
 import {activeScenery, getState, store} from "../../../store/store";
 import {RaycastEvent} from "./events/RaycastEvent";
 import {SceneryUtils} from "./scenery/SceneryUtils";
-import {selectScene, selectUserActiveScene} from "../../../store/store_selector";
+import {selectScene, selectUserActiveScene, selectUserSequencerProgression} from "../../../store/store_selector";
 import {CAMERA_ASPECT, CAMERA_FAR, CAMERA_FOV, CAMERA_NEAR} from "./WebGlVars";
 import LightUtils from "./scenery/LightUtils";
 import {HdrUtils} from "./scenery/HdrUtils";
@@ -25,6 +25,7 @@ import {objectNumberValuesToFixed} from "../../../lib/utils/objectUtils";
 import {ICustomStateSettings} from "../../../store/state_interface_experience";
 import {SpriteSceneElement} from "./scenery/elements/SpriteSceneElement";
 import {Geometry} from "three/examples/jsm/deprecated/Geometry";
+import {CHAPTERS, SequenceManager} from "../../../mainClasses/Sequencer/SequenceManager";
 
 const debug = require("debug")(`front:WebGlManager`);
 
@@ -472,6 +473,21 @@ export class WebGlManager {
 
         // Signal update scene
         this.onChangeScenery.dispatch(scene_id);
+
+        this.playSequencerOnScene(scene_id);
+    }
+
+    public playSequencerOnScene(scene_id: string) {
+        // on récup la progression actuelle
+        let progression = selectUserSequencerProgression(getState());
+
+        // on envoie dans le bon chapitre
+        CHAPTERS.forEach((v, k) => {
+            if(k > progression.chapter && v.scene == scene_id) {
+                SequenceManager.instance.goTo(k);
+                return;
+            }
+        });
     }
 
     public getCamera(): Camera {
