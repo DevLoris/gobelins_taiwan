@@ -158,6 +158,11 @@ p.bigger {
   justify-content: center;
   box-sizing: border-box;
 
+  &.popup_big {
+    background: url("public/da/popup_long.png") no-repeat center;
+    height: 349px;
+  }
+
   .buttonGroup{
     border-top: 1px dotted @text-color;
     padding: 20px 30px;
@@ -174,6 +179,23 @@ p.bigger {
       padding: 40px 20px 15px;
     }
   }
+
+
+  .popup-big-text {
+    text-align: center;
+    padding: 0 2rem;
+    border-bottom: 1px dotted @text-color;
+    margin: 1rem 0;
+    p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .popup-big-padding  {
+    padding: 0 2.5rem;
+  }
+
 
   &.mapPopup {
     >  p {

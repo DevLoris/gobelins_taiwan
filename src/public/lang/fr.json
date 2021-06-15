@@ -31,5 +31,8 @@
   "settings__label__select": "Sélectionnez une qualité :",
   "settings__label__highq": "Haute qualité",
   "settings__label__lowq": "Basse qualité",
-  "settings__button__save": "Sauvegarder"
+  "settings__button__save": "Sauvegarder",
+
+  "onboard__map": "<p>La <strong>carte</strong> est désormais accessible depuis votre carnet</p><p>Vous pouvez continuer d’explorer <strong>Taipei</strong> ou partir découvrir les <strong>Terres sauvages</strong></p>",
+  "onboard__map__button": "Bien reçu"
 }

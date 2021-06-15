@@ -49,39 +49,52 @@ function InteractedElement (props: IProps) {
   }, []);
 
   if(showed) {
-    return <div className={merge([css.root, props.className])}>
-      <button onClick={() => {
-        toggleShowed(false);
-        FocusUtils.restore();
-        if(isPickup) {
-          // Using gsap.delayedcall because it uses animation frame
-          gsap.delayedCall(2, () => {
-            SequenceManager.instance.increment();
-          });
-        }
-      }}>
-        <img src={"/public/da/close.png"} alt={"Close"}/>
-      </button>
+    switch (collectible.type) {
+      case IStateDataSceneCollectibleType.HINT:
+        return <div className={merge([css.root, props.className])}>
+          <button onClick={() => {
+            toggleShowed(false);
+            FocusUtils.restore();
+          }}>
+            <img src={"/public/da/close.png"} alt={"Close"}/>
+          </button>
 
-      <div className={css.picture}>
-        <img src={collectible.asset} alt={"Asset"}/>
-        <img src={collectible.stamp} alt={"Stamp"}/>
-      </div>
+          <div className={css.picture}>
+            <img src={collectible.asset} alt={"Asset"}/>
+            <img src={collectible.stamp} alt={"Stamp"}/>
+          </div>
 
-      <div className={css.contentBlock}>
-        <h1>{ collectible.name }</h1>
-        <p>{ collectible.text }</p>
-        <Button onClick={() => {
-          NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.TOGGLE, true);
-          NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.PAGE, NotebookPages.ELEMENTS);
-        }} style={ButtonStyle.DEFAULT} label={"En apprendre plus"}></Button>
-      </div>
+          <div className={css.contentBlock}>
+            <h1>{ collectible.name }</h1>
+            <p>{ collectible.text }</p>
+            <Button onClick={() => {
+              NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.TOGGLE, true);
+              NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.PAGE, NotebookPages.ELEMENTS);
+            }} style={ButtonStyle.DEFAULT} label={"En apprendre plus"}/>
+          </div>
+        </div>
+      case IStateDataSceneCollectibleType.PICKUP:
+        return <div className={merge([css.rootEnigma, props.className])}>
 
-    </div>
+          <div className={css.pictureEnigma}>
+            <img src={collectible.vlogger.face} alt={"Face"}/>
+            <img src={collectible.stamp} alt={"Stamp"}/>
+            <img src={"/public/da/icons/play.svg"} alt={"PLAY VLOG"} onClick={() => {
+              toggleShowed(false);
+              FocusUtils.restore();
+              gsap.delayedCall(2, () => {
+                SequenceManager.instance.increment();
+              });
+            }}/>
+          </div>
+
+          <div className={css.contentBlock}>
+            <p>{ collectible.vlogger.resolution }</p>
+          </div>
+        </div>
+    }
   }
-  else {
-    return <></>
-  }
+  return <></>
 }
 
 export default InteractedElement
