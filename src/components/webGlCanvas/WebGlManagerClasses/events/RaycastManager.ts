@@ -11,6 +11,8 @@ import {IStateDataSceneCollectibleType} from "../../../../store/state_enums";
 import FocusUtils from "../scenery/FocusUtils";
 import {SceneryUtils} from "../scenery/SceneryUtils";
 import {AudioHandler} from "../../../../lib/audio/AudioHandler";
+import {gsap} from "gsap";
+import {Expo, Sine} from "gsap/gsap-core";
 
 const debug = require("debug")(`front:RaycastManager`);
 
@@ -29,7 +31,7 @@ class RaycastManager {
         return RaycastManager.instance;
     }
 
-    public clickProcessing(id: string) {
+    public clickProcessing(id: string, object: any) {
         debug("Clicked on", id);
         // SCENE
         const userSceneId = selectUserActiveScene(getState());
@@ -42,8 +44,10 @@ class RaycastManager {
         if(collectibleSceneData !== undefined && !FocusUtils.isFocus) {
             // COLLECTIBLE EXIST ON SCENE
             let collectible = selectCollectible(collectibleSceneData.collectible_id)(getState().data);
-            
+
             if(collectible) {
+                gsap.to(object.material.color, {r: 1.5, g: 1.5, b: 1.5, duration: 0.4, ease: Expo.easeOut});
+                gsap.to(object.material.color, {r: 1, g: 1, b: 1, duration: 0.4, ease: Sine.easeIn, delay: 0.4});
                 switch (collectible.type) {
                     case IStateDataSceneCollectibleType.HINT:
                         // DISPATCH UI UPDATE
