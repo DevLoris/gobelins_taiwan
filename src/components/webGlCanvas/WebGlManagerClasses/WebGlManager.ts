@@ -16,7 +16,7 @@ import {
     MeshBasicMaterial,
     Mesh,
     PlaneGeometry,
-    Clock, CubeTextureLoader, ImageUtils, TextureLoader
+    Clock, CubeTextureLoader, ImageUtils, TextureLoader, Plane, DoubleSide, SpriteMaterial, Sprite
 } from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
@@ -87,7 +87,7 @@ export class WebGlManager {
 
     private _controlsChangeCount: number = 0;
 
-    private _hintCubes: Object3D[] = Array();
+    private _hintSprites: Object3D[] = Array();
 
     constructor() {
     }
@@ -258,25 +258,18 @@ export class WebGlManager {
                     else if(object.type === "Object3D") {
                         if(object.name.includes("pin")) {
                             debug(object.name, object.position)
-                            const geometry = new BoxGeometry( 1, 1, 1 );
-
-
-                            const loader = new TextureLoader();
-
-                            const textureCube = loader.load( '/public/info.png');
-
-                            const material = new MeshBasicMaterial( { color: 0xffffff, map: textureCube } );
-                            // const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom())} );
-
-                            const cube = new Mesh( geometry, material );
-                            cube.position.set(object.position.x, object.position.y + 2, object.position.z);
-                            cube["defaultYPos"] = object.position.y + 2;
-                            cube.userData = {
+                            const texture = new TextureLoader().load( '/public/PIN_2.png');
+                            const material = new SpriteMaterial( { color: 0xffffff, map: texture, transparent: true } );
+                            const sprite = new Sprite( material );
+                            sprite.scale.set(.5, .5, .5);
+                            const yOffset = 0;
+                            sprite.position.set(object.position.x, object.position.y + yOffset, object.position.z);
+                            sprite.userData = {
                                 internalId: object.name,
                                 name: object.name.replace("pin", ""),
                             }
-                            this._scene.add(cube);
-                            this._hintCubes.push(cube);
+                            this._scene.add(sprite);
+                            this._hintSprites.push(sprite);
                         }
                     }
                 });
@@ -385,10 +378,6 @@ export class WebGlManager {
         this._isRunning = false;
     }
 
-    private _clock = new Clock();
-    private _time = 0;
-    private _delta = 0;
-
     /**
      * What happens in one frame
      * @private
@@ -403,9 +392,7 @@ export class WebGlManager {
                 if (value instanceof Mesh && value.geometry instanceof PlaneGeometry && value.userData.sprite) {
                     value.rotation.y = Math.atan2( ( this._camera.position.x - value.position.x ), (  this._camera.position.z - value.position.z ) );
                 }
-            })
-
-            this._hintCubesAnimation();
+            });
 
             if (this._effects.length == 0) {
                 this._renderer.render(this._scene, this._camera);
@@ -417,17 +404,6 @@ export class WebGlManager {
         this._configureGui.getStats().end();
 
         requestAnimationFrame(this._animationFrame.bind(this));
-    }
-
-    private _hintCubesAnimation() {
-        this._delta = this._clock.getDelta();
-        this._time += this._delta;
-
-        this._hintCubes.forEach((cube) => {
-            cube.rotation.y += 0.01;
-            // @ts-ignore
-            cube.position.y = cube.defaultYPos + Math.abs(Math.sin(this._time * 1.3)) * 1.001;
-        });
     }
 
     // --------------------------------------------------------------------------- SETUP
