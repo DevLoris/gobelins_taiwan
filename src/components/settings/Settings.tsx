@@ -3,6 +3,7 @@ import React from 'react';
 import {merge} from "../../lib/utils/arrayUtils";
 import SettingsClose from "./settingsClose/SettingsClose";
 import SettingsForm from "./settingsForm/SettingsForm";
+import NotebookTitle from "../notebook/notebookTitle/NotebookTitle";
 
 interface IProps {
     className?: string,
@@ -23,11 +24,51 @@ const debug = require("debug")(`front:${componentName}`);
  * @name Settings
  */
 function Settings(props: IProps) {
+
     return <div className={merge([css.root, props.className, props.show ? css.open : null])}>
         <div className={css.menu}>
             <SettingsClose onClick={props.onClose}/>
         </div>
-        <SettingsForm onClose={props.onClose}/>
+        <div className={css.content}>
+            <NotebookTitle title={"Qualité"} phonetic={"Zhìliàng"} chinese_title={"質量"}/>
+            <SettingsForm onClose={props.onClose}/>
+
+            <NotebookTitle title={"À propos"} phonetic={"Guānyú"} chinese_title={"關於"}/>
+
+            <div className={css.contentBlock}>
+                <p className={"bigger"}>« Départ pour Taïwan » est une expérience interactive et ludique présentant le visa vacances travail appliqué à Taïwan. Un pays méconnu à la croisée de la culture chinoise, japonaise et américaine d’une richesse insoupçonnée pour sa taille.</p>
+            </div>
+            <hr/>
+            <div className={css.contentBlock}>
+                <h2>Crédits</h2>
+                <div>
+                    <div className={css.creditLine}>
+                        <strong>Designers :</strong>
+                        <p>Antoine Rault, Sandra Pereira Da Costa, Sulyvan Batt</p>
+                    </div>
+                    <div className={css.creditLine}>
+                        <strong>Développeurs :</strong>
+                        <p>Loris Pinna, Mickaël Debalme, Sonia Rouabhi</p>
+                    </div>
+                    <div className={css.creditLine}>
+                        <strong>Vloggers :</strong>
+                        <p>Rodolphe Miez, Jimmy Beunardeau</p>
+                    </div>
+                    <div className={css.creditLine}>
+                        <strong>Voix Off :</strong>
+                        <p>Pia Véran</p>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div className={css.contentBlock}>
+                <h2>Remerciements</h2>
+                <div className={css.imageList}>
+                    <img src={"/public/logo_gobelins.png"} alt={"Gobelins"}/>
+                    <img src={"/public/logo_ambassade.png"} alt={"Ambassade"}/>
+                </div>
+            </div>
+        </div>
     </div>
 }
 
