@@ -41,4 +41,10 @@ export class AudioHandler {
     static stop(id) {
         this.audioList.find(value => value.id == id)?.howl.stop();
     }
+
+    static stopAll() {
+        this.audioList.forEach((sound) => {
+            sound.howl.stop();
+        });
+    }
 }

@@ -46,7 +46,7 @@ const debug = require("debug")(`front:WebGlManager`);
 // Object extremities on each axis
 interface IObjectEndCoordinates {
     object: Object3D,
-    instancedMeshes: any[],
+    instancedMeshes: string[],
     xEnds: [number, number],
     yEnds: [number, number],
     zEnds: [number, number]
@@ -197,22 +197,15 @@ export class WebGlManager {
     private _setupSceneChildrenArrays(): void {
         this._instancedMeshes = this.getScene().children.filter(object => object instanceof InstancedMesh);
 
-        debug(this.getScene().children)
+        debug("all scene children", this.getScene().children)
 
         this.getScene().children.forEach(childElement => {
             // Meshes can be found in the Group child
             if(childElement.type === "Group" && childElement.name === "Scene") {
 
-                debug(childElement)
-
                 this._allInstancedMeshes = childElement.children.filter(object => object.name.includes("instance"));
-                this._allInstancedMeshes.forEach((mesh) => {
-                    mesh.visible = false;
-                    mesh.scale.set(0, 0, 0);
-                    mesh.position.set(0, 0,0);
-                });
 
-                debug(this._allInstancedMeshes);
+                debug("All instanced meshes", this._allInstancedMeshes);
 
                 childElement.children.forEach(object => {
                     // Objects we are looking for (buildings) are Mesh type
@@ -229,22 +222,28 @@ export class WebGlManager {
                         // 2. Get size of the box
                         const boxSize: Vector3 = boxFromObject.getSize(new Vector3());
 
-                        // Add object coordinates to the global array
                         const divideFactor = 2;
                         const offset = .5;
-                        this._objectsEndCoordinates.push({
+                        const objectEndCoordinatesAndMore:IObjectEndCoordinates = {
                             object: object,
                             instancedMeshes: new Array(),
                             xEnds: [ object.position.x - boxSize.x / divideFactor - offset, object.position.x + boxSize.x / divideFactor + offset ],
                             yEnds: [ object.position.y - boxSize.y / divideFactor - offset, object.position.y + boxSize.y / divideFactor + offset ],
                             zEnds: [ object.position.z - boxSize.z / divideFactor - offset, object.position.z + boxSize.z / divideFactor + offset ]
+                        }
+
+                        // Look for instanced meshes inside walla
+                        this._allInstancedMeshes.forEach((instance) => {
+                            if(this._isFirstInsideSecond(instance, objectEndCoordinatesAndMore)) {
+                                console.log("ok", instance)
+                                objectEndCoordinatesAndMore.instancedMeshes.push(instance.name);
+                            }
                         });
 
-                        // this._toggleInstancedMeshesOpacity(false);
-                        // gsap.delayedCall(3, () => {
-                        //     this._toggleInstancedMeshesOpacity(true);
-                        // })
+                        objectEndCoordinatesAndMore.instancedMeshes.length > 0 && debug("aaaaa", objectEndCoordinatesAndMore.instancedMeshes)
 
+                        // Add object coordinates to the global array
+                        this._objectsEndCoordinates.push(objectEndCoordinatesAndMore);
 
                         // const geometry = new BoxGeometry( boxSize.x + offset, boxSize.y + offset, boxSize.z + offset );
                         // const material = new MeshBasicMaterial( {color: new Color(tempRandom(), tempRandom(), tempRandom())} );
@@ -257,7 +256,6 @@ export class WebGlManager {
                     }
                     else if(object.type === "Object3D") {
                         if(object.name.includes("pin")) {
-                            debug(object.name, object.position)
                             const texture = new TextureLoader().load( '/public/PIN_2.png');
                             const material = new SpriteMaterial( { color: 0xffffff, map: texture, transparent: true } );
                             const sprite = new Sprite( material );
@@ -301,8 +299,8 @@ export class WebGlManager {
         const axesHelper = new AxesHelper( 5 );
         this._scene.add( axesHelper );
 
-        // const gridHelper = new GridHelper( 100, 100 );
-        // this._scene.add( gridHelper );
+        const gridHelper = new GridHelper( 100, 100 );
+        this._scene.add( gridHelper );
 
     }
 
@@ -314,6 +312,7 @@ export class WebGlManager {
      */
     private _controlsChangeHandlers(): void {
         if(this._controlsChangeCount === 0) {
+            this._toggleInstancedMeshesOpacity(true);
             this._objectsEndCoordinates.forEach((obj: IObjectEndCoordinates) => {
                 // If camera is inside the building
                 if(this._isFirstInsideSecond(this._camera, obj)) {
@@ -323,7 +322,7 @@ export class WebGlManager {
                     if(obj.object.material.opacity !== .2) obj.object.material.opacity = .2
 
                     // Set all instanced meshes opacity
-                    // this._toggleInstancedMeshesOpacity(false);
+                    this._toggleInstancedMeshesOpacity(false);
                 }
                 // If camera is not inside the building
                 else {
@@ -331,9 +330,6 @@ export class WebGlManager {
                     if(obj.object.material.opacity !== 1) obj.object.material.opacity = 1;
                     // @ts-ignore
                     obj.object.material.transparent = false;
-
-                    // Set all instanced meshes opacity
-                    // this._toggleInstancedMeshesOpacity(true);
                 }
             });
             this._controlsChangeCount++;
@@ -346,7 +342,6 @@ export class WebGlManager {
         }
     }
 
-    // TODO trash
     /**
      *
      * @param pVisible
@@ -354,7 +349,10 @@ export class WebGlManager {
      */
     private _toggleInstancedMeshesOpacity(pVisible: boolean) {
         this._instancedMeshes.forEach(childElement => {
-            if (childElement.visible !== pVisible) childElement.visible = pVisible;
+            // @ts-ignore
+            childElement.material.transparent = !pVisible;
+            // @ts-ignore
+            childElement.material.opacity = pVisible ? 1 : 0.2
         });
     }
 
