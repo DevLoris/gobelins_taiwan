@@ -502,109 +502,109 @@
     {
       "id": "metro",
       "type": "hint",
-      "name": "",
+      "name": "Métro",
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
-      "text": "",
+      "text": "Grâce au Métro de Taipei, ou le MRT, tu peux te rendre dans tous les quartiers de la ville, allant du zoo de Taipei au Temple de Longshan, en passant par divers nights markets ! En plus, il est plus simple que celui de nos grandes villes européennes, avec peu de lignes ! Tu ne pourras pas t’y perdre.",
       "additional": []
     },
     {
       "id": "nightmarket",
       "type": "hint",
-      "name": "",
+      "name": "Night markets (friture)",
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
-      "text": "",
+      "text": "Les night-markets sont des lieux vivants et gourmands de Taiwan. On y trouve des repas variés et de qualité mais surtout pour peu cher. Par exemple des nouilles au bœuf, des raviolis vapeur, des saucisses sucrées, des patates douces frits, des bubble-teas, des bao burgers, etc. \nPas besoin de cuisiner chaque soir : il suffit juste de descendre dans la rue, tu trouveras ton bonheur !\n",
       "additional": []
     },
     {
       "id": "clim",
       "type": "hint",
-      "name": "",
+      "name": "Climatiseur",
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
-      "text": "",
+      "text": "Il y a beaucoup de climatiseurs à Taïwan ! On pourrait même te dire qu’il y en a dans tous les appartements. Mais pourquoi ? Et bien car le climat de Taïwan est quand même plutôt chaud et humide en été.",
       "additional": []
     },
     {
       "id": "traduction",
       "type": "hint",
-      "name": "",
+      "name": "Tout est traduit",
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
-      "text": "",
+      "text": "Les noms des magasins, des rues, des villes sont traduits à Taipei en anglais. Tu n’auras aucun mal à trouver ton chemin. Aussi, une majorité des Taïwanais parlent anglais et sont très bienveillants, tu peux compter sur eux pour t’aider à trouver ton chemin.",
       "additional": []
     },
     {
       "id": "tofu",
       "type": "hint",
-      "name": "",
+      "name": "Tofu Puant et ses variétés",
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
-      "text": "",
+      "text": "Le nom n’est peut être pas très aguicheur, et ça peut faire un peu peur la première fois qu’on en goûte. Mais on s’habitue vite à cette spécialité taïwanaise. Après tout, il faut toujours goûter avant de dire “j’aime pas”.",
       "additional": []
     },
     {
       "id": "cybercafe",
       "type": "hint",
-      "name": "",
+      "name": "Cybercafé",
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
-      "text": "",
+      "text": "En France, les cybercafés ont souvent mauvaise mine ! Mais à Taïwan, c'est carrément une institution ! Les sièges y sont confortables, tu peux y manger etc. ! Ça peut être utile d’ailleurs si tu veux pouvoir discuter avec des amis à l’autre bout du monde, jouer à divers jeux ou bien surfer sur Internet, pour revenir lire nos anecdotes et faits \uD83D\uDE0E !",
       "additional": []
     },
     {
       "id": "vegan",
       "type": "hint",
-      "name": "",
+      "name": "Vegan way",
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
-      "text": "",
+      "text": "Le véganisme est reconnu à Taïwan ! Ce pays est même reconnu comme un des pays les plus vegans-friendly du monde ! Il y existe de nombreux endroits qui proposent de pouvoir manger des plats sans origines animales.",
       "additional": []
     },
     {
       "id": "scooter",
       "type": "hint",
-      "name": "",
+      "name": "Scooters",
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
-      "text": "",
+      "text": "Les scooters sont partout à Taiwan, c’est le moyen de locomotion le plus utilisé. Les scooters sont en free floating, c’est aussi simple d’accès que les trottinettes électriques en France. De plus, il est possible de convertir ton permis Français en permis international. Donc à toi les road trip à travers l’île !",
       "additional": []
     },
     {
       "id": "temple",
       "type": "hint",
-      "name": "",
+      "name": "Temple Longshan",
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
-      "text": "",
+      "text": "C’est un temple buddhiste situé à Taipei. Le bouddhisme est la religion majoritaire à Taïwan, avec plus d’un tiers de la population suivant cette croyance. Toutes les religions sont acceptées à Taïwan, il n’y a pas de jugement relatifs à ça.",
       "additional": []
     },
     {
       "id": "asus",
       "type": "hint",
-      "name": "",
+      "name": "Asus",
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
-      "text": "",
+      "text": "Tu as sans nulle doute déjà vu des ordinateurs de cette marque originaire de Taiwan. Cette entreprise produit divers matériels informatiques tels que des cartes mères, des ordinateurs portables, des cartes graphiques, etc… Taiwan est par ailleurs réputé pour être le plus grand exportateur de semi-conducteurs et d'électronique au monde.",
       "additional": []
     },
     {
       "id": "beefnoodles",
       "type": "hint",
-      "name": "",
+      "name": "Beef Noodle",
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
-      "text": "",
+      "text": "Les nouilles au bœuf sont un plat typique de Taiwan et ont été introduits au pays par des réfugiés de la guerre civile chinoise.",
       "additional": []
     },
     {
       "id": "qigong",
       "type": "hint",
-      "name": "",
+      "name": "Qi Gong",
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
-      "text": "",
+      "text": "Le Qi Gong est une gymnastique traditionnelle d’origine chinoise qui consiste à maîtriser le souffle en alliant mouvements lents, concentration et exercice respiratoire.",
       "additional": []
     }
   ],
