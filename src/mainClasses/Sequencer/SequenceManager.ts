@@ -3,7 +3,7 @@ import {getChapterAndStepInUrl} from "../../helpers/DebugHelpers";
 import {Signal} from "../../lib/helpers/Signal";
 import {SceneVars} from "../../vars/scene_vars";
 import {selectUserActiveScene, selectUserScene, selectUserSequencerProgression} from "../../store/store_selector";
-import {getState, sequencerProgression, store, toggleOnMap} from "../../store/store";
+import {getState, sequencerProgression, store} from "../../store/store";
 import {TutorialState} from "../../store/state_interface_experience";
 
 const debug = require("debug")(`front:SequenceManager`);
@@ -27,7 +27,7 @@ export enum EChapterName {
  */
 export interface ISequenceChapter {
     name: EChapterName,
-    scene: string,
+    scene?: string,
     steps: ISequenceStep[],
 }
 
@@ -48,7 +48,7 @@ export const CHAPTERS: ISequenceChapter[] = [
         steps: [
             {
                 identifier: EChapterStep.INTRO_VLOG,
-                id: "loris",
+                id: "rodolphe_intro",
             },
             {
                 identifier: EChapterStep.DIORAMA,
@@ -57,7 +57,7 @@ export const CHAPTERS: ISequenceChapter[] = [
             },
             {
                 identifier: EChapterStep.OUTRO_VLOG,
-                id: "opening"
+                id: "rodolphe_outro"
             },
             {
                 identifier: EChapterStep.MAP_UNLOCK,
@@ -71,25 +71,25 @@ export const CHAPTERS: ISequenceChapter[] = [
             },
         ]
     },
-    {
-        name: EChapterName.SECOND_ENIGMA,
-        scene: SceneVars.WILD,
-        steps: [
-            {
-                identifier: EChapterStep.INTRO_VLOG,
-                id: "loris",
-            },
-            {
-                identifier: EChapterStep.DIORAMA,
-                id: "sceneTwo",
-                sceneId: SceneVars.WILD
-            },
-            {
-                identifier: EChapterStep.OUTRO_VLOG,
-                id: "opening"
-            },
-        ]
-    },
+    // {
+    //     name: EChapterName.SECOND_ENIGMA,
+    //     scene: SceneVars.WILD,
+    //     steps: [
+    //         {
+    //             identifier: EChapterStep.INTRO_VLOG,
+    //             id: "loris",
+    //         },
+    //         {
+    //             identifier: EChapterStep.DIORAMA,
+    //             id: "sceneTwo",
+    //             sceneId: SceneVars.WILD
+    //         },
+    //         {
+    //             identifier: EChapterStep.OUTRO_VLOG,
+    //             id: "opening"
+    //         },
+    //     ]
+    // },
 ];
 
 // Nombre de chapitres dans le jeu

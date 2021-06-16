@@ -30,6 +30,118 @@
             "coords": {"x": 2, "y": 4, "z": 5},
             "rotation": {"x": 3, "y": 1, "z":3}
           }
+        },
+        {
+          "collectible_id": "taipei_101",
+          "trigger": "pin101",
+          "focus": {
+            "coords": {"x": 25, "y": 28, "z": 25},
+            "rotation": {"x": -2, "y": 30, "z":-0.2}
+          }
+        },
+        {
+          "collectible_id": "lgbt",
+          "trigger": "pinlgbt",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": 19, "y": -0.5, "z": -5}
+          }
+        },
+        {
+          "collectible_id": "metro",
+          "trigger": "pinmetro",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": -6.4, "y": 2.4, "z": -23}
+          }
+        },
+        {
+          "collectible_id": "nightmarket",
+          "trigger": "pinnight_market",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": 23, "y": 1, "z": 22}
+          }
+        },
+        {
+          "collectible_id": "clim",
+          "trigger": "pinclimatiseur",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": -9.4, "y": 3.6, "z": 20.1}
+          }
+        },
+        {
+          "collectible_id": "traduction",
+          "trigger": "pinpanneau",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": -1.2, "y": 3.4, "z": 17.4}
+          }
+        },
+        {
+          "collectible_id": "tofu",
+          "trigger": "pintofu",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": 28.8, "y": 0.66, "z": 20}
+          }
+        },
+        {
+          "collectible_id": "cybercafe",
+          "trigger": "pincybercafe",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": 9.1, "y": 5.6, "z": -2.2}
+          }
+        },
+        {
+          "collectible_id": "vegan",
+          "trigger": "pinvegan",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": 7.6, "y": 0.66, "z": 25.4}
+          }
+        },
+        {
+          "collectible_id": "scooter",
+          "trigger": "pinscooter",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": -8, "y": 0.04, "z": -10.7}
+          }
+        },
+        {
+          "collectible_id": "temple",
+          "trigger": "pintemple",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": -18.5, "y": 5.6, "z": 17.3}
+          }
+        },
+        {
+          "collectible_id": "asus",
+          "trigger": "pinasus",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": 9.3, "y": 8.5, "z": 14.3}
+          }
+        },
+        {
+          "collectible_id": "beefnoodles",
+          "trigger": "pinbeef_noodles",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": 11, "y": 0.7, "z": 25}
+          }
+        },
+        {
+          "collectible_id": "qigong",
+          "trigger": "pinqi_gong",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": 19, "y": 0.7, "z": 3.2}
+          }
         }
       ],
       "map": {
@@ -38,7 +150,15 @@
         "y": 17
       },
       "scene": {
-        "background": "#bfe3dd"
+        "background": "#bfe3dd",
+        "skybox": {
+          "posXPath": "/public/skybox/skybox1.jpg",
+          "negXPath": "/public/skybox/skybox2.jpg",
+          "posYPath": "/public/skybox/skyboxTop.jpg",
+          "negYPath": "/public/skybox/skyboxBottom.jpg",
+          "posZPath": "/public/skybox/skybox3.jpg",
+          "negZPath": "/public/skybox/skybox4.jpg"
+        }
       },
       "camera": {
         "position": {
@@ -137,30 +257,7 @@
       "chinese_name": "荒野",
       "phonetic": "Huāngyě",
       "collectibles": [
-        {
-          "collectible_id": "seven_eleven",
-          "trigger": "AntoineBatiment",
-          "focus": {
-            "coords": {"x": -20, "y": 20, "z": -5.5},
-            "rotation": {"x": -15.2, "y": 6.8, "z":  7.7}
-          }
-        },
-        {
-          "collectible_id": "camion_poubelle",
-          "trigger": "pickup",
-          "focus": {
-            "coords": {"x": 2, "y": 4, "z": 5},
-            "rotation": {"x": 3, "y": 1, "z":3}
-          }
-        },
-        {
-          "collectible_id": "coins",
-          "trigger": "coins",
-          "focus": {
-            "coords": {"x": 2, "y": 4, "z": 5},
-            "rotation": {"x": 3, "y": 1, "z":3}
-          }
-        }
+
       ],
       "map": {
         "pin": "=",
@@ -195,7 +292,7 @@
   "models": [
     {
       "id": "TaipeiMain",
-      "path": "/public/sceneries/demo/TaipeiV10.glb"
+      "path": "/public/sceneries/demo/TaipeiV12.glb"
     },
     {
       "id": "GridBottom",
@@ -383,6 +480,132 @@
           "value": "/public/book.png"
         }
       ]
+    },
+    {
+      "id": "lgbt",
+      "type": "hint",
+      "name": "lgbt",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
+      "text": "Depuis 2019, Taiwan est le seul pays dans toute l’Asie à autoriser le mariage LGBT. Les Taïwanais sont très tolérants sur ces sujets de société. L’hospitalité est un savoir-être partagé par les taïwanais.",
+      "additional": []
+    },
+    {
+      "id": "taipei_101",
+      "type": "hint",
+      "name": "Taipei 101",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
+      "text": "C’est le 10ème plus grand bâtiment du monde, du haut de ses 509 mètres ! Son nom vient du fait qu’il fasse 101 étages. \nDedans on peut y trouver des magasins, des bureaux et des observateurs, comme au 91ème étage. Tu peux admirer Taipei et son horizon, pour découvrir plein d’endroits ! Attention à ne pas avoir le vertige !\n",
+      "additional": []
+    },
+    {
+      "id": "metro",
+      "type": "hint",
+      "name": "Métro",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
+      "text": "Grâce au Métro de Taipei, ou le MRT, tu peux te rendre dans tous les quartiers de la ville, allant du zoo de Taipei au Temple de Longshan, en passant par divers nights markets ! En plus, il est plus simple que celui de nos grandes villes européennes, avec peu de lignes ! Tu ne pourras pas t’y perdre.",
+      "additional": []
+    },
+    {
+      "id": "nightmarket",
+      "type": "hint",
+      "name": "Night markets (friture)",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
+      "text": "Les night-markets sont des lieux vivants et gourmands de Taiwan. On y trouve des repas variés et de qualité mais surtout pour peu cher. Par exemple des nouilles au bœuf, des raviolis vapeur, des saucisses sucrées, des patates douces frits, des bubble-teas, des bao burgers, etc. \nPas besoin de cuisiner chaque soir : il suffit juste de descendre dans la rue, tu trouveras ton bonheur !\n",
+      "additional": []
+    },
+    {
+      "id": "clim",
+      "type": "hint",
+      "name": "Climatiseur",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
+      "text": "Il y a beaucoup de climatiseurs à Taïwan ! On pourrait même te dire qu’il y en a dans tous les appartements. Mais pourquoi ? Et bien car le climat de Taïwan est quand même plutôt chaud et humide en été.",
+      "additional": []
+    },
+    {
+      "id": "traduction",
+      "type": "hint",
+      "name": "Tout est traduit",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
+      "text": "Les noms des magasins, des rues, des villes sont traduits à Taipei en anglais. Tu n’auras aucun mal à trouver ton chemin. Aussi, une majorité des Taïwanais parlent anglais et sont très bienveillants, tu peux compter sur eux pour t’aider à trouver ton chemin.",
+      "additional": []
+    },
+    {
+      "id": "tofu",
+      "type": "hint",
+      "name": "Tofu Puant et ses variétés",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
+      "text": "Le nom n’est peut être pas très aguicheur, et ça peut faire un peu peur la première fois qu’on en goûte. Mais on s’habitue vite à cette spécialité taïwanaise. Après tout, il faut toujours goûter avant de dire “j’aime pas”.",
+      "additional": []
+    },
+    {
+      "id": "cybercafe",
+      "type": "hint",
+      "name": "Cybercafé",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
+      "text": "En France, les cybercafés ont souvent mauvaise mine ! Mais à Taïwan, c'est carrément une institution ! Les sièges y sont confortables, tu peux y manger etc. ! Ça peut être utile d’ailleurs si tu veux pouvoir discuter avec des amis à l’autre bout du monde, jouer à divers jeux ou bien surfer sur Internet, pour revenir lire nos anecdotes et faits \uD83D\uDE0E !",
+      "additional": []
+    },
+    {
+      "id": "vegan",
+      "type": "hint",
+      "name": "Vegan way",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
+      "text": "Le véganisme est reconnu à Taïwan ! Ce pays est même reconnu comme un des pays les plus vegans-friendly du monde ! Il y existe de nombreux endroits qui proposent de pouvoir manger des plats sans origines animales.",
+      "additional": []
+    },
+    {
+      "id": "scooter",
+      "type": "hint",
+      "name": "Scooters",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
+      "text": "Les scooters sont partout à Taiwan, c’est le moyen de locomotion le plus utilisé. Les scooters sont en free floating, c’est aussi simple d’accès que les trottinettes électriques en France. De plus, il est possible de convertir ton permis Français en permis international. Donc à toi les road trip à travers l’île !",
+      "additional": []
+    },
+    {
+      "id": "temple",
+      "type": "hint",
+      "name": "Temple Longshan",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
+      "text": "C’est un temple buddhiste situé à Taipei. Le bouddhisme est la religion majoritaire à Taïwan, avec plus d’un tiers de la population suivant cette croyance. Toutes les religions sont acceptées à Taïwan, il n’y a pas de jugement relatifs à ça.",
+      "additional": []
+    },
+    {
+      "id": "asus",
+      "type": "hint",
+      "name": "Asus",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
+      "text": "Tu as sans nulle doute déjà vu des ordinateurs de cette marque originaire de Taiwan. Cette entreprise produit divers matériels informatiques tels que des cartes mères, des ordinateurs portables, des cartes graphiques, etc… Taiwan est par ailleurs réputé pour être le plus grand exportateur de semi-conducteurs et d'électronique au monde.",
+      "additional": []
+    },
+    {
+      "id": "beefnoodles",
+      "type": "hint",
+      "name": "Beef Noodle",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
+      "text": "Les nouilles au bœuf sont un plat typique de Taiwan et ont été introduits au pays par des réfugiés de la guerre civile chinoise.",
+      "additional": []
+    },
+    {
+      "id": "qigong",
+      "type": "hint",
+      "name": "Qi Gong",
+      "asset": "/public/images/pics/sample.png",
+      "stamp": "/public/images/stamp/stamp.png",
+      "text": "Le Qi Gong est une gymnastique traditionnelle d’origine chinoise qui consiste à maîtriser le souffle en alliant mouvements lents, concentration et exercice respiratoire.",
+      "additional": []
     }
   ],
   "audios": [

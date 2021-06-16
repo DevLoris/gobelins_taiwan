@@ -3,9 +3,20 @@ import {
     Color,
     PerspectiveCamera,
     REVISION,
-    Scene, sRGBEncoding,
+    Scene,
+    sRGBEncoding,
     WebGLRenderer,
-    Box3, Vector3, AxesHelper, Object3D, GridHelper, InstancedMesh, BoxGeometry, MeshBasicMaterial, Mesh, PlaneGeometry
+    Box3,
+    Vector3,
+    AxesHelper,
+    Object3D,
+    GridHelper,
+    InstancedMesh,
+    BoxGeometry,
+    MeshBasicMaterial,
+    Mesh,
+    PlaneGeometry,
+    Clock, CubeTextureLoader, ImageUtils, TextureLoader, Plane, DoubleSide, SpriteMaterial, Sprite
 } from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
@@ -75,6 +86,8 @@ export class WebGlManager {
     private _renderEnabled: boolean = true;
 
     private _controlsChangeCount: number = 0;
+
+    private _hintSprites: Object3D[] = Array();
 
     constructor() {
     }
@@ -184,6 +197,8 @@ export class WebGlManager {
     private _setupSceneChildrenArrays(): void {
         this._instancedMeshes = this.getScene().children.filter(object => object instanceof InstancedMesh);
 
+        debug(this.getScene().children)
+
         this.getScene().children.forEach(childElement => {
             // Meshes can be found in the Group child
             if(childElement.type === "Group" && childElement.name === "Scene") {
@@ -239,6 +254,23 @@ export class WebGlManager {
 
                         // Add hitboxes
                         this._setHitbox(object, boxSize);
+                    }
+                    else if(object.type === "Object3D") {
+                        if(object.name.includes("pin")) {
+                            debug(object.name, object.position)
+                            const texture = new TextureLoader().load( '/public/PIN_2.png');
+                            const material = new SpriteMaterial( { color: 0xffffff, map: texture, transparent: true } );
+                            const sprite = new Sprite( material );
+                            sprite.scale.set(.5, .5, .5);
+                            const yOffset = 0;
+                            sprite.position.set(object.position.x, object.position.y + yOffset, object.position.z);
+                            sprite.userData = {
+                                internalId: object.name,
+                                name: object.name.replace("pin", ""),
+                            }
+                            this._scene.add(sprite);
+                            this._hintSprites.push(sprite);
+                        }
                     }
                 });
             }
@@ -360,7 +392,7 @@ export class WebGlManager {
                 if (value instanceof Mesh && value.geometry instanceof PlaneGeometry && value.userData.sprite) {
                     value.rotation.y = Math.atan2( ( this._camera.position.x - value.position.x ), (  this._camera.position.z - value.position.z ) );
                 }
-            })
+            });
 
             if (this._effects.length == 0) {
                 this._renderer.render(this._scene, this._camera);
@@ -483,7 +515,8 @@ export class WebGlManager {
 
         // ADD EFFECTS
         if (this._settings.outline) {
-            this._effects = SceneryUtils.addEffects(scene.content.effects);
+            //non
+            //this._effects = SceneryUtils.addEffects(scene.content.effects);
         }
         HdrUtils.loadEnvironment('wow');
 
