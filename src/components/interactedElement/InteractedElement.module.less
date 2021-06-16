@@ -88,6 +88,14 @@
     top: 0;
     transform: translate(-20px, -50%);
   }
+
+  .contentBlock {
+    transform: rotate(-2deg);
+    p {
+      max-width: 250px;
+      margin: 20px auto 0;
+    }
+  }
 }
 
 .pictureEnigma {
@@ -113,5 +121,39 @@
       transform: translate(-50%, 0);
       cursor: pointer;
     }
+  }
+}
+
+.phonetic {
+  display: flex;
+  border: 1px dotted  @text-color;
+  width: fit-content;
+  margin: auto;
+  text-align: left;
+  align-items: center;
+  > div {
+    padding-right: 10px;
+  }
+  .phoneticMandarin {
+    font-size: 42px;
+    font-family: @font-chinese;
+    color: @red;
+    padding: 5px 10px 5px 10px;
+  }
+  .phoneticText {
+    font-size: 12px;
+    padding-bottom: 4px;
+    span {
+      font-size: 10px;
+      background: @text-color;
+      padding: 1px 5px;
+      border-radius: 6px;
+      color: white;
+      text-transform: uppercase;
+    }
+  }
+  .phoneticTitle {
+    font-size: 22px;
+    font-weight: 500;
   }
 }

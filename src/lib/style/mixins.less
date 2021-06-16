@@ -374,3 +374,19 @@
   padding: 0;
   position: absolute;
 }
+
+
+.borderSpacing() {
+  background-image: linear-gradient(to right, #333 40%, rgba(255, 255, 255, 0) 20%);
+  background-position: bottom;
+  background-size: 3px 1px;
+  background-repeat: repeat-x;
+}
+
+.buttonCallback() {
+  cursor: pointer;
+  transition: 0.25s transform;
+  &:hover  {
+    transform: scale(0.9, 0.9);
+  }
+}
