@@ -89,7 +89,14 @@ function InteractedElement (props: IProps) {
           </div>
 
           <div className={css.contentBlock}>
-            <p>{ collectible.vlogger.resolution }</p>
+            <div className={css.phonetic}>
+              <div className={css.phoneticMandarin}>做得好</div>
+              <div>
+                <div className={css.phoneticTitle}>Bravo</div>
+                <div className={css.phoneticText}><span>zn.</span> [Zuò dé hâo]</div>
+              </div>
+            </div>
+            <p className={"bigger"}>{ collectible.vlogger.resolution }</p>
           </div>
         </div>
     }

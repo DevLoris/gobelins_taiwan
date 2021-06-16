@@ -27,10 +27,12 @@ function NotebookTitle (props: IProps) {
         <span>zn.</span> [{props.phonetic}]
       </div>
     </div>
-    <div className={"title-block-counter"}>
-      <span>{props.picked}</span>
-      <span>/{props.total}</span>
-    </div>
+    {props.picked && (
+        <div className={"title-block-counter"}>
+          <span>{props.picked}</span>
+          <span>/{props.total}</span>
+        </div>
+    )}
   </div></div>
 }
 

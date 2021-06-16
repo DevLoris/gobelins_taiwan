@@ -1,17 +1,9 @@
 import css from "./HomePage.module.less";
 import React, {useEffect, useRef, useState} from "react";
 import { usePageRegister } from "../../lib/router/usePageRegister";
-import WebGlCanvas from "../../components/webGlCanvas/WebGlCanvas";
 import Loader from "../../components/loader/Loader";
-import InteractedElement from "../../components/interactedElement/InteractedElement";
 import GameContainer from "../../components/gameContainer/GameContainer";
 import HomeSplash from "../../components/homeSplash/HomeSplash";
-import {SequenceManager} from "../../mainClasses/Sequencer/SequenceManager";
-import {EChapterStep} from "../../mainClasses/Sequencer/SequenceChapterStep";
-import {Router} from "../../lib/router/Router";
-import {ERouterPage} from "../../routes";
-import {selectUserScene} from "../../store/store_selector";
-import {getState, store, vlogIntro, vlogOutro} from "../../store/store";
 
 interface IProps {}
 
@@ -31,7 +23,7 @@ enum PLAYING_STATE {
 const HomePage = (props: IProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
 
-  const [playingState, setPlayingState] = useState<PLAYING_STATE>(PLAYING_STATE.HOME);
+  const [playingState, setPlayingState] = useState<PLAYING_STATE>(PLAYING_STATE.LOADING);
 
   // -------------------–-------------------–-------------------–--------------- REGISTER PAGE
 
@@ -60,7 +52,7 @@ const HomePage = (props: IProps) => {
   usePageRegister({ componentName, rootRef, playIn, playOut });
 
   function onModelsLoaded() {
-    setPlayingState(PLAYING_STATE.GAME);
+    setPlayingState(PLAYING_STATE.HOME);
   }
 
   // -------------------–-------------------–-------------------–--------------- RENDER
@@ -69,7 +61,7 @@ const HomePage = (props: IProps) => {
     <div className={css.root} ref={rootRef}>
       {playingState == PLAYING_STATE.HOME && (
           <HomeSplash startCallback={() =>  {
-            setPlayingState(PLAYING_STATE.LOADING);
+            setPlayingState(PLAYING_STATE.GAME);
           }}/>
       )}
       {playingState == PLAYING_STATE.LOADING && (

@@ -27,6 +27,8 @@ function Loader (props: IProps) {
   const [loadingCount, setLoadingCount] = useState<number>(0);
   const [loadedElementsNames, setLoadedElementsNames] = useState<string[]>([]);
 
+  const models = selectModels(getState());
+
     // -------------------–-------------------–-------------------–--------------- EFFECTS
 
   useEffect(() => {
@@ -37,10 +39,10 @@ function Loader (props: IProps) {
       // audio
       AudioHandler.loadAll(selectAudios(getState()));
 
-        AssetMemory.instance.loadAll(selectModels(getState()))
+        AssetMemory.instance.loadAll(models)
             .then((models) => {
                 debug("Models loaded", models);
-                componentReveal(false);
+                //componentReveal(false);
                 props.modelsLoadedCallback();
             });
   }, []);
@@ -71,7 +73,12 @@ function Loader (props: IProps) {
     // -------------------–-------------------–-------------------–--------------- RENDER
 
   return <div ref={rootRef} className={merge([css.root, props.className])}>
-      assets : { loadingCount } - {loadedElementsNames[loadingCount-1]}
+      <div className={css.homepageContent}>
+          <img src={"/public/da/logo_beige.svg"} className={css.logo} alt={"logo"}/>
+      </div>
+      <div className={css.loader}>
+          <div className={css.loaderProgression} style={{width: `${loadingCount / models.length * 100}%`}}/>
+      </div>
   </div>
 }
 
