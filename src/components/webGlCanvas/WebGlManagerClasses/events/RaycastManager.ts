@@ -42,7 +42,7 @@ class RaycastManager {
         if(collectibleSceneData !== undefined && !FocusUtils.isFocus) {
             // COLLECTIBLE EXIST ON SCENE
             let collectible = selectCollectible(collectibleSceneData.collectible_id)(getState().data);
-            
+
             if(collectible) {
                 switch (collectible.type) {
                     case IStateDataSceneCollectibleType.HINT:
