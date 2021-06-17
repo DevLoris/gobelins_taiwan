@@ -197,7 +197,7 @@ export class WebGlManager {
     private _setupSceneChildrenArrays(): void {
         this._instancedMeshes = this.getScene().children.filter(object => object instanceof InstancedMesh);
 
-        debug("all scene children", this.getScene().children)
+        // debug("all scene children", this.getScene().children)
 
         this.getScene().children.forEach(childElement => {
             // Meshes can be found in the Group child
@@ -205,6 +205,7 @@ export class WebGlManager {
 
                 this._allInstancedMeshes = childElement.children.filter(object => object.name.includes("instance"));
 
+                debug("instances meshes", this._instancedMeshes)
                 debug("All instanced meshes", this._allInstancedMeshes);
 
                 childElement.children.forEach(object => {
@@ -235,12 +236,10 @@ export class WebGlManager {
                         // Look for instanced meshes inside walla
                         this._allInstancedMeshes.forEach((instance) => {
                             if(this._isFirstInsideSecond(instance, objectEndCoordinatesAndMore)) {
-                                console.log("ok", instance)
-                                objectEndCoordinatesAndMore.instancedMeshes.push(instance.name);
+                                // console.log(instance.name, "is in", objectEndCoordinatesAndMore.object.name)
+                                objectEndCoordinatesAndMore.instancedMeshes = [...objectEndCoordinatesAndMore.instancedMeshes, instance.name];
                             }
                         });
-
-                        objectEndCoordinatesAndMore.instancedMeshes.length > 0 && debug("aaaaa", objectEndCoordinatesAndMore.instancedMeshes)
 
                         // Add object coordinates to the global array
                         this._objectsEndCoordinates.push(objectEndCoordinatesAndMore);
@@ -304,6 +303,8 @@ export class WebGlManager {
 
     }
 
+    private _currentlyInsideThis:IObjectEndCoordinates;
+
     // --------------------------------------------------------------------------- HANDLERS
 
     /**
@@ -313,9 +314,11 @@ export class WebGlManager {
     private _controlsChangeHandlers(): void {
         if(this._controlsChangeCount === 0) {
             this._toggleInstancedMeshesOpacity(true);
+            this._currentlyInsideThis = null;
             this._objectsEndCoordinates.forEach((obj: IObjectEndCoordinates) => {
                 // If camera is inside the building
                 if(this._isFirstInsideSecond(this._camera, obj)) {
+                    this._currentlyInsideThis = obj;
                     // @ts-ignore
                     obj.object.material.transparent = true;
                     // @ts-ignore
@@ -349,10 +352,29 @@ export class WebGlManager {
      */
     private _toggleInstancedMeshesOpacity(pVisible: boolean) {
         this._instancedMeshes.forEach(childElement => {
-            // @ts-ignore
-            childElement.material.transparent = !pVisible;
-            // @ts-ignore
-            childElement.material.opacity = pVisible ? 1 : 0.2
+
+            // // @ts-ignore
+            // childElement.material.transparent = !pVisible;
+            // // @ts-ignore
+            // childElement.material.opacity = pVisible ? 1 : 0.2;
+
+            if(!pVisible) {
+                this._currentlyInsideThis && this._currentlyInsideThis.instancedMeshes.forEach((instanceName) => {
+                    const lowerCaseUSerDataId = childElement.userData.internalId.toLowerCase();
+                    if(instanceName.toLowerCase().includes(lowerCaseUSerDataId.replace("scene__", ""))) {
+                        // @ts-ignore
+                        childElement.material.transparent = true;
+                        // @ts-ignore
+                        childElement.material.opacity = 0.2;
+                    }
+                });
+            }
+            else {
+                // @ts-ignore
+                childElement.material.transparent = false;
+                // @ts-ignore
+                childElement.material.opacity = 1;
+            }
         });
     }
 
