@@ -37,6 +37,7 @@ export interface ISequenceChapter {
 export interface ISequenceStep {
     identifier: EChapterStep,
     id: string,
+    message?: string,
     sceneId?: string,
     tutorialState?: TutorialState,
 }
@@ -52,6 +53,7 @@ export const CHAPTERS: ISequenceChapter[] = [
             },
             {
                 identifier: EChapterStep.DIORAMA,
+                message: "Ces si petits magasins ouverts jours et nuits sont de véritables cavernes d'Ali Baba",
                 id: "centreVilleWesh",
                 sceneId: SceneVars.TAIPEI
             },
@@ -66,6 +68,7 @@ export const CHAPTERS: ISequenceChapter[] = [
             },
             {
                 identifier: EChapterStep.TUTORIAL,
+                message: "Taipei est une ville riche, avec des quartiers tous différents les uns des autres !",
                 id: "tutorialMap",
                 tutorialState: TutorialState.MAP
             },
