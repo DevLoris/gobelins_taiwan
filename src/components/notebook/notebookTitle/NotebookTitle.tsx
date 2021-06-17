@@ -27,7 +27,7 @@ function NotebookTitle (props: IProps) {
         <span>zn.</span> [{props.phonetic}]
       </div>
     </div>
-    {props.picked && (
+    {props.picked !== undefined && (
         <div className={"title-block-counter"}>
           <span>{props.picked}</span>
           <span>/{props.total}</span>

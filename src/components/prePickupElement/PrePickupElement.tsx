@@ -1,9 +1,10 @@
 import css from './PrePickupElement.module.less';
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { merge } from "../../lib/utils/arrayUtils";
 import {IStateDataCollectible} from "../../store/state_interface_data";
 import RaycastManager from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
 import {IStateDataSceneCollectibleType} from "../../store/state_enums";
+import {gsap} from "gsap";
 
 interface IProps {
   className?: string
@@ -18,21 +19,40 @@ function PrePickupElement (props: IProps) {
   const [hasPickup, toggleHasPickup] = useState<boolean>(false);
   const [collectible, setCollectible] =  useState<IStateDataCollectible>(null);
 
-  RaycastManager.getInstance().onInteract.add((value: IStateDataCollectible, hasPickupPayload = false) => {
-    // On affiche si on clique sur un PRE_PICKUP sinon ignoré ici
-    if([IStateDataSceneCollectibleType.PRE_PICKUP].includes(value.type)) {
-        setCollectible(value);
-        toggleHasPickup(hasPickupPayload);
-        toggleShowed(true);
-    }
-  });
+  const element = useRef();
 
-  if(!showed)
-    return (<></>);
+  useEffect(() => {
+      gsap.from(element.current, {autoAlpha: 0});
+      RaycastManager.getInstance().onInteract.add((value: IStateDataCollectible, hasPickupPayload = false) => {
+          // On affiche si on clique sur un PRE_PICKUP sinon ignoré ici
+          if([IStateDataSceneCollectibleType.PRE_PICKUP].includes(value.type)) {
+              setCollectible(value);
+              toggleHasPickup(hasPickupPayload);
+              toggleShowed(true);
+          }
+          else if([IStateDataSceneCollectibleType.PICKUP].includes(value.type)) {
+              toggleShowed(false);
+          }
+      });
+  }, []);
+
+    useEffect(() => {
+        if(showed) {
+            let tl = gsap.timeline();
+            tl
+                .fromTo(element.current, {scale: 1}, {scale: 1.2, autoAlpha: 1})
+                .to(element.current, {scale: 1})
+                .to(element.current, {scale: 1.2})
+                .to(element.current, {scale: 1})
+        }
+        else {
+            gsap.from(element.current, {autoAlpha: 0});
+        }
+    }, [showed]);
 
   if(hasPickup) {
-      return <div className={merge([css.root, props.className])}>
-          <img src={collectible.asset} alt={"asset"} />
+      return <div ref={element} className={merge([css.root, props.className])}>
+          {collectible  != null && (<img src={collectible.asset} alt={"asset"} />)}
           <svg className={css.svg} xmlns="http://www.w3.org/2000/svg" width="28.163" height="26.578" viewBox="0 0 28.163 26.578">
               <g id="Groupe_2492" data-name="Groupe 2492" transform="translate(-259.451 -108.68)">
                   <g id="Groupe_2437" data-name="Groupe 2437" transform="translate(-345.883 227.603)">
@@ -55,8 +75,8 @@ function PrePickupElement (props: IProps) {
       </div>
   }
   else {
-      return <div className={merge([css.root, props.className])}>
-          <img src={collectible.asset} alt={"asset"}/>
+      return <div ref={element} className={merge([css.root, props.className])}>
+          {collectible != null && (<img src={collectible.asset} alt={"asset"} />)}
           <svg className={css.svg} xmlns="http://www.w3.org/2000/svg" width="28.163" height="26.578" viewBox="0 0 28.163 26.578">
               <g id="Groupe_2491" data-name="Groupe 2491" transform="translate(-259.451 -108.68)">
                   <g id="Groupe_2437" data-name="Groupe 2437" transform="translate(-345.883 227.603)">
