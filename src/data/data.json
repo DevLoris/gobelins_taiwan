@@ -160,12 +160,12 @@
       "scene": {
         "background": "#bfe3dd",
         "skybox": {
-          "posXPath": "/public/skybox/skybox1.jpg",
+          "posXPath": "/public/skybox/skybox4.jpg",
           "negXPath": "/public/skybox/skybox2.jpg",
           "posYPath": "/public/skybox/skyboxTop.jpg",
           "negYPath": "/public/skybox/skyboxBottom.jpg",
           "posZPath": "/public/skybox/skybox3.jpg",
-          "negZPath": "/public/skybox/skybox4.jpg"
+          "negZPath": "/public/skybox/skybox1.jpg"
         }
       },
       "camera": {
