@@ -58,8 +58,7 @@ class RaycastManager {
                         AudioHandler.play("pickup");
                         break;
                     case IStateDataSceneCollectibleType.PICKUP:
-                        gsap.to(object.material.color, {r: 1.5, g: 1.5, b: 1.5, duration: 0.4, ease: Expo.easeOut});
-                        gsap.to(object.material.color, {r: 1, g: 1, b: 1, duration: 0.4, ease: Sine.easeIn, delay: 0.4});
+                        this._highlightAnimation(object);
                         if(userSceneData.hint.pre_pickup) {
                             // ADD ELEMENT TO PICKUP LIST
                             store.dispatch(addPickElementScene({pickup: collectible.id, scene: userSceneId}));
@@ -80,6 +79,7 @@ class RaycastManager {
                         FocusUtils.focusOn(collectibleSceneData.focus.coords, collectibleSceneData.focus.rotation);
                         break;
                     case IStateDataSceneCollectibleType.PRE_PICKUP:
+                        this._highlightAnimation(object);
                         // ADD ELEMENT TO PICKUP LIST
                         store.dispatch(addPickElementScene({pickup: collectible.id, scene: userSceneId}));
                         // UPDATE PRE HINT
@@ -95,6 +95,11 @@ class RaycastManager {
                 }
             }
         }
+    }
+
+    private _highlightAnimation(object) {
+        gsap.to(object.material.color, {r: 1.5, g: 1.5, b: 1.5, duration: 0.4, ease: Expo.easeOut});
+        gsap.to(object.material.color, {r: 1, g: 1, b: 1, duration: 0.4, ease: Sine.easeIn, delay: 0.4});
     }
 }
 
