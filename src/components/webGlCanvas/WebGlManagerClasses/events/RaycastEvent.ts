@@ -163,10 +163,19 @@ export class RaycastEvent {
      */
     handleOnTouchStartEvent(event: PointerEvent) {
         // If object pointed is different that at the time of initial click, process
-        const identifier: string = this.getPointedElementIdentifier(event);
         const object: any = this.getPointedElement(event) as any;
+        const identifier: string = this.getPointedElementIdentifier(event);
         RaycastManager.getInstance().clickProcessing(identifier, object);
+    }
 
+    /**
+     * Returns the object found in event param
+     * @param event
+     */
+    getPointedElement(event: PointerEvent) {
+        this.calculateMousePosition(event);
+        // Return the element
+        return this.getTouchedElementFrom(this._scene, this._mouse, this._camera);
     }
 
     /**
@@ -181,16 +190,6 @@ export class RaycastEvent {
             this._mouse,
             this._camera
         );
-    }
-
-    /**
-     * Returns the object found in event param
-     * @param event
-     */
-    getPointedElement(event: PointerEvent) {
-        this.calculateMousePosition(event);
-        // Return the element
-        return this.getTouchedElementFrom(this._scene, this._mouse, this._camera);
     }
 
     /**

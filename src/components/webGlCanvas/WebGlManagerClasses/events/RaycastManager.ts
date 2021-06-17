@@ -46,8 +46,6 @@ class RaycastManager {
             let collectible = selectCollectible(collectibleSceneData.collectible_id)(getState().data);
 
             if(collectible) {
-                gsap.to(object.material.color, {r: 1.5, g: 1.5, b: 1.5, duration: 0.4, ease: Expo.easeOut});
-                gsap.to(object.material.color, {r: 1, g: 1, b: 1, duration: 0.4, ease: Sine.easeIn, delay: 0.4});
                 switch (collectible.type) {
                     case IStateDataSceneCollectibleType.HINT:
                         // DISPATCH UI UPDATE
@@ -60,6 +58,8 @@ class RaycastManager {
                         AudioHandler.play("pickup");
                         break;
                     case IStateDataSceneCollectibleType.PICKUP:
+                        gsap.to(object.material.color, {r: 1.5, g: 1.5, b: 1.5, duration: 0.4, ease: Expo.easeOut});
+                        gsap.to(object.material.color, {r: 1, g: 1, b: 1, duration: 0.4, ease: Sine.easeIn, delay: 0.4});
                         if(userSceneData.hint.pre_pickup) {
                             // ADD ELEMENT TO PICKUP LIST
                             store.dispatch(addPickElementScene({pickup: collectible.id, scene: userSceneId}));
