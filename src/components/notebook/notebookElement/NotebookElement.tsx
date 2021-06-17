@@ -14,7 +14,7 @@ interface IProps {
  * @desc Un élément du listing du carnet, une petite case où l'on a titre et image si on a ramassé, sinon rien
  */
 function NotebookElement (props: IProps) {
-  return <div onClick={props.callback} className={merge([css.root, props.className])}>
+  return <div onClick={props.callback} className={merge([css.root, props.className, props.data.pickup ? css.collected:  null])}>
     <div className={css.element}>
       {props.data.pickup && (<img src={props.data.asset} title={props.data.name} />)}
       {!props.data.pickup && (<span>?</span>)}

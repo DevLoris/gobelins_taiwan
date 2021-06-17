@@ -5,17 +5,24 @@
 
 form {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  height: 180px;
-  margin: auto;
+  justify-content: start;
+  text-align: center;
+  margin: 2.5rem 1.5rem;
 
   label {
-    margin: 20px 0;
+    flex: 1 0 105px;
+    margin-right: 10px;
   }
 
-  div {
-    margin-top: auto;
-    margin-bottom: 20px;
+  >div {
+    flex: 1 1 100%;
+    text-align: left;
+    line-height: 0;
+  }
+
+  svg {
+    height: 38px;
+    flex: 1 1 100%;
   }
 }

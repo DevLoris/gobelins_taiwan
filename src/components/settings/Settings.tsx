@@ -33,6 +33,7 @@ function Settings(props: IProps) {
             <NotebookTitle title={"Qualité"} phonetic={"Zhìliàng"} chinese_title={"質量"}/>
             <SettingsForm onClose={props.onClose}/>
 
+            <hr/>
             <NotebookTitle title={"À propos"} phonetic={"Guānyú"} chinese_title={"關於"}/>
 
             <div className={css.contentBlock}>
@@ -44,19 +45,19 @@ function Settings(props: IProps) {
                 <div>
                     <div className={css.creditLine}>
                         <strong>Designers :</strong>
-                        <p>Antoine Rault, Sandra Pereira Da Costa, Sulyvan Batt</p>
+                        <p className={"bigger"}>Antoine Rault, Sandra Pereira Da Costa, Sulyvan Batt</p>
                     </div>
                     <div className={css.creditLine}>
                         <strong>Développeurs :</strong>
-                        <p>Loris Pinna, Mickaël Debalme, Sonia Rouabhi</p>
+                        <p className={"bigger"}>Loris Pinna, Mickaël Debalme, Sonia Rouabhi</p>
                     </div>
                     <div className={css.creditLine}>
                         <strong>Vloggers :</strong>
-                        <p>Rodolphe Miez, Jimmy Beunardeau</p>
+                        <p className={"bigger"}>Rodolphe Miez, Jimmy Beunardeau</p>
                     </div>
                     <div className={css.creditLine}>
                         <strong>Voix Off :</strong>
-                        <p>Pia Véran</p>
+                        <p className={"bigger"}>Pia Véran</p>
                     </div>
                 </div>
             </div>
