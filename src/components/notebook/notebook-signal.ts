@@ -10,6 +10,7 @@ class NotebookSignal {
     private static instance: NotebookSignal;
 
     public onToggle: Signal = new Signal();
+    public onTabChange: Signal = new Signal();
     public notebookContent: Signal = new Signal();
 
     private constructor() { }
@@ -24,6 +25,10 @@ class NotebookSignal {
 
     public toggle(status:boolean) {
         this.onToggle.dispatch(status);
+    }
+
+    public tabChange() {
+        this.onTabChange.dispatch();
     }
 
     public sendToNotebook(type: NOTEBOOK_SEND, page:any) {

@@ -1,7 +1,8 @@
 import css from './NotebookHint.module.less';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import { merge } from "../../../lib/utils/arrayUtils";
 import {gsap} from "gsap";
+import NotebookSignal from "../notebook-signal";
 
 interface IProps {
   className?: string,
@@ -16,22 +17,80 @@ interface IProps {
  * @desc Petite popup avec l'indice qui s'ouvre par dessus la page du carnet
  */
 function NotebookHint (props: IProps) {
+  // Is hint visible ?
   const [visible, toggleVisible] = useState<boolean>(props.showDefault);
-  const ref  = useRef();
+  // Is notebook displayed ?
+  const [notebookVisible, setNotebookVisible] = useState<boolean>(false);
+
+  const rootRef  = useRef(null);
+
+  // --------------------------------------------------------------------------- EFFECTS
 
   useEffect(() => {
-    if(visible) {
-      gsap.to(ref.current,   {y: 0, opacity: 1});
+
+    NotebookSignal.getInstance().onToggle.add(notebookToggleHandler);
+
+    defaultPosition();
+
+    return () => {
+      NotebookSignal.getInstance().onToggle.remove(notebookToggleHandler);
     }
-    else  {
-      gsap.to(ref.current,  {y: "100%", opacity: 0});
-    }
+  }, []);
+
+  /**
+   * Visible state for hint
+   */
+  useEffect(() => {
+    componentAnimation(visible, .5);
+    // if(visible) {
+    //   gsap.to(rootRef.current,   {y: 0, opacity: 1});
+    // }
+    // else  {
+    //   gsap.to(rootRef.current,  {yPercent: 100, opacity: 0});
+    // }
   },  [visible]);
+
+  /**
+   * On notebook toggled
+   */
+  useEffect(() => {
+    console.log("=> notebook visible", notebookVisible)
+    componentAnimation(notebookVisible);
+  }, [notebookVisible]);
+
+  // --------------------------------------------------------------------------- HANDLERS
+
+  function notebookToggleHandler(pVisible) {
+    console.log("Notebook toggled")
+    setNotebookVisible(pVisible);
+  }
+
+  // --------------------------------------------------------------------------- ANIMATION
+
+  function defaultPosition() {
+    if(!visible) {
+      gsap.killTweensOf(rootRef.current);
+      gsap.set(rootRef.current, {
+        yPercent: 100,
+      });
+    }
+  }
+
+  function componentAnimation(pShow:boolean = true, pDuration:number = 0.7, pHasDelay:boolean = false) {
+    gsap.killTweensOf(rootRef.current);
+    gsap.to(rootRef.current, {
+      yPercent: pShow ? 0 : 100,
+      duration: pHasDelay ? pDuration : (pShow ? pDuration : 0),
+      delay: pHasDelay ? (pShow ? .4 : pDuration) : 0,
+    });
+  }
+
+  // --------------------------------------------------------------------------- RENDER
 
   return <>
     <img alt={"Enigme button"} onClick={() =>  {toggleVisible(true)}} className={css.enigmaButton} src={"../../public/da/enigme_button.png"}/>
 
-    <div ref={ref} className={merge([css.root, props.className])}>
+    <div ref={rootRef} className={merge([css.root, props.className])}>
     {(props.showClose) && (
         <img alt={"Close"} onClick={() =>  {toggleVisible(false)}} className={css.close} src={"../../public/da/close.png"}/>
     )}

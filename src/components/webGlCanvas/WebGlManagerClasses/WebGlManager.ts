@@ -135,7 +135,7 @@ export class WebGlManager {
 
         this.cameraMovingLoop();
 
-        this._setDebugHelpers();
+        // this._setDebugHelpers();
     }
 
     /**
