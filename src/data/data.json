@@ -462,24 +462,202 @@
       "chinese_name": "台北",
       "phonetic": "Táiběi",
       "ambient": "ambient_nature",
-      "camera": {
-        "position": {
-          "x": 20,
-          "y": 20,
-          "z": 20
+      "collectibles": [
+        {
+          "collectible_id": "seven_eleven",
+          "trigger": "711-hitbox",
+          "focus": {
+            "coords": {"x": 35, "y": 4, "z": -6},
+            "rotation": {"x": 17.3, "y": 3.3, "z": -20}
+          }
+        },
+        {
+          "collectible_id": "camion_poubelle",
+          "trigger": "pickup",
+          "focus": {
+            "coords": {"x": 2, "y": 4, "z": 5},
+            "rotation": {"x": 3, "y": 1, "z": 3}
+          }
+        },
+        {
+          "collectible_id": "coins",
+          "trigger": "ATM001",
+          "focus": {
+            "coords": {"x": 6.36, "y": 1, "z": -25},
+            "rotation": {"x": 3, "y": 1, "z": 3}
+          }
+        },
+        {
+          "collectible_id": "coins",
+          "trigger": "ATM002",
+          "focus": {
+            "coords": {"x": 6.36, "y": 1, "z": -25},
+            "rotation": {"x": 3, "y": 1, "z": 3}
+          }
+        },
+        {
+          "collectible_id": "taipei_101",
+          "trigger": "pin101",
+          "focus": {
+            "coords": {"x": 25, "y": 28, "z": 25},
+            "rotation": {"x": -2, "y": 30, "z": -0.2}
+          }
+        },
+        {
+          "collectible_id": "lgbt",
+          "trigger": "pinlgbt",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": 19, "y": -0.5, "z": -5}
+          }
+        },
+        {
+          "collectible_id": "metro",
+          "trigger": "pinmetro",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": -6.4, "y": 2.4, "z": -23}
+          }
+        },
+        {
+          "collectible_id": "nightmarket",
+          "trigger": "pinnight_market",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": 23, "y": 1, "z": 22}
+          }
+        },
+        {
+          "collectible_id": "clim",
+          "trigger": "pinclimatiseur",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": -9.4, "y": 3.6, "z": 20.1}
+          }
+        },
+        {
+          "collectible_id": "traduction",
+          "trigger": "pinpanneau",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": -1.2, "y": 3.4, "z": 17.4}
+          }
+        },
+        {
+          "collectible_id": "tofu",
+          "trigger": "pintofu",
+          "focus": {
+            "coords": {"x": 23, "y": 15, "z": 0},
+            "rotation": {"x": 28.8, "y": 0.66, "z": 20}
+          }
+        },
+        {
+          "collectible_id": "cybercafe",
+          "trigger": "pincybercafe",
+          "focus": {
+            "coords": {"x": 9, "y": 1, "z": -8},
+            "rotation": {"x": 9.1, "y": 5.6, "z": -2.2}
+          }
+        },
+        {
+          "collectible_id": "vegan",
+          "trigger": "pinvegan",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": 7.6, "y": 0.66, "z": 25.4}
+          }
+        },
+        {
+          "collectible_id": "scooter",
+          "trigger": "pinscooter",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": -8, "y": 0.04, "z": -10.7}
+          }
+        },
+        {
+          "collectible_id": "temple",
+          "trigger": "pintemple",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": -18.5, "y": 5.6, "z": 17.3}
+          }
+        },
+        {
+          "collectible_id": "asus",
+          "trigger": "pinasus",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": 9.3, "y": 8.5, "z": 14.3}
+          }
+        },
+        {
+          "collectible_id": "beefnoodles",
+          "trigger": "pinbeef_noodles",
+          "focus": {
+            "coords": {"x": 23, "y": 5, "z": -5},
+            "rotation": {"x": 11, "y": 0.7, "z": 25}
+          }
+        },
+        {
+          "collectible_id": "qigong",
+          "trigger": "pinqi_gong",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": 19, "y": 0.7, "z": 3.2
+            }
+          }
         }
+      ],
+      "scene": {
+        "background": "#bfe3dd"
+      },
+      "camera": {
+        "position": {"x": -7, "y": 0.7, "z": 0},
+        "rotate": {"x":  -1.5, "y": -1.4, "z": -1.5}
       },
       "orbit": {
         "enabled": false,
         "center": {
-          "x": 0,
-          "y": 1,
+          "x": -2,
+          "y": 0,
           "z": 0
         },
         "minPolar": 0,
         "maxPolar": 1.55,
         "minDistance": 0.2,
         "maxDistance": 100
+      },
+      "content": {
+        "elements": [
+          {
+            "type": "object_container",
+            "id": "scene",
+            "gltf": "Airport",
+            "options": {
+              "scale": [1, 1, 1],
+              "position": [0, 0, 0]
+            }
+          }
+        ],
+        "lights": [
+          {
+            "type": "hemisphere",
+            "coords": {
+              "x": 0,
+              "y": 100,
+              "z": 0
+            },
+            "color": "#ffffff",
+            "groundColor": "#ffffff",
+            "intensity": 0.1
+          }
+        ],
+        "effects": [
+          {
+            "type": "outline"
+          }
+        ]
       }
     }
   ],
@@ -603,6 +781,10 @@
     {
       "id": "GridSandra2",
       "path": "/public/sceneries/demo/V3_Instances/Grid_Sandra_2.glb"
+    },
+    {
+      "id": "Airport",
+      "path": "/public/sceneries/demo/aeroport.glb"
     }
   ],
   "collectibles": [
