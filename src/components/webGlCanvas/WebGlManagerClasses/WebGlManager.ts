@@ -446,7 +446,7 @@ export class WebGlManager {
      */
     public destroy():void {
         this._stopWebGlLoop();
-        this._configureGui.destroy();
+        //this._configureGui.destroy();
         this._wrapper.removeChild( this._renderer.domElement );
         this._control.removeEventListener("change", this._controlsChangeHandlers);
     }

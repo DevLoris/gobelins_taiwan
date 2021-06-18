@@ -1,17 +1,18 @@
 import css from './Notebook.module.less';
 import React, {useEffect, useState} from 'react';
-import { merge } from "../../lib/utils/arrayUtils";
+import {merge} from "../../lib/utils/arrayUtils";
 import NotebookPageHint from "./notebookPageHint/NotebookPageHint";
 import NotebookPageMap from "./notebookPageMap/NotebookPageMap";
 import NotebookPageElements from "./notebookPageElements/NotebookPageElements";
 import NotebookLabelToggler from "./notebookLabelToggler/NotebookLabelToggler";
 import {useTranslation} from "react-i18next";
 import NotebookSignal, {NOTEBOOK_SEND} from "./notebook-signal";
-import {selectUserScenes} from "../../store/store_selector";
-import {getState} from "../../store/store";
+import {selectTutorial, selectUserScenes} from "../../store/store_selector";
+import {getState, store, tutorial} from "../../store/store";
 import {AudioHandler} from "../../lib/audio/AudioHandler";
 import NotebookClose from "./notebookClose/NotebookClose";
 import {WebGlManager} from "../webGlCanvas/WebGlManagerClasses/WebGlManager";
+import {TutorialState} from "../../store/state_interface_experience";
 
 interface IProps {
     className?: string,
@@ -43,17 +44,25 @@ function Notebook (props: IProps) {
     useEffect(() =>  {
         if(props.show) {
             AudioHandler.play("book");
+
+            if(selectTutorial(getState()) == TutorialState.INTRODUCTION)
+                store.dispatch(tutorial(TutorialState.BEFORE_MAP));
         }
+
         NotebookSignal.getInstance().toggle(props.show);
         WebGlManager.getInstance().toggleRendering(!props.show);
     }, [props.show]);
 
     // signal for forcing page change
     useEffect(() =>  {
-        NotebookSignal.getInstance().notebookContent.add((type, data) => {
+        let handler = (type, data) => {
             if(type == NOTEBOOK_SEND.PAGE)
                 setPage(data);
-        })
+        }
+        NotebookSignal.getInstance().notebookContent.add(handler)
+        return () => {
+            NotebookSignal.getInstance().notebookContent.remove(handler);
+        }
     }, []);
 
     const userScenes = selectUserScenes(getState());

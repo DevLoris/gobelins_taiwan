@@ -31,6 +31,8 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",
+    "@sentry/react": "^6.7.1",
+    "@sentry/tracing": "^6.7.1",
     "@solid-js/css-flat": "^1.0.1",
     "@types/three": "^0.127.1",
     "@wbe/libraries": "^1.5.0-alpha.0",

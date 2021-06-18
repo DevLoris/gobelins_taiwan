@@ -2,7 +2,7 @@ import {
     IStateDataSceneEffectsType,
     IStateDataSceneCollectibleType,
     IStateDataSceneElementType,
-    IStateDataSceneLightType, IStateDataCollectibleAdditionalDataType
+    IStateDataSceneLightType, IStateDataCollectibleAdditionalDataType, SceneDataAutoMessageMoment
 } from "./state_enums";
 import {IStateDataAudio} from "./state_interface_data_audio";
 
@@ -22,6 +22,12 @@ export interface IStateDataSceneCollectible {
     }
 }
 
+export interface IStateDataSceneMessage {
+    message: string,
+    moment: SceneDataAutoMessageMoment,
+    delay: number,
+}
+
 export interface IStateDataScene {
     id: string,
     name: string,
@@ -29,6 +35,7 @@ export interface IStateDataScene {
     phonetic: string,
     ambient: string,
     collectibles: IStateDataSceneCollectible[],
+    messages: IStateDataSceneMessage[]
     map: {
         pin: string,
         x: number,
