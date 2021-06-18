@@ -30,7 +30,7 @@ function Video (props: IProps) {
   }
 
   return <div className={css.wrapper}>
-    <video ref={videoRef} playsInline={false} muted={false} onEnded={videoFinishedHandler} controls={true}><source src={ props.path } type="video/mp4" /></video>
+     <video ref={videoRef} playsInline={false} muted={false} onEnded={videoFinishedHandler} controls={true}><source src={ props.path } type="video/mp4" /></video>
   </div>
 }
 
