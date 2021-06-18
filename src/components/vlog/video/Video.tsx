@@ -1,5 +1,5 @@
 import css from './Video.module.less';
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {gsap} from "gsap";
 import {SequenceManager} from "../../../mainClasses/Sequencer/SequenceManager";
 
@@ -14,6 +14,8 @@ interface IProps {
  */
 function Video (props: IProps) {
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   /**
    * Once video finished, increment in sequence
    */
@@ -23,9 +25,12 @@ function Video (props: IProps) {
     });
   }
 
+  function customPlayButtonClickHandler() {
+      videoRef.current.play();
+  }
 
   return <div className={css.wrapper}>
-    <video onEnded={videoFinishedHandler} controls={true} autoPlay><source src={ props.path } type="video/mp4" /></video>
+    <video ref={videoRef} playsInline={false} muted={false} onEnded={videoFinishedHandler} controls={true}><source src={ props.path } type="video/mp4" /></video>
   </div>
 }
 

@@ -1,30 +1,14 @@
 [
     {
-      "id": "loris",
-      "path": "/public/videos/loris.mp4"
+      "id": "rodolphe_intro",
+      "path": "/public/videos/rodolphe_intro_1.mp4"
     },
     {
-        "id": "opening",
-        "path": "/public/videos/ar-showreel.mp4"
+        "id": "rodolphe_outro",
+        "path": "/public/videos/rodolphe_outro.mp4"
     },
     {
-        "id": "taipei-intro",
-        "path": "/public/videos/"
-    },
-    {
-        "id": "taipei-outro",
-        "path": "/public/videos/"
-    },
-    {
-        "id": "wild-intro",
-        "path": "/public/videos/"
-    },
-    {
-        "id": "wild-outro",
-        "path": "/public/videos/"
-    },
-    {
-        "id": "ending",
-        "path": "/public/videos/"
+        "id": "rodolphe_ending",
+        "path": "/public/videos/rodolphe_ending.mp4"
     }
 ]

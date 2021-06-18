@@ -8,7 +8,6 @@ import {
   languageToString,
 } from "../../lib/services/LanguageService";
 import {Game} from "../../mainClasses/Game";
-import {WebGlManager} from "../webGlCanvas/WebGlManagerClasses/WebGlManager";
 
 const componentName = "App";
 const debug = require("debug")(`front:${componentName}`);

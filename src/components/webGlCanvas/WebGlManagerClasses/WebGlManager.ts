@@ -3,9 +3,20 @@ import {
     Color,
     PerspectiveCamera,
     REVISION,
-    Scene, sRGBEncoding,
+    Scene,
+    sRGBEncoding,
     WebGLRenderer,
-    Box3, Vector3, AxesHelper, Object3D, GridHelper, InstancedMesh, BoxGeometry, MeshBasicMaterial, Mesh, PlaneGeometry
+    Box3,
+    Vector3,
+    AxesHelper,
+    Object3D,
+    GridHelper,
+    InstancedMesh,
+    BoxGeometry,
+    MeshBasicMaterial,
+    Mesh,
+    PlaneGeometry,
+    Clock, CubeTextureLoader, ImageUtils, TextureLoader, Plane, DoubleSide, SpriteMaterial, Sprite
 } from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
@@ -23,16 +34,19 @@ import NotebookSignal, {NOTEBOOK_SEND} from "../../notebook/notebook-signal";
 import {gsap} from "gsap";
 import {objectNumberValuesToFixed} from "../../../lib/utils/objectUtils";
 import {ICustomStateSettings} from "../../../store/state_interface_experience";
-import {SpriteSceneElement} from "./scenery/elements/SpriteSceneElement";
-import {Geometry} from "three/examples/jsm/deprecated/Geometry";
 import {CHAPTERS, SequenceManager} from "../../../mainClasses/Sequencer/SequenceManager";
+import {zeroToOneRandom} from "../../../lib/utils/mathUtils";
 
 const debug = require("debug")(`front:WebGlManager`);
+
+/**
+ * TODO split into smaller classes
+ */
 
 // Object extremities on each axis
 interface IObjectEndCoordinates {
     object: Object3D,
-    instancedMeshes: any[],
+    instancedMeshes: string[],
     xEnds: [number, number],
     yEnds: [number, number],
     zEnds: [number, number]
@@ -59,21 +73,24 @@ export class WebGlManager {
 
     private _objectsEndCoordinates: IObjectEndCoordinates[] = new Array();
     private _instancedMeshes: Object3D[] = new Array();
+    private _allInstancedMeshes: Object3D[] = new Array();
 
     private _cameraMoving: boolean = false;
-    public cameraMovingCheckLoop: boolean = true;
+    public allowCameraMovingCheck: boolean = true;
 
     // todo refacto
     public static scene: Scene = null;
-
 
     public onChangeScenery: Signal = new Signal();
 
     private _renderEnabled: boolean = true;
 
+    private _controlsChangeCount: number = 0;
+
+    private _hintSprites: Object3D[] = Array();
+
     constructor() {
     }
-
 
     public static getInstance(): WebGlManager {
         if (!WebGlManager.instance) {
@@ -108,7 +125,7 @@ export class WebGlManager {
         this._setupRaycaster();
 
         this._startWebGlLoop();
-        this._setupStats();
+        // this._setupStats();
 
         pSceneryName && this.toggleScenery(pSceneryName);
 
@@ -118,7 +135,7 @@ export class WebGlManager {
 
         this.cameraMovingLoop();
 
-        this._setDebugHelpers();
+        // this._setDebugHelpers();
     }
 
     /**
@@ -180,43 +197,101 @@ export class WebGlManager {
     private _setupSceneChildrenArrays(): void {
         this._instancedMeshes = this.getScene().children.filter(object => object instanceof InstancedMesh);
 
+        // debug("all scene children", this.getScene().children)
+
         this.getScene().children.forEach(childElement => {
             // Meshes can be found in the Group child
-            if(childElement.type === "Group") {
+            if(childElement.type === "Group" && childElement.name === "Scene") {
+
+                this._allInstancedMeshes = childElement.children.filter(object => object.name.includes("instance"));
+
+                debug("instances meshes", this._instancedMeshes)
+                debug("All instanced meshes", this._allInstancedMeshes);
+
                 childElement.children.forEach(object => {
                     // Objects we are looking for (buildings) are Mesh type
-                    if(object.type === "Mesh") {
+                    if(
+                        // Get all mesh types
+                        object.type === "Mesh"
+
+                        // Excluded meshes
+                        && !object.name.includes("SOL")
+                    ) {
                         // Get size of mesh
                         // 1. Convert object in box
                         const boxFromObject: Box3 = new Box3().setFromObject(object);
                         // 2. Get size of the box
                         const boxSize: Vector3 = boxFromObject.getSize(new Vector3());
 
-                        // Add object coordinates to the global array
                         const divideFactor = 2;
                         const offset = .5;
-                        this._objectsEndCoordinates.push({
+                        const objectEndCoordinatesAndMore:IObjectEndCoordinates = {
                             object: object,
                             instancedMeshes: new Array(),
                             xEnds: [ object.position.x - boxSize.x / divideFactor - offset, object.position.x + boxSize.x / divideFactor + offset ],
                             yEnds: [ object.position.y - boxSize.y / divideFactor - offset, object.position.y + boxSize.y / divideFactor + offset ],
                             zEnds: [ object.position.z - boxSize.z / divideFactor - offset, object.position.z + boxSize.z / divideFactor + offset ]
+                        }
+
+                        // Look for instanced meshes inside walla
+                        this._allInstancedMeshes.forEach((instance) => {
+                            if(this._isFirstInsideSecond(instance, objectEndCoordinatesAndMore)) {
+                                // console.log(instance.name, "is in", objectEndCoordinatesAndMore.object.name)
+                                objectEndCoordinatesAndMore.instancedMeshes = [...objectEndCoordinatesAndMore.instancedMeshes, instance.name];
+                            }
                         });
 
-                        // Debug cube
-                        // @ts-ignore
-                        // function tempRandom() {
-                        //     return Math.random() * (1 - 0) + 0;
-                        // }
+                        // Add object coordinates to the global array
+                        this._objectsEndCoordinates.push(objectEndCoordinatesAndMore);
+
                         // const geometry = new BoxGeometry( boxSize.x + offset, boxSize.y + offset, boxSize.z + offset );
                         // const material = new MeshBasicMaterial( {color: new Color(tempRandom(), tempRandom(), tempRandom())} );
                         // const cube = new Mesh( geometry, material );
                         // cube.position.set(object.position.x - offset / 2, object.position.y - offset / 2, object.position.z - offset / 2);
                         // this._scene.add(cube);
+
+                        // Add hitboxes
+                        this._setHitbox(object, boxSize);
+                    }
+                    else if(object.type === "Object3D") {
+                        if(object.name.includes("pin")) {
+                            const texture = new TextureLoader().load( '/public/PIN_2.png');
+                            const material = new SpriteMaterial( { color: 0xffffff, map: texture, transparent: true } );
+                            const sprite = new Sprite( material );
+                            sprite.scale.set(.5, .5, .5);
+                            const yOffset = 0;
+                            sprite.position.set(object.position.x, object.position.y + yOffset, object.position.z);
+                            sprite.userData = {
+                                internalId: object.name,
+                                name: object.name.replace("pin", ""),
+                            }
+                            this._scene.add(sprite);
+                            this._hintSprites.push(sprite);
+                        }
                     }
                 });
             }
         });
+    }
+
+    private _setHitbox(obj: Object3D, boxSize: Vector3) {
+        let offset = 1;
+        switch(obj.name) {
+            case "711":
+                const name = "711-hitbox";
+                const geometry = new BoxGeometry( boxSize.x + offset, 8, boxSize.z + offset );
+                const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom())} );
+                const cube = new Mesh( geometry, material );
+                cube.position.set(obj.position.x, obj.position.y - (boxSize.y / 2 - 4), obj.position.z);
+                cube.name = name;
+                cube.userData = {
+                    internalId: name,
+                    name: name
+                }
+                cube.visible = false;
+                this._scene.add(cube);
+                break;
+        }
     }
 
     private _setDebugHelpers() {
@@ -228,9 +303,9 @@ export class WebGlManager {
 
     }
 
-    // --------------------------------------------------------------------------- HANDLERS
+    private _currentlyInsideThis:IObjectEndCoordinates;
 
-    private _controlsChangeCount: number = 0;
+    // --------------------------------------------------------------------------- HANDLERS
 
     /**
      * On orbit controls move
@@ -238,16 +313,19 @@ export class WebGlManager {
      */
     private _controlsChangeHandlers(): void {
         if(this._controlsChangeCount === 0) {
+            this._toggleInstancedMeshesOpacity(true);
+            this._currentlyInsideThis = null;
             this._objectsEndCoordinates.forEach((obj: IObjectEndCoordinates) => {
                 // If camera is inside the building
                 if(this._isFirstInsideSecond(this._camera, obj)) {
+                    this._currentlyInsideThis = obj;
                     // @ts-ignore
                     obj.object.material.transparent = true;
                     // @ts-ignore
                     if(obj.object.material.opacity !== .2) obj.object.material.opacity = .2
 
                     // Set all instanced meshes opacity
-                    // this._toggleInstancedMeshesOpacity(false);
+                    this._toggleInstancedMeshesOpacity(false);
                 }
                 // If camera is not inside the building
                 else {
@@ -255,9 +333,6 @@ export class WebGlManager {
                     if(obj.object.material.opacity !== 1) obj.object.material.opacity = 1;
                     // @ts-ignore
                     obj.object.material.transparent = false;
-
-                    // Set all instanced meshes opacity
-                    // this._toggleInstancedMeshesOpacity(true);
                 }
             });
             this._controlsChangeCount++;
@@ -277,7 +352,29 @@ export class WebGlManager {
      */
     private _toggleInstancedMeshesOpacity(pVisible: boolean) {
         this._instancedMeshes.forEach(childElement => {
-            if (childElement.visible !== pVisible) childElement.visible = pVisible;
+
+            // // @ts-ignore
+            // childElement.material.transparent = !pVisible;
+            // // @ts-ignore
+            // childElement.material.opacity = pVisible ? 1 : 0.2;
+
+            if(!pVisible) {
+                this._currentlyInsideThis && this._currentlyInsideThis.instancedMeshes.forEach((instanceName) => {
+                    const lowerCaseUSerDataId = childElement.userData.internalId.toLowerCase();
+                    if(instanceName.toLowerCase().includes(lowerCaseUSerDataId.replace("scene__", ""))) {
+                        // @ts-ignore
+                        childElement.material.transparent = true;
+                        // @ts-ignore
+                        childElement.material.opacity = 0.2;
+                    }
+                });
+            }
+            else {
+                // @ts-ignore
+                childElement.material.transparent = false;
+                // @ts-ignore
+                childElement.material.opacity = 1;
+            }
         });
     }
 
@@ -306,7 +403,7 @@ export class WebGlManager {
      * @private
      */
     private _animationFrame():void {
-        this._configureGui.getStats().begin();
+        // this._configureGui.getStats().begin();
 
         if(this._renderEnabled) {
             this._control.update();
@@ -315,7 +412,7 @@ export class WebGlManager {
                 if (value instanceof Mesh && value.geometry instanceof PlaneGeometry && value.userData.sprite) {
                     value.rotation.y = Math.atan2( ( this._camera.position.x - value.position.x ), (  this._camera.position.z - value.position.z ) );
                 }
-            })
+            });
 
             if (this._effects.length == 0) {
                 this._renderer.render(this._scene, this._camera);
@@ -324,7 +421,7 @@ export class WebGlManager {
             }
         }
 
-        this._configureGui.getStats().end();
+        // this._configureGui.getStats().end();
 
         requestAnimationFrame(this._animationFrame.bind(this));
     }
@@ -349,7 +446,7 @@ export class WebGlManager {
      */
     public destroy():void {
         this._stopWebGlLoop();
-        this._configureGui.destroy();
+        //this._configureGui.destroy();
         this._wrapper.removeChild( this._renderer.domElement );
         this._control.removeEventListener("change", this._controlsChangeHandlers);
     }
@@ -370,12 +467,12 @@ export class WebGlManager {
      * Checks if camera is currently moving.
      */
     public cameraMovingLoop() {
-        if(this.cameraMovingCheckLoop) {
+        if(this.allowCameraMovingCheck) {
             // Get position at time of click
             // Note: we use the following syntax because we need to save the value, not just a reference
             const onTouchCameraPosition = {...this._camera.position};
 
-            gsap.delayedCall(.1, () => {
+            gsap.delayedCall(.05, () => {
                 // Determine camera moving only if camera is controlled by user
                 if(this._control.enabled) {
                     // Get position after delay
@@ -391,7 +488,11 @@ export class WebGlManager {
         }
     }
 
-    // TODO externalize
+    /**
+     * Compares two positions of the camera, then determine if it has moved
+     * @param oldPosition
+     * @param currentPosition
+     */
     public hasCameraMoved(oldPosition, currentPosition) {
         // Remove excessive decimals in coordinates
         objectNumberValuesToFixed(oldPosition, 1);
@@ -434,7 +535,8 @@ export class WebGlManager {
 
         // ADD EFFECTS
         if (this._settings.outline) {
-            this._effects = SceneryUtils.addEffects(scene.content.effects);
+            //non
+            //this._effects = SceneryUtils.addEffects(scene.content.effects);
         }
         HdrUtils.loadEnvironment('wow');
 

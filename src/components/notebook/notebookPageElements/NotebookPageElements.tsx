@@ -1,5 +1,5 @@
 import css from './NotebookPageElements.module.less';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {merge} from "../../../lib/utils/arrayUtils";
 import {useTranslation} from "react-i18next";
 import {selectCollectiblesOfSceneWithPickup, selectScene, selectUserActiveScene} from "../../../store/store_selector";
@@ -9,7 +9,7 @@ import NotebookElement from "../notebookElement/NotebookElement";
 import NotebookPageElementsDetails from "../notebookPageElementsDetails/NotebookPageElementsDetails";
 import NotebookTitle from "../notebookTitle/NotebookTitle";
 import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
-import NotebookSignal from "../notebook-signal";
+import NotebookSignal, {NOTEBOOK_SEND} from "../notebook-signal";
 
 interface IProps {
   className?: string
@@ -37,12 +37,16 @@ function NotebookPageElements (props: IProps) {
     return value.type == IStateDataSceneCollectibleType.HINT;
   });
 
-  // reset to close details page
-  NotebookSignal.getInstance().onToggle.add((value) =>  {
-    if(value)
-      toggleShowPage(false);
-  })
-
+  // signal for forcing page change
+  useEffect(() =>  {
+    toggleShowPage(false);
+    NotebookSignal.getInstance().notebookContent.add((type, data) => {
+      if(type == NOTEBOOK_SEND.CONTENT)  {
+        toggleShowPage(true);
+        setPage({...data, pickup: true});
+      }
+    })
+  }, []);
   if(showPage) {
     return <NotebookPageElementsDetails className={"light"} leaveButton={true} data={page} onExit={() => { toggleShowPage(false); }} />
   }

@@ -15,6 +15,7 @@ import {EChapterStep} from "../../mainClasses/Sequencer/SequenceChapterStep";
 import Vlog from "../vlog/Vlog";
 import {TutorialState} from "../../store/state_interface_experience";
 import FakeLoader from "../fakeLoader/FakeLoader";
+import TooltipMessage from "../tooltipMessage/TooltipMessage";
 
 interface IProps {
   className?: string
@@ -57,7 +58,7 @@ function GameContainer (props: IProps) {
   }, []);
 
   useEffect(() => {
-    console.log(showVlog, showWebGl);
+    debug(showVlog, showWebGl);
   }, [showVlog, showWebGl]);
 
   /**
@@ -138,8 +139,6 @@ function GameContainer (props: IProps) {
   }
 
   function switchTo(step: EChapterStep) {
-    console.log(step);
-
     setShowVlog(false);
     setShowWebgl(false);
 
@@ -149,16 +148,19 @@ function GameContainer (props: IProps) {
   }
 
   // -------------------–-------------------–-------------------–--------------- RENDER
+  /**
+   *  {![TutorialState.DISABLED, TutorialState.BEFORE_MAP].includes(selectTutorial(getState())) && (
+            )}
+   */
 
   return <div ref={rootRef}>
     <FakeLoader message={loaderMessage}/>
+    <TooltipMessage/>
     {
       showWebGl &&
           <>
             <InteractedElement/>
-            {![TutorialState.DISABLED, TutorialState.BEFORE_MAP].includes(selectTutorial(getState())) && (
-                <Tutorial/>
-            )}
+            <Tutorial/>
             <Notebook show={menuOpen} onClose={() => {
               setMenuOpen(false);
             }}/>
