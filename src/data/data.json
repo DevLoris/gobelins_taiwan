@@ -91,7 +91,7 @@
           "collectible_id": "tofu",
           "trigger": "pintofu",
           "focus": {
-            "coords": {"x": 23, "y": 20, "z": -5},
+            "coords": {"x": 23, "y": 15, "z": 0},
             "rotation": {"x": 28.8, "y": 0.66, "z": 20}
           }
         },
@@ -139,7 +139,7 @@
           "collectible_id": "beefnoodles",
           "trigger": "pinbeef_noodles",
           "focus": {
-            "coords": {"x": 23, "y": 20, "z": -5},
+            "coords": {"x": 23, "y": 5, "z": -5},
             "rotation": {"x": 11, "y": 0.7, "z": 25}
           }
         },
@@ -213,8 +213,8 @@
             "id": "obasan",
             "sprite": "/public/sprites/Obasan/Obasan_01.png",
             "options": {
-              "scale": [1, 1, 1],
-              "position": [20, 0.8, 14],
+              "scale": [0.8, 0.8, 0.8],
+              "position": [20, 0.6, 14],
               "size": {"w": 98, "h": 215}
             }
           },
@@ -223,8 +223,8 @@
             "id": "serveur",
             "sprite": "/public/sprites/Serveur/Serveur_2.png",
             "options": {
-              "scale": [0.8, 0.8, 0.8],
-              "position": [16, 0.85, 24],
+              "scale": [0.6, 0.6, 0.6],
+              "position": [16, 0.5, 24],
               "size": {"w": 69, "h": 245}
             }
           },
@@ -233,8 +233,8 @@
             "id": "serveur_2",
             "sprite": "/public/sprites/Serveur/Serveur_1.png",
             "options": {
-              "scale": [0.8, 0.8, 0.8],
-              "position": [24, 0.85, 15],
+              "scale": [0.6, 0.6, 0.6],
+              "position": [24, 0.5, 15],
               "size": {"w": 69, "h": 245}
             }
           },
@@ -243,8 +243,28 @@
             "id": "homme",
             "sprite": "/public/sprites/Homme/Homme_2.png",
             "options": {
-              "scale": [1.1, 1.1, 1.1],
-              "position": [22, 0.9, -9],
+              "scale": [0.8, 0.8, 0.8],
+              "position": [22, 0.6, -9],
+              "size": {"w": 108, "h": 255}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "homme_2",
+            "sprite": "/public/sprites/Homme/Homme_1.png",
+            "options": {
+              "scale": [0.8, 0.8, 0.8],
+              "position": [15, 0.6, 22],
+              "size": {"w": 108, "h": 255}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "homme_3",
+            "sprite": "/public/sprites/Homme/Homme_1.png",
+            "options": {
+              "scale": [0.8, 0.8, 0.8],
+              "position": [-7, 0.6, -13],
               "size": {"w": 108, "h": 255}
             }
           },
@@ -253,8 +273,18 @@
             "id": "fille",
             "sprite": "/public/sprites/Fille/Fille_01.png",
             "options": {
-              "scale": [1, 1, 1],
-              "position": [4, 0.8, 0],
+              "scale": [0.7, 0.7, 0.7],
+              "position": [4, 0.45, 0],
+              "size": {"w": 98, "h": 228}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "fille_2",
+            "sprite": "/public/sprites/Fille/Fille_02.png",
+            "options": {
+              "scale": [0.7, 0.7, 0.7],
+              "position": [8, 0.45, 20],
               "size": {"w": 98, "h": 228}
             }
           },
@@ -263,9 +293,109 @@
             "id": "femme",
             "sprite": "/public/sprites/Femme/Femme_2.png",
             "options": {
-              "scale": [0.8, 0.8, 0.8],
-              "position": [-6, 0.9, -17],
+              "scale": [0.6, 0.6, 0.6],
+              "position": [-6, 0.6, -17],
               "size": {"w": 75, "h": 247}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "femme_2",
+            "sprite": "/public/sprites/Femme/Femme_1.png",
+            "options": {
+              "scale": [0.6, 0.6, 0.6],
+              "position": [24, 0.6, 4],
+              "size": {"w": 75, "h": 247}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "mamie",
+            "sprite": "/public/sprites/Mamie/Mamie_01.png",
+            "options": {
+              "scale": [0.5, 0.5, 0.5],
+              "position": [-17, 0.6, -10],
+              "size": {"w": 62, "h": 215}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "mamie_2",
+            "sprite": "/public/sprites/Mamie/Mamie_02.png",
+            "options": {
+              "scale": [0.5, 0.5, 0.5],
+              "position": [10, 6.6, -22],
+              "size": {"w": 62, "h": 215}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "mamie_3",
+            "sprite": "/public/sprites/Mamie/Mamie_02.png",
+            "options": {
+              "scale": [0.5, 0.5, 0.5],
+              "position": [-10, 0.6, 20],
+              "size": {"w": 62, "h": 215}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "papy",
+            "sprite": "/public/sprites/Papi/Papi_1.png",
+            "options": {
+              "scale": [0.6, 0.6, 0.6],
+              "position": [-15, 0.6, -10],
+              "size": {"w": 75, "h": 246}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "papy_2",
+            "sprite": "/public/sprites/Papi/Papi_2.png",
+            "options": {
+              "scale": [0.4, 0.4, 0.4],
+              "position": [-18, 0.4, 20],
+              "size": {"w": 75, "h": 246}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "petit",
+            "sprite": "/public/sprites/Petit/Petit_1.png",
+            "options": {
+              "scale": [0.5, 0.5, 0.5],
+              "position": [-17, 0.2, 10],
+              "size": {"w": 54, "h": 149}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "petit_2",
+            "sprite": "/public/sprites/Petit/Petit_2.png",
+            "options": {
+              "scale": [0.5, 0.5, 0.5],
+              "position": [8, 0.2, -4],
+              "size": {"w": 54, "h": 149}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "petite",
+            "sprite": "/public/sprites/Petite/Petite_1.png",
+            "options": {
+              "scale": [0.3, 0.3, 0.3],
+              "position": [-15, 0.2, 10],
+              "size": {"w": 26, "h": 123}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "petite_2",
+            "sprite": "/public/sprites/Petite/Petite_2.png",
+            "options": {
+              "scale": [0.3, 0.3, 0.3],
+              "position": [8, 0.2, -6],
+              "size": {"w": 26, "h": 123}
             }
           }
         ],
