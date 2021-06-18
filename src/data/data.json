@@ -1,7 +1,7 @@
 {
   "scenes": [
     {
-      "id":  "taipei",
+      "id": "taipei",
       "name": "Taipei",
       "chinese_name": "台北",
       "phonetic": "Táiběi",
@@ -20,7 +20,7 @@
           "trigger": "pickup",
           "focus": {
             "coords": {"x": 2, "y": 4, "z": 5},
-            "rotation": {"x": 3, "y": 1, "z":3}
+            "rotation": {"x": 3, "y": 1, "z": 3}
           }
         },
         {
@@ -28,7 +28,7 @@
           "trigger": "ATM001",
           "focus": {
             "coords": {"x": 6.36, "y": 1, "z": -25},
-            "rotation": {"x": 3, "y": 1, "z":3}
+            "rotation": {"x": 3, "y": 1, "z": 3}
           }
         },
         {
@@ -36,7 +36,7 @@
           "trigger": "ATM002",
           "focus": {
             "coords": {"x": 6.36, "y": 1, "z": -25},
-            "rotation": {"x": 3, "y": 1, "z":3}
+            "rotation": {"x": 3, "y": 1, "z": 3}
           }
         },
         {
@@ -44,7 +44,7 @@
           "trigger": "pin101",
           "focus": {
             "coords": {"x": 25, "y": 28, "z": 25},
-            "rotation": {"x": -2, "y": 30, "z":-0.2}
+            "rotation": {"x": -2, "y": 30, "z": -0.2}
           }
         },
         {
@@ -148,7 +148,8 @@
           "trigger": "pinqi_gong",
           "focus": {
             "coords": {"x": 23, "y": 20, "z": -5},
-            "rotation": {"x": 19, "y": 0.7, "z": 3.2}
+            "rotation": {"x": 19, "y": 0.7, "z": 3.2
+            }
           }
         }
       ],
@@ -213,7 +214,7 @@
             "sprite": "/public/sprites/Obasan/Obasan_01.png",
             "options": {
               "scale": [1, 1, 1],
-              "position":[4, 0.8, 0],
+              "position": [20, 0.8, 14],
               "size": {"w": 98, "h": 215}
             }
           },
@@ -223,9 +224,48 @@
             "sprite": "/public/sprites/Serveur/Serveur_2.png",
             "options": {
               "scale": [0.8, 0.8, 0.8],
-              "position": [3, 1.1, 0],
-              "size": {"w": 69, "h": 245},
-              "rotation": {"x": 0, "y": 4.71239, "z": 0}
+              "position": [16, 0.85, 24],
+              "size": {"w": 69, "h": 245}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "serveur_2",
+            "sprite": "/public/sprites/Serveur/Serveur_1.png",
+            "options": {
+              "scale": [0.8, 0.8, 0.8],
+              "position": [24, 0.85, 15],
+              "size": {"w": 69, "h": 245}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "homme",
+            "sprite": "/public/sprites/Homme/Homme_2.png",
+            "options": {
+              "scale": [1.1, 1.1, 1.1],
+              "position": [22, 0.9, -9],
+              "size": {"w": 108, "h": 255}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "fille",
+            "sprite": "/public/sprites/Fille/Fille_01.png",
+            "options": {
+              "scale": [1, 1, 1],
+              "position": [4, 0.8, 0],
+              "size": {"w": 98, "h": 228}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "femme",
+            "sprite": "/public/sprites/Femme/Femme_2.png",
+            "options": {
+              "scale": [0.8, 0.8, 0.8],
+              "position": [-6, 0.9, -17],
+              "size": {"w": 75, "h": 247}
             }
           }
         ],
@@ -256,7 +296,6 @@
       "chinese_name": "荒野",
       "phonetic": "Huāngyě",
       "collectibles": [
-
       ],
       "map": {
         "pin": "=",
@@ -282,9 +321,35 @@
         }
       },
       "content": {
-        "elements":  [],
+        "elements": [],
         "lights": [],
         "effects": []
+      }
+    },
+    {
+      "id": "airport",
+      "name": "Aéroport",
+      "chinese_name": "台北",
+      "phonetic": "Táiběi",
+      "ambient": "ambient_nature",
+      "camera": {
+        "position": {
+          "x": 20,
+          "y": 20,
+          "z": 20
+        }
+      },
+      "orbit": {
+        "enabled": false,
+        "center": {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        "minPolar": 0,
+        "maxPolar": 1.55,
+        "minDistance": 0.2,
+        "maxDistance": 100
       }
     }
   ],
@@ -409,7 +474,6 @@
       "id": "GridSandra2",
       "path": "/public/sceneries/demo/V3_Instances/Grid_Sandra_2.glb"
     }
-
   ],
   "collectibles": [
     {
@@ -423,7 +487,7 @@
         "resolution": "Tu as trouvé un 7-eleven, un lieu comparable à une caverne d’Ali Baba !"
       },
       "hint": "Ces si petits magasins ouverts jours et nuits sont de véritables cavernes d'Ali Baba",
-      "hint_audio": "",
+      "hint_audio": "enigma_1",
       "text": "Ces magasins permettent d’absolument tout faire : tu peux faire tes courses du quotidien, manger des repas complets sur place, faire des photocopies, retirer de l’argent ou avoir du wifi gratuitement. Et tout ça, à n’importe quelle heure de la journée c’est ouvert 24h/24 et 7j/7 !",
       "additional": [
         {
@@ -632,6 +696,13 @@
       "url": "/public/audio/ambient_city.mp3",
       "params": {
         "loop": true
+      }
+    },
+    {
+      "id": "enigma_1",
+      "url": "/public/audio/enigma_1.mp3",
+      "params": {
+        "loop": false
       }
     },
     {

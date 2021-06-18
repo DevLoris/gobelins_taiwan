@@ -1,14 +1,14 @@
 [
-    {
-      "id": "rodolphe_intro",
-      "path": "/public/videos/rodolphe_intro.mp4"
-    },
-    {
-        "id": "rodolphe_outro",
-        "path": "/public/videos/rodolphe_outro.mp4"
-    },
-    {
-        "id": "rodolphe_ending",
-        "path": "/public/videos/rodolphe_ending.mp4"
-    }
+  {
+    "id": "rodolphe_intro",
+    "path": "/public/videos/rodolphe_intro.mp4"
+  },
+  {
+    "id": "rodolphe_outro",
+    "path": "/public/videos/rodolphe_outro.mp4"
+  },
+  {
+    "id": "rodolphe_ending",
+    "path": "/public/videos/rodolphe_ending.mp4"
+  }
 ]

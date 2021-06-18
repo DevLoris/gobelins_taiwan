@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {selectCollectiblesOfSceneWithPickup, selectUserActiveScene} from "../../../store/store_selector";
 import {getState} from "../../../store/store";
 import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
@@ -23,7 +23,7 @@ function NotebookPageHint (props: IProps) {
   return (
       <>
         <NotebookPageElementsDetails data={pickup}/>
-        <NotebookHint showDefault={!pickup.pickup} showClose={pickup.pickup} hint={pickup.hint} hint_audio={"ambient_city"}/>
+        <NotebookHint showDefault={!pickup.pickup} showClose={pickup.pickup} hint={pickup.hint} hint_audio={pickup.hint_audio}/>
       </>
   )
 }
