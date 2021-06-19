@@ -16,6 +16,7 @@ import Vlog from "../vlog/Vlog";
 import {TutorialState} from "../../store/state_interface_experience";
 import FakeLoader from "../fakeLoader/FakeLoader";
 import TooltipMessage from "../tooltipMessage/TooltipMessage";
+import EndExperience from "../endExperience/EndExperience";
 
 interface IProps {
   className?: string
@@ -172,6 +173,7 @@ function GameContainer (props: IProps) {
             <PrePickupElement/>
             <YouNeedElement/>
             <WebGlCanvas />
+            <EndExperience/>
           </>
     }
     {

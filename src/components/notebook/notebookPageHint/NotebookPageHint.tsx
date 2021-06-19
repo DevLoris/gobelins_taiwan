@@ -21,17 +21,17 @@ function NotebookPageHint (props: IProps) {
     return value.type == IStateDataSceneCollectibleType.PICKUP;
   });
 
-  if(pickup !== undefined) {
+    if(pickup !== undefined) {
       return (
           <>
               <NotebookPageElementsDetails data={pickup}/>
               <NotebookHint showDefault={!pickup.pickup} showClose={pickup.pickup} hint={pickup.hint}
-                            hint_audio={"ambient_city"}/>
+                            hint_audio={pickup.hint_audio}/>
           </>
       )
-  }
-  else
-      return (<></>);
+    }
+    else
+        return (<></>);
 }
 
 export default NotebookPageHint

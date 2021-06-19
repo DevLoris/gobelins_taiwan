@@ -2,6 +2,7 @@ import css from './NotebookHint.module.less';
 import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import { merge } from "../../../lib/utils/arrayUtils";
 import {gsap} from "gsap";
+import {AudioHandler} from "../../../lib/audio/AudioHandler";
 import NotebookSignal from "../notebook-signal";
 
 interface IProps {
@@ -105,7 +106,9 @@ function NotebookHint (props: IProps) {
     </div>
 
     <div className={css.contentBlock}>
-      <div className={css.hintAudio}>
+      <div className={css.hintAudio} onClick={() => {
+        AudioHandler.play(props.hint_audio);
+      }}>
         <svg xmlns="http://www.w3.org/2000/svg" width="56.501" height="57.752" viewBox="0 0 56.501 57.752">
           <g id="Groupe_304" data-name="Groupe 304" transform="translate(-1277.582 321.44)">
             <g id="Groupe_58" data-name="Groupe 58" transform="translate(1278.816 -318.859)">

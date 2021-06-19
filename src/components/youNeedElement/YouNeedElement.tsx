@@ -2,7 +2,7 @@ import css from './YouNeedElement.module.less';
 import React, {useState} from 'react';
 import {merge} from "../../lib/utils/arrayUtils";
 import {IStateDataCollectible} from "../../store/state_interface_data";
-import RaycastManager from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
+import RaycastManager, {RaycastInteractionType} from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
 import {IStateDataSceneCollectibleType} from "../../store/state_enums";
 import FocusUtils from "../webGlCanvas/WebGlManagerClasses/scenery/FocusUtils";
 import Button, {ButtonStyle} from "../button/Button";
@@ -19,9 +19,9 @@ function YouNeedElement (props: IProps) {
   const [showed, toggleShowed] = useState<boolean>(false);
   const [collectible, setCollectible] =  useState<IStateDataCollectible>(null);
 
-  RaycastManager.getInstance().onInteract.add((value: IStateDataCollectible, hasPickupPayload = false) => {
+  RaycastManager.getInstance().onInteract.add((type: RaycastInteractionType, value: IStateDataCollectible, hasPickupPayload = false) => {
     // On affiche si on clique sur un PRE_PICKUP sinon ignoré ici
-    if([IStateDataSceneCollectibleType.PRE_PICKUP].includes(value.type) && !hasPickupPayload) {
+    if(type == RaycastInteractionType.ELEMENTS && [IStateDataSceneCollectibleType.PRE_PICKUP].includes(value.type) && !hasPickupPayload) {
       setCollectible(value);
       toggleShowed(true);
     }

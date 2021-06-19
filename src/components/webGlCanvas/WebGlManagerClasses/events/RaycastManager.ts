@@ -16,6 +16,11 @@ import {Expo, Sine} from "gsap/gsap-core";
 
 const debug = require("debug")(`front:RaycastManager`);
 
+export enum RaycastInteractionType {
+    ELEMENTS,
+    ITEMS
+}
+
 class RaycastManager {
     private static instance: RaycastManager;
 
@@ -49,7 +54,7 @@ class RaycastManager {
                 switch (collectible.type) {
                     case IStateDataSceneCollectibleType.HINT:
                         // DISPATCH UI UPDATE
-                        this.onInteract.dispatch(collectible);
+                        this.onInteract.dispatch(RaycastInteractionType.ELEMENTS, collectible);
                         // UPDATE STORE WITH USER DATA
                         store.dispatch(addPickElementScene({pickup: collectible.id, scene: userSceneId}));
                         // SET FOCUS
@@ -65,7 +70,7 @@ class RaycastManager {
                             // UPDATE HINT
                             store.dispatch(pickupHint({scene: userSceneId, bool: true}));
                             // DISPATCH UI UPDATE
-                            this.onInteract.dispatch(collectible, true);
+                            this.onInteract.dispatch(RaycastInteractionType.ELEMENTS, collectible, true);
 
                             AudioHandler.play("pickup");
                         }
@@ -73,7 +78,7 @@ class RaycastManager {
                             // GET LINKED PRE PICKUP ELEMENT
                             let collectible_prepickup = selectCollectibleOfType(IStateDataSceneCollectibleType.PRE_PICKUP)(getState().data);
                             // DISPATCH UI UPDATE
-                            this.onInteract.dispatch(collectible_prepickup, false);
+                            this.onInteract.dispatch(RaycastInteractionType.ELEMENTS, collectible_prepickup, false);
                         }
                         // SET FOCUS
                         FocusUtils.focusOn(collectibleSceneData.focus.coords, collectibleSceneData.focus.rotation);
@@ -85,15 +90,22 @@ class RaycastManager {
                         // UPDATE PRE HINT
                         store.dispatch(pickupPreHint({scene: userSceneId, bool: true}));
                         // DISPATCH UI UPDATE
-                        this.onInteract.dispatch(collectible, true);
+                        this.onInteract.dispatch(RaycastInteractionType.ELEMENTS, collectible, true);
                         // REMOVE ELEMENT FROM SCENE
                         SceneryUtils.destroyElementByName(collectibleSceneData.trigger);
 
                         AudioHandler.play("pickup");
 
                         break;
+                    case IStateDataSceneCollectibleType.ENDING:
+                        // TODO: Make an action with the thing that was picked up
+                        console.log(collectible);
+                        break;
                 }
             }
+        }
+        else {
+            this.onInteract.dispatch(RaycastInteractionType.ITEMS, object);
         }
     }
 
