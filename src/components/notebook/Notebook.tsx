@@ -90,7 +90,7 @@ function Notebook (props: IProps) {
         // Root
         gsap.to(rootRef.current, {
             xPercent: pShow ? 0 : 120,
-            rotate: pShow ? 0 : -15,
+            rotateZ: pShow ? 0 : -15,
             duration: pDuration,
             ease: "power2.easeOut",
         });

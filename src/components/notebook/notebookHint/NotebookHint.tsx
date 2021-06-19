@@ -41,7 +41,7 @@ function NotebookHint (props: IProps) {
    * Visible state for hint
    */
   useEffect(() => {
-    componentAnimation(visible, .5);
+    // componentAnimation(visible, .5);
     // if(visible) {
     //   gsap.to(rootRef.current,   {y: 0, opacity: 1});
     // }
@@ -55,7 +55,7 @@ function NotebookHint (props: IProps) {
    */
   useEffect(() => {
     console.log("=> notebook visible", notebookVisible)
-    componentAnimation(notebookVisible);
+    // componentAnimation(notebookVisible);
   }, [notebookVisible]);
 
   // --------------------------------------------------------------------------- HANDLERS

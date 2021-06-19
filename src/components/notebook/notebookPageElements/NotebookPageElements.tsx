@@ -32,8 +32,12 @@ function NotebookPageElements (props: IProps) {
 
   // sub-page state
   const [page, setPage] : [IStateDataCollectibleWithPickup, (IStateDataCollectibleWithPickup) => void]= useState(null);
+
   const [showPage, toggleShowPage]: [boolean, (boolean) =>  void] = useState(false);
   const [pageInDom, setPageInDom] = useState(false);
+
+  const pageElRef = useRef();
+  const listElRef = useRef();
 
   // get collectibles of scene
   const active_scene  = selectUserActiveScene(getState());
@@ -44,39 +48,64 @@ function NotebookPageElements (props: IProps) {
 
   // signal for forcing page change
   useEffect(() =>  {
+    // Hide page
     toggleShowPage(false);
+
     NotebookSignal.getInstance().notebookContent.add((type, data) => {
       if(type == NOTEBOOK_SEND.CONTENT)  {
-        toggleShowPage(true);
+        // Set page data
         setPage({...data, pickup: true});
+        // Show page
+        toggleShowPage(true);
       }
     })
   }, []);
-  if(showPage) {
-    return <NotebookPageElementsDetails className={"light"} leaveButton={true} data={page} onExit={() => { toggleShowPage(false); }} />
-  }
-  else {
-    return <div className={merge([css.root, props.className])}>
-      <NotebookTitle
-          title={scene.name}
-          phonetic={scene.phonetic}
-          chinese_title={scene.chinese_name}
-          total={collectibles.length}
-          picked={collectibles.filter(value => value.pickup).length}
-      />
 
-      <div className={css.notebookList}>
-        {collectibles.map((data, i) => {
-          return (<NotebookElement callback={() => {
-            if(data.pickup) {
-              setPage(data);
-              toggleShowPage(true)
-            }
-          }}  data={data} key={i}/>)
-        })}
+  useEffect(() => {
+
+    const animDuration = .7;
+
+    // If page is opening, add it to dom
+    showPage && setPageInDom(true);
+
+    gsap.to(listElRef.current, {scrollTo: 0, duration: animDuration * .5});
+
+    pageElRef.current && gsap.fromTo(pageElRef.current, {
+      xPercent: showPage ? 100 : 0,
+    }, {
+      xPercent: showPage ? 0 : 100,
+      duration: animDuration,
+      onComplete: () => {
+        // If page has closed, remove it from dom
+        !showPage && setPageInDom(false);
+      }
+    });
+
+  }, [showPage]);
+
+  return <>
+    <div ref={listElRef} className={merge([css.root, props.className])}>
+        <NotebookTitle
+            title={scene.name}
+            phonetic={scene.phonetic}
+            chinese_title={scene.chinese_name}
+            total={collectibles.length}
+            picked={collectibles.filter(value => value.pickup).length}
+        />
+
+        <div className={css.notebookList}>
+          {collectibles.map((data, i) => {
+            return (<NotebookElement callback={() => {
+              if(data.pickup) {
+                setPage(data);
+                toggleShowPage(true)
+              }
+            }}  data={data} key={i}/>)
+          })}
+        </div>
       </div>
-    </div>
-  }
+    { pageInDom && <NotebookPageElementsDetails elRef={pageElRef} className={"light"} leaveButton={true} data={page} onExit={() => { toggleShowPage(false); }} /> }
+    </>
 }
 
 export default NotebookPageElements

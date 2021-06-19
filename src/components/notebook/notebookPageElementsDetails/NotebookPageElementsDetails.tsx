@@ -13,6 +13,7 @@ interface IProps {
   data?: IStateDataCollectibleWithPickup,
   onExit?: () => any,
   leaveButton?: boolean
+  elRef?: any
 }
 
 const componentName = "NotebookPageElementsDetails";
@@ -42,7 +43,7 @@ function NotebookPageElementsDetails (props: IProps) {
     });
   }
 
-  return <div className={merge([css.root, css[props.className]])}>
+  return <div ref={props.elRef} className={merge([css.root, css[props.className]])}>
 
     <div className={css.elementHeader}>
       {props.onExit && (
