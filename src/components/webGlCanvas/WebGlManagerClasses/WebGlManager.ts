@@ -261,14 +261,8 @@ export class WebGlManager {
                     }
                     else if(object.type === "Object3D") {
                         if(object.name.includes("pin")) {
-                            // const texture = new TextureLoader().load( '/public/PIN_2.png');
-                            // const material = new SpriteMaterial( { color: 0xffffff, map: texture, transparent: true } );
-                            // const sprite = new Sprite( material );
                             let texture = new TextureLoader().load( '/public/pin_seq.png' );
                             this._spritesAnimators.push(new TextureAnimator( texture, 50, 1, 50, 75 )); // texture, #horiz, #vert, #total, duration.
-                            // let runnerMaterial = new MeshBasicMaterial( { map: texture, side: DoubleSide } );
-                            // let runnerGeometry = new PlaneGeometry(50, 50, 1, 1);
-                            // let sprite = new Mesh(runnerGeometry, runnerMaterial);
                             const material = new SpriteMaterial( { color: 0xffffff, map: texture, transparent: true } );
                             const sprite = new Sprite( material );
                             sprite.scale.set(.5, .5, .5);
