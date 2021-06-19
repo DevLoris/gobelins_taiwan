@@ -158,7 +158,10 @@ function GameContainer (props: IProps) {
     <FakeLoader message={loaderMessage}/>
     <TooltipMessage/>
     {
-      showWebGl &&
+      showVlog && <Vlog videoId={SequenceManager.instance.getCurrentVideoId()}/>
+    }
+    {
+      showWebGl && !showVlog &&
           <>
             <InteractedElement/>
             <Tutorial/>
@@ -175,9 +178,6 @@ function GameContainer (props: IProps) {
             <WebGlCanvas />
             <EndExperience/>
           </>
-    }
-    {
-      showVlog && <Vlog videoId={SequenceManager.instance.getCurrentVideoId()}/>
     }
   </div>
 }
