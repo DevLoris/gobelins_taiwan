@@ -16,43 +16,47 @@ interface IProps {
  * @name Tutorial
  */
 function Tutorial (props: IProps) {
-  const {t} = useTranslation();
-  const [step, setStep] = useState<number>(0);
-
-  // refs
-  useEffect(() => {
-    setStep(0);
-  }, [])
-
-
   switch (selectTutorial(getState())) {
     case TutorialState.INTRODUCTION:
+      let t = useTranslation().t;
+      let [step, setStep] = useState<number>(0);
+
+      // refs
+      useEffect(() => {
+        setStep(0);
+      }, []);
+
+
       const tutorialElement = useRef();
       const notebookTutorial = useRef();
       const popupTutorial = useRef();
       const popupTutorialResolve = useRef();
+      const popupTutorialPins = useRef();
       const popupTutorialMove = useRef();
 
       /**
        * animation des morceaux du tutorial
        */
       useEffect(() => {
+        console.log(step);
         if (step == 0) {
           gsap.fromTo(popupTutorial.current, {autoAlpha: 0}, {autoAlpha: 1});
           gsap.to(notebookTutorial.current, {autoAlpha: 0, duration: 0});
           gsap.to(popupTutorialMove.current, {left: -300, autoAlpha: 0, duration: 0});
+          gsap.to(popupTutorialPins.current, {left: -300, autoAlpha: 0, duration: 0});
         } else if (step == 1) {
-          gsap.fromTo(popupTutorialMove.current, {left: -300, autoAlpha: 0}, {left: "50%", autoAlpha: 1});
+          gsap.fromTo(popupTutorialPins.current, {left: -300, autoAlpha: 0}, {left: "50%", autoAlpha: 1});
         } else if (step == 2) {
+          gsap.fromTo(popupTutorialMove.current, {left: -300, autoAlpha: 0}, {left: "50%", autoAlpha: 1});
+        } else if (step == 3) {
           gsap.to(popupTutorialMove.current, {left: "100%", autoAlpha: 0});
+          gsap.to(popupTutorialPins.current, {left: "100%", autoAlpha: 0});
           gsap.to(popupTutorialResolve.current, {left: "100%", autoAlpha: 0});
           gsap.to(notebookTutorial.current, {autoAlpha: 1});
           gsap.to(popupTutorial.current, {autoAlpha: 0});
-        } else if (step == 3) {
+        } else if (step == 4) {
           gsap.to(tutorialElement.current, {
             autoAlpha: 0, onComplete: () => {
-              // @ts-ignore
-              //tutorialElement.current !== undefined && tutorialElement.current.remove();
               store.dispatch(tutorial(TutorialState.BEFORE_MAP));
             }
           })
@@ -70,6 +74,14 @@ function Tutorial (props: IProps) {
                 }} style={ButtonStyle.PATTERN} label={t('onboard__resolve__button')}/>
               </div>
             </div>
+            <div ref={popupTutorialPins} className={"popup"}>
+              <p className={"bigger"}>{t('onboard__pins')}</p>
+              <div className={"buttonGroup"}>
+                <Button onClick={() => {
+                  setStep(2);
+                }} style={ButtonStyle.PATTERN} label={t('onboard__pins__button')}/>
+              </div>
+            </div>
             <div ref={popupTutorialMove} className={"popup"}>
               <p className={"center"}>{t('onboard__move')}</p>
               <div className={css.tutorialIconList}>
@@ -78,14 +90,14 @@ function Tutorial (props: IProps) {
               </div>
               <div className={"buttonGroup"}>
                 <Button onClick={() => {
-                  setStep(2);
+                  setStep(3);
                 }} style={ButtonStyle.PATTERN} label={t('onboard__move__button')}/>
               </div>
             </div>
           </div>
         </div>
         <div ref={notebookTutorial} onClick={() => {
-          setStep(3);
+          setStep(4);
         }} style={{opacity: 0}} className={css.tutorialGradient}>
           <div className={css.content}>
             <p>{t('onboard__notebook')}</p>
@@ -97,13 +109,22 @@ function Tutorial (props: IProps) {
         </div>
       </div>;
     case TutorialState.MAP:
+      let translate = useTranslation().t;
+      let [mapStep, setMapStep] = useState<number>(0);
+
+      // refs
+      useEffect(() => {
+        setMapStep(0);
+      }, []);
+
+
       const tutorialMapElement = useRef();
       const popupTutorialMap = useRef();
 
       useEffect(() => {
-        if (step == 0) {
+        if (mapStep == 0) {
           gsap.fromTo(tutorialMapElement.current, {autoAlpha: 0}, {autoAlpha: 1});
-        } else if (step == 1) {
+        } else if (mapStep == 1) {
           gsap.to(tutorialMapElement.current, {
             autoAlpha: 0, onComplete: () => {
               store.dispatch(tutorial(TutorialState.DISABLED));
@@ -116,10 +137,10 @@ function Tutorial (props: IProps) {
         <div ref={popupTutorialMap} className={css.blue}>
             <div className={"popup popup_big"}>
               <img src={"public/da/compass.svg"} alt={"compass"} className={css.compass}/>
-              <div className={"popup-big-text"}  dangerouslySetInnerHTML={{__html: t('onboard__map')}}/>
+              <div className={"popup-big-text"}  dangerouslySetInnerHTML={{__html: translate('onboard__map')}}/>
                 <Button onClick={() => {
-                  setStep(1);
-                }} style={ButtonStyle.PATTERN} label={t('onboard__map__button')}/>
+                  setMapStep(1);
+                }} style={ButtonStyle.PATTERN} label={translate('onboard__map__button')}/>
           </div>
         </div>
       </div>;

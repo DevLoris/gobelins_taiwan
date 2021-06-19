@@ -125,7 +125,7 @@ export class WebGlManager {
         this._setupRaycaster();
 
         this._startWebGlLoop();
-        this._setupStats();
+        // this._setupStats();
 
         pSceneryName && this.toggleScenery(pSceneryName);
 
@@ -403,7 +403,7 @@ export class WebGlManager {
      * @private
      */
     private _animationFrame():void {
-        this._configureGui.getStats().begin();
+        // this._configureGui.getStats().begin();
 
         if(this._renderEnabled) {
             this._control.update();
@@ -421,7 +421,7 @@ export class WebGlManager {
             }
         }
 
-        this._configureGui.getStats().end();
+        // this._configureGui.getStats().end();
 
         requestAnimationFrame(this._animationFrame.bind(this));
     }
@@ -446,7 +446,7 @@ export class WebGlManager {
      */
     public destroy():void {
         this._stopWebGlLoop();
-        this._configureGui.destroy();
+        //this._configureGui.destroy();
         this._wrapper.removeChild( this._renderer.domElement );
         this._control.removeEventListener("change", this._controlsChangeHandlers);
     }

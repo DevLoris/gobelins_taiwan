@@ -9,7 +9,7 @@ import NotebookElement from "../notebookElement/NotebookElement";
 import NotebookPageElementsDetails from "../notebookPageElementsDetails/NotebookPageElementsDetails";
 import NotebookTitle from "../notebookTitle/NotebookTitle";
 import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
-import NotebookSignal from "../notebook-signal";
+import NotebookSignal, {NOTEBOOK_SEND} from "../notebook-signal";
 import {gsap, ScrollToPlugin} from "gsap/all";
 
 gsap.registerPlugin(ScrollToPlugin);
@@ -42,76 +42,41 @@ function NotebookPageElements (props: IProps) {
     return value.type == IStateDataSceneCollectibleType.HINT;
   });
 
-  const detailsPageRef = useRef(null);
-  const listPageRef = useRef(null);
-
-  // reset to close details page
-  NotebookSignal.getInstance().onToggle.add((value) =>  {
-    if(value)
-      toggleShowPage(false);
-  });
-
-  useEffect(() => {
-    showPage ? setPageInDom(true) : pageAnimation(false);
-  }, [showPage]);
-
-  useEffect(() => {
-    pageAnimation(showPage);
-  }, [pageInDom]);
-
-  function pageAnimation(pVisible:boolean = false, pDuration: number = .7) {
-    if(detailsPageRef.current) {
-      gsap.set(detailsPageRef.current, {
-        xPercent: pVisible ? 110 : 0,
-        onStart: () => {
-          if(pVisible) {
-            gsap.to(props.parentInnerRef.current, {
-              scrollTo: 0,
-              duration: pDuration * .7,
-            });
-          }
-          else {
-            listPageRef.current.style.display = "block";
-          }
-        },
-      });
-      gsap.to(detailsPageRef.current, {
-        xPercent: pVisible ? 0 : 110,
-        duration: pDuration,
-        onComplete: () => {
-          pVisible ? listPageRef.current.style.display = "none" : setPageInDom(false);
-        },
-      });
-    }
+  // signal for forcing page change
+  useEffect(() =>  {
+    toggleShowPage(false);
+    NotebookSignal.getInstance().notebookContent.add((type, data) => {
+      if(type == NOTEBOOK_SEND.CONTENT)  {
+        toggleShowPage(true);
+        setPage({...data, pickup: true});
+      }
+    })
+  }, []);
+  if(showPage) {
+    return <NotebookPageElementsDetails className={"light"} leaveButton={true} data={page} onExit={() => { toggleShowPage(false); }} />
   }
+  else {
+    return <div className={merge([css.root, props.className])}>
+      <NotebookTitle
+          title={scene.name}
+          phonetic={scene.phonetic}
+          chinese_title={scene.chinese_name}
+          total={collectibles.length}
+          picked={collectibles.filter(value => value.pickup).length}
+      />
 
-  return (
-      <>
-        <div ref={listPageRef} className={merge([css.root, props.className])}>
-          <NotebookTitle
-              title={scene.name}
-              phonetic={scene.phonetic}
-              chinese_title={scene.chinese_name}
-              total={collectibles.length}
-              picked={collectibles.filter(value => value.pickup).length}
-          />
-
-          <div className={css.notebookList}>
-            {collectibles.map((data, i) => {
-              return (<NotebookElement callback={() => {
-                if(data.pickup) {
-                  setPage(data);
-                  toggleShowPage(true)
-                }
-              }}  data={data} key={i}/>)
-            })}
-          </div>
-        </div>
-        {
-          pageInDom && <div ref={detailsPageRef} className={css.pageContainer}><NotebookPageElementsDetails className={"light"} leaveButton={true} data={page} onExit={() => { toggleShowPage(false); }} /></div>
-        }
-      </>
-  );
+      <div className={css.notebookList}>
+        {collectibles.map((data, i) => {
+          return (<NotebookElement callback={() => {
+            if(data.pickup) {
+              setPage(data);
+              toggleShowPage(true)
+            }
+          }}  data={data} key={i}/>)
+        })}
+      </div>
+    </div>
+  }
 }
 
 export default NotebookPageElements

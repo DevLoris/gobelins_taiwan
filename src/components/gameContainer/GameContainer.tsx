@@ -14,6 +14,8 @@ import {SequenceManager} from "../../mainClasses/Sequencer/SequenceManager";
 import {EChapterStep} from "../../mainClasses/Sequencer/SequenceChapterStep";
 import Vlog from "../vlog/Vlog";
 import {TutorialState} from "../../store/state_interface_experience";
+import FakeLoader from "../fakeLoader/FakeLoader";
+import TooltipMessage from "../tooltipMessage/TooltipMessage";
 
 interface IProps {
   className?: string
@@ -34,10 +36,10 @@ function GameContainer (props: IProps) {
   const rootRef = useRef<HTMLDivElement>(null);
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [loaderMessage, setLoaderMessage] = useState<string>(null);
 
   const [showVlog, setShowVlog] = useState<boolean>(false);
   const [showWebGl, setShowWebgl] = useState<boolean>(false);
-
 
   useEffect(() => {
     NotebookSignal.getInstance().notebookContent.add((type, data) => {
@@ -95,6 +97,9 @@ function GameContainer (props: IProps) {
     const vlogsStates = selectUserScene(sceneryIdentifier)(getState().user_data)?.vlog;
     const sceneData = SequenceManager.instance.getCurrentSceneData();
 
+    if(sceneData.message)
+      setLoaderMessage(sceneData.message);
+
     switch (currentStep) {
       case EChapterStep.MAP_UNLOCK:
         // Add chapter to map
@@ -143,15 +148,19 @@ function GameContainer (props: IProps) {
   }
 
   // -------------------–-------------------–-------------------–--------------- RENDER
+  /**
+   *  {![TutorialState.DISABLED, TutorialState.BEFORE_MAP].includes(selectTutorial(getState())) && (
+            )}
+   */
 
   return <div ref={rootRef}>
+    <FakeLoader message={loaderMessage}/>
+    <TooltipMessage/>
     {
       showWebGl &&
           <>
             <InteractedElement/>
-            {![TutorialState.DISABLED, TutorialState.BEFORE_MAP].includes(selectTutorial(getState())) && (
-                <Tutorial/>
-            )}
+            <Tutorial/>
             <Notebook show={menuOpen} onClose={() => {
               setMenuOpen(false);
             }}/>

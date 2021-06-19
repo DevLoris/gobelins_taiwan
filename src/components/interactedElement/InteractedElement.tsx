@@ -70,6 +70,7 @@ function InteractedElement (props: IProps) {
             <Button onClick={() => {
               NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.TOGGLE, true);
               NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.PAGE, NotebookPages.ELEMENTS);
+              NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.CONTENT, collectible);
             }} style={ButtonStyle.DEFAULT} label={"En apprendre plus"}/>
           </div>
         </div>

@@ -59,6 +59,10 @@ function Settings(props: IProps) {
                         <strong>Voix Off :</strong>
                         <p className={"bigger"}>Pia Véran</p>
                     </div>
+                    <div className={css.creditLine}>
+                        <strong>Sound Design :</strong>
+                        <p className={"bigger"}>Félix Vigne</p>
+                    </div>
                 </div>
             </div>
             <hr/>

@@ -6,6 +6,28 @@
       "chinese_name": "台北",
       "phonetic": "Táiběi",
       "ambient": "ambient_city",
+      "messages": [
+        {
+          "message": "Tu as oublié l'énigme ? Regarde dans ton carnet !",
+          "moment": "before_pre_pickup",
+          "delay": 150
+        },
+        {
+          "message": "Ecoute bogdanof pour un indice !",
+          "moment": "before_pre_pickup",
+          "delay": 200
+        },
+        {
+          "message": "Essaie de trouver la caverne d'Ali Baba !",
+          "moment": "after_pre_pickup",
+          "delay": 60
+        },
+        {
+          "message": "Tu peux continuer à visiter Taipei, ou bien partir dans d'autres quartiers !",
+          "moment": "after_pickup",
+          "delay": 60
+        }
+      ],
       "collectibles": [
         {
           "collectible_id": "seven_eleven",
@@ -255,6 +277,7 @@
       "name": "Terres sauvages",
       "chinese_name": "荒野",
       "phonetic": "Huāngyě",
+      "messages": [],
       "collectibles": [
 
       ],

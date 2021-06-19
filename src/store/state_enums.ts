@@ -32,3 +32,9 @@ export enum IStateDataCollectibleAdditionalDataType {
     YOUTUBE  = "youtube",
     SEPARATOR = "separator"
 }
+
+export enum SceneDataAutoMessageMoment {
+    BEFORE_PRE_PICKUP = "before_pre_pickup",
+    AFTER_PRE_PICKUP = "after_pre_pickup",
+    AFTER_PICKUP = "after_pickup"
+}
