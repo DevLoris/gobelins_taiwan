@@ -7,12 +7,14 @@
 .wrapper {
     overflow: hidden;
     max-height: 100%;
+    background: @text-color;
 
     video {
         max-width: 100%;
-        max-height: 90%;
+        max-height: 100%;
         .absoluteCenter();
         object-fit: cover;
+        object-position: bottom;
     }
 
     .play {
