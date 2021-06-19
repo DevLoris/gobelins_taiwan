@@ -38,7 +38,6 @@ function Tutorial (props: IProps) {
        * animation des morceaux du tutorial
        */
       useEffect(() => {
-        console.log(step);
         if (step == 0) {
           gsap.fromTo(popupTutorial.current, {autoAlpha: 0}, {autoAlpha: 1});
           gsap.to(notebookTutorial.current, {autoAlpha: 0, duration: 0});

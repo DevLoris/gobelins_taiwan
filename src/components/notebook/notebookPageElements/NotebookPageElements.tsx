@@ -1,5 +1,5 @@
 import css from './NotebookPageElements.module.less';
-import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {merge} from "../../../lib/utils/arrayUtils";
 import {useTranslation} from "react-i18next";
 import {selectCollectiblesOfSceneWithPickup, selectScene, selectUserActiveScene} from "../../../store/store_selector";

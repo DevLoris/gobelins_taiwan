@@ -45,13 +45,23 @@ function Notebook (props: IProps) {
 
     const { t } = useTranslation();
 
-    useEffect(() => {
+    // signal for forcing page change
+    useEffect(() =>  {
+        revealAnimation(false, 0);
 
-    }, [page]);
+        let handler = (type, data) => {
+            if(type == NOTEBOOK_SEND.PAGE)
+                setPage(data);
+        }
+        NotebookSignal.getInstance().notebookContent.add(handler)
+
+        return () => {
+            NotebookSignal.getInstance().notebookContent.remove(handler);
+        }
+    }, []);
 
     // this effect reset book status to default one, for all page. a signal is send across all pages
     useEffect(() =>  {
-        console.log("notebook show", props.show)
         if(props.show) {
             AudioHandler.play("book");
 
@@ -66,22 +76,10 @@ function Notebook (props: IProps) {
 
     }, [props.show]);
 
-    // signal for forcing page change
-    useEffect(() =>  {
-        let handler = (type, data) => {
-            if(type == NOTEBOOK_SEND.PAGE)
-                setPage(data);
-        }
-        NotebookSignal.getInstance().notebookContent.add(handler)
-
-        revealAnimation(false, 0);
-
-        return () => {
-            NotebookSignal.getInstance().notebookContent.remove(handler);
-        }
-    }, []);
-
     function revealAnimation(pShow:boolean, pDuration:number = .7) {
+        // remove default display none
+        pShow && gsap.set(rootRef.current, {display: "block"})
+
         // Cancel current animation
         gsap.killTweensOf(rootRef.current);
         gsap.killTweensOf(menuButtonsRefs.current);

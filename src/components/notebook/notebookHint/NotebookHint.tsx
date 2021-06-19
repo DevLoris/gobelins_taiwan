@@ -1,9 +1,8 @@
 import css from './NotebookHint.module.less';
-import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { merge } from "../../../lib/utils/arrayUtils";
 import {gsap} from "gsap";
 import {AudioHandler} from "../../../lib/audio/AudioHandler";
-import NotebookSignal from "../notebook-signal";
 
 interface IProps {
   className?: string,
@@ -20,22 +19,13 @@ interface IProps {
 function NotebookHint (props: IProps) {
   // Is hint visible ?
   const [visible, toggleVisible] = useState<boolean>(props.showDefault);
-  // Is notebook displayed ?
-  const [notebookVisible, setNotebookVisible] = useState<boolean>(false);
 
   const rootRef  = useRef(null);
 
   // --------------------------------------------------------------------------- EFFECTS
 
   useEffect(() => {
-
-    NotebookSignal.getInstance().onToggle.add(notebookToggleHandler);
-
     defaultPosition();
-
-    return () => {
-      NotebookSignal.getInstance().onToggle.remove(notebookToggleHandler);
-    }
   }, []);
 
   /**
@@ -44,20 +34,6 @@ function NotebookHint (props: IProps) {
   useEffect(() => {
     componentAnimation(visible, .5);
   },  [visible]);
-
-  /**
-   * On notebook toggled
-   */
-  useEffect(() => {
-    console.log("=> notebook visible", notebookVisible)
-    // componentAnimation(notebookVisible);
-  }, [notebookVisible]);
-
-  // --------------------------------------------------------------------------- HANDLERS
-
-  function notebookToggleHandler(pVisible) {
-    setNotebookVisible(pVisible);
-  }
 
   // --------------------------------------------------------------------------- ANIMATION
 
