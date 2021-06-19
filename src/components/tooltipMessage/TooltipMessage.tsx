@@ -87,7 +87,7 @@ function TooltipMessage (props: IProps) {
       gsap.to(ref.current, {autoAlpha: 1});
   }, [message]);
 
-  return <div ref={ref} onClick={() => { gsap.to(ref.current, {autoAlpha: 0}); }} className={merge([css.root, props.className])}>
+  return <div ref={ref} className={merge([css.root, props.className])}>
     <div className={css.content}>
       <p>{message}</p>
     </div>

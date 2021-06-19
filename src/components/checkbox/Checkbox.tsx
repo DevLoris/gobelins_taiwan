@@ -25,7 +25,7 @@ function Checkbox (props: IProps) {
           </g>
           <g id="Rectangle_1415-2" data-name="Rectangle 1415">
             <g id="Groupe_2700" data-name="Groupe 2700">
-              <path id="Tracé_2570" data-name="Tracé 2570" d="M-849.388-4121.6l6,.263,6-.321,6,.151,3.62,3.4.1,6-.393,6,.19,6-3.514,3.306-6,.335-6-.259-6,.23-3.613-3.612.271-6-.372-6,.184-6Z" fill={props.isChecked ? "#ece4d5": "#ffffff"} stroke="#111d30" stroke-width="1"/>
+              <path id="Tracé_2570" data-name="Tracé 2570" d="M-849.388-4121.6l6,.263,6-.321,6,.151,3.62,3.4.1,6-.393,6,.19,6-3.514,3.306-6,.335-6-.259-6,.23-3.613-3.612.271-6-.372-6,.184-6Z" fill={props.isChecked ? "#ece4d5": "#ffffff"} stroke="#111d30" strokeWidth="1"/>
             </g>
           </g>
         </g>

@@ -24,7 +24,7 @@ function EligibilityQuestion (props: IProps) {
 
   return <div className={merge([css.root, props.className])}>
     <div className={css.question}>
-      <p>{props.question.helper && (<div>{props.question.helper}</div>)}</p>
+      <p>{props.question.helper && (props.question.helper)}</p>
       <h2>{props.question.question}</h2>
     </div>
 

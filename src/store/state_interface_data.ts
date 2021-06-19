@@ -53,7 +53,8 @@ export interface IStateDataScene {
         }
     },
     camera: {
-        position: ICoord
+        position: ICoord,
+        fov: number
     },
     orbit: {
         enabled: boolean,

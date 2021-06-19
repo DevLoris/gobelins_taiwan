@@ -67,7 +67,7 @@ function Eligibility (props: IProps) {
     })
   }, [questionIndex]);
 
-  return (<div ref={test} className={merge([css.root, props.className])}>
+  return (<div ref={test} style={{opacity: 0}} className={merge([css.root, props.className])}>
     <ButtonPicto className={css.close} disabled={false} picto={ButtonPictoStyle.CROSS} onClick={props.onClose}/>
     <div ref={el => refs.current[0] = el} className={merge([css.frame, css.frameCenter])}>
       <div className={css.content}>
