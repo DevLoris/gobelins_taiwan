@@ -80,6 +80,11 @@ function Notebook (props: IProps) {
         // remove default display none
         pShow && gsap.set(rootRef.current, {display: "block"})
 
+        // Fix : menuButtonsRefs animation breaks css rotate.
+        menuButtonsRefs.current.forEach((el, index) => {
+            gsap.set(el, {rotateZ: index === 0 ? -1 : (index === 1) ? 1 : 0});
+        })
+
         // Cancel current animation
         gsap.killTweensOf(rootRef.current);
         gsap.killTweensOf(menuButtonsRefs.current);
