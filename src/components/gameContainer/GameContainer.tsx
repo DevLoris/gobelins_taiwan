@@ -143,7 +143,7 @@ function GameContainer (props: IProps) {
     setShowVlog(false);
     setShowWebgl(false);
 
-    gsap.delayedCall(.1, () => {
+    gsap.delayedCall(0, () => {
       [EChapterStep.OUTRO_VLOG, EChapterStep.INTRO_VLOG].includes(step) ? setShowVlog(true) : setShowWebgl(true);
     });
   }
