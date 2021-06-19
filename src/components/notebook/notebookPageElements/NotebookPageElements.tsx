@@ -137,7 +137,7 @@ function NotebookPageElements (props: IProps) {
         <div className={css.notebookList}>
           {collectibles.map((data, i) => {
             return (<NotebookElement callback={() => {
-              if(data.pickup) {
+              if(data.pickup && !pageInDom) {
                 setPage(data);
                 toggleShowPage(true)
               }
