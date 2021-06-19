@@ -486,7 +486,7 @@
       "name": "Aéroport",
       "chinese_name": "台北",
       "phonetic": "Táiběi",
-      "ambient": "ambient_nature",
+      "ambient": "ambient_airport",
       "messages": [],
       "map": {
         "pin": "/",
@@ -721,29 +721,16 @@
       "text": "A Taiwan, les camions poubelle jouent une petite mélodie quant ils passent. Ça te permet de savoir quand ils arrivent pour que tu ailles jeter tes poubelles. C’est l’occase de voir tous tes voisins en survêt claquettes.",
       "additional": [
         {
-          "type": "youtube",
-          "value": "0BjQIB7Zikk",
-          "credits": "copyright wola"
-        },
-        {
           "type": "separator",
           "value": null
         },
         {
           "type": "text",
-          "value": "Ils jouent du beethoven"
+          "value": "Ils jouent Fur Elisa, du très célèbre compositeur Beethoven."
         },
         {
-          "type": "tips",
-          "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        },
-        {
-          "type": "testimonial",
-          "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-        },
-        {
-          "type": "image",
-          "value": "/public/book.png"
+          "type": "audio",
+          "value": "camion-poubelle"
         }
       ]
     },
@@ -894,6 +881,11 @@
       "params": {}
     },
     {
+      "id": "camion-poubelle",
+      "url": "/public/audio/camion-poubelle.mp3",
+      "params": {}
+    },
+    {
       "id": "page",
       "url": "/public/audio/page.mp3",
       "params": {}
@@ -905,7 +897,14 @@
     },
     {
       "id": "ambient_city",
-      "url": "/public/audio/ambient_city.mp3",
+      "url": "/public/audio/ambiance-taipei.mp3",
+      "params": {
+        "loop": true
+      }
+    },
+    {
+      "id": "ambient_airport",
+      "url": "/public/audio/ambiance-airport.mp3",
       "params": {
         "loop": true
       }

@@ -18,26 +18,31 @@ function NotebookAudio (props: IProps) {
     // get sound by id
     let audio = AudioHandler.get(props.audio);
 
-    // hide all elements
-    let elements =  document.querySelectorAll("#Groupe_295 line");
-    elements.forEach(value => {
-      // @ts-ignore
-      return value.style.opacity = 0.5;
-    });
-
-    audio.play();
-
-    // show bars progressively based on time
-    setInterval(() => {
-      if (audio.playing()) {
-        let toShow = Math.ceil((audio.seek()/audio.duration())*elements.length);
+    if(!audio.playing()) {
+      // hide all elements
+      let elements = document.querySelectorAll("#Groupe_295 line");
+      elements.forEach(value => {
         // @ts-ignore
-        Array.from(elements).slice(0, toShow).forEach(value  => {
+        return value.style.opacity = 0.5;
+      });
+
+      audio.play();
+
+      // show bars progressively based on time
+      setInterval(() => {
+        if (audio.playing()) {
+          let toShow = Math.ceil((audio.seek() / audio.duration()) * elements.length);
+          // @ts-ignore
+          Array.from(elements).slice(0, toShow).forEach(value => {
             // @ts-ignore
             return value.style.opacity = 1;
-        })
-      }
-    }, 200);
+          })
+        }
+      }, 200);
+    }
+    else {
+      audio.pause();
+    }
   }
 
   return <div className={merge([css.root, props.className])}>

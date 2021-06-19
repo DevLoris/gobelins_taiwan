@@ -63,6 +63,10 @@ function Settings(props: IProps) {
                         <strong>Sound Design :</strong>
                         <p className={"bigger"}>Félix Vigne</p>
                     </div>
+                    <div className={css.creditLine}>
+                        <strong>Musique :</strong>
+                        <p className={"bigger"}>Four Pens</p>
+                    </div>
                 </div>
             </div>
             <hr/>
