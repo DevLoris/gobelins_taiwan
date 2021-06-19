@@ -7,6 +7,7 @@ import {useTranslation} from "react-i18next";
 import {WebGlManager} from "../../webGlCanvas/WebGlManagerClasses/WebGlManager";
 import Button, {ButtonStyle} from "../../button/Button";
 import NotebookSignal from "../notebook-signal";
+import {SceneVars} from "../../../vars/scene_vars";
 
 interface IProps {
   className?: string,
@@ -32,7 +33,13 @@ function NotebookPageMapDetails (props: IProps) {
     </p>
     <div className={"buttonGroup"}>
     <Button style={ButtonStyle.DEFAULT} onClick={() =>  { NotebookSignal.getInstance().onToggle.dispatch(true);}} label={t('notebook__page__map__label__stay')}/>
-    <Button style={ButtonStyle.PATTERN} onClick={() =>  {WebGlManager.getInstance().toggleScenery(sceneData.id);}} label={t('notebook__page__map__label__goto')}/>
+    <Button style={ButtonStyle.PATTERN} onClick={() =>  {
+      if(sceneData.id == SceneVars.WILD)
+        WebGlManager.getInstance().toggleScenery(SceneVars.AIRPORT);
+      else
+        WebGlManager.getInstance().toggleScenery(sceneData.id);
+
+    }} label={t('notebook__page__map__label__goto')}/>
     </div>
   </div>
 }

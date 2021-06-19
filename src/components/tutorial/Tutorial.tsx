@@ -131,7 +131,7 @@ function Tutorial (props: IProps) {
             }
           })
         }
-      }, [step]);
+      }, [mapStep]);
 
       return <div ref={tutorialMapElement} className={merge([css.root, props.className])}>
         <div ref={popupTutorialMap} className={css.blue}>

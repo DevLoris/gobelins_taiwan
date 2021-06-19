@@ -19,6 +19,7 @@ export enum EChapterName {
     SECOND_ENIGMA = "SECOND_ENIGMA",
     OUTRO_VLOG = "OUTRO_VLOG",
     MAP_UNLOCK = "MAP_UNLOCK",
+    AIRPORT = "AIRPORT",
     TUTORIAL = "TUTORIAL"
 }
 
@@ -93,6 +94,21 @@ export const CHAPTERS: ISequenceChapter[] = [
     //         },
     //     ]
     // },
+    {
+        name: EChapterName.AIRPORT,
+        scene: SceneVars.AIRPORT,
+        steps: [
+            {
+                identifier: EChapterStep.INTRO_VLOG,
+                id: "rodolphe_ending"
+            },
+            {
+                identifier: EChapterStep.DIORAMA,
+                id: "sceneThree",
+                sceneId: SceneVars.AIRPORT
+            }
+        ]
+    }
 ];
 
 // Nombre de chapitres dans le jeu

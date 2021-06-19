@@ -30,6 +30,7 @@ function Eligibility (props: IProps) {
   const [responses] = useState<IEligibiltyResponse[]>([]);
 
   const refs = useRef([]);
+  const test = useRef();
 
 
   const calcEligibility = () =>  {
@@ -42,11 +43,19 @@ function Eligibility (props: IProps) {
   }
 
   useEffect(() => {
+    gsap.to(test.current,  {autoAlpha: 0, duration: 0});
     refs.current.forEach((value, i) => {
       if(i !== 0)
         gsap.to(value, {x: "100vw"});
     })
   }, []);
+
+  useEffect(() => {
+    if(props.show)
+      gsap.to(test.current,  {autoAlpha: 1});
+    else
+      gsap.to(test.current,  {autoAlpha: 0});
+  }, [props.show]);
 
   useEffect(() => {
     calcEligibility();
@@ -58,7 +67,7 @@ function Eligibility (props: IProps) {
     })
   }, [questionIndex]);
 
-  return (<div className={merge([css.root, props.className])}>
+  return (<div ref={test} className={merge([css.root, props.className])}>
     <ButtonPicto className={css.close} disabled={false} picto={ButtonPictoStyle.CROSS} onClick={props.onClose}/>
     <div ref={el => refs.current[0] = el} className={merge([css.frame, css.frameCenter])}>
       <div className={css.content}>
@@ -74,6 +83,7 @@ function Eligibility (props: IProps) {
     </div>
     {QUESTIONS.map((value, key) => {
       return (<div className={css.frame}
+                   key={key}
                    ref={el => refs.current[key + 1] = el} >
           <EligibilityQuestion
               max={ QUESTIONS.length}
