@@ -1,7 +1,7 @@
 import css from './InteractedElement.module.less';
 import React, {useEffect, useRef, useState} from 'react';
 import {merge} from "../../lib/utils/arrayUtils";
-import RaycastManager from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
+import RaycastManager, {RaycastInteractionType} from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
 import {IStateDataCollectible} from "../../store/state_interface_data";
 import FocusUtils from "../webGlCanvas/WebGlManagerClasses/scenery/FocusUtils";
 import {IStateDataSceneCollectibleType} from "../../store/state_enums";
@@ -30,10 +30,10 @@ function InteractedElement (props: IProps) {
   const showCollectibleInfoTimeout = useRef(null);
 
   useEffect(() => {
-    RaycastManager.getInstance().onInteract.add((value: IStateDataCollectible) => {
+    RaycastManager.getInstance().onInteract.add((type: RaycastInteractionType, value: IStateDataCollectible) => {
       debug("value", value)
       // On affiche si on clique sur un HINT sinon ignoré ici
-      if([IStateDataSceneCollectibleType.HINT, IStateDataSceneCollectibleType.PICKUP].includes(value.type)) {
+      if(type == RaycastInteractionType.ELEMENTS && [IStateDataSceneCollectibleType.HINT, IStateDataSceneCollectibleType.PICKUP].includes(value.type)) {
         showCollectibleInfoTimeout.current = setTimeout(() => {
           setCollectible(value);
           toggleShowed(true);

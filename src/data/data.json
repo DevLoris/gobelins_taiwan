@@ -1,7 +1,7 @@
 {
   "scenes": [
     {
-      "id":  "taipei",
+      "id": "taipei",
       "name": "Taipei",
       "chinese_name": "台北",
       "phonetic": "Táiběi",
@@ -42,7 +42,7 @@
           "trigger": "pickup",
           "focus": {
             "coords": {"x": 2, "y": 4, "z": 5},
-            "rotation": {"x": 3, "y": 1, "z":3}
+            "rotation": {"x": 3, "y": 1, "z": 3}
           }
         },
         {
@@ -50,7 +50,7 @@
           "trigger": "ATM001",
           "focus": {
             "coords": {"x": 6.36, "y": 1, "z": -25},
-            "rotation": {"x": 3, "y": 1, "z":3}
+            "rotation": {"x": 3, "y": 1, "z": 3}
           }
         },
         {
@@ -58,7 +58,7 @@
           "trigger": "ATM002",
           "focus": {
             "coords": {"x": 6.36, "y": 1, "z": -25},
-            "rotation": {"x": 3, "y": 1, "z":3}
+            "rotation": {"x": 3, "y": 1, "z": 3}
           }
         },
         {
@@ -66,7 +66,7 @@
           "trigger": "pin101",
           "focus": {
             "coords": {"x": 25, "y": 28, "z": 25},
-            "rotation": {"x": -2, "y": 30, "z":-0.2}
+            "rotation": {"x": -2, "y": 30, "z": -0.2}
           }
         },
         {
@@ -113,7 +113,7 @@
           "collectible_id": "tofu",
           "trigger": "pintofu",
           "focus": {
-            "coords": {"x": 23, "y": 20, "z": -5},
+            "coords": {"x": 23, "y": 15, "z": 0},
             "rotation": {"x": 28.8, "y": 0.66, "z": 20}
           }
         },
@@ -161,7 +161,7 @@
           "collectible_id": "beefnoodles",
           "trigger": "pinbeef_noodles",
           "focus": {
-            "coords": {"x": 23, "y": 20, "z": -5},
+            "coords": {"x": 23, "y": 5, "z": -5},
             "rotation": {"x": 11, "y": 0.7, "z": 25}
           }
         },
@@ -170,7 +170,8 @@
           "trigger": "pinqi_gong",
           "focus": {
             "coords": {"x": 23, "y": 20, "z": -5},
-            "rotation": {"x": 19, "y": 0.7, "z": 3.2}
+            "rotation": {"x": 19, "y": 0.7, "z": 3.2
+            }
           }
         }
       ],
@@ -195,7 +196,8 @@
           "x": 20,
           "y": 20,
           "z": 20
-        }
+        },
+        "fov": 75
       },
       "orbit": {
         "enabled": true,
@@ -234,8 +236,8 @@
             "id": "obasan",
             "sprite": "/public/sprites/Obasan/Obasan_01.png",
             "options": {
-              "scale": [1, 1, 1],
-              "position":[4, 0.8, 0],
+              "scale": [0.8, 0.8, 0.8],
+              "position": [20, 0.6, 14],
               "size": {"w": 98, "h": 215}
             }
           },
@@ -244,10 +246,179 @@
             "id": "serveur",
             "sprite": "/public/sprites/Serveur/Serveur_2.png",
             "options": {
+              "scale": [0.6, 0.6, 0.6],
+              "position": [16, 0.5, 24],
+              "size": {"w": 69, "h": 245}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "serveur_2",
+            "sprite": "/public/sprites/Serveur/Serveur_1.png",
+            "options": {
+              "scale": [0.6, 0.6, 0.6],
+              "position": [24, 0.5, 15],
+              "size": {"w": 69, "h": 245}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "homme",
+            "sprite": "/public/sprites/Homme/Homme_2.png",
+            "options": {
               "scale": [0.8, 0.8, 0.8],
-              "position": [3, 1.1, 0],
-              "size": {"w": 69, "h": 245},
-              "rotation": {"x": 0, "y": 4.71239, "z": 0}
+              "position": [22, 0.6, -9],
+              "size": {"w": 108, "h": 255}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "homme_2",
+            "sprite": "/public/sprites/Homme/Homme_1.png",
+            "options": {
+              "scale": [0.8, 0.8, 0.8],
+              "position": [15, 0.6, 22],
+              "size": {"w": 108, "h": 255}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "homme_3",
+            "sprite": "/public/sprites/Homme/Homme_1.png",
+            "options": {
+              "scale": [0.8, 0.8, 0.8],
+              "position": [-7, 0.6, -13],
+              "size": {"w": 108, "h": 255}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "fille",
+            "sprite": "/public/sprites/Fille/Fille_01.png",
+            "options": {
+              "scale": [0.7, 0.7, 0.7],
+              "position": [4, 0.45, 0],
+              "size": {"w": 98, "h": 228}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "fille_2",
+            "sprite": "/public/sprites/Fille/Fille_02.png",
+            "options": {
+              "scale": [0.7, 0.7, 0.7],
+              "position": [8, 0.45, 20],
+              "size": {"w": 98, "h": 228}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "femme",
+            "sprite": "/public/sprites/Femme/Femme_2.png",
+            "options": {
+              "scale": [0.6, 0.6, 0.6],
+              "position": [-6, 0.6, -17],
+              "size": {"w": 75, "h": 247}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "femme_2",
+            "sprite": "/public/sprites/Femme/Femme_1.png",
+            "options": {
+              "scale": [0.6, 0.6, 0.6],
+              "position": [24, 0.6, 4],
+              "size": {"w": 75, "h": 247}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "mamie",
+            "sprite": "/public/sprites/Mamie/Mamie_01.png",
+            "options": {
+              "scale": [0.5, 0.5, 0.5],
+              "position": [-17, 0.6, -10],
+              "size": {"w": 62, "h": 215}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "mamie_2",
+            "sprite": "/public/sprites/Mamie/Mamie_02.png",
+            "options": {
+              "scale": [0.5, 0.5, 0.5],
+              "position": [10, 6.6, -22],
+              "size": {"w": 62, "h": 215}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "mamie_3",
+            "sprite": "/public/sprites/Mamie/Mamie_02.png",
+            "options": {
+              "scale": [0.5, 0.5, 0.5],
+              "position": [-10, 0.6, 20],
+              "size": {"w": 62, "h": 215}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "papy",
+            "sprite": "/public/sprites/Papi/Papi_1.png",
+            "options": {
+              "scale": [0.6, 0.6, 0.6],
+              "position": [-15, 0.6, -10],
+              "size": {"w": 75, "h": 246}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "papy_2",
+            "sprite": "/public/sprites/Papi/Papi_2.png",
+            "options": {
+              "scale": [0.4, 0.4, 0.4],
+              "position": [-18, 0.4, 20],
+              "size": {"w": 75, "h": 246}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "petit",
+            "sprite": "/public/sprites/Petit/Petit_1.png",
+            "options": {
+              "scale": [0.5, 0.5, 0.5],
+              "position": [-17, 0.2, 10],
+              "size": {"w": 54, "h": 149}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "petit_2",
+            "sprite": "/public/sprites/Petit/Petit_2.png",
+            "options": {
+              "scale": [0.5, 0.5, 0.5],
+              "position": [8, 0.2, -4],
+              "size": {"w": 54, "h": 149}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "petite",
+            "sprite": "/public/sprites/Petite/Petite_1.png",
+            "options": {
+              "scale": [0.3, 0.3, 0.3],
+              "position": [-15, 0.2, 10],
+              "size": {"w": 26, "h": 123}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "petite_2",
+            "sprite": "/public/sprites/Petite/Petite_2.png",
+            "options": {
+              "scale": [0.3, 0.3, 0.3],
+              "position": [8, 0.2, -6],
+              "size": {"w": 26, "h": 123}
             }
           }
         ],
@@ -279,7 +450,6 @@
       "phonetic": "Huāngyě",
       "messages": [],
       "collectibles": [
-
       ],
       "map": {
         "pin": "=",
@@ -294,7 +464,8 @@
           "x": 0,
           "y": 0,
           "z": -20
-        }
+        },
+        "fov": 75
       },
       "orbit": {
         "enabled": true,
@@ -305,9 +476,75 @@
         }
       },
       "content": {
-        "elements":  [],
+        "elements": [],
         "lights": [],
         "effects": []
+      }
+    },
+    {
+      "id": "airport",
+      "name": "Aéroport",
+      "chinese_name": "台北",
+      "phonetic": "Táiběi",
+      "ambient": "ambient_nature",
+      "messages": [],
+      "map": {
+        "pin": "/",
+        "x": 57,
+        "y": 49
+      },
+      "collectibles": [
+      ],
+      "scene": {
+        "background": "#bfe3dd"
+      },
+      "camera": {
+        "position": {"x": -9, "y": 1, "z": 0.6},
+        "rotate": {"x":  -1.5, "y": -1.4, "z": -1.5},
+        "fov": 50
+      },
+      "orbit": {
+        "enabled": false,
+        "center": {
+          "x": 8,
+          "y": -0.5,
+          "z": 0.6
+        },
+        "minPolar": 0,
+        "maxPolar": 1.55,
+        "minDistance": 0.2,
+        "maxDistance": 100
+      },
+      "content": {
+        "elements": [
+          {
+            "type": "object_container",
+            "id": "scene",
+            "gltf": "Airport",
+            "options": {
+              "scale": [1, 1, 1],
+              "position": [0, 0, 0]
+            }
+          }
+        ],
+        "lights": [
+          {
+            "type": "hemisphere",
+            "coords": {
+              "x": 0,
+              "y": 100,
+              "z": 0
+            },
+            "color": "#ffffff",
+            "groundColor": "#ffffff",
+            "intensity": 0.1
+          }
+        ],
+        "effects": [
+          {
+            "type": "outline"
+          }
+        ]
       }
     }
   ],
@@ -431,8 +668,11 @@
     {
       "id": "GridSandra2",
       "path": "/public/sceneries/demo/V3_Instances/Grid_Sandra_2.glb"
+    },
+    {
+      "id": "Airport",
+      "path": "/public/sceneries/demo/aeroport.glb"
     }
-
   ],
   "collectibles": [
     {
@@ -446,7 +686,7 @@
         "resolution": "Tu as trouvé un 7-eleven, un lieu comparable à une caverne d’Ali Baba !"
       },
       "hint": "Ces si petits magasins ouverts jours et nuits sont de véritables cavernes d'Ali Baba",
-      "hint_audio": "",
+      "hint_audio": "enigma_1",
       "text": "Ces magasins permettent d’absolument tout faire : tu peux faire tes courses du quotidien, manger des repas complets sur place, faire des photocopies, retirer de l’argent ou avoir du wifi gratuitement. Et tout ça, à n’importe quelle heure de la journée c’est ouvert 24h/24 et 7j/7 !",
       "additional": [
         {
@@ -655,6 +895,13 @@
       "url": "/public/audio/ambient_city.mp3",
       "params": {
         "loop": true
+      }
+    },
+    {
+      "id": "enigma_1",
+      "url": "/public/audio/enigma_1.mp3",
+      "params": {
+        "loop": false
       }
     },
     {

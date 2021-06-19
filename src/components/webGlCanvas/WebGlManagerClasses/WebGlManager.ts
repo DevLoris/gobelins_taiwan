@@ -276,13 +276,28 @@ export class WebGlManager {
 
     private _setHitbox(obj: Object3D, boxSize: Vector3) {
         let offset = 1;
+        const name = obj.name + '-hitbox';
+        const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom())} );
+        let geometry = new BoxGeometry( boxSize.x + offset, 8, boxSize.z + offset );
+        let cube = new Mesh( geometry, material );
         switch(obj.name) {
             case "711":
-                const name = "711-hitbox";
-                const geometry = new BoxGeometry( boxSize.x + offset, 8, boxSize.z + offset );
-                const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom())} );
-                const cube = new Mesh( geometry, material );
                 cube.position.set(obj.position.x, obj.position.y - (boxSize.y / 2 - 4), obj.position.z);
+                cube.name = name;
+                cube.userData = {
+                    internalId: name,
+                    name: name
+                }
+                cube.visible = false;
+                this._scene.add(cube);
+                break;
+            case "computer":
+            case "docs":
+            case "camera":
+            case "desk":
+                geometry = new BoxGeometry( boxSize.x, boxSize.y, boxSize.z );
+                cube = new Mesh( geometry, material );
+                cube.position.set(obj.position.x, obj.position.y, obj.position.z);
                 cube.name = name;
                 cube.userData = {
                     internalId: name,
@@ -553,6 +568,10 @@ export class WebGlManager {
         this._control.enableDamping = true;
         this._control.zoomSpeed = 0.5;
         this._control.update();
+
+        // CAMERA
+        this._camera.fov = scene.camera.fov;
+        this._camera.updateProjectionMatrix();
 
         // SCENE
         const texture = SceneryUtils.createSkybox(scene);

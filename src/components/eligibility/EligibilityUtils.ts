@@ -32,38 +32,75 @@ export enum EligibilityResponseType {
 export const QUESTIONS:IEligibilityQuestion[]  = [
     {
         id: "age",
-        question: "Quel âge as-tu  ?",
+        question: "Quel âge avez-vous  ?",
         type: EligibilityQuestionType.RADIO,
         response: [
             {
-                response: "Moins de 18 ans",
+                response: "< 18 ans",
                 correct: EligibilityResponseType.TIP,
-                tip: 'Attends tes 18 ans !'
+                tip: 'Il va falloir attendre encore un peu !'
             },
             {
-                response: "Entre 18 et 30 ans",
-                correct: EligibilityResponseType.OK
+                response: "18-30 ans",
+                correct: EligibilityResponseType.OK,
+                tip: 'Nickel'
             },
             {
-                response: "Plus de 30 ans",
+                response: ">30 ans",
                 correct: EligibilityResponseType.FORBIDDEN,
-                tip: 'Malheureusement tu es trop vieux... :('
+                tip: 'Malheureusement vous êtes trop vieux...'
             }
         ]
     },
     {
         id: "passeport",
-        question: "As-tu ton passeport ?",
+        question: "Avez-vous un passeport ?",
         type: EligibilityQuestionType.RADIO,
         response: [
             {
-                response: "non :(",
-                correct: EligibilityResponseType.TIP,
-                tip: 'Il faudra le faire avant de partir à Taïwan !'
+                response: "Oui",
+                correct: EligibilityResponseType.OK,
+                tip: 'Parfait !  Un critère de remplit !'
             },
             {
-                response: "OUIIII",
-                correct: EligibilityResponseType.OK
+                response: "Non",
+                correct: EligibilityResponseType.TIP,
+                tip: 'Pas de panique, ça se demande facilement.'
+            }
+        ]
+    },
+    {
+        id: "economy",
+        helper: "Afin d'aborder cette expérience unique au mieux, il est important d'avoir un peu d'argent en sa possession.",
+        question: "Avez-vous 2200€ d'économie ?",
+        type: EligibilityQuestionType.RADIO,
+        response: [
+            {
+                response: "Oui",
+                correct: EligibilityResponseType.OK,
+                tip: 'Parfait, question suivante !'
+            },
+            {
+                response: "Non",
+                correct: EligibilityResponseType.TIP,
+                tip: 'Il faut faire quelques économies.'
+            }
+        ]
+    },
+    {
+        id: "pvt",
+        question: "Avez-vous déjà fait un PVT à Taïwan ?",
+        type: EligibilityQuestionType.RADIO,
+        response: [
+            {
+                response: "Oui",
+                correct: EligibilityResponseType.FORBIDDEN,
+                tip: 'Mais que faites-vous ici ?!'
+            },
+            {
+                response: "Non",
+                correct: EligibilityResponseType.OK,
+                tip: 'Parfait !'
             }
         ]
     }

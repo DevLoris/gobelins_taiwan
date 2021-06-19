@@ -6,7 +6,7 @@ import {selectCollectiblesOfSceneWithPickup, selectScene, selectUserActiveScene}
 import {getState} from "../../store/store";
 import {IStateDataCollectible, IStateDataScene} from "../../store/state_interface_data";
 import {gsap}from "gsap";
-import RaycastManager from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
+import RaycastManager, {RaycastInteractionType} from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
 import {WebGlManager} from "../webGlCanvas/WebGlManagerClasses/WebGlManager";
 
 interface IProps {
@@ -68,8 +68,8 @@ function TooltipMessage (props: IProps) {
 
   useEffect(() => {
     update();
-    RaycastManager.getInstance().onInteract.add((value: IStateDataCollectible) => {
-      if([IStateDataSceneCollectibleType.PRE_PICKUP, IStateDataSceneCollectibleType.PICKUP].includes(value.type)) {
+    RaycastManager.getInstance().onInteract.add((type: RaycastInteractionType, value: IStateDataCollectible) => {
+      if(type == RaycastInteractionType.ELEMENTS && [IStateDataSceneCollectibleType.PRE_PICKUP, IStateDataSceneCollectibleType.PICKUP].includes(value.type)) {
         update();
       }
     });
@@ -87,7 +87,7 @@ function TooltipMessage (props: IProps) {
       gsap.to(ref.current, {autoAlpha: 1});
   }, [message]);
 
-  return <div ref={ref} onClick={() => { gsap.to(ref.current, {autoAlpha: 0}); }} className={merge([css.root, props.className])}>
+  return <div ref={ref} className={merge([css.root, props.className])}>
     <div className={css.content}>
       <p>{message}</p>
     </div>

@@ -2,7 +2,7 @@ import css from './NotebookPageMap.module.less';
 import React, {useState} from 'react';
 import { merge } from "../../../lib/utils/arrayUtils";
 import NotebookTitle from "../notebookTitle/NotebookTitle";
-import {selectCollectiblesOfSceneWithPickup, selectScenes} from "../../../store/store_selector";
+import {selectCollectiblesOfSceneWithPickup, selectScenes, selectUserScene} from "../../../store/store_selector";
 import {getState} from "../../../store/store";
 import NotebookPageMapDetails from "../notebookPageMapDetails/NotebookPageMapDetails";
 import NotebookSignal from "../notebook-signal";
@@ -38,30 +38,35 @@ function NotebookPageMap (props: IProps) {
                     return value.type == IStateDataSceneCollectibleType.HINT;
                 });
 
-                return <NotebookTitle
-                    title={value.name}
-                    key={key}
-                    className={"border"}
-                    pin={value.map.pin}
-                    phonetic={value.phonetic}
-                    chinese_title={value.chinese_name}
-                    total={collectibles.length}
-                    picked={collectibles.filter(value => value.pickup).length}
-                    onClick={() => {
-                      setDetailsScene(value.id);
-                    }}
-                />
+                const userScene  = selectUserScene(value.id)(getState().user_data);
+
+                if(userScene.visible_on_map)
+                    return <NotebookTitle
+                        title={value.name}
+                        key={key}
+                        className={"border"}
+                        pin={value.map.pin}
+                        phonetic={value.phonetic}
+                        chinese_title={value.chinese_name}
+                        total={collectibles.length}
+                        picked={collectibles.filter(value => value.pickup).length}
+                        onClick={() => {
+                          setDetailsScene(value.id);
+                        }}
+                    />
             })
         }
       </div>
       <div className={css.mapContainer}>
           {
               scenes.map((value, key) => {
-                  return(
-                      <NotebookPageMapPin key={key} x={value.map.x} y={value.map.y} content={value.map.pin} onClick={() =>  {
-                          setDetailsScene(value.id);
-                      }}/>
-                  )
+                  const userScene  = selectUserScene(value.id)(getState().user_data);
+                  if(userScene.visible_on_map)
+                      return(
+                          <NotebookPageMapPin key={key} x={value.map.x} y={value.map.y} content={value.map.pin} onClick={() =>  {
+                              setDetailsScene(value.id);
+                          }}/>
+                      )
               })
           }
           <img src={"/public/images/map.png"} alt={"Map"} className={css.map} />

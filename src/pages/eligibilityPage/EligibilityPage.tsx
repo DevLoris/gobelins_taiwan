@@ -44,11 +44,7 @@ const EligibilityPage = (props: IProps) => {
 
   // -------------------–-------------------–-------------------–--------------- RENDER
 
-  return (
-    <div className={css.root} ref={rootRef}>
-      <Eligibility className={""}/>
-    </div>
-  );
+  return (<></>);
 };
 
 export default EligibilityPage;

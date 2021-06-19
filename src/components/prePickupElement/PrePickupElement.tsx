@@ -2,7 +2,7 @@ import css from './PrePickupElement.module.less';
 import React, {useEffect, useRef, useState} from 'react';
 import { merge } from "../../lib/utils/arrayUtils";
 import {IStateDataCollectible} from "../../store/state_interface_data";
-import RaycastManager from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
+import RaycastManager, {RaycastInteractionType} from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
 import {IStateDataSceneCollectibleType} from "../../store/state_enums";
 import {gsap} from "gsap";
 
@@ -23,15 +23,16 @@ function PrePickupElement (props: IProps) {
 
   useEffect(() => {
       gsap.from(element.current, {autoAlpha: 0});
-      RaycastManager.getInstance().onInteract.add((value: IStateDataCollectible, hasPickupPayload = false) => {
+      RaycastManager.getInstance().onInteract.add((type: RaycastInteractionType, value: IStateDataCollectible, hasPickupPayload = false) => {
           // On affiche si on clique sur un PRE_PICKUP sinon ignoré ici
-          if([IStateDataSceneCollectibleType.PRE_PICKUP].includes(value.type)) {
-              setCollectible(value);
-              toggleHasPickup(hasPickupPayload);
-              toggleShowed(true);
-          }
-          else if([IStateDataSceneCollectibleType.PICKUP].includes(value.type)) {
-              toggleShowed(false);
+          if(type == RaycastInteractionType.ELEMENTS) {
+              if ([IStateDataSceneCollectibleType.PRE_PICKUP].includes(value.type)) {
+                  setCollectible(value);
+                  toggleHasPickup(hasPickupPayload);
+                  toggleShowed(true);
+              } else if ([IStateDataSceneCollectibleType.PICKUP].includes(value.type)) {
+                  toggleShowed(false);
+              }
           }
       });
   }, []);
