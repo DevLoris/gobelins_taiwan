@@ -92,6 +92,10 @@ class RaycastManager {
                         AudioHandler.play("pickup");
 
                         break;
+                    case IStateDataSceneCollectibleType.ENDING:
+                        // TODO: Make an action with the thing that was picked up
+                        console.log(collectible);
+                        break;
                 }
             }
         }

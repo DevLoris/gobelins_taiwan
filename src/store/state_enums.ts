@@ -14,7 +14,8 @@ export enum IStateDataSceneLightType {
 export enum IStateDataSceneCollectibleType {
     PRE_PICKUP = "pre_pickup",
     PICKUP = "pickup",
-    HINT = "hint"
+    HINT = "hint",
+    ENDING = "ending"
 }
 
 export enum IStateDataSceneEffectsType {
