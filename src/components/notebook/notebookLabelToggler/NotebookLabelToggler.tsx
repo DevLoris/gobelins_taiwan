@@ -7,6 +7,7 @@ interface IProps {
   label?: string,
   active?:boolean
   onClick?: () => void,
+  elRef?: any
 }
 
 /**
@@ -14,7 +15,7 @@ interface IProps {
  * @desc Bouton pour changer de page
  */
 function NotebookLabelToggler (props: IProps) {
-  return <div onClick={props.onClick} className={merge([css.root, props.className, props.active ? css.active : ''])}>
+  return <div ref={props?.elRef} onClick={props.onClick} className={merge([css.root, props.className, props.active ? css.active : ''])}>
     <span>{props.label}</span>
   </div>
 }

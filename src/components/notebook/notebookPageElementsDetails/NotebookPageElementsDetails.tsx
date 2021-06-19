@@ -1,17 +1,19 @@
 import css from './NotebookPageElementsDetails.module.less';
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {merge} from "../../../lib/utils/arrayUtils";
 import {IStateDataCollectibleWithPickup} from "../../../store/state_interface_data";
 import NotebookPhonetic from "../notebookPhonetic/NotebookPhonetic";
 import NotebookAudio from "../notebookAudio/NotebookAudio";
 import {IStateDataCollectibleAdditionalDataType} from "../../../store/state_enums";
 import {useTranslation} from "react-i18next";
+import gsap from "gsap";
 
 interface IProps {
   className?: string,
   data?: IStateDataCollectibleWithPickup,
   onExit?: () => any,
   leaveButton?: boolean
+  elRef?: any
 }
 
 const componentName = "NotebookPageElementsDetails";
@@ -24,7 +26,24 @@ const debug = require("debug")(`front:${componentName}`);
 function NotebookPageElementsDetails (props: IProps) {
   const { t } = useTranslation();
 
-  return <div className={merge([css.root, css[props.className]])}>
+  const contentBlockContainerRef = useRef();
+
+  useEffect(() => {
+
+    componentAnim();
+
+  }, []);
+
+  function componentAnim(pShow:boolean = true, pDuration:number = .7) {
+    gsap.fromTo(contentBlockContainerRef.current, {
+      yPercent: 100,
+    }, {
+      duration: pDuration,
+      yPercent: 0
+    });
+  }
+
+  return <div ref={props.elRef} className={merge([css.root, css[props.className]])}>
 
     <div className={css.elementHeader}>
       {props.onExit && (
@@ -44,8 +63,8 @@ function NotebookPageElementsDetails (props: IProps) {
     </div>
     <div className={css.elementHeaderBg}/>
 
+    <div ref={contentBlockContainerRef} >
     <div className={merge([css.contentBlockBorder, css.contentBlock])}>
-
       {(props.data.pickup)  && (
         <>
           <div className={"title-block"}>
@@ -106,6 +125,7 @@ function NotebookPageElementsDetails (props: IProps) {
         })}
       </div>
     )}
+    </div>
   </div>
 }
 

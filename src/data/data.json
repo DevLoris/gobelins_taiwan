@@ -750,7 +750,20 @@
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
       "text": "C’est le 10ème plus grand bâtiment du monde, du haut de ses 509 mètres ! Son nom vient du fait qu’il fasse 101 étages. \nDedans on peut y trouver des magasins, des bureaux et des observateurs, comme au 91ème étage. Tu peux admirer Taipei et son horizon, pour découvrir plein d’endroits ! Attention à ne pas avoir le vertige !\n",
-      "additional": []
+      "additional": [
+        {
+          "type": "text",
+          "value": "Ils jouent du beethoven"
+        },
+        {
+          "type": "text",
+          "value": "Ils jouent du beethoven"
+        },
+        {
+          "type": "text",
+          "value": "Ils jouent du beethoven"
+        }
+      ]
     },
     {
       "id": "metro",

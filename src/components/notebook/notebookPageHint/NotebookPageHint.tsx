@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useLayoutEffect, useRef} from 'react';
 import {selectCollectiblesOfSceneWithPickup, selectUserActiveScene} from "../../../store/store_selector";
 import {getState} from "../../../store/store";
 import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
 import NotebookPageElementsDetails from "../notebookPageElementsDetails/NotebookPageElementsDetails";
 import NotebookHint from "../notebookHint/NotebookHint";
+import gsap from "gsap";
 
 interface IProps {
   className?: string
@@ -23,8 +24,9 @@ function NotebookPageHint (props: IProps) {
     if(pickup !== undefined) {
       return (
           <>
-            <NotebookPageElementsDetails data={pickup}/>
-            <NotebookHint showDefault={!pickup.pickup} showClose={pickup.pickup} hint={pickup.hint} hint_audio={pickup.hint_audio}/>
+              <NotebookPageElementsDetails data={pickup}/>
+              <NotebookHint showDefault={!pickup.pickup} showClose={pickup.pickup} hint={pickup.hint}
+                            hint_audio={pickup.hint_audio}/>
           </>
       )
     }

@@ -17,22 +17,50 @@ interface IProps {
  * @desc Petite popup avec l'indice qui s'ouvre par dessus la page du carnet
  */
 function NotebookHint (props: IProps) {
+  // Is hint visible ?
   const [visible, toggleVisible] = useState<boolean>(props.showDefault);
-  const ref  = useRef();
+
+  const rootRef  = useRef(null);
+
+  // --------------------------------------------------------------------------- EFFECTS
 
   useEffect(() => {
-    if(visible) {
-      gsap.to(ref.current,   {y: 0, opacity: 1});
-    }
-    else  {
-      gsap.to(ref.current,  {y: "100%", opacity: 0});
-    }
+    defaultPosition();
+  }, []);
+
+  /**
+   * Visible state for hint
+   */
+  useEffect(() => {
+    componentAnimation(visible, .5);
   },  [visible]);
+
+  // --------------------------------------------------------------------------- ANIMATION
+
+  function defaultPosition() {
+    if(!visible) {
+      gsap.killTweensOf(rootRef.current);
+      gsap.set(rootRef.current, {
+        yPercent: 100,
+      });
+    }
+  }
+
+  function componentAnimation(pShow:boolean = true, pDuration:number = 0.7, pHasDelay:boolean = false) {
+    gsap.killTweensOf(rootRef.current);
+    gsap.to(rootRef.current, {
+      yPercent: pShow ? 0 : 100,
+      duration: pDuration,
+      delay: pHasDelay ? (pShow ? .4 : pDuration) : 0,
+    });
+  }
+
+  // --------------------------------------------------------------------------- RENDER
 
   return <>
     <img alt={"Enigme button"} onClick={() =>  {toggleVisible(true)}} className={css.enigmaButton} src={"../../public/da/enigme_button.png"}/>
 
-    <div ref={ref} className={merge([css.root, props.className])}>
+    <div ref={rootRef} className={merge([css.root, props.className])}>
     {(props.showClose) && (
         <img alt={"Close"} onClick={() =>  {toggleVisible(false)}} className={css.close} src={"../../public/da/close.png"}/>
     )}
