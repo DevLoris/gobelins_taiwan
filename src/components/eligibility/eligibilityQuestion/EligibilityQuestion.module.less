@@ -2,3 +2,73 @@
 
 .root {
 }
+
+.question  {
+  padding: 2rem 2rem 1.5rem;
+
+  h3 {
+
+  }
+}
+
+.response  {
+  position: relative;
+  left: 50%;
+  transform: translate(-15px);
+  label{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-bottom: 0.7rem;
+    svg {
+      margin-right: 1rem;
+    }
+  }
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  position: absolute;
+  bottom: 1.5rem;
+  width: 100%;
+}
+
+hr {
+  margin-bottom: 0;
+}
+
+.information {
+  overflow: hidden;
+  position: relative;
+  height: 100px;
+  &:before {
+    content: '回复';
+    font-family: @font-chinese;
+    font-size: 64px;
+    opacity: 0.35;
+    transform: rotate(-14deg) translate(-10px, -5px);
+    position: absolute;
+  }
+  &.information_ok {
+    &:before {
+      color: @green;
+    }
+  }
+  &.information_tip {
+    &:before {
+      color: @yellow;
+    }
+  }
+  &.information_forbidden {
+    &:before {
+      color: @red;
+    }
+  }
+  p {
+    padding: 1.6rem 2rem;
+    font-size: 1rem;
+  }
+}
