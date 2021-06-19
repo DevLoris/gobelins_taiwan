@@ -42,13 +42,7 @@ function NotebookHint (props: IProps) {
    * Visible state for hint
    */
   useEffect(() => {
-    // componentAnimation(visible, .5);
-    // if(visible) {
-    //   gsap.to(rootRef.current,   {y: 0, opacity: 1});
-    // }
-    // else  {
-    //   gsap.to(rootRef.current,  {yPercent: 100, opacity: 0});
-    // }
+    componentAnimation(visible, .5);
   },  [visible]);
 
   /**
@@ -62,7 +56,6 @@ function NotebookHint (props: IProps) {
   // --------------------------------------------------------------------------- HANDLERS
 
   function notebookToggleHandler(pVisible) {
-    console.log("Notebook toggled")
     setNotebookVisible(pVisible);
   }
 
@@ -81,7 +74,7 @@ function NotebookHint (props: IProps) {
     gsap.killTweensOf(rootRef.current);
     gsap.to(rootRef.current, {
       yPercent: pShow ? 0 : 100,
-      duration: pHasDelay ? pDuration : (pShow ? pDuration : 0),
+      duration: pDuration,
       delay: pHasDelay ? (pShow ? .4 : pDuration) : 0,
     });
   }
