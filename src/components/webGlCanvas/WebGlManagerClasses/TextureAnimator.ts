@@ -1,51 +1,54 @@
 import {RepeatWrapping} from "three";
 
+/**
+ * Source : https://stemkoski.github.io/Three.js/Texture-Animation.html
+ */
 export class TextureAnimator
 {
-    private tilesHorizontal;
-    private tilesVertical;
-    private numberOfTiles
-    private tileDisplayDuration
-    private currentDisplayTime
-    private currentTile
-    private texture
+    private readonly _tilesHorizontal;
+    private readonly _tilesVertical;
+    private readonly _numberOfTiles;
+    private readonly _tileDisplayDuration;
+    private _currentDisplayTime;
+    private _currentTile;
+    private _texture;
 
     constructor(texture, tilesHoriz, tilesVert, numTiles, tileDispDuration) {
         // note: texture passed by reference, will be updated by the update function.
 
-        this.texture = texture
+        this._texture = texture
 
-        this.tilesHorizontal = tilesHoriz;
-        this.tilesVertical = tilesVert;
+        this._tilesHorizontal = tilesHoriz;
+        this._tilesVertical = tilesVert;
         // how many images does this spritesheet contain?
         //  usually equals tilesHoriz * tilesVert, but not necessarily,
         //  if there at blank tiles at the bottom of the spritesheet.
-        this.numberOfTiles = numTiles;
+        this._numberOfTiles = numTiles;
         texture.wrapS = texture.wrapT = RepeatWrapping;
-        texture.repeat.set( 1 / this.tilesHorizontal, 1 / this.tilesVertical );
+        texture.repeat.set( 1 / this._tilesHorizontal, 1 / this._tilesVertical );
 
         // how long should each image be displayed?
-        this.tileDisplayDuration = tileDispDuration;
+        this._tileDisplayDuration = tileDispDuration;
 
         // how long has the current image been displayed?
-        this.currentDisplayTime = 0;
+        this._currentDisplayTime = 0;
 
         // which image is currently being displayed?
-        this.currentTile = 0;
+        this._currentTile = 0;
     }
 
     public update( milliSec ) {
-        this.currentDisplayTime += milliSec;
-        while (this.currentDisplayTime > this.tileDisplayDuration)
+        this._currentDisplayTime += milliSec;
+        while (this._currentDisplayTime > this._tileDisplayDuration)
         {
-            this.currentDisplayTime -= this.tileDisplayDuration;
-            this.currentTile++;
-            if (this.currentTile == this.numberOfTiles)
-                this.currentTile = 0;
-            let currentColumn = this.currentTile % this.tilesHorizontal;
-            this.texture.offset.x = currentColumn / this.tilesHorizontal;
-            let currentRow = Math.floor( this.currentTile / this.tilesHorizontal );
-            this.texture.offset.y = currentRow / this.tilesVertical;
+            this._currentDisplayTime -= this._tileDisplayDuration;
+            this._currentTile++;
+            if (this._currentTile == this._numberOfTiles)
+                this._currentTile = 0;
+            let currentColumn = this._currentTile % this._tilesHorizontal;
+            this._texture.offset.x = currentColumn / this._tilesHorizontal;
+            let currentRow = Math.floor( this._currentTile / this._tilesHorizontal );
+            this._texture.offset.y = currentRow / this._tilesVertical;
         }
     };
 }
