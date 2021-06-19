@@ -16,7 +16,7 @@ import {
     MeshBasicMaterial,
     Mesh,
     PlaneGeometry,
-    Clock, CubeTextureLoader, ImageUtils, TextureLoader, Plane, DoubleSide, SpriteMaterial, Sprite
+    Clock, CubeTextureLoader, ImageUtils, TextureLoader, Plane, DoubleSide, SpriteMaterial, Sprite, RepeatWrapping
 } from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
@@ -36,6 +36,7 @@ import {objectNumberValuesToFixed} from "../../../lib/utils/objectUtils";
 import {ICustomStateSettings} from "../../../store/state_interface_experience";
 import {CHAPTERS, SequenceManager} from "../../../mainClasses/Sequencer/SequenceManager";
 import {zeroToOneRandom} from "../../../lib/utils/mathUtils";
+import {TextureAnimator} from "./TextureAnimator";
 
 const debug = require("debug")(`front:WebGlManager`);
 
@@ -54,6 +55,8 @@ interface IObjectEndCoordinates {
 
 export class WebGlManager {
     private static instance: WebGlManager;
+
+    private _clock:Clock;
 
     private _wrapper:HTMLDivElement = null;
     private _settings:ICustomStateSettings = null;
@@ -88,6 +91,7 @@ export class WebGlManager {
     private _controlsChangeCount: number = 0;
 
     private _hintSprites: Object3D[] = Array();
+    private _spritesAnimators = Array();
 
     constructor() {
     }
@@ -114,6 +118,8 @@ export class WebGlManager {
         debug("Init WebGlManager", pWrapper);
         debug("ThreeJS version:", REVISION);
         debug("pSceneryName", pSceneryName);
+
+        this._clock = new Clock();
 
         this._settings = store.getState().user_data.settings;
 
@@ -255,7 +261,14 @@ export class WebGlManager {
                     }
                     else if(object.type === "Object3D") {
                         if(object.name.includes("pin")) {
-                            const texture = new TextureLoader().load( '/public/PIN_2.png');
+                            // const texture = new TextureLoader().load( '/public/PIN_2.png');
+                            // const material = new SpriteMaterial( { color: 0xffffff, map: texture, transparent: true } );
+                            // const sprite = new Sprite( material );
+                            let texture = new TextureLoader().load( '/public/pin_seq.png' );
+                            this._spritesAnimators.push(new TextureAnimator( texture, 50, 1, 50, 75 )); // texture, #horiz, #vert, #total, duration.
+                            // let runnerMaterial = new MeshBasicMaterial( { map: texture, side: DoubleSide } );
+                            // let runnerGeometry = new PlaneGeometry(50, 50, 1, 1);
+                            // let sprite = new Mesh(runnerGeometry, runnerMaterial);
                             const material = new SpriteMaterial( { color: 0xffffff, map: texture, transparent: true } );
                             const sprite = new Sprite( material );
                             sprite.scale.set(.5, .5, .5);
@@ -434,6 +447,12 @@ export class WebGlManager {
             } else {
                 this._effects.forEach(value => value.render(this._scene, this._camera));
             }
+
+            let delta = this._clock.getDelta();
+
+            this._spritesAnimators.forEach((sprite) => {
+                sprite.update(1000 * delta);
+            });
         }
 
         // this._configureGui.getStats().end();
