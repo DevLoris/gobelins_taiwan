@@ -126,13 +126,15 @@ function NotebookPageElements (props: IProps) {
     {
       listInDom &&
       <div className={merge([css.root, props.className])}>
-        <NotebookTitle
-            title={scene.name}
-            phonetic={scene.phonetic}
-            chinese_title={scene.chinese_name}
-            total={collectibles.length}
-            picked={collectibles.filter(value => value.pickup).length}
-        />
+        <div className={css.notebookHeader}>
+          <NotebookTitle
+              title={scene.name}
+              phonetic={scene.phonetic}
+              chinese_title={scene.chinese_name}
+              total={collectibles.length}
+              picked={collectibles.filter(value => value.pickup).length}
+          />
+        </div>
 
         <div className={css.notebookList}>
           {collectibles.map((data, i) => {
