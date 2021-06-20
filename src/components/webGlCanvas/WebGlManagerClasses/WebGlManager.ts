@@ -16,14 +16,28 @@ import {
     MeshBasicMaterial,
     Mesh,
     PlaneGeometry,
-    Clock, CubeTextureLoader, ImageUtils, TextureLoader, Plane, DoubleSide, SpriteMaterial, Sprite
+    Clock,
+    CubeTextureLoader,
+    ImageUtils,
+    TextureLoader,
+    Plane,
+    DoubleSide,
+    SpriteMaterial,
+    Sprite,
+    RepeatWrapping,
+    Group
 } from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
 import {activeScenery, getState, store} from "../../../store/store";
 import {RaycastEvent} from "./events/RaycastEvent";
 import {SceneryUtils} from "./scenery/SceneryUtils";
-import {selectScene, selectUserActiveScene, selectUserSequencerProgression} from "../../../store/store_selector";
+import {
+    selectCollectiblesOfSceneWithPickup,
+    selectScene,
+    selectUserActiveScene,
+    selectUserSequencerProgression
+} from "../../../store/store_selector";
 import {CAMERA_ASPECT, CAMERA_FAR, CAMERA_FOV, CAMERA_NEAR} from "./WebGlVars";
 import LightUtils from "./scenery/LightUtils";
 import {HdrUtils} from "./scenery/HdrUtils";
@@ -36,12 +50,16 @@ import {objectNumberValuesToFixed} from "../../../lib/utils/objectUtils";
 import {ICustomStateSettings} from "../../../store/state_interface_experience";
 import {CHAPTERS, SequenceManager} from "../../../mainClasses/Sequencer/SequenceManager";
 import {zeroToOneRandom} from "../../../lib/utils/mathUtils";
+import {TextureAnimator} from "./TextureAnimator";
+import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
 
 const debug = require("debug")(`front:WebGlManager`);
 
 /**
  * TODO split into smaller classes
  */
+
+const ENABLE_STATS: boolean = false;
 
 // Object extremities on each axis
 interface IObjectEndCoordinates {
@@ -54,6 +72,8 @@ interface IObjectEndCoordinates {
 
 export class WebGlManager {
     private static instance: WebGlManager;
+
+    private _clock:Clock;
 
     private _wrapper:HTMLDivElement = null;
     private _settings:ICustomStateSettings = null;
@@ -87,9 +107,11 @@ export class WebGlManager {
 
     private _controlsChangeCount: number = 0;
 
-    private _hintSprites: Object3D[] = Array();
+    private _spritesAnimators = Array();
 
     private _isControlEnabled: boolean = true;
+
+    private _animatedSprites: any[] = Array();
 
     constructor() {
     }
@@ -117,6 +139,8 @@ export class WebGlManager {
         debug("ThreeJS version:", REVISION);
         debug("pSceneryName", pSceneryName);
 
+        this._clock = new Clock();
+
         this._settings = store.getState().user_data.settings;
 
         this._wrapper = pWrapper;
@@ -127,7 +151,7 @@ export class WebGlManager {
         this._setupRaycaster();
 
         this._startWebGlLoop();
-        // this._setupStats();
+        ENABLE_STATS && this._setupStats();
 
         pSceneryName && this.toggleScenery(pSceneryName);
 
@@ -145,7 +169,7 @@ export class WebGlManager {
      * @private
      */
     private _setupStats():void {
-        this._configureGui = new ConfigureGui();
+        ENABLE_STATS && (this._configureGui = new ConfigureGui());
     }
 
     /**
@@ -199,8 +223,6 @@ export class WebGlManager {
     private _setupSceneChildrenArrays(): void {
         this._instancedMeshes = this.getScene().children.filter(object => object instanceof InstancedMesh);
 
-        // debug("all scene children", this.getScene().children)
-
         this.getScene().children.forEach(childElement => {
             // Meshes can be found in the Group child
             if(childElement.type === "Group" && childElement.name === "Scene") {
@@ -238,7 +260,6 @@ export class WebGlManager {
                         // Look for instanced meshes inside walla
                         this._allInstancedMeshes.forEach((instance) => {
                             if(this._isFirstInsideSecond(instance, objectEndCoordinatesAndMore)) {
-                                // console.log(instance.name, "is in", objectEndCoordinatesAndMore.object.name)
                                 objectEndCoordinatesAndMore.instancedMeshes = [...objectEndCoordinatesAndMore.instancedMeshes, instance.name];
                             }
                         });
@@ -256,24 +277,65 @@ export class WebGlManager {
                         this._setHitbox(object, boxSize);
                     }
                     else if(object.type === "Object3D") {
+                        // If object is a pin (hint)
                         if(object.name.includes("pin")) {
-                            const texture = new TextureLoader().load( '/public/PIN_2.png');
+                            const nameWithoutPin = object.name.replace("pin", "");
+                            // Animated pin
+                            let texture = new TextureLoader().load( '/public/pin_seq.png' );
+                            this._spritesAnimators.push(new TextureAnimator( texture, 51, 1, 51, 50 )); // texture, #horiz, #vert, #total, duration.
                             const material = new SpriteMaterial( { color: 0xffffff, map: texture, transparent: true } );
                             const sprite = new Sprite( material );
-                            sprite.scale.set(.5, .5, .5);
+                            sprite.scale.set(.7, .7, .7);
                             const yOffset = 0;
                             sprite.position.set(object.position.x, object.position.y + yOffset, object.position.z);
-                            sprite.userData = {
+                            sprite["pinName"] = nameWithoutPin;
+                            sprite["visited"]  = false;
+
+                            // Hitbox
+                            const hitBoxGeometry = new BoxGeometry( 1.5, 1.5, 1.5 );
+                            const hitBoxMaterial = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom())} );
+                            // hitBoxMaterial.transparent = true;
+                            // hitBoxMaterial.opacity = .4;
+                            hitBoxMaterial.visible = false;
+                            const hitBox = new Mesh( hitBoxGeometry, hitBoxMaterial );
+                            hitBox.position.set(object.position.x, object.position.y - yOffset, object.position.z);
+                            hitBox.userData = {
                                 internalId: object.name,
-                                name: object.name.replace("pin", ""),
+                                name: nameWithoutPin,
                             }
-                            this._scene.add(sprite);
-                            this._hintSprites.push(sprite);
+
+                            const group = new Group();
+                            group.add(sprite);
+                            this._animatedSprites.push(sprite);
+                            group.add(hitBox);
+
+                            this._scene.add(group);
                         }
                     }
                 });
             }
         });
+
+        // on pins, set valid sprite if already visited
+        const active_scene  = selectUserActiveScene(getState());
+        const collectibles  = selectCollectiblesOfSceneWithPickup(active_scene)(getState().data, getState().user_data).filter(value => {
+            return value.type == IStateDataSceneCollectibleType.HINT;
+        });
+        const pickedUpCollectibles = collectibles.filter((collectible) => collectible.pickup === true);
+
+        pickedUpCollectibles.forEach((collectible) => {
+            this._animatedSprites.forEach((sprite) => {
+                if(sprite.pinName === collectible.id) {
+                    this.setSpriteTexturePinValid(sprite);
+                }
+            });
+        });
+    }
+
+    public setSpriteTexturePinValid(sprite) {
+        let texture = new TextureLoader().load( '/public/pin_check.png' );
+        sprite.material = new SpriteMaterial( { color: 0xffffff, map: texture, transparent: true } );
+        sprite.scale.set(.4, .4, .4);
     }
 
     private _setHitbox(obj: Object3D, boxSize: Vector3) {
@@ -420,17 +482,25 @@ export class WebGlManager {
      * @private
      */
     private _animationFrame():void {
-        // this._configureGui.getStats().begin();
+        ENABLE_STATS && this._configureGui.getStats().begin();
 
         if(this._renderEnabled) {
             this._control.update();
 
+            // Sprites facing camera
             this.getScene().children.forEach(value => {
                 if (value instanceof Mesh && value.geometry instanceof PlaneGeometry && value.userData.sprite) {
                     value.rotation.y = Math.atan2( ( this._camera.position.x - value.position.x ), (  this._camera.position.z - value.position.z ) );
                 }
             });
 
+            // Animated sprites
+            let delta = this._clock.getDelta();
+            this._spritesAnimators.forEach((sprite) => {
+                sprite.update(1000 * delta);
+            });
+
+            // Effects
             if (this._effects.length == 0) {
                 this._renderer.render(this._scene, this._camera);
             } else {
@@ -438,7 +508,7 @@ export class WebGlManager {
             }
         }
 
-        // this._configureGui.getStats().end();
+        ENABLE_STATS && this._configureGui.getStats().end();
 
         requestAnimationFrame(this._animationFrame.bind(this));
     }
@@ -637,6 +707,10 @@ export class WebGlManager {
 
     public getCameraMoving() {
         return this._cameraMoving;
+    }
+
+    public getAnimatedSprites() {
+        return this._animatedSprites;
     }
 
     public toggleRendering(bool: boolean)  {
