@@ -929,7 +929,8 @@
       "id": "ambient_city",
       "url": "/public/audio/ambiance-taipei.mp3",
       "params": {
-        "loop": true
+        "loop": true,
+        "volume": 0.5
       }
     },
     {
