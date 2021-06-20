@@ -32,7 +32,7 @@ function EndExperience (props: IProps) {
 
   useEffect(() =>{
     RaycastManager.getInstance().onInteract.add((type: RaycastInteractionType, data: Object3D) => {
-      if(type == RaycastInteractionType.ITEMS) {
+      if(type == RaycastInteractionType.ITEMS && data) {
         switch (data.name) {
           case "docs":
             setEndExperienceStep(EndExperienceStep.ELIGIBILITY);
