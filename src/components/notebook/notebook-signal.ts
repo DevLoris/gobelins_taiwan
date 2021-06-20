@@ -4,6 +4,7 @@ export enum NOTEBOOK_SEND {
     TOGGLE,
     PAGE,
     CONTENT,
+    CLOSE
 }
 
 class NotebookSignal {
