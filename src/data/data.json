@@ -717,7 +717,7 @@
       "type": "hint",
       "name": "Camion Poubelle",
       "asset": "/public/images/pics/sample.png",
-      "stamp": "/public/images/stamp/stamp.png",
+      "stamp": "/public/images/stamp/camionPoubelle.svg",
       "text": "A Taiwan, les camions poubelle jouent une petite mélodie quant ils passent. Ça te permet de savoir quand ils arrivent pour que tu ailles jeter tes poubelles. C’est l’occase de voir tous tes voisins en survêt claquettes.",
       "additional": [
         {
@@ -779,7 +779,7 @@
       "type": "hint",
       "name": "Night markets (friture)",
       "asset": "/public/images/pics/sample.png",
-      "stamp": "/public/images/stamp/stamp.png",
+      "stamp": "/public/images/stamp/nightMarket.svg",
       "text": "Les night-markets sont des lieux vivants et gourmands de Taiwan. On y trouve des repas variés et de qualité mais surtout pour peu cher. Par exemple des nouilles au bœuf, des raviolis vapeur, des saucisses sucrées, des patates douces frits, des bubble-teas, des bao burgers, etc. \nPas besoin de cuisiner chaque soir : il suffit juste de descendre dans la rue, tu trouveras ton bonheur !\n",
       "additional": []
     },
@@ -869,7 +869,7 @@
       "type": "hint",
       "name": "Qi Gong",
       "asset": "/public/images/pics/sample.png",
-      "stamp": "/public/images/stamp/stamp.png",
+      "stamp": "/public/images/stamp/qiGong.svg",
       "text": "Le Qi Gong est une gymnastique traditionnelle d’origine chinoise qui consiste à maîtriser le souffle en alliant mouvements lents, concentration et exercice respiratoire.",
       "additional": []
     }
