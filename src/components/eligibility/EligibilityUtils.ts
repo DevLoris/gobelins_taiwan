@@ -16,6 +16,7 @@ export interface IEligibilityQuestion {
 export interface IEligibiltyResponse {
     correct: EligibilityResponseType;
     response: string;
+    tip_final?:string;
     tip?:string;
 }
 
@@ -38,7 +39,8 @@ export const QUESTIONS:IEligibilityQuestion[]  = [
             {
                 response: "< 18 ans",
                 correct: EligibilityResponseType.TIP,
-                tip: 'Il va falloir attendre encore un peu !'
+                tip: 'Il va falloir attendre encore un peu !',
+                tip_final: 'Attends quelques temps, tu pourras partir en PVT !'
             },
             {
                 response: "18-30 ans",
@@ -65,7 +67,8 @@ export const QUESTIONS:IEligibilityQuestion[]  = [
             {
                 response: "Non",
                 correct: EligibilityResponseType.TIP,
-                tip: 'Pas de panique, ça se demande facilement.'
+                tip: 'Pas de panique, ça se demande facilement.',
+                tip_final: 'Fais ta demande de passeport.'
             }
         ]
     },
@@ -83,7 +86,8 @@ export const QUESTIONS:IEligibilityQuestion[]  = [
             {
                 response: "Non",
                 correct: EligibilityResponseType.TIP,
-                tip: 'Il faut faire quelques économies.'
+                tip: 'Il faut faire quelques économies.',
+                tip_final: 'Prépare quelques économies pour être prêt à partir.'
             }
         ]
     },
