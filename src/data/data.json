@@ -441,6 +441,62 @@
       "phonetic": "Huāngyě",
       "messages": [],
       "collectibles": [
+        {
+          "collectible_id": "seven_eleven",
+          "trigger": "711-hitbox",
+          "focus": {
+            "coords": {"x": 35, "y": 4, "z": -6},
+            "rotation": {"x": 17.3, "y": 3.3, "z": -20}
+          }
+        },
+        {
+          "collectible_id": "poubelle",
+          "trigger": "pinpoubelle",
+          "focus": {
+            "coords": {"x":-2, "y": 4, "z": -2},
+            "rotation": {"x": 1.5, "y": 0.15, "z": 8.4}
+          }
+        },
+        {
+          "collectible_id": "coins",
+          "trigger": "ATM001",
+          "focus": {
+            "coords": {"x": 6.36, "y": 1, "z": -25},
+            "rotation": {"x": 3, "y": 1, "z": 3}
+          }
+        },
+        {
+          "collectible_id": "coins",
+          "trigger": "ATM002",
+          "focus": {
+            "coords": {"x": 6.36, "y": 1, "z": -25},
+            "rotation": {"x": 3, "y": 1, "z": 3}
+          }
+        },
+        {
+          "collectible_id": "101",
+          "trigger": "pin101",
+          "focus": {
+            "coords": {"x": 25, "y": 28, "z": 25},
+            "rotation": {"x": -2, "y": 30, "z": -0.2}
+          }
+        },
+        {
+          "collectible_id": "lgbt",
+          "trigger": "pinlgbt",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": 19, "y": -0.5, "z": -5}
+          }
+        },
+        {
+          "collectible_id": "metro",
+          "trigger": "pinmetro",
+          "focus": {
+            "coords": {"x": 23, "y": 20, "z": -5},
+            "rotation": {"x": -6.4, "y": 2.4, "z": -23}
+          }
+        }
       ],
       "map": {
         "pin": "=",
