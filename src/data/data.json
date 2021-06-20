@@ -62,7 +62,7 @@
           }
         },
         {
-          "collectible_id": "taipei_101",
+          "collectible_id": "101",
           "trigger": "pin101",
           "focus": {
             "coords": {"x": 25, "y": 28, "z": 25},
@@ -86,7 +86,7 @@
           }
         },
         {
-          "collectible_id": "nightmarket",
+          "collectible_id": "night_market",
           "trigger": "pinnight_market",
           "focus": {
             "coords": {"x": 23, "y": 20, "z": -5},
@@ -94,7 +94,7 @@
           }
         },
         {
-          "collectible_id": "clim",
+          "collectible_id": "climatiseur",
           "trigger": "pinclimatiseur",
           "focus": {
             "coords": {"x": 23, "y": 20, "z": -5},
@@ -158,7 +158,7 @@
           }
         },
         {
-          "collectible_id": "beefnoodles",
+          "collectible_id": "beef_noodles",
           "trigger": "pinbeef_noodles",
           "focus": {
             "coords": {"x": 23, "y": 5, "z": -5},
@@ -166,7 +166,7 @@
           }
         },
         {
-          "collectible_id": "qigong",
+          "collectible_id": "qi_gong",
           "trigger": "pinqi_gong",
           "focus": {
             "coords": {"x": 23, "y": 20, "z": -5},
@@ -744,7 +744,7 @@
       "additional": []
     },
     {
-      "id": "taipei_101",
+      "id": "101",
       "type": "hint",
       "name": "Taipei 101",
       "asset": "/public/images/pics/sample.png",
@@ -763,7 +763,7 @@
       "additional": []
     },
     {
-      "id": "nightmarket",
+      "id": "night_market",
       "type": "hint",
       "name": "Night markets (friture)",
       "asset": "/public/images/pics/sample.png",
@@ -772,7 +772,7 @@
       "additional": []
     },
     {
-      "id": "clim",
+      "id": "climatiseur",
       "type": "hint",
       "name": "Climatiseur",
       "asset": "/public/images/pics/sample.png",
@@ -849,7 +849,7 @@
       "additional": []
     },
     {
-      "id": "beefnoodles",
+      "id": "beef_noodles",
       "type": "hint",
       "name": "Beef Noodle",
       "asset": "/public/images/pics/sample.png",
@@ -858,7 +858,7 @@
       "additional": []
     },
     {
-      "id": "qigong",
+      "id": "qi_gong",
       "type": "hint",
       "name": "Qi Gong",
       "asset": "/public/images/pics/sample.png",
