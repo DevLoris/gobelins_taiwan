@@ -7,6 +7,8 @@ import {gsap} from "gsap";
 import {getState, store, tutorial} from "../../store/store";
 import {selectTutorial} from "../../store/store_selector";
 import {TutorialState} from "../../store/state_interface_experience";
+import NotebookSignal, {NOTEBOOK_SEND} from "../notebook/notebook-signal";
+import {NotebookPages} from "../notebook/Notebook";
 
 interface IProps {
   className?: string
@@ -139,6 +141,8 @@ function Tutorial (props: IProps) {
               <div className={"popup-big-text"}  dangerouslySetInnerHTML={{__html: translate('onboard__map')}}/>
                 <Button onClick={() => {
                   setMapStep(1);
+                  NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.TOGGLE, true);
+                  NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.PAGE, NotebookPages.MAP);
                 }} style={ButtonStyle.PATTERN} label={translate('onboard__map__button')}/>
           </div>
         </div>
