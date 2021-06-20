@@ -32,23 +32,25 @@ function EndExperience (props: IProps) {
 
   useEffect(() =>{
     RaycastManager.getInstance().onInteract.add((type: RaycastInteractionType, data: Object3D) => {
-      if(type == RaycastInteractionType.ITEMS) {
-        switch (data.name) {
-          case "docs":
-            setEndExperienceStep(EndExperienceStep.ELIGIBILITY);
-            break;
-          case "computer":
-            setEndExperienceStep(EndExperienceStep.PVTISTES_NET);
-            break;
-          case "crayon": {
-            if (window.navigator.share) {
-              window.navigator.share({
-                title: 'Départ pour Taïwan',
-                text: '« Départ pour Taïwan » est une expérience interactive et ludique présentant le visa vacances travail appliqué à Taïwan. Un pays méconnu à la croisée de la culture chinoise, japonaise et américaine d’une richesse insoupçonnée pour sa taille.',
-                url: 'https://taiwan.lorispinna.com',
-              }).then(value => {
-              });
+      if(data !== undefined && data instanceof Object3D) {
+        if (type == RaycastInteractionType.ITEMS) {
+          switch (data.name) {
+            case "docs":
+              setEndExperienceStep(EndExperienceStep.ELIGIBILITY);
               break;
+            case "computer":
+              setEndExperienceStep(EndExperienceStep.PVTISTES_NET);
+              break;
+            case "crayon": {
+              if (window.navigator.share) {
+                window.navigator.share({
+                  title: 'Départ pour Taïwan',
+                  text: '« Départ pour Taïwan » est une expérience interactive et ludique présentant le visa vacances travail appliqué à Taïwan. Un pays méconnu à la croisée de la culture chinoise, japonaise et américaine d’une richesse insoupçonnée pour sa taille.',
+                  url: 'https://taiwan.lorispinna.com',
+                }).then(value => {
+                });
+                break;
+              }
             }
           }
         }
