@@ -751,18 +751,6 @@
       "stamp": "/public/images/stamp/stamp.png",
       "text": "C’est le 10ème plus grand bâtiment du monde, du haut de ses 509 mètres ! Son nom vient du fait qu’il fasse 101 étages. \nDedans on peut y trouver des magasins, des bureaux et des observateurs, comme au 91ème étage. Tu peux admirer Taipei et son horizon, pour découvrir plein d’endroits ! Attention à ne pas avoir le vertige !\n",
       "additional": [
-        {
-          "type": "text",
-          "value": "Ils jouent du beethoven"
-        },
-        {
-          "type": "text",
-          "value": "Ils jouent du beethoven"
-        },
-        {
-          "type": "text",
-          "value": "Ils jouent du beethoven"
-        }
       ]
     },
     {
@@ -835,7 +823,12 @@
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
       "text": "Les scooters sont partout à Taiwan, c’est le moyen de locomotion le plus utilisé. Les scooters sont en free floating, c’est aussi simple d’accès que les trottinettes électriques en France. De plus, il est possible de convertir ton permis Français en permis international. Donc à toi les road trip à travers l’île !",
-      "additional": []
+      "additional": [
+        {
+          "type": "tips",
+          "value": ""
+        }
+      ]
     },
     {
       "id": "temple",
@@ -871,7 +864,12 @@
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/qiGong.svg",
       "text": "Le Qi Gong est une gymnastique traditionnelle d’origine chinoise qui consiste à maîtriser le souffle en alliant mouvements lents, concentration et exercice respiratoire.",
-      "additional": []
+      "additional": [
+        {
+          "type": "testimonial",
+          "value": "Dans le parc à côté de chez moi, j’ai rencontré des gens qui faisaient du Qi-Gong en plein milieu du parc, ils m’ont invité à participer. Au début, c’était un peu gênant, mais au final c’était bien et reposant. Depuis, je retourne là-bas et j’en fais de temps en temps. - Jeanne"
+        }
+      ]
     }
   ],
   "audios": [

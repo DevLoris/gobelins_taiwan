@@ -49,7 +49,7 @@ function PrePickupElement (props: IProps) {
         else {
             gsap.from(element.current, {autoAlpha: 0});
         }
-    }, [showed]);
+    }, [showed, collectible]);
 
   if(hasPickup) {
       return <div ref={element} className={merge([css.root, props.className])}>

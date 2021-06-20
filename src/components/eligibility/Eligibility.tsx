@@ -108,6 +108,7 @@ function Eligibility (props: IProps) {
         {progression == EligibilityProgression.SUBMITTED_OK && (<h2>Vous remplissez tous les critères pour partir.</h2>)}
         {progression == EligibilityProgression.SUBMITTED_TIP && (<h2>Vous remplissez presque tous les critères pour partir.</h2>)}
         {progression == EligibilityProgression.SUBMITTED_FORBIDDEN && (<h2>Malheureusement, il est impossible pour vous de faire un PVT à Taiwan.</h2>)}
+        {responses.filter(value => value.correct == EligibilityResponseType.TIP).map(value => <p>{value.tip_final}</p>)}
       </div>
     </div>
 

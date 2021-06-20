@@ -89,6 +89,8 @@ export class WebGlManager {
 
     private _hintSprites: Object3D[] = Array();
 
+    private _isControlEnabled: boolean = true;
+
     constructor() {
     }
 
@@ -559,6 +561,8 @@ export class WebGlManager {
         AudioHandler.play(scene.ambient);
 
         // CONTROL
+        this._isControlEnabled = scene.orbit.enabled;
+
         this._control.enabled = scene.orbit.enabled;
         this._control.minPolarAngle = scene.orbit.minPolar;
         this._control.maxPolarAngle = scene.orbit.maxPolar;
@@ -638,6 +642,6 @@ export class WebGlManager {
     public toggleRendering(bool: boolean)  {
         this._renderEnabled = bool;
         if(this._control instanceof OrbitControls)
-            this._control.enabled = bool;
+            this._control.enabled = this._isControlEnabled && bool;
     }
 }

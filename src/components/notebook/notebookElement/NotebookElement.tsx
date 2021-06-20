@@ -17,7 +17,7 @@ function NotebookElement (props: IProps) {
   const interrogationMarkElRef = useRef(null);
   return <div onClick={props.callback} className={merge([css.root, props.className, props.data.pickup ? css.collected:  null])}>
     <div className={css.element}>
-      {props.data.pickup && (<img src={props.data.asset} title={props.data.name} />)}
+      {props.data.pickup && (<img src={props.data.stamp} title={props.data.name} />)}
       {!props.data.pickup && (<span ref={interrogationMarkElRef}>?</span>)}
     </div>
     <div className={css.name}>{props.data.pickup && props.data.name}</div>
