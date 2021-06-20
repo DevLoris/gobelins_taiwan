@@ -13,7 +13,7 @@
           "delay": 150
         },
         {
-          "message": "Ecoute bogdanof pour un indice !",
+          "message": "Cherche un bâtiment, ca pourrait t'aider à résoudre l'énigme !",
           "moment": "before_pre_pickup",
           "delay": 200
         },
@@ -847,7 +847,7 @@
       "name": "Scooters",
       "asset": "/public/images/pics/scooter.jpg",
       "stamp": "/public/images/stamp/stamp.png",
-      "text": "Les scooters sont partout à Taiwan, c’est le moyen de locomotion le plus utilisé. Les scooters sont en free floating, c’est aussi simple d’accès que les trottinettes électriques en France. De plus, il est possible de convertir ton permis Français en permis international.",
+      "text": "Les scooters sont partout à Taiwan, c’est le moyen de locomotion le plus utilisé. Taïwan est le pays avec le plus de scooter par habitant au monde, avec 15 millions de scooter pour 23 millions d’habitant. Tu ne galèreras jamais à en retrouver !",
       "additional": [
         {
           "type": "image",
@@ -859,7 +859,7 @@
         },
         {
           "type": "tips",
-          "value": "La location de scooter n’est vraiment pas cher et en libre service. À toi les road trips sur l'île !"
+          "value": "Les scooters sont en free floating, c’est aussi simple d’accès que les trottinettes électriques en France. De plus, il est possible de convertir ton permis Français en permis international. La location de scooter n’est vraiment pas cher et en libre service. À toi les road trips sur l'île !"
         }
       ]
     },

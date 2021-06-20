@@ -30,6 +30,8 @@ function TooltipMessage (props: IProps) {
   let messagesTimer:gsap.core.Tween[] = [];
 
   function update() {
+    setMessage(null);
+
     let userScene = selectUserActiveScene(getState());
     let sceneData = selectScene(userScene)(getState().data);
 
