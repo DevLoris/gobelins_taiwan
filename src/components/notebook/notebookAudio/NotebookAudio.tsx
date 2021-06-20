@@ -1,7 +1,8 @@
 import css from './NotebookAudio.module.less';
-import React from 'react';
+import React, {useEffect} from 'react';
 import { merge } from "../../../lib/utils/arrayUtils";
 import {AudioHandler} from "../../../lib/audio/AudioHandler";
+import NotebookSignal, {NOTEBOOK_SEND} from "../notebook-signal";
 
 interface IProps {
   className?: string,
@@ -44,6 +45,16 @@ function NotebookAudio (props: IProps) {
       audio.pause();
     }
   }
+
+  useEffect(() => {
+    NotebookSignal.getInstance().notebookContent.add((type, data) => {
+      if(type === NOTEBOOK_SEND.CLOSE) {
+        // get sound by id
+        let audio = AudioHandler.get(props.audio);
+        audio.pause();
+      }
+    });
+  }, []);
 
   return <div className={merge([css.root, props.className])}>
     <svg xmlns="http://www.w3.org/2000/svg" width="309.678" height="58.052" viewBox="0 0 309.678 58.052">

@@ -7,13 +7,14 @@ import NotebookPageElements from "./notebookPageElements/NotebookPageElements";
 import NotebookLabelToggler from "./notebookLabelToggler/NotebookLabelToggler";
 import {useTranslation} from "react-i18next";
 import NotebookSignal, {NOTEBOOK_SEND} from "./notebook-signal";
-import {selectTutorial, selectUserScenes} from "../../store/store_selector";
+import {selectTutorial, selectUserActiveScene, selectUserScene, selectUserScenes} from "../../store/store_selector";
 import {getState, store, tutorial} from "../../store/store";
 import {AudioHandler} from "../../lib/audio/AudioHandler";
 import NotebookClose from "./notebookClose/NotebookClose";
 import {WebGlManager} from "../webGlCanvas/WebGlManagerClasses/WebGlManager";
 import gsap from "gsap";
 import {TutorialState} from "../../store/state_interface_experience";
+import {SceneVars} from "../../vars/scene_vars";
 
 interface IProps {
     className?: string,
@@ -37,7 +38,9 @@ Notebook.defaultProps = {
  * @desc Carnet
  */
 function Notebook (props: IProps) {
-    const [page, setPage] : [NotebookPages, (NotebookPages) => void]= useState(NotebookPages.ELEMENTS);
+    let active = selectUserActiveScene(getState());
+
+    const [page, setPage] : [NotebookPages, (NotebookPages) => void] = useState(active == SceneVars.AIRPORT ? NotebookPages.MAP : NotebookPages.HINT);
 
     const rootRef = useRef(null);
     const innerRef = useRef(null);

@@ -10,12 +10,12 @@
         {
           "message": "Tu as oublié l'énigme ? Regarde dans ton carnet !",
           "moment": "before_pre_pickup",
-          "delay": 150
+          "delay": 180
         },
         {
-          "message": "Cherche un bâtiment, ca pourrait t'aider à résoudre l'énigme !",
+          "message": "Soyez attentifs aux enseignes et affiches des bâtiments.",
           "moment": "before_pre_pickup",
-          "delay": 200
+          "delay": 220
         },
         {
           "message": "Essaie de trouver la caverne d'Ali Baba !",
@@ -516,6 +516,16 @@
               "scale": [1, 1, 1],
               "position": [0, 0, 0]
             }
+          },
+          {
+            "type": "sprite",
+            "id": "obasan",
+            "sprite": "/public/sprites/Obasan/Obasan_01.png",
+            "options": {
+              "scale": [2.4, 2.4, 2.4],
+              "position": [2, -0.5, 0.5],
+              "size": {"w": 98, "h": 215}
+            }
           }
         ],
         "lights": [
@@ -837,7 +847,7 @@
       "type": "hint",
       "name": "Scooters",
       "asset": "/public/images/pics/scooter.jpg",
-      "stamp": "/public/images/stamp/stamp.png",
+      "stamp": "/public/images/stamp/scooter.svg",
       "text": "Les scooters sont partout à Taiwan, c’est le moyen de locomotion le plus utilisé. Taïwan est le pays avec le plus de scooter par habitant au monde, avec 15 millions de scooter pour 23 millions d’habitant. Tu ne galèreras jamais à en retrouver !",
       "additional": [
         {
@@ -885,7 +895,7 @@
       "id": "qi_gong",
       "type": "hint",
       "name": "Qi gong",
-      "asset": "/public/images/pics/sample.png",
+      "asset": "/public/images/pics/qigong.jpg",
       "stamp": "/public/images/stamp/qiGong.svg",
       "text": "Le Qi gong est une gymnastique traditionnelle d’origine chinoise qui consiste à maîtriser le souffle en alliant mouvements lents, concentration et exercice respiratoire.",
       "additional": [
