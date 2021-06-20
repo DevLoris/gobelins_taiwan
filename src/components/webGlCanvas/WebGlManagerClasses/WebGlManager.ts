@@ -275,7 +275,7 @@ export class WebGlManager {
                         if(object.name.includes("pin")) {
                             // Animated pin
                             let texture = new TextureLoader().load( '/public/pin_seq.png' );
-                            this._spritesAnimators.push(new TextureAnimator( texture, 50, 1, 50, 75 )); // texture, #horiz, #vert, #total, duration.
+                            this._spritesAnimators.push(new TextureAnimator( texture, 51, 1, 51, 50 )); // texture, #horiz, #vert, #total, duration.
                             const material = new SpriteMaterial( { color: 0xffffff, map: texture, transparent: true } );
                             const sprite = new Sprite( material );
                             sprite.scale.set(.7, .7, .7);
@@ -283,10 +283,10 @@ export class WebGlManager {
                             sprite.position.set(object.position.x, object.position.y + yOffset, object.position.z);
 
                             // Hitbox
-                            const hitBoxGeometry = new BoxGeometry( 3, 3, 3 );
+                            const hitBoxGeometry = new BoxGeometry( 1.5, 1.5, 1.5 );
                             const hitBoxMaterial = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom())} );
-                            hitBoxMaterial.transparent = true;
-                            hitBoxMaterial.opacity = .4;
+                            // hitBoxMaterial.transparent = true;
+                            // hitBoxMaterial.opacity = .4;
                             const hitBox = new Mesh( hitBoxGeometry, hitBoxMaterial );
                             hitBox.position.set(object.position.x, object.position.y - yOffset, object.position.z);
                             hitBox.userData = {
