@@ -8,12 +8,11 @@ import PrePickupElement from "../prePickupElement/PrePickupElement";
 import YouNeedElement from "../youNeedElement/YouNeedElement";
 import Tutorial from "../tutorial/Tutorial";
 import {getState, store, toggleOnMap, tutorial, vlogIntro, vlogOutro} from "../../store/store";
-import {selectTutorial, selectUserScene} from "../../store/store_selector";
+import {selectUserScene} from "../../store/store_selector";
 import NotebookSignal, {NOTEBOOK_SEND} from "../notebook/notebook-signal";
 import {SequenceManager} from "../../mainClasses/Sequencer/SequenceManager";
 import {EChapterStep} from "../../mainClasses/Sequencer/SequenceChapterStep";
 import Vlog from "../vlog/Vlog";
-import {TutorialState} from "../../store/state_interface_experience";
 import FakeLoader from "../fakeLoader/FakeLoader";
 import TooltipMessage from "../tooltipMessage/TooltipMessage";
 import EndExperience from "../endExperience/EndExperience";
@@ -68,6 +67,11 @@ function GameContainer (props: IProps) {
   useEffect(() => {
     props.show && componentReveal(props.show);
   }, [props.show]);
+
+  useEffect(() => {
+    if(!menuOpen)
+      NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.CLOSE, true);
+  }, [menuOpen]);
 
   // -------------------–-------------------–-------------------–--------------- ANIMATION
 
@@ -170,8 +174,9 @@ function GameContainer (props: IProps) {
             }}/>
             <NotebookToggler onClick={() => {
               setMenuOpen(!menuOpen);
-              if(!menuOpen)
+              if(!menuOpen) {
                 NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.PAGE, NotebookPages.HINT);
+              }
             }} />
             <PrePickupElement/>
             <YouNeedElement/>

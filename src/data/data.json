@@ -847,7 +847,7 @@
       "type": "hint",
       "name": "Scooters",
       "asset": "/public/images/pics/scooter.jpg",
-      "stamp": "/public/images/stamp/stamp.png",
+      "stamp": "/public/images/stamp/scooter.svg",
       "text": "Les scooters sont partout à Taiwan, c’est le moyen de locomotion le plus utilisé. Taïwan est le pays avec le plus de scooter par habitant au monde, avec 15 millions de scooter pour 23 millions d’habitant. Tu ne galèreras jamais à en retrouver !",
       "additional": [
         {
