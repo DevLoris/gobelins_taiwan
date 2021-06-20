@@ -103,6 +103,8 @@ export class WebGlManager {
 
     private _spritesAnimators = Array();
 
+    private _isControlEnabled: boolean = true;
+
     constructor() {
     }
 
@@ -269,7 +271,9 @@ export class WebGlManager {
                         this._setHitbox(object, boxSize);
                     }
                     else if(object.type === "Object3D") {
+                        // If object is a pin (hint)
                         if(object.name.includes("pin")) {
+                            // Animated pin
                             let texture = new TextureLoader().load( '/public/pin_seq.png' );
                             this._spritesAnimators.push(new TextureAnimator( texture, 50, 1, 50, 75 )); // texture, #horiz, #vert, #total, duration.
                             const material = new SpriteMaterial( { color: 0xffffff, map: texture, transparent: true } );
@@ -278,8 +282,11 @@ export class WebGlManager {
                             const yOffset = 0;
                             sprite.position.set(object.position.x, object.position.y + yOffset, object.position.z);
 
+                            // Hitbox
                             const hitBoxGeometry = new BoxGeometry( 3, 3, 3 );
                             const hitBoxMaterial = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom())} );
+                            hitBoxMaterial.transparent = true;
+                            hitBoxMaterial.opacity = .4;
                             const hitBox = new Mesh( hitBoxGeometry, hitBoxMaterial );
                             hitBox.position.set(object.position.x, object.position.y - yOffset, object.position.z);
                             hitBox.userData = {
@@ -593,6 +600,8 @@ export class WebGlManager {
         AudioHandler.play(scene.ambient);
 
         // CONTROL
+        this._isControlEnabled = scene.orbit.enabled;
+
         this._control.enabled = scene.orbit.enabled;
         this._control.minPolarAngle = scene.orbit.minPolar;
         this._control.maxPolarAngle = scene.orbit.maxPolar;
@@ -672,6 +681,6 @@ export class WebGlManager {
     public toggleRendering(bool: boolean)  {
         this._renderEnabled = bool;
         if(this._control instanceof OrbitControls)
-            this._control.enabled = bool;
+            this._control.enabled = this._isControlEnabled && bool;
     }
 }

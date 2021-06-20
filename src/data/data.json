@@ -486,7 +486,7 @@
       "name": "Aéroport",
       "chinese_name": "台北",
       "phonetic": "Táiběi",
-      "ambient": "ambient_nature",
+      "ambient": "ambient_airport",
       "messages": [],
       "map": {
         "pin": "/",
@@ -717,33 +717,20 @@
       "type": "hint",
       "name": "Camion Poubelle",
       "asset": "/public/images/pics/sample.png",
-      "stamp": "/public/images/stamp/stamp.png",
+      "stamp": "/public/images/stamp/camionPoubelle.svg",
       "text": "A Taiwan, les camions poubelle jouent une petite mélodie quant ils passent. Ça te permet de savoir quand ils arrivent pour que tu ailles jeter tes poubelles. C’est l’occase de voir tous tes voisins en survêt claquettes.",
       "additional": [
-        {
-          "type": "youtube",
-          "value": "0BjQIB7Zikk",
-          "credits": "copyright wola"
-        },
         {
           "type": "separator",
           "value": null
         },
         {
           "type": "text",
-          "value": "Ils jouent du beethoven"
+          "value": "Ils jouent Fur Elisa, du très célèbre compositeur Beethoven."
         },
         {
-          "type": "tips",
-          "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        },
-        {
-          "type": "testimonial",
-          "value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-        },
-        {
-          "type": "image",
-          "value": "/public/book.png"
+          "type": "audio",
+          "value": "camion-poubelle"
         }
       ]
     },
@@ -764,18 +751,6 @@
       "stamp": "/public/images/stamp/stamp.png",
       "text": "C’est le 10ème plus grand bâtiment du monde, du haut de ses 509 mètres ! Son nom vient du fait qu’il fasse 101 étages. \nDedans on peut y trouver des magasins, des bureaux et des observateurs, comme au 91ème étage. Tu peux admirer Taipei et son horizon, pour découvrir plein d’endroits ! Attention à ne pas avoir le vertige !\n",
       "additional": [
-        {
-          "type": "text",
-          "value": "Ils jouent du beethoven"
-        },
-        {
-          "type": "text",
-          "value": "Ils jouent du beethoven"
-        },
-        {
-          "type": "text",
-          "value": "Ils jouent du beethoven"
-        }
       ]
     },
     {
@@ -792,7 +767,7 @@
       "type": "hint",
       "name": "Night markets (friture)",
       "asset": "/public/images/pics/sample.png",
-      "stamp": "/public/images/stamp/stamp.png",
+      "stamp": "/public/images/stamp/nightMarket.svg",
       "text": "Les night-markets sont des lieux vivants et gourmands de Taiwan. On y trouve des repas variés et de qualité mais surtout pour peu cher. Par exemple des nouilles au bœuf, des raviolis vapeur, des saucisses sucrées, des patates douces frits, des bubble-teas, des bao burgers, etc. \nPas besoin de cuisiner chaque soir : il suffit juste de descendre dans la rue, tu trouveras ton bonheur !\n",
       "additional": []
     },
@@ -848,7 +823,12 @@
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
       "text": "Les scooters sont partout à Taiwan, c’est le moyen de locomotion le plus utilisé. Les scooters sont en free floating, c’est aussi simple d’accès que les trottinettes électriques en France. De plus, il est possible de convertir ton permis Français en permis international. Donc à toi les road trip à travers l’île !",
-      "additional": []
+      "additional": [
+        {
+          "type": "tips",
+          "value": ""
+        }
+      ]
     },
     {
       "id": "temple",
@@ -882,15 +862,25 @@
       "type": "hint",
       "name": "Qi Gong",
       "asset": "/public/images/pics/sample.png",
-      "stamp": "/public/images/stamp/stamp.png",
+      "stamp": "/public/images/stamp/qiGong.svg",
       "text": "Le Qi Gong est une gymnastique traditionnelle d’origine chinoise qui consiste à maîtriser le souffle en alliant mouvements lents, concentration et exercice respiratoire.",
-      "additional": []
+      "additional": [
+        {
+          "type": "testimonial",
+          "value": "Dans le parc à côté de chez moi, j’ai rencontré des gens qui faisaient du Qi-Gong en plein milieu du parc, ils m’ont invité à participer. Au début, c’était un peu gênant, mais au final c’était bien et reposant. Depuis, je retourne là-bas et j’en fais de temps en temps. - Jeanne"
+        }
+      ]
     }
   ],
   "audios": [
     {
       "id": "pickup",
       "url": "/public/audio/Game Reward.mp3",
+      "params": {}
+    },
+    {
+      "id": "camion-poubelle",
+      "url": "/public/audio/camion-poubelle.mp3",
       "params": {}
     },
     {
@@ -905,7 +895,14 @@
     },
     {
       "id": "ambient_city",
-      "url": "/public/audio/ambient_city.mp3",
+      "url": "/public/audio/ambiance-taipei.mp3",
+      "params": {
+        "loop": true
+      }
+    },
+    {
+      "id": "ambient_airport",
+      "url": "/public/audio/ambiance-airport.mp3",
       "params": {
         "loop": true
       }

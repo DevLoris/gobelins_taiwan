@@ -52,7 +52,7 @@ function NotebookPageElementsDetails (props: IProps) {
       <div>
         <div className={css.elementHeaderStamp}>
           {(props.data.pickup)  && (
-            <img src={props.data.asset} alt={props.data.name} />
+            <img src={props.data.stamp} alt={props.data.name} />
           )}
           {(!props.data.pickup)  && (
               <span>?</span>

@@ -40,13 +40,13 @@ const debug = require("debug")(`front:${fileName}`);
    * Sentry
    */
 
-  /*Sentry.init({
+  Sentry.init({
     dsn: "https://31a1a78f98b948f987f803882b6d79f1@o865874.ingest.sentry.io/5822862",
     integrations: [
         new Integrations.BrowserTracing(),
     ],
     tracesSampleRate: 1.0,
-  });*/
+  });
 
   /**
    * Init React App
