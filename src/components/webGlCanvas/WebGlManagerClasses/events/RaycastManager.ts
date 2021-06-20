@@ -13,6 +13,9 @@ import {SceneryUtils} from "../scenery/SceneryUtils";
 import {AudioHandler} from "../../../../lib/audio/AudioHandler";
 import {gsap} from "gsap";
 import {Expo, Sine} from "gsap/gsap-core";
+import {WebGlManager} from "../WebGlManager";
+import {SpriteMaterial, TextureLoader} from "three";
+import {TextureAnimator} from "../TextureAnimator";
 
 const debug = require("debug")(`front:RaycastManager`);
 
@@ -59,6 +62,13 @@ class RaycastManager {
                         store.dispatch(addPickElementScene({pickup: collectible.id, scene: userSceneId}));
                         // SET FOCUS
                         FocusUtils.focusOn(collectibleSceneData.focus.coords, collectibleSceneData.focus.rotation);
+
+                        // Set sprite as cheked
+                        WebGlManager.getInstance().getAnimatedSprites().forEach((sprite) => {
+                            if(sprite.pinName === collectible.id) {
+                                WebGlManager.getInstance().setSpriteTexturePinValid(sprite);
+                            }
+                        });
 
                         AudioHandler.play("pickup");
                         break;

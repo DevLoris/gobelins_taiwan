@@ -38,11 +38,11 @@
           }
         },
         {
-          "collectible_id": "camion_poubelle",
-          "trigger": "pickup",
+          "collectible_id": "poubelle",
+          "trigger": "pinpoubelle",
           "focus": {
-            "coords": {"x": 2, "y": 4, "z": 5},
-            "rotation": {"x": 3, "y": 1, "z": 3}
+            "coords": {"x":-2, "y": 4, "z": -2},
+            "rotation": {"x": 1.5, "y": 0.15, "z": 8.4}
           }
         },
         {
@@ -62,7 +62,7 @@
           }
         },
         {
-          "collectible_id": "taipei_101",
+          "collectible_id": "101",
           "trigger": "pin101",
           "focus": {
             "coords": {"x": 25, "y": 28, "z": 25},
@@ -86,7 +86,7 @@
           }
         },
         {
-          "collectible_id": "nightmarket",
+          "collectible_id": "night_market",
           "trigger": "pinnight_market",
           "focus": {
             "coords": {"x": 23, "y": 20, "z": -5},
@@ -94,7 +94,7 @@
           }
         },
         {
-          "collectible_id": "clim",
+          "collectible_id": "climatiseur",
           "trigger": "pinclimatiseur",
           "focus": {
             "coords": {"x": 23, "y": 20, "z": -5},
@@ -137,8 +137,8 @@
           "collectible_id": "scooter",
           "trigger": "pinscooter",
           "focus": {
-            "coords": {"x": 23, "y": 20, "z": -5},
-            "rotation": {"x": -8, "y": 0.04, "z": -10.7}
+            "coords": {"x": 4, "y": 6, "z": -5},
+            "rotation": {"x": -8, "y": 0, "z": -10.7}
           }
         },
         {
@@ -158,7 +158,7 @@
           }
         },
         {
-          "collectible_id": "beefnoodles",
+          "collectible_id": "beef_noodles",
           "trigger": "pinbeef_noodles",
           "focus": {
             "coords": {"x": 23, "y": 5, "z": -5},
@@ -166,10 +166,10 @@
           }
         },
         {
-          "collectible_id": "qigong",
+          "collectible_id": "qi_gong",
           "trigger": "pinqi_gong",
           "focus": {
-            "coords": {"x": 23, "y": 20, "z": -5},
+            "coords": {"x": 25, "y": 3, "z": 0},
             "rotation": {"x": 19, "y": 0.7, "z": 3.2
             }
           }
@@ -213,15 +213,6 @@
       },
       "content": {
         "elements": [
-          {
-            "type": "cube",
-            "id": "pickup",
-            "color": "#ff00ff",
-            "options": {
-              "scale": [1, 1, 1],
-              "position": [3, 1, 3]
-            }
-          },
           {
             "type": "object_container",
             "id": "scene",
@@ -551,7 +542,7 @@
   "models": [
     {
       "id": "TaipeiMain",
-      "path": "/public/sceneries/demo/TaipeiV13.glb"
+      "path": "/public/sceneries/demo/TaipeiV14.glb"
     },
     {
       "id": "GridBottom",
@@ -713,7 +704,7 @@
       "additional": []
     },
     {
-      "id": "camion_poubelle",
+      "id": "poubelle",
       "type": "hint",
       "name": "Camion Poubelle",
       "asset": "/public/images/pics/camion_poubelle.jpg",
@@ -753,7 +744,7 @@
       ]
     },
     {
-      "id": "taipei_101",
+      "id": "101",
       "type": "hint",
       "name": "Taipei 101",
       "asset": "/public/images/pics/sample.png",
@@ -772,7 +763,7 @@
       "additional": []
     },
     {
-      "id": "nightmarket",
+      "id": "night_market",
       "type": "hint",
       "name": "Night markets (friture)",
       "asset": "/public/images/pics/nightmarket.jpg",
@@ -786,7 +777,7 @@
       ]
     },
     {
-      "id": "clim",
+      "id": "climatiseur",
       "type": "hint",
       "name": "Climatiseur",
       "asset": "/public/images/pics/climatiseur.jpg",
@@ -882,7 +873,7 @@
       "additional": []
     },
     {
-      "id": "beefnoodles",
+      "id": "beef_noodles",
       "type": "hint",
       "name": "Beef Noodle",
       "asset": "/public/images/pics/sample.png",
@@ -891,7 +882,7 @@
       "additional": []
     },
     {
-      "id": "qigong",
+      "id": "qi_gong",
       "type": "hint",
       "name": "Qi gong",
       "asset": "/public/images/pics/qigong.jpg",
@@ -938,7 +929,8 @@
       "id": "ambient_city",
       "url": "/public/audio/ambiance-taipei.mp3",
       "params": {
-        "loop": true
+        "loop": true,
+        "volume": 0.5
       }
     },
     {
