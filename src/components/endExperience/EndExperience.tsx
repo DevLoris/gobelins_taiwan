@@ -32,16 +32,19 @@ function EndExperience (props: IProps) {
 
   useEffect(() =>{
     RaycastManager.getInstance().onInteract.add((type: RaycastInteractionType, data: Object3D) => {
-      if(data !== undefined && data instanceof Object3D) {
+      if(data !== undefined && data.userData && data instanceof Object3D) {
         if (type == RaycastInteractionType.ITEMS) {
-          switch (data.name) {
-            case "docs":
+          switch (data.userData.name) {
+            case "test":
               setEndExperienceStep(EndExperienceStep.ELIGIBILITY);
               break;
-            case "computer":
+            case "pvtiste":
               setEndExperienceStep(EndExperienceStep.PVTISTES_NET);
               break;
-            case "crayon": {
+            case "vlog":
+              setEndExperienceStep(EndExperienceStep.PVTISTES_NET);
+              break;
+            case "share": {
               if (window.navigator.share) {
                 window.navigator.share({
                   title: 'Départ pour Taïwan',

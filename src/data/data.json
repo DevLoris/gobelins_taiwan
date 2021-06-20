@@ -10,12 +10,12 @@
         {
           "message": "Tu as oublié l'énigme ? Regarde dans ton carnet !",
           "moment": "before_pre_pickup",
-          "delay": 150
+          "delay": 180
         },
         {
-          "message": "Cherche un bâtiment, ca pourrait t'aider à résoudre l'énigme !",
+          "message": "Soyez attentifs aux enseignes et affiches des bâtiments.",
           "moment": "before_pre_pickup",
-          "delay": 200
+          "delay": 220
         },
         {
           "message": "Essaie de trouver la caverne d'Ali Baba !",
@@ -515,6 +515,16 @@
             "options": {
               "scale": [1, 1, 1],
               "position": [0, 0, 0]
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "obasan",
+            "sprite": "/public/sprites/Obasan/Obasan_01.png",
+            "options": {
+              "scale": [2.4, 2.4, 2.4],
+              "position": [2, -0.5, 0.5],
+              "size": {"w": 98, "h": 215}
             }
           }
         ],
