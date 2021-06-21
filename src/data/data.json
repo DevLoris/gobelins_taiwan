@@ -999,6 +999,13 @@
       }
     },
     {
+      "id": "coins",
+      "url": "/public/audio/coins.mp3",
+      "params": {
+        "volume": 0.5
+      }
+    },
+    {
       "id": "camion-poubelle",
       "url": "/public/audio/camion-poubelle.mp3",
       "params": {

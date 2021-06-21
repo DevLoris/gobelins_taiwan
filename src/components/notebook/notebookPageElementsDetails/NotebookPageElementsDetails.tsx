@@ -7,6 +7,7 @@ import NotebookAudio from "../notebookAudio/NotebookAudio";
 import {IStateDataCollectibleAdditionalDataType} from "../../../store/state_enums";
 import {useTranslation} from "react-i18next";
 import gsap from "gsap";
+import ButtonPicto, {ButtonPictoStyle} from "../../buttonPicto/ButtonPicto";
 
 interface IProps {
   className?: string,
@@ -47,7 +48,7 @@ function NotebookPageElementsDetails (props: IProps) {
 
     <div className={css.elementHeader}>
       {props.onExit && (
-          <img src={"/public/da/go_back.png"} className={css.exit} onClick={props.onExit}/>
+          <ButtonPicto disabled={false} picto={ButtonPictoStyle.PREVIOUS} onClick={props.onExit} className={css.exit}/>
       )}
       <div>
         <div className={css.elementHeaderStamp}>
@@ -85,7 +86,7 @@ function NotebookPageElementsDetails (props: IProps) {
           let content = null;
           switch (value.type) {
             case IStateDataCollectibleAdditionalDataType.TEXT:
-              content = (<p>{value.value}</p>);
+              content = (<p className={'bigger'}>{value.value}</p>);
               break;
             case IStateDataCollectibleAdditionalDataType.SEPARATOR:
               content = (<></>);
