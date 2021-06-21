@@ -1,5 +1,5 @@
 import css from './InteractedElement.module.less';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import {merge} from "../../lib/utils/arrayUtils";
 import RaycastManager, {RaycastInteractionType} from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
 import {IStateDataCollectible} from "../../store/state_interface_data";
@@ -30,6 +30,8 @@ function InteractedElement (props: IProps) {
 
   const showCollectibleInfoTimeout = useRef(null);
 
+  const hintRootRef = useRef(null);
+
   useEffect(() => {
     RaycastManager.getInstance().onInteract.add((type: RaycastInteractionType, value: IStateDataCollectible) => {
       debug("value", value)
@@ -49,14 +51,42 @@ function InteractedElement (props: IProps) {
     }
   }, []);
 
+  useLayoutEffect(() => {
+    if(!collectible) return;
+    collectible.type === IStateDataSceneCollectibleType.HINT && componentAnimation();
+  }, [showed]);
+
+  function componentAnimation(pVisible:boolean = true, pDuration:number = .7) {
+    if(hintRootRef.current && collectible.type) {
+      gsap.killTweensOf(hintRootRef.current);
+      gsap.fromTo(hintRootRef.current, {
+        yPercent: pVisible ? 110 : 0
+      },{
+        yPercent: pVisible ? 0 : 110,
+        duration: pDuration,
+        ease: "power2.easeOut",
+        onComplete: () => {
+          // If play out, hide component at end of animation
+          !pVisible && toggleShowed(false);
+        }
+      });
+      // If play out, start to move camera after 300ms
+      if(!pVisible) {
+        gsap.delayedCall(pDuration * .3, () => {
+          // Set camera to previous position
+          FocusUtils.restore();
+        });
+      }
+    }
+  }
+
   if(showed) {
     switch (collectible.type) {
-      case IStateDataSceneCollectibleType.HINT:
-        return <div className={merge([css.root, props.className])}>
+      case IStateDataSceneCollectibleType.HINT: 
+        return <div ref={hintRootRef} className={merge([css.root, props.className])}>
           <ButtonPicto className={css.close} disabled={false} picto={ButtonPictoStyle.CROSS} onClick={() => {
-            toggleShowed(false);
-            FocusUtils.restore();
-          }}/>
+            componentAnimation(false);
+          }}/> 
 
           <div className={css.picture}>
             <img src={collectible.asset} alt={"Asset"}/>

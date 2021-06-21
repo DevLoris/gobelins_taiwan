@@ -14,6 +14,7 @@ export class ConfigureGui {
     constructor() {
         this._gui =  new dat.GUI();
         this._gui.width = "300px";
+        this._gui.close();
         this._stats =  new Stats();
         this.statGui();
         this.statCamera();

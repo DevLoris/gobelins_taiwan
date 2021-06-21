@@ -81,7 +81,7 @@
           "collectible_id": "metro",
           "trigger": "pinmetro",
           "focus": {
-            "coords": {"x": 23, "y": 20, "z": -5},
+            "coords": {"x": 0, "y": 7, "z": -8},
             "rotation": {"x": -6.4, "y": 2.4, "z": -23}
           }
         },
@@ -89,7 +89,7 @@
           "collectible_id": "night_market",
           "trigger": "pinnight_market",
           "focus": {
-            "coords": {"x": 23, "y": 20, "z": -5},
+            "coords": {"x": -5, "y": 6, "z": 23},
             "rotation": {"x": 23, "y": 1, "z": 22}
           }
         },
@@ -97,16 +97,16 @@
           "collectible_id": "climatiseur",
           "trigger": "pinclimatiseur",
           "focus": {
-            "coords": {"x": 23, "y": 20, "z": -5},
+            "coords": {"x": -11, "y": 4, "z": 23},
             "rotation": {"x": -9.4, "y": 3.6, "z": 20.1}
           }
         },
         {
-          "collectible_id": "traduction",
+          "collectible_id": "panneau",
           "trigger": "pinpanneau",
           "focus": {
-            "coords": {"x": 23, "y": 20, "z": -5},
-            "rotation": {"x": -1.2, "y": 3.4, "z": 17.4}
+            "coords": {"x": -1.4, "y": 1.5, "z": 22},
+            "rotation": {"x": -2, "y": 3.4, "z": 17.4}
           }
         },
         {
@@ -121,16 +121,16 @@
           "collectible_id": "cybercafe",
           "trigger": "pincybercafe",
           "focus": {
-            "coords": {"x": 9, "y": 1, "z": -8},
-            "rotation": {"x": 9.1, "y": 5.6, "z": -2.2}
+            "coords": {"x": 5, "y": 1, "z": -9},
+            "rotation": {"x": 8, "y": 4, "z": -2.2}
           }
         },
         {
           "collectible_id": "vegan",
           "trigger": "pinvegan",
           "focus": {
-            "coords": {"x": 23, "y": 20, "z": -5},
-            "rotation": {"x": 7.6, "y": 0.66, "z": 25.4}
+            "coords": {"x": 10, "y": 1.8, "z": 22},
+            "rotation": {"x": 7.6, "y": 1.5, "z": 25.4}
           }
         },
         {
@@ -138,31 +138,31 @@
           "trigger": "pinscooter",
           "focus": {
             "coords": {"x": 4, "y": 6, "z": -5},
-            "rotation": {"x": -8, "y": 0, "z": -10.7}
+            "rotation": {"x": -8, "y": 0, "z": -12}
           }
         },
         {
           "collectible_id": "temple",
           "trigger": "pintemple",
           "focus": {
-            "coords": {"x": 23, "y": 20, "z": -5},
-            "rotation": {"x": -18.5, "y": 5.6, "z": 17.3}
+            "coords": {"x": -23, "y": 7, "z": 30},
+            "rotation": {"x": -21, "y": 3, "z": 17.3}
           }
         },
         {
           "collectible_id": "asus",
           "trigger": "pinasus",
           "focus": {
-            "coords": {"x": 23, "y": 20, "z": -5},
-            "rotation": {"x": 9.3, "y": 8.5, "z": 14.3}
+            "coords": {"x": 5, "y": 9, "z": 10},
+            "rotation": {"x": 9.3, "y": 6, "z": 14.3}
           }
         },
         {
           "collectible_id": "beef_noodles",
           "trigger": "pinbeef_noodles",
           "focus": {
-            "coords": {"x": 23, "y": 5, "z": -5},
-            "rotation": {"x": 11, "y": 0.7, "z": 25}
+            "coords": {"x": 23, "y": 1, "z": 12},
+            "rotation": {"x": 28, "y": 1, "z": 17}
           }
         },
         {
@@ -628,7 +628,7 @@
   "models": [
     {
       "id": "TaipeiMain",
-      "path": "/public/sceneries/demo/TaipeiV14.glb"
+      "path": "/public/sceneries/demo/TaipeiV15.glb"
     },
     {
       "id": "GridBottom",
@@ -878,7 +878,7 @@
       ]
     },
     {
-      "id": "traduction",
+      "id": "panneau",
       "type": "hint",
       "name": "Tout est traduit",
       "asset": "/public/images/pics/translate.jpg",
