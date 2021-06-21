@@ -34,7 +34,8 @@ function NotebookPageElementsDetails (props: IProps) {
 
   }, []);
 
-  function componentAnim(pShow:boolean = true, pDuration:number = .7) {
+  // Text inside page plays in
+  function componentAnim(pDuration:number = .7) {
     gsap.fromTo(contentBlockContainerRef.current, {
       yPercent: 100,
     }, {
@@ -49,7 +50,7 @@ function NotebookPageElementsDetails (props: IProps) {
       {props.onExit && (
           <img src={"/public/da/go_back.png"} className={css.exit} onClick={props.onExit}/>
       )}
-      <div>
+      <div className={css.elementHeaderSubContainer}>
         <div className={css.elementHeaderStamp}>
           {(props.data.pickup)  && (
             <img src={props.data.stamp} alt={props.data.name} />
