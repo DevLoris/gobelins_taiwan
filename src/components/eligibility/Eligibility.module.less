@@ -33,7 +33,7 @@
   height: 430px;
   width: 320px;
   filter: drop-shadow(-2px 2px 0 @light-color);
-  clip-path: url(#my-clip-path);
+  clip-path: url(#end-clip-path);
   &:nth-child(1), &:nth-child(4), &:nth-child(7) {
     transform: translate(-50%, -50%) rotate(1deg);
   }
@@ -43,12 +43,6 @@
   &:nth-child(3), &:nth-child(6)  {
     transform: translate(-50%, -50%) rotate(0deg);
   }
-}
-
-.svg {
-  position: absolute;
-  width: 0;
-  height: 0;
 }
 
 .frameCenter {

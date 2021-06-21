@@ -155,8 +155,6 @@ export class WebGlManager {
 
         pSceneryName && this.toggleScenery(pSceneryName);
 
-        this._setupSceneChildrenArrays();
-
         window.addEventListener('resize', this._resizeHandler.bind(this));
 
         this.cameraMovingLoop();
@@ -680,6 +678,7 @@ export class WebGlManager {
         // Signal update scene
         this.onChangeScenery.dispatch(scene_id);
 
+        this._setupSceneChildrenArrays();
         this.playSequencerOnScene(scene_id);
     }
 

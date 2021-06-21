@@ -3,3 +3,83 @@
 .root {
   pointer-events: none;
 }
+
+.vlogger {
+  position: absolute;
+  height: 100%;
+
+  background:  rgba(17, 29, 48, 0.40) url("../../public/da/gradient-pattern.png") repeat-x top center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  pointer-events: auto;
+  top: 0;
+  .close {
+    position: absolute;
+    top: calc(50% - 215px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    &:hover {
+      transform: translate(-50%, -50%) scale(0.9) !important;
+    }
+  }
+  hr {
+    margin: 0;
+  }
+
+
+  .vloger {
+    display: flex;
+    align-items: center;
+    margin: 2.75rem 0.75rem;
+    .vlogerImage {
+      margin-right: 0.5rem;
+      img {
+        width: 125px;
+      }
+    }
+    .vlogerData{
+      h3 {
+        display: inline-block;
+        margin-bottom: 1rem;
+      }
+      .vlogerDataButtons {
+        display: flex;
+        >div {
+          margin-right: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+.svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: @white-color url("../../public/da/pattern_beige.png");
+  height: 430px;
+  width: 320px;
+  pointer-events: auto;
+  filter: drop-shadow(-2px 2px 0 @light-color);
+  clip-path: url(#end-clip-path);
+  &:nth-child(1), &:nth-child(4), &:nth-child(7) {
+    transform: translate(-50%, -50%) rotate(1deg);
+  }
+  &:nth-child(2),&:nth-child(5)  {
+    transform: translate(-50%, -50%) rotate(-1deg);
+  }
+  &:nth-child(3), &:nth-child(6)  {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+

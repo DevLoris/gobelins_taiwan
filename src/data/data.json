@@ -994,36 +994,45 @@
     {
       "id": "pickup",
       "url": "/public/audio/Game Reward.mp3",
-      "params": {}
+      "params": {
+        "volume": 0.5
+      }
     },
     {
       "id": "camion-poubelle",
       "url": "/public/audio/camion-poubelle.mp3",
-      "params": {}
+      "params": {
+        "volume": 0.6
+      }
     },
     {
       "id": "page",
       "url": "/public/audio/page.mp3",
-      "params": {}
+      "params": {
+        "volume": 0.75
+      }
     },
     {
       "id": "book",
       "url": "/public/audio/book.wav",
-      "params": {}
+      "params": {
+        "volume": 0.55
+      }
     },
     {
       "id": "ambient_city",
       "url": "/public/audio/ambiance-taipei.mp3",
       "params": {
         "loop": true,
-        "volume": 0.5
+        "volume": 0.4
       }
     },
     {
       "id": "ambient_airport",
       "url": "/public/audio/ambiance-airport.mp3",
       "params": {
-        "loop": true
+        "loop": true,
+        "volume": 0.4
       }
     },
     {
@@ -1037,7 +1046,8 @@
       "id": "ambient_nature",
       "url": "/public/audio/ambient_nature.mp3",
       "params": {
-        "loop": true
+        "loop": true,
+        "volume": 0.4
       }
     }
   ],
