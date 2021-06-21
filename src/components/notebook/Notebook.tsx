@@ -40,7 +40,7 @@ Notebook.defaultProps = {
 function Notebook (props: IProps) {
     let active = selectUserActiveScene(getState());
 
-    const [page, setPage] : [NotebookPages, (NotebookPages) => void] = useState(active == SceneVars.AIRPORT ? NotebookPages.MAP : NotebookPages.HINT);
+    const [page, setPage] : [NotebookPages, (NotebookPages) => void] = useState(NotebookPages.HINT);
 
     const rootRef = useRef(null);
     const innerRef = useRef(null);
@@ -117,16 +117,22 @@ function Notebook (props: IProps) {
 
     return <div ref={rootRef} className={merge([css.root, props.className])}>
         <div className={css.menu}>
-            <NotebookLabelToggler elRef={(r) => (menuButtonsRefs.current[0] = r)} active={NotebookPages.HINT == page} label={t('notebook__menu__hint')} onClick={() => {
-                AudioHandler.play("page");
-                setPage(NotebookPages.HINT);
-                NotebookSignal.getInstance().tabChange();
-            }}/>
-            <NotebookLabelToggler elRef={(el) => menuButtonsRefs.current[1] = el} active={NotebookPages.ELEMENTS == page} label={t('notebook__menu__elements')} onClick={() => {
-                AudioHandler.play("page");
-                setPage(NotebookPages.ELEMENTS);
-                NotebookSignal.getInstance().tabChange();
-            }}/>
+            {
+                (active != SceneVars.AIRPORT) &&
+                <NotebookLabelToggler elRef={(r) => (menuButtonsRefs.current[0] = r)} active={NotebookPages.HINT == page} label={t('notebook__menu__hint')} onClick={() => {
+                    AudioHandler.play("page");
+                    setPage(NotebookPages.HINT);
+                    NotebookSignal.getInstance().tabChange();
+                }}/>
+            }
+            {
+                (active != SceneVars.AIRPORT) &&
+                <NotebookLabelToggler elRef={(el) => menuButtonsRefs.current[1] = el} active={NotebookPages.ELEMENTS == page} label={t('notebook__menu__elements')} onClick={() => {
+                    AudioHandler.play("page");
+                    setPage(NotebookPages.ELEMENTS);
+                    NotebookSignal.getInstance().tabChange();
+                }}/>
+            }
             {userScenes.filter(value => value.visible_on_map).length > 1 && (
                 <NotebookLabelToggler elRef={(el) => menuButtonsRefs.current[2] = el} active={NotebookPages.MAP == page} label={t('notebook__menu__map')} onClick={() => {
                     AudioHandler.play("page");
