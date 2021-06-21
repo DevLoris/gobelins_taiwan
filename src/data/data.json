@@ -102,7 +102,7 @@
           }
         },
         {
-          "collectible_id": "traduction",
+          "collectible_id": "panneau",
           "trigger": "pinpanneau",
           "focus": {
             "coords": {"x": -1.4, "y": 1.5, "z": 22},
@@ -858,7 +858,7 @@
       ]
     },
     {
-      "id": "traduction",
+      "id": "panneau",
       "type": "hint",
       "name": "Tout est traduit",
       "asset": "/public/images/pics/translate.jpg",
