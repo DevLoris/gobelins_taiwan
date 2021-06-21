@@ -68,6 +68,8 @@ function Notebook (props: IProps) {
         if(props.show) {
             AudioHandler.play("book");
 
+            innerRef.current.scrollTo(0,0);
+
             if(selectTutorial(getState()) == TutorialState.INTRODUCTION)
                 store.dispatch(tutorial(TutorialState.BEFORE_MAP));
         }

@@ -106,8 +106,6 @@ function NotebookPageElements (props: IProps) {
     if(props.parentInnerRef.current.scrollTop > 0) {
       gsap.to(props.parentInnerRef.current, {scrollTo: {x: 0, y: 0}, duration: pDuration * .5, ease: "power2.easeInOut"});
     }
-    // Scroll top in page
-    pShow && props.parentInnerRef.current.scrollTo(0,0);
 
     pageElRef.current && gsap.fromTo(pageElRef.current, {
       xPercent: pShow ? 100 : 0,
