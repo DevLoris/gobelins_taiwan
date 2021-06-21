@@ -52,14 +52,14 @@ import {CHAPTERS, SequenceManager} from "../../../mainClasses/Sequencer/Sequence
 import {zeroToOneRandom} from "../../../lib/utils/mathUtils";
 import {TextureAnimator} from "./TextureAnimator";
 import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
+import {isLocal} from "../../../helpers/DebugHelpers";
 
 const debug = require("debug")(`front:WebGlManager`);
 
-/**
- * TODO split into smaller classes
- */
+const DO_NOT_SHOW_LOCAL_DEBUG:boolean = false;
 
-const ENABLE_STATS: boolean = false;
+const ENABLE_STATS: boolean = !DO_NOT_SHOW_LOCAL_DEBUG && isLocal();
+const ENABLE_DEBUG: boolean = !DO_NOT_SHOW_LOCAL_DEBUG && isLocal();
 
 // Object extremities on each axis
 interface IObjectEndCoordinates {
@@ -161,7 +161,7 @@ export class WebGlManager {
 
         this.cameraMovingLoop();
 
-        // this._setDebugHelpers();
+        ENABLE_DEBUG && this._setDebugHelpers();
     }
 
     /**
