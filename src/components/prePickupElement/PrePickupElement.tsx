@@ -30,6 +30,13 @@ function PrePickupElement (props: IProps) {
                   setCollectible(value);
                   toggleHasPickup(hasPickupPayload);
                   toggleShowed(true);
+
+                  let tl = gsap.timeline();
+                  tl
+                      .fromTo(element.current, {scale: 1}, {scale: 1.2, autoAlpha: 1})
+                      .to(element.current, {scale: 1})
+                      .to(element.current, {scale: 1.2})
+                      .to(element.current, {scale: 1})
               } else if ([IStateDataSceneCollectibleType.PICKUP].includes(value.type)) {
                   toggleShowed(false);
               }
@@ -38,18 +45,10 @@ function PrePickupElement (props: IProps) {
   }, []);
 
     useEffect(() => {
-        if(showed) {
-            let tl = gsap.timeline();
-            tl
-                .fromTo(element.current, {scale: 1}, {scale: 1.2, autoAlpha: 1})
-                .to(element.current, {scale: 1})
-                .to(element.current, {scale: 1.2})
-                .to(element.current, {scale: 1})
-        }
-        else {
+        if(!showed) {
             gsap.from(element.current, {autoAlpha: 0});
         }
-    }, [showed, collectible]);
+    }, [showed]);
 
   if(hasPickup) {
       return <div ref={element} className={merge([css.root, props.className])}>

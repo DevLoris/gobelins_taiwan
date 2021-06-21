@@ -10,6 +10,7 @@ import {SequenceManager} from "../../mainClasses/Sequencer/SequenceManager";
 import Button, {ButtonStyle} from "../button/Button";
 import NotebookSignal, {NOTEBOOK_SEND} from "../notebook/notebook-signal";
 import {NotebookPages} from "../notebook/Notebook";
+import ButtonPicto, {ButtonPictoStyle} from "../buttonPicto/ButtonPicto";
 
 interface IProps {
   className?: string
@@ -81,26 +82,29 @@ function InteractedElement (props: IProps) {
 
   if(showed) {
     switch (collectible.type) {
-      case IStateDataSceneCollectibleType.HINT:
+      case IStateDataSceneCollectibleType.HINT: 
         return <div ref={hintRootRef} className={merge([css.root, props.className])}>
-          <button onClick={() => {
+          <ButtonPicto className={css.close} disabled={false} picto={ButtonPictoStyle.CROSS} onClick={() => {
             componentAnimation(false);
-          }}>
-            <img src={"/public/da/close.png"} alt={"Close"}/>
-          </button>
+          }}/> 
 
           <div className={css.picture}>
             <img src={collectible.asset} alt={"Asset"}/>
             <img src={collectible.stamp} alt={"Stamp"}/>
           </div>
+          <hr/>
 
           <div className={css.contentBlock}>
             <h1>{ collectible.name }</h1>
-            <p>{ collectible.text }</p>
+            <p className={'bigger'}>{ collectible.text }</p>
             <Button onClick={() => {
               NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.TOGGLE, true);
               NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.PAGE, NotebookPages.ELEMENTS);
               NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.CONTENT, collectible);
+              gsap.delayedCall(2, () => {
+                toggleShowed(false);
+                FocusUtils.restore();
+              });
             }} style={ButtonStyle.DEFAULT} label={"En apprendre plus"}/>
           </div>
         </div>
