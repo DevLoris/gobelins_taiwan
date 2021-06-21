@@ -95,7 +95,7 @@ function EndExperience (props: IProps) {
             <img src={"/public/images/vlogger/rodolphe_square@2x.png"}/>
           </div>
           <div className={css.vlogerData}>
-            <h3>Jimmy Beunardeau</h3>
+            <h3>Rodolphe Miez</h3>
             <div className={css.vlogerDataButtons}>
               <ButtonRounded onClick={() => {
                 window.open('https://www.instagram.com/imrodolphe/', '_blank').focus();
@@ -112,14 +112,14 @@ function EndExperience (props: IProps) {
             <img src={"/public/images/vlogger/jimmy_square@2x.png"}/>
           </div>
           <div className={css.vlogerData}>
-            <h3>Rodolphe Miez</h3>
+            <h3>Jimmy Beunardeau</h3>
             <div className={css.vlogerDataButtons}>
               <ButtonRounded onClick={() => {
-                window.open('https://www.instagram.com/imrodolphe/', '_blank').focus();
+                window.open('https://www.instagram.com/jimmybeunardeau/', '_blank').focus();
               }} picto={ButtonRoundedStyle.INSTA}/>
               <ButtonRounded onClick={() => {
-                window.open('https://www.youtube.com/channel/UCSuUdvJ_ILNpxcC4kATuMvw', '_blank').focus();
-              }} picto={ButtonRoundedStyle.YOUTUBE}/>
+                window.open('https://www.jimmybeunardeau.com/', '_blank').focus();
+              }} picto={ButtonRoundedStyle.WEB}/>
             </div>
           </div>
         </div>
