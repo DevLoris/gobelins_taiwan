@@ -8,7 +8,7 @@ import PrePickupElement from "../prePickupElement/PrePickupElement";
 import YouNeedElement from "../youNeedElement/YouNeedElement";
 import Tutorial from "../tutorial/Tutorial";
 import {getState, store, toggleOnMap, tutorial, vlogIntro, vlogOutro} from "../../store/store";
-import {selectUserScene} from "../../store/store_selector";
+import {selectUserActiveScene, selectUserScene} from "../../store/store_selector";
 import NotebookSignal, {NOTEBOOK_SEND} from "../notebook/notebook-signal";
 import {SequenceManager} from "../../mainClasses/Sequencer/SequenceManager";
 import {EChapterStep} from "../../mainClasses/Sequencer/SequenceChapterStep";
@@ -16,6 +16,7 @@ import Vlog from "../vlog/Vlog";
 import FakeLoader from "../fakeLoader/FakeLoader";
 import TooltipMessage from "../tooltipMessage/TooltipMessage";
 import EndExperience from "../endExperience/EndExperience";
+import {SceneVars} from "../../vars/scene_vars";
 
 interface IProps {
   className?: string
@@ -175,7 +176,9 @@ function GameContainer (props: IProps) {
             <NotebookToggler onClick={() => {
               setMenuOpen(!menuOpen);
               if(!menuOpen) {
-                NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.PAGE, NotebookPages.HINT);
+                let active = selectUserActiveScene(getState());
+
+                NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.PAGE, active == SceneVars.AIRPORT ? NotebookPages.MAP : NotebookPages.HINT);
               }
             }} />
             <PrePickupElement/>
