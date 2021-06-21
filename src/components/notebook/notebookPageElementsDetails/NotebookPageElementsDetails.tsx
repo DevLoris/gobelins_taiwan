@@ -34,7 +34,8 @@ function NotebookPageElementsDetails (props: IProps) {
 
   }, []);
 
-  function componentAnim(pShow:boolean = true, pDuration:number = .7) {
+  // Text inside page plays in
+  function componentAnim(pDuration:number = .7) {
     gsap.fromTo(contentBlockContainerRef.current, {
       yPercent: 100,
     }, {
