@@ -290,7 +290,6 @@ export class WebGlManager {
                             sprite.position.set(object.position.x, object.position.y + yOffset, object.position.z);
                             sprite["pinName"] = nameWithoutPin;
                             sprite["visited"]  = false;
-
                             // Hitbox
                             const hitBoxGeometry = new BoxGeometry( 1.5, 1.5, 1.5 );
                             const hitBoxMaterial = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom())} );
@@ -305,6 +304,18 @@ export class WebGlManager {
                             }
 
                             const group = new Group();
+
+                            if(['pvtiste', 'share', 'test', 'vlog'].includes(nameWithoutPin)) {
+                                let label_texture = new TextureLoader().load( `/public/pins/${nameWithoutPin}.png` );
+                                const label_material = new SpriteMaterial( { color: 0xffffff, map: label_texture, transparent: true } );
+                                const label_sprite = new Sprite( label_material );
+                                label_sprite.scale.set(1.5, .375, .7);
+                                const yOffset = 0;
+                                label_sprite.position.set(object.position.x, object.position.y + yOffset, object.position.z + 1);
+                                label_sprite["pinName"] = nameWithoutPin;
+                                group.add(label_sprite);
+                            }
+
                             group.add(sprite);
                             this._animatedSprites.push(sprite);
                             group.add(hitBox);
