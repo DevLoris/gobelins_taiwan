@@ -151,7 +151,6 @@ export class WebGlManager {
         this._setupRaycaster();
 
         this._startWebGlLoop();
-        ENABLE_STATS && this._setupStats();
 
         pSceneryName && this.toggleScenery(pSceneryName);
 
@@ -161,6 +160,7 @@ export class WebGlManager {
 
         this.cameraMovingLoop();
 
+        ENABLE_STATS && this._setupStats();
         ENABLE_DEBUG && this._setDebugHelpers();
     }
 
@@ -442,16 +442,17 @@ export class WebGlManager {
      */
     private _toggleInstancedMeshesOpacity(pVisible: boolean) {
         this._instancedMeshes.forEach(childElement => {
-
-            // // @ts-ignore
-            // childElement.material.transparent = !pVisible;
-            // // @ts-ignore
-            // childElement.material.opacity = pVisible ? 1 : 0.2;
-
             if(!pVisible) {
                 this._currentlyInsideThis && this._currentlyInsideThis.instancedMeshes.forEach((instanceName) => {
-                    const lowerCaseUSerDataId = childElement.userData.internalId.toLowerCase();
-                    if(instanceName.toLowerCase().includes(lowerCaseUSerDataId.replace("scene__", ""))) {
+                    const lowerCaseUserDataId = childElement.userData.internalId.toLowerCase();
+                    const lowerCaseInstanceName = instanceName.toLowerCase();
+                    if(this._currentlyInsideThis.object.name === "Taipei101") {
+                        if(lowerCaseInstanceName.includes("tree") || lowerCaseInstanceName.includes("scooter")) {
+                            return;
+                        }
+                    }
+
+                    if(lowerCaseInstanceName.includes(lowerCaseUserDataId.replace("scene__", ""))) {
                         // @ts-ignore
                         childElement.material.transparent = true;
                         // @ts-ignore
