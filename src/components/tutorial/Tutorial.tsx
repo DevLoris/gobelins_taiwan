@@ -70,9 +70,11 @@ function Tutorial (props: IProps) {
             <div ref={popupTutorialResolve} className={"popup"}>
               <p className={"bigger"}>{t('onboard__resolve')}</p>
               <div className={"buttonGroup"}>
-                <Button onClick={() => {
-                  setStep(1);
-                }} style={ButtonStyle.PATTERN} label={t('onboard__resolve__button')}/>
+                <div className={"tutoButtonContainer"}>
+                  <Button onClick={() => {
+                    setStep(1);
+                  }} style={ButtonStyle.PATTERN} label={t('onboard__resolve__button')}/>
+                </div>
               </div>
             </div>
             <div ref={popupTutorialPins} className={"popup"}>
