@@ -103,14 +103,17 @@ function Notebook (props: IProps) {
             ease: "power2.easeOut",
         });
         // Menu buttons
-        gsap.to(menuButtonsRefs.current, {
-            yPercent: pShow ? 0 : 110,
-            duration: pDuration * .8,
-            delay: pDuration * .2,
-            stagger: {
-                each: pShow ? pDuration * .3 : 0,
-            },
-        });
+        (menuButtonsRefs.current.forEach(value => {
+            if(value)
+                gsap.to(value, {
+                    yPercent: pShow ? 0 : 110,
+                    duration: pDuration * .8,
+                    delay: pDuration * .2,
+                    stagger: {
+                        each: pShow ? pDuration * .3 : 0,
+                    },
+                });
+        }))
     }
 
     const userScenes = selectUserScenes(getState());
