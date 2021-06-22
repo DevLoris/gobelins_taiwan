@@ -294,6 +294,16 @@
           },
           {
             "type": "sprite",
+            "id": "serveur_5",
+            "sprite": "/public/sprites/Serveur/Serveur_2.png",
+            "options": {
+              "scale": [0.5, 0.5, 0.5],
+              "position": [-21, 0.5, 8],
+              "size": {"w": 69, "h": 245}
+            }
+          },
+          {
+            "type": "sprite",
             "id": "homme",
             "sprite": "/public/sprites/Homme/Homme_2.png",
             "options": {
@@ -379,6 +389,16 @@
             "options": {
               "scale": [0.8, 0.8, 0.8],
               "position": [-17, 0.6, -11],
+              "size": {"w": 108, "h": 255}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "homme_10",
+            "sprite": "/public/sprites/Homme/Homme_2.png",
+            "options": {
+              "scale": [0.8, 0.8, 0.8],
+              "position": [5, 0.6, -25],
               "size": {"w": 108, "h": 255}
             }
           },
@@ -479,6 +499,16 @@
             "options": {
               "scale": [0.6, 0.6, 0.6],
               "position": [-4.5, 0.35, 7.5],
+              "size": {"w": 98, "h": 228}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "fille_11",
+            "sprite": "/public/sprites/Fille/Fille_01.png",
+            "options": {
+              "scale": [0.8, 0.8, 0.8],
+              "position": [-5, 0.6, -16],
               "size": {"w": 98, "h": 228}
             }
           },
@@ -669,6 +699,16 @@
             "options": {
               "scale": [0.5, 0.5, 0.5],
               "position": [-4, 0.5, 1],
+              "size": {"w": 62, "h": 215}
+            }
+          },
+          {
+            "type": "sprite",
+            "id": "mamie_9",
+            "sprite": "/public/sprites/Mamie/Mamie_02.png",
+            "options": {
+              "scale": [0.5, 0.5, 0.5],
+              "position": [19, 0.5, -19],
               "size": {"w": 62, "h": 215}
             }
           },
