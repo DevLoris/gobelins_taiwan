@@ -660,7 +660,7 @@
     },
     {
       "id": "Clim",
-      "path": "/public/sceneries/demo/V3_Instances/clim.glb"
+      "path": "/public/sceneries/demo/V3_Instances/Climatiseur.glb"
     },
     {
       "id": "Feux",
@@ -676,11 +676,11 @@
     },
     {
       "id": "Tree",
-      "path": "/public/sceneries/demo/V3_Instances/Tree.glb"
+      "path": "/public/sceneries/demo/V3_Instances/Tree_anim.glb"
     },
     {
       "id": "TreeBase",
-      "path": "/public/sceneries/demo/V3_Instances/Tree_base.glb"
+      "path": "/public/sceneries/demo/V3_Instances/Tree_socle_anim.glb"
     },
     {
       "id": "Plant",

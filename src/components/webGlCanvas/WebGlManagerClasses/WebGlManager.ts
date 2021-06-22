@@ -25,7 +25,7 @@ import {
     SpriteMaterial,
     Sprite,
     RepeatWrapping,
-    Group, AnimationMixer
+    Group, AnimationMixer, AnimationClip, LoopRepeat
 } from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
@@ -57,7 +57,7 @@ import AnimationService from "./AnimationService";
 
 const debug = require("debug")(`front:WebGlManager`);
 
-const DO_NOT_SHOW_LOCAL_DEBUG:boolean = false;
+const DO_NOT_SHOW_LOCAL_DEBUG:boolean = true;
 
 const ENABLE_STATS: boolean = !DO_NOT_SHOW_LOCAL_DEBUG && isLocal();
 const ENABLE_DEBUG: boolean = !DO_NOT_SHOW_LOCAL_DEBUG && isLocal();
@@ -75,6 +75,7 @@ export class WebGlManager {
     private static instance: WebGlManager;
 
     private _animationMixers: AnimationMixer[] = new Array();
+    private _animationClips: any[] = new Array();
 
     private _clock:Clock;
 
@@ -229,9 +230,7 @@ export class WebGlManager {
     private _setupSceneChildrenArrays(): void {
         this._instancedMeshes = this.getScene().children.filter(object => object instanceof InstancedMesh);
 
-        debug("anims", AnimationService.getInstance().getAnimationFromGltf())
-
-        this._createInvisibleWalls();
+        const anims = AnimationService.getInstance().getAnimationFromGltf();
 
         this.getScene().children.forEach(childElement => {
             // Meshes can be found in the Group child
@@ -252,10 +251,11 @@ export class WebGlManager {
                         && !object.name.includes("SOL")
                     ) {
 
-                        const anims = AnimationService.getInstance().getAnimationFromGltf();
-
                         // Moving objects
                         if(object.name.toLowerCase().includes("moving")) {
+
+                            // @ts-ignore
+                            object.material.transparent = true;
 
                             // Add box on object
                             // Get size of mesh
@@ -264,32 +264,28 @@ export class WebGlManager {
                             // 2. Get size of the box
                             const boxSize: Vector3 = boxFromObject.getSize(new Vector3());
 
-                            const geometry = new BoxGeometry( boxSize.x, boxSize.y, boxSize.z );
-                            const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom())} );
-                            const box = new Mesh( geometry, material );
-                            box.position.set(object.position.x,object.position.y,object.position.z);
-                            box.name = "colliderBox:" + object.name;
-                            box["size"] = boxSize;
-                            box["maxCoordinates"] = this._computeBoxMaxCoordinates(box);
-                            object.add(box);
+                            // const geometry = new BoxGeometry( boxSize.x, boxSize.y, boxSize.z );
+                            // const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom()), wireframe: true} );
+                            // const box = new Mesh( geometry, material );
+                            // box.position.set(0,object.position.y,0);
+                            // box.name = "colliderBox:" + object.name;
+                            // box["size"] = boxSize;
+                            // object.add(box);
+
+                            object["size"] = boxSize;
+                            // Will be re-computed at each frame
+                            object["maxCoordinates"] = this._computeBoxMaxCoordinates(object);
 
                             this._movingObjects.push(object);
-                            debug("Moving", object);
 
-                            // Mdr cette condition
-                            if(anims[0].name.toLowerCase().replace(".", "").replace("action", "")
-                                === object.name.toLowerCase().replace("moving", ""))
-                            {
-                                object.animations = anims;
-                            }
-
-                            this._animationMixers.push(new AnimationMixer(object));
-
-                            // test
-                            // TODO modifier
-                            const clips = object.animations;
-                            const action = this._animationMixers[0].clipAction(clips[0]);
-                            action.play();
+                            anims.forEach((anim) => {
+                                if(anim.name.toLowerCase() === object.name.toLowerCase().replace("moving", ""))
+                                {
+                                    object.animations = [anim];
+                                    this._animationMixers.push(new AnimationMixer(object));
+                                    this._animationClips.push(object.animations);
+                                }
+                            });
                         }
                         else {
                             // Get size of mesh
@@ -378,6 +374,14 @@ export class WebGlManager {
                         }
                     }
                 });
+
+                // Start all anims
+                this._animationMixers.forEach((mixer, index) => {
+                    const action = mixer.clipAction(this._animationClips[index][0]);
+                    action.clampWhenFinished = false;
+                    action.play();
+                });
+
             }
         });
 
@@ -620,8 +624,11 @@ export class WebGlManager {
                 mixer.update(delta);
             });
 
+            // Update moving objects data
+            this._updateMovingObjectsAndCheckPosition();
+
             // Wall collisions
-            this._checkWallCollisions();
+            // this._checkWallCollisions();
 
             // Effects
             if (this._effects.length == 0) {
@@ -636,12 +643,43 @@ export class WebGlManager {
         requestAnimationFrame(this._animationFrame.bind(this));
     }
 
+    private _updateMovingObjectsAndCheckPosition() {
+        this._movingObjects.forEach((obj) => {
+
+            const mapExtermityValue = 26.5;
+
+            // Object is outside scene
+            if(
+                obj.position.x > mapExtermityValue || obj.position.x < -mapExtermityValue
+                || obj.position.z > mapExtermityValue || obj.position.z < -mapExtermityValue
+            ) {
+                this._movingObjectFade(obj, false);
+            }
+            // Object is inside scene
+            else {
+                this._movingObjectFade(obj, true);
+            }
+        });
+    }
+
+    private _movingObjectFade(obj, pVisible:boolean = true, pDuration:number = .3) {
+        const animatedProperty = obj.material;
+
+        if(gsap.isTweening(animatedProperty)) return;
+
+        gsap.killTweensOf(animatedProperty);
+        gsap.to(animatedProperty, {
+            duration: pDuration,
+            opacity: pVisible ? 1 : 0,
+        });
+    }
+
     private _checkWallCollisions() {
         this._sceneInvisibleWalls.forEach((wall) => {
             this._movingObjects.forEach((movingObj) => {
                 // Look for collision between wall and box of moving object
-                if(this._twoBoxesCollided(wall, movingObj.children[0])) {
-                    debug("collision between", wall, "and", movingObj);
+                if(this._twoBoxesCollided(wall, movingObj)) {
+                    debug("collision between", movingObj.position);
                 }
             });
         })
