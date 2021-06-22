@@ -33,7 +33,7 @@ export enum EligibilityResponseType {
 export const QUESTIONS:IEligibilityQuestion[]  = [
     {
         id: "age",
-        question: "Quel âge avez-vous  ?",
+        question: "Quel âge avez-vous ?",
         type: EligibilityQuestionType.RADIO,
         response: [
             {
@@ -62,7 +62,7 @@ export const QUESTIONS:IEligibilityQuestion[]  = [
             {
                 response: "Oui",
                 correct: EligibilityResponseType.OK,
-                tip: 'Parfait !  Un critère de remplit !'
+                tip: 'Parfait ! Un critère de rempli !'
             },
             {
                 response: "Non",
