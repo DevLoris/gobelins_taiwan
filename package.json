@@ -46,6 +46,7 @@
     "react-dom": "^17.0.1",
     "react-i18next": "^11.8.13",
     "react-redux": "^7.2.3",
+    "split-type": "^0.2.5",
     "stats.js": "^0.17.0",
     "three": "^0.126.1",
     "tslib": "^2.2.0"

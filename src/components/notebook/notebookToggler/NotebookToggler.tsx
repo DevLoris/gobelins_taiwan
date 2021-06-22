@@ -1,6 +1,8 @@
 import css from './NotebookToggler.module.less';
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import { merge } from "../../../lib/utils/arrayUtils";
+import NotebookSignal, {NOTEBOOK_SEND} from "../notebook-signal";
+import {gsap} from "gsap";
 
 interface IProps {
   className?: string,
@@ -12,7 +14,21 @@ interface IProps {
  * @desc Ouvre ou ferme le carnet
  */
 function NotebookToggler (props: IProps) {
-  return <div onClick={props.onClick} className={merge([css.root, props.className])}>
+  let ref = useRef();
+
+  useEffect(() => {
+    let handler = (type, data) => {
+      if(type == NOTEBOOK_SEND.TOGGLE) {
+        gsap.to(ref.current, {opacity: (data) ? 0 : 1});
+      }
+    }
+    NotebookSignal.getInstance().notebookContent.add(handler)
+
+    return () => {
+      NotebookSignal.getInstance().notebookContent.remove(handler);
+    }
+  }, []);
+  return <div ref={ref} onClick={props.onClick} className={merge([css.root, props.className])}>
     <svg width="62.951" height="64.347" viewBox="0 0 62.951 64.347">
       <g id="Groupe_108" data-name="Groupe 108" transform="translate(-309.499 -71.5)">
         <g id="Groupe_60" data-name="Groupe 60" transform="translate(-968.083 392.94)">

@@ -5,6 +5,7 @@ import {IStateDataCollectible} from "../../store/state_interface_data";
 import RaycastManager, {RaycastInteractionType} from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
 import {IStateDataSceneCollectibleType} from "../../store/state_enums";
 import {gsap} from "gsap";
+import NotebookSignal, {NOTEBOOK_SEND} from "../notebook/notebook-signal";
 
 interface IProps {
   className?: string
@@ -42,6 +43,19 @@ function PrePickupElement (props: IProps) {
               }
           }
       });
+
+
+      let handler = (type, data) => {
+          if(type == NOTEBOOK_SEND.TOGGLE) {
+              console.log(type, data, collectible == null);
+              gsap.to(element.current, {opacity: (data || collectible == null) ? 0 : 1});
+          }
+      }
+      NotebookSignal.getInstance().notebookContent.add(handler)
+
+      return () => {
+          NotebookSignal.getInstance().notebookContent.remove(handler);
+      }
   }, []);
 
     useEffect(() => {

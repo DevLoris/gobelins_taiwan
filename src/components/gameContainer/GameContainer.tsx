@@ -159,7 +159,7 @@ function GameContainer (props: IProps) {
             )}
    */
 
-  return <div ref={rootRef}>
+  return <div style={{height: "100%"}} ref={rootRef}>
     <FakeLoader message={loaderMessage}/>
     <TooltipMessage/>
     {
@@ -171,13 +171,13 @@ function GameContainer (props: IProps) {
             <InteractedElement/>
             <Tutorial/>
             <Notebook show={menuOpen} onClose={() => {
-              setMenuOpen(false);
+              NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.TOGGLE, false);
             }}/>
             <NotebookToggler onClick={() => {
-              setMenuOpen(!menuOpen);
               if(!menuOpen) {
                 let active = selectUserActiveScene(getState());
 
+                NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.TOGGLE, true);
                 NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.PAGE, active == SceneVars.AIRPORT ? NotebookPages.MAP : NotebookPages.HINT);
               }
             }} />

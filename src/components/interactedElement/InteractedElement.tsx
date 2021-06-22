@@ -54,6 +54,7 @@ function InteractedElement (props: IProps) {
   useLayoutEffect(() => {
     if(!collectible) return;
     collectible.type === IStateDataSceneCollectibleType.HINT && componentAnimation();
+    collectible.type === IStateDataSceneCollectibleType.PICKUP && componentAnimation();
   }, [showed]);
 
   function componentAnimation(pVisible:boolean = true, pDuration:number = .7) {
@@ -109,7 +110,7 @@ function InteractedElement (props: IProps) {
           </div>
         </div>
       case IStateDataSceneCollectibleType.PICKUP:
-        return <div className={merge([css.rootEnigma, props.className])}>
+        return <div ref={hintRootRef}  className={merge([css.rootEnigma, props.className])}>
 
           <div className={css.pictureEnigma}>
             <img src={collectible.vlogger.face} alt={"Face"}/>

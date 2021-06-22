@@ -16,6 +16,7 @@ const debug = require("debug")(`front:${componentName}`);
  */
 function FakeLoader (props: IProps) {
   const ref = useRef();
+  const loaderRef = useRef();
 
   useEffect(() => {
     if(props.message == null) {
@@ -23,6 +24,7 @@ function FakeLoader (props: IProps) {
     }
     else {
       gsap.to(ref.current, {autoAlpha: 1, duration: 0});
+      gsap.fromTo(loaderRef.current, {width: 0}, {width: "100%", duration: 6});
       gsap.delayedCall(6, () => {
         gsap.to(ref.current, {autoAlpha: 0});
       })
@@ -35,6 +37,9 @@ function FakeLoader (props: IProps) {
     </div>
     <div className={css.message}>
       {props.message}
+    </div>
+    <div className={css.loader}>
+      <div ref={loaderRef}/>
     </div>
   </div>
 }
