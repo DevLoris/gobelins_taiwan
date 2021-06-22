@@ -1,15 +1,18 @@
 import css from './NotebookHint.module.less';
 import React, {useEffect, useRef, useState} from 'react';
-import { merge } from "../../../lib/utils/arrayUtils";
+import {merge} from "../../../lib/utils/arrayUtils";
 import {gsap} from "gsap";
 import {AudioHandler} from "../../../lib/audio/AudioHandler";
+import ButtonPicto, {ButtonPictoStyle} from "../../buttonPicto/ButtonPicto";
+import SplitType from 'split-type';
 
 interface IProps {
   className?: string,
   showClose?: boolean,
   showDefault?: boolean,
   hint: string,
-  hint_audio: string
+  hint_audio: string,
+  hint_pickup: boolean
 }
 
 /**
@@ -21,11 +24,17 @@ function NotebookHint (props: IProps) {
   const [visible, toggleVisible] = useState<boolean>(props.showDefault);
 
   const rootRef  = useRef(null);
+  const hint  = useRef(null);
 
   // --------------------------------------------------------------------------- EFFECTS
 
+  let text = null;
+
   useEffect(() => {
     defaultPosition();
+
+    text = new SplitType(hint.current, {types: 'line'});
+    text.revert();
   }, []);
 
   /**
@@ -34,6 +43,14 @@ function NotebookHint (props: IProps) {
   useEffect(() => {
     componentAnimation(visible, .5);
   },  [visible]);
+
+  useEffect(() => {
+    if(text  !== null) {
+      text.revert();
+      if (props.hint_pickup)
+        text.split({types: 'line'});
+    }
+  },  [props.hint, props.hint_pickup]);
 
   // --------------------------------------------------------------------------- ANIMATION
 
@@ -62,7 +79,9 @@ function NotebookHint (props: IProps) {
 
     <div ref={rootRef} className={merge([css.root, props.className])}>
     {(props.showClose) && (
-        <img alt={"Close"} onClick={() =>  {toggleVisible(false)}} className={css.close} src={"../../public/da/close.png"}/>
+        <ButtonPicto className={css.close} disabled={false} picto={ButtonPictoStyle.CROSS} onClick={() => {
+          toggleVisible(false)
+        }}/>
     )}
     <div className={"big-title-block"}>
       <div className={"title-block-mandarin"}>信息</div>
@@ -96,7 +115,7 @@ function NotebookHint (props: IProps) {
           </g>
         </svg>
       </div>
-      <div className={css.hintDetails}>
+      <div ref={hint} className={css.hintDetails}>
         {props.hint}
       </div>
     </div>

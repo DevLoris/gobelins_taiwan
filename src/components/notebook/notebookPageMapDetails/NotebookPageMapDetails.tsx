@@ -32,7 +32,7 @@ function NotebookPageMapDetails (props: IProps) {
       {t('notebook__page__map__popup__title', {area: sceneData.name})}
     </p>
     <div className={"buttonGroup"}>
-    <Button style={ButtonStyle.DEFAULT} onClick={() =>  { NotebookSignal.getInstance().onToggle.dispatch(true);}} label={t('notebook__page__map__label__stay')}/>
+    <Button style={ButtonStyle.DEFAULT} onClick={() =>  { NotebookSignal.getInstance().mapDetails.dispatch(true);}} label={t('notebook__page__map__label__stay')}/>
     <Button style={ButtonStyle.PATTERN} onClick={() =>  {
       if(sceneData.id == SceneVars.WILD)
         WebGlManager.getInstance().toggleScenery(SceneVars.AIRPORT);

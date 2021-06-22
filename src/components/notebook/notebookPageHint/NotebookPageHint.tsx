@@ -26,7 +26,9 @@ function NotebookPageHint (props: IProps) {
           <>
               <NotebookPageElementsDetails data={pickup}/>
               <NotebookHint showDefault={!pickup.pickup} showClose={pickup.pickup} hint={pickup.hint}
-                            hint_audio={pickup.hint_audio}/>
+                            hint_audio={pickup.hint_audio}
+                            hint_pickup={pickup.pickup}
+              />
           </>
       )
     }
