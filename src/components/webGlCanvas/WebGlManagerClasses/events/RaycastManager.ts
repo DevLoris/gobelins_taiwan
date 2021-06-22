@@ -104,7 +104,7 @@ class RaycastManager {
                         // REMOVE ELEMENT FROM SCENE
                         SceneryUtils.destroyElementByName(collectibleSceneData.trigger);
 
-                        AudioHandler.play("pickup");
+                        AudioHandler.play("coins");
 
                         break;
                     case IStateDataSceneCollectibleType.ENDING:

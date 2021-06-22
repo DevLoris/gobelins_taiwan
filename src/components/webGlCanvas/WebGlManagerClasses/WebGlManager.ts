@@ -52,14 +52,14 @@ import {CHAPTERS, SequenceManager} from "../../../mainClasses/Sequencer/Sequence
 import {zeroToOneRandom} from "../../../lib/utils/mathUtils";
 import {TextureAnimator} from "./TextureAnimator";
 import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
+import {isLocal} from "../../../helpers/DebugHelpers";
 
 const debug = require("debug")(`front:WebGlManager`);
 
-/**
- * TODO split into smaller classes
- */
+const DO_NOT_SHOW_LOCAL_DEBUG:boolean = false;
 
-const ENABLE_STATS: boolean = false;
+const ENABLE_STATS: boolean = !DO_NOT_SHOW_LOCAL_DEBUG && isLocal();
+const ENABLE_DEBUG: boolean = !DO_NOT_SHOW_LOCAL_DEBUG && isLocal();
 
 // Object extremities on each axis
 interface IObjectEndCoordinates {
@@ -151,17 +151,15 @@ export class WebGlManager {
         this._setupRaycaster();
 
         this._startWebGlLoop();
-        ENABLE_STATS && this._setupStats();
 
         pSceneryName && this.toggleScenery(pSceneryName);
-
-        this._setupSceneChildrenArrays();
 
         window.addEventListener('resize', this._resizeHandler.bind(this));
 
         this.cameraMovingLoop();
 
-        // this._setDebugHelpers();
+        ENABLE_STATS && this._setupStats();
+        ENABLE_DEBUG && this._setDebugHelpers();
     }
 
     /**
@@ -442,16 +440,17 @@ export class WebGlManager {
      */
     private _toggleInstancedMeshesOpacity(pVisible: boolean) {
         this._instancedMeshes.forEach(childElement => {
-
-            // // @ts-ignore
-            // childElement.material.transparent = !pVisible;
-            // // @ts-ignore
-            // childElement.material.opacity = pVisible ? 1 : 0.2;
-
             if(!pVisible) {
                 this._currentlyInsideThis && this._currentlyInsideThis.instancedMeshes.forEach((instanceName) => {
-                    const lowerCaseUSerDataId = childElement.userData.internalId.toLowerCase();
-                    if(instanceName.toLowerCase().includes(lowerCaseUSerDataId.replace("scene__", ""))) {
+                    const lowerCaseUserDataId = childElement.userData.internalId.toLowerCase();
+                    const lowerCaseInstanceName = instanceName.toLowerCase();
+                    if(this._currentlyInsideThis.object.name === "Taipei101") {
+                        if(lowerCaseInstanceName.includes("tree") || lowerCaseInstanceName.includes("scooter")) {
+                            return;
+                        }
+                    }
+
+                    if(lowerCaseInstanceName.includes(lowerCaseUserDataId.replace("scene__", ""))) {
                         // @ts-ignore
                         childElement.material.transparent = true;
                         // @ts-ignore
@@ -680,6 +679,7 @@ export class WebGlManager {
         // Signal update scene
         this.onChangeScenery.dispatch(scene_id);
 
+        this._setupSceneChildrenArrays();
         this.playSequencerOnScene(scene_id);
     }
 

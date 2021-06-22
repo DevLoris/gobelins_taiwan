@@ -68,11 +68,12 @@ function Notebook (props: IProps) {
         if(props.show) {
             AudioHandler.play("book");
 
+            innerRef.current.scrollTo(0,0);
+
             if(selectTutorial(getState()) == TutorialState.INTRODUCTION)
                 store.dispatch(tutorial(TutorialState.BEFORE_MAP));
         }
 
-        NotebookSignal.getInstance().toggle(props.show);
         WebGlManager.getInstance().toggleRendering(!props.show);
 
         revealAnimation(props.show);
@@ -95,25 +96,28 @@ function Notebook (props: IProps) {
         // Start animation
         // Root
         gsap.to(rootRef.current, {
-            xPercent: pShow ? 0 : 120,
+            xPercent: pShow ? 0 : 130,
             rotateZ: pShow ? 0 : -15,
             duration: pDuration,
             ease: "power2.easeOut",
         });
         // Menu buttons
-        gsap.to(menuButtonsRefs.current, {
-            yPercent: pShow ? 0 : 110,
-            duration: pDuration * .8,
-            delay: pDuration * .2,
-            stagger: {
-                each: pShow ? pDuration * .3 : 0,
-            },
-        });
+        (menuButtonsRefs.current.forEach(value => {
+            if(value)
+                gsap.to(value, {
+                    yPercent: pShow ? 0 : 110,
+                    duration: pDuration * .8,
+                    delay: pDuration * .2,
+                    stagger: {
+                        each: pShow ? pDuration * .3 : 0,
+                    },
+                });
+        }))
     }
 
     const userScenes = selectUserScenes(getState());
 
-    return <div ref={rootRef} className={merge([css.root, props.className])}>
+    return <div ref={rootRef} className={merge([css.root, props.className, props.show ? css.show: css.hide])}>
         <div className={css.menu}>
             {
                 (active != SceneVars.AIRPORT) &&

@@ -21,6 +21,17 @@
   height: 61px;
   position: relative;
   cursor: pointer;
+  &:before {
+    content: '';
+    position: absolute;
+    border-left: 1px dotted @text-color;
+    height: 46px;
+    top: 7px;
+    left: 144px;
+    width: 1px;
+    display: block;
+    z-index: 1;
+  }
   img {
     height: 61px;
     position: absolute;

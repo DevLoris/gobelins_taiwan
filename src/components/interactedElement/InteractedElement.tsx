@@ -1,5 +1,5 @@
 import css from './InteractedElement.module.less';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import {merge} from "../../lib/utils/arrayUtils";
 import RaycastManager, {RaycastInteractionType} from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
 import {IStateDataCollectible} from "../../store/state_interface_data";
@@ -10,6 +10,7 @@ import {SequenceManager} from "../../mainClasses/Sequencer/SequenceManager";
 import Button, {ButtonStyle} from "../button/Button";
 import NotebookSignal, {NOTEBOOK_SEND} from "../notebook/notebook-signal";
 import {NotebookPages} from "../notebook/Notebook";
+import ButtonPicto, {ButtonPictoStyle} from "../buttonPicto/ButtonPicto";
 
 interface IProps {
   className?: string
@@ -28,6 +29,8 @@ function InteractedElement (props: IProps) {
   const [isPickup, setIsPickup] = useState(false);
 
   const showCollectibleInfoTimeout = useRef(null);
+
+  const hintRootRef = useRef(null);
 
   useEffect(() => {
     RaycastManager.getInstance().onInteract.add((type: RaycastInteractionType, value: IStateDataCollectible) => {
@@ -48,34 +51,66 @@ function InteractedElement (props: IProps) {
     }
   }, []);
 
+  useLayoutEffect(() => {
+    if(!collectible) return;
+    collectible.type === IStateDataSceneCollectibleType.HINT && componentAnimation();
+    collectible.type === IStateDataSceneCollectibleType.PICKUP && componentAnimation();
+  }, [showed]);
+
+  function componentAnimation(pVisible:boolean = true, pDuration:number = .7) {
+    if(hintRootRef.current && collectible.type) {
+      gsap.killTweensOf(hintRootRef.current);
+      gsap.fromTo(hintRootRef.current, {
+        yPercent: pVisible ? 110 : 0
+      },{
+        yPercent: pVisible ? 0 : 110,
+        duration: pDuration,
+        ease: "power2.easeOut",
+        onComplete: () => {
+          // If play out, hide component at end of animation
+          !pVisible && toggleShowed(false);
+        }
+      });
+      // If play out, start to move camera after 300ms
+      if(!pVisible) {
+        gsap.delayedCall(pDuration * .3, () => {
+          // Set camera to previous position
+          FocusUtils.restore();
+        });
+      }
+    }
+  }
+
   if(showed) {
     switch (collectible.type) {
-      case IStateDataSceneCollectibleType.HINT:
-        return <div className={merge([css.root, props.className])}>
-          <button onClick={() => {
-            toggleShowed(false);
-            FocusUtils.restore();
-          }}>
-            <img src={"/public/da/close.png"} alt={"Close"}/>
-          </button>
+      case IStateDataSceneCollectibleType.HINT: 
+        return <div ref={hintRootRef} className={merge([css.root, props.className])}>
+          <ButtonPicto className={css.close} disabled={false} picto={ButtonPictoStyle.CROSS} onClick={() => {
+            componentAnimation(false);
+          }}/> 
 
           <div className={css.picture}>
             <img src={collectible.asset} alt={"Asset"}/>
             <img src={collectible.stamp} alt={"Stamp"}/>
           </div>
+          <hr/>
 
           <div className={css.contentBlock}>
             <h1>{ collectible.name }</h1>
-            <p>{ collectible.text }</p>
+            <p className={'bigger'}>{ collectible.text }</p>
             <Button onClick={() => {
               NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.TOGGLE, true);
               NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.PAGE, NotebookPages.ELEMENTS);
               NotebookSignal.getInstance().sendToNotebook(NOTEBOOK_SEND.CONTENT, collectible);
+              gsap.delayedCall(2, () => {
+                toggleShowed(false);
+                FocusUtils.restore();
+              });
             }} style={ButtonStyle.DEFAULT} label={"En apprendre plus"}/>
           </div>
         </div>
       case IStateDataSceneCollectibleType.PICKUP:
-        return <div className={merge([css.rootEnigma, props.className])}>
+        return <div ref={hintRootRef}  className={merge([css.rootEnigma, props.className])}>
 
           <div className={css.pictureEnigma}>
             <img src={collectible.vlogger.face} alt={"Face"}/>

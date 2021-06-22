@@ -5,6 +5,7 @@ import {IStateDataCollectible} from "../../store/state_interface_data";
 import RaycastManager, {RaycastInteractionType} from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
 import {IStateDataSceneCollectibleType} from "../../store/state_enums";
 import {gsap} from "gsap";
+import NotebookSignal, {NOTEBOOK_SEND} from "../notebook/notebook-signal";
 
 interface IProps {
   className?: string
@@ -30,26 +31,38 @@ function PrePickupElement (props: IProps) {
                   setCollectible(value);
                   toggleHasPickup(hasPickupPayload);
                   toggleShowed(true);
+
+                  let tl = gsap.timeline();
+                  tl
+                      .fromTo(element.current, {scale: 1}, {scale: 1.2, autoAlpha: 1})
+                      .to(element.current, {scale: 1})
+                      .to(element.current, {scale: 1.2})
+                      .to(element.current, {scale: 1})
               } else if ([IStateDataSceneCollectibleType.PICKUP].includes(value.type)) {
                   toggleShowed(false);
               }
           }
       });
+
+
+      let handler = (type, data) => {
+          if(type == NOTEBOOK_SEND.TOGGLE) {
+              console.log(type, data, collectible == null);
+              gsap.to(element.current, {opacity: (data || collectible == null) ? 0 : 1});
+          }
+      }
+      NotebookSignal.getInstance().notebookContent.add(handler)
+
+      return () => {
+          NotebookSignal.getInstance().notebookContent.remove(handler);
+      }
   }, []);
 
     useEffect(() => {
-        if(showed) {
-            let tl = gsap.timeline();
-            tl
-                .fromTo(element.current, {scale: 1}, {scale: 1.2, autoAlpha: 1})
-                .to(element.current, {scale: 1})
-                .to(element.current, {scale: 1.2})
-                .to(element.current, {scale: 1})
-        }
-        else {
+        if(!showed) {
             gsap.from(element.current, {autoAlpha: 0});
         }
-    }, [showed, collectible]);
+    }, [showed]);
 
   if(hasPickup) {
       return <div ref={element} className={merge([css.root, props.className])}>

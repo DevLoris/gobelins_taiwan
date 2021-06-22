@@ -25,7 +25,7 @@ function NotebookPageMap (props: IProps) {
     let [detailsScene, setDetailsScene] = useState<string>(null);
 
     // reset to close details page
-    NotebookSignal.getInstance().onToggle.add((value) =>  {
+    NotebookSignal.getInstance().mapDetails.add((value) =>  {
         if(value)
             setDetailsScene(null);
     })

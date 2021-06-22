@@ -7,6 +7,7 @@ import NotebookAudio from "../notebookAudio/NotebookAudio";
 import {IStateDataCollectibleAdditionalDataType} from "../../../store/state_enums";
 import {useTranslation} from "react-i18next";
 import gsap from "gsap";
+import ButtonPicto, {ButtonPictoStyle} from "../../buttonPicto/ButtonPicto";
 
 interface IProps {
   className?: string,
@@ -34,7 +35,8 @@ function NotebookPageElementsDetails (props: IProps) {
 
   }, []);
 
-  function componentAnim(pShow:boolean = true, pDuration:number = .7) {
+  // Text inside page plays in
+  function componentAnim(pDuration:number = .7) {
     gsap.fromTo(contentBlockContainerRef.current, {
       yPercent: 100,
     }, {
@@ -47,9 +49,9 @@ function NotebookPageElementsDetails (props: IProps) {
 
     <div className={css.elementHeader}>
       {props.onExit && (
-          <img src={"/public/da/go_back.png"} className={css.exit} onClick={props.onExit}/>
+          <ButtonPicto disabled={false} picto={ButtonPictoStyle.PREVIOUS} onClick={props.onExit} className={css.exit}/>
       )}
-      <div>
+      <div className={css.elementHeaderSubContainer}>
         <div className={css.elementHeaderStamp}>
           {(props.data.pickup)  && (
             <img src={props.data.stamp} alt={props.data.name} />
@@ -85,7 +87,7 @@ function NotebookPageElementsDetails (props: IProps) {
           let content = null;
           switch (value.type) {
             case IStateDataCollectibleAdditionalDataType.TEXT:
-              content = (<p>{value.value}</p>);
+              content = (<p className={'bigger'}>{value.value}</p>);
               break;
             case IStateDataCollectibleAdditionalDataType.SEPARATOR:
               content = (<></>);

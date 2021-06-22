@@ -10,7 +10,7 @@ export enum NOTEBOOK_SEND {
 class NotebookSignal {
     private static instance: NotebookSignal;
 
-    public onToggle: Signal = new Signal();
+    public mapDetails: Signal = new Signal();
     public onTabChange: Signal = new Signal();
     public notebookContent: Signal = new Signal();
 
@@ -22,10 +22,6 @@ class NotebookSignal {
         }
 
         return NotebookSignal.instance;
-    }
-
-    public toggle(status:boolean) {
-        this.onToggle.dispatch(status);
     }
 
     public tabChange() {
