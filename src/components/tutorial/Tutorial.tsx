@@ -77,8 +77,11 @@ function Tutorial (props: IProps) {
                 </div>
               </div>
             </div>
-            <div ref={popupTutorialPins} className={"popup"}>
-              <p className={"bigger"}>{t('onboard__pins')}</p>
+            <div ref={popupTutorialPins} className={merge(["popup", css.pinPopup])}>
+              <p>{t('onboard__pins')}</p>
+              <div>
+                <img src={"/public/PIN_2.png"} alt={"Move"} className={css.tutorialIcon}/>
+              </div>
               <div className={"buttonGroup"}>
                 <Button onClick={() => {
                   setStep(2);
