@@ -26,6 +26,7 @@ export class AssetGLTF {
             .then(gltf => {
                 LoaderSignal.getInstance().loaded(this.id);
 
+                // TODO changer ça car pour l'instant ça n'enregistre que les animations de la scène
                 if(gltf.animations.length > 0) {
                     AnimationService.getInstance().setAnimationFromGltf(gltf.animations);
                 }

@@ -232,6 +232,10 @@ export class WebGlManager {
 
         const anims = AnimationService.getInstance().getAnimationFromGltf();
 
+        this._instancedMeshes.forEach((mesh) => {
+            // debug(mesh.userData.internalIdx, mesh.animations, mesh)
+        });
+
         this.getScene().children.forEach(childElement => {
             // Meshes can be found in the Group child
             if(childElement.type === "Group" && childElement.name === "Scene") {
