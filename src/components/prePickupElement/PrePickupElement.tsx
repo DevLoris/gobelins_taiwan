@@ -43,11 +43,11 @@ function PrePickupElement (props: IProps) {
               }
           }
       });
+  }, []);
 
-
+  useEffect(() => {
       let handler = (type, data) => {
           if(type == NOTEBOOK_SEND.TOGGLE) {
-              console.log(type, data, collectible == null);
               gsap.to(element.current, {opacity: (data || collectible == null) ? 0 : 1});
           }
       }
@@ -56,7 +56,7 @@ function PrePickupElement (props: IProps) {
       return () => {
           NotebookSignal.getInstance().notebookContent.remove(handler);
       }
-  }, []);
+  },[]);
 
     useEffect(() => {
         if(!showed) {
