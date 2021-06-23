@@ -843,10 +843,18 @@
       "id": "101",
       "type": "hint",
       "name": "Taipei 101",
-      "asset": "/public/images/pics/sample.png",
+      "asset": "/public/images/pics/taipei101.jpg",
       "stamp": "/public/images/stamp/taipei101.svg",
       "text": "C’est le 10ème plus grand bâtiment du monde, du haut de ses 509 mètres ! Son nom vient du fait qu’il fasse 101 étages.",
       "additional": [
+        {
+          "type": "image",
+          "value":  "/public/images/pics/taipei101.jpg"
+        },
+        {
+          "type": "separator",
+          "value": null
+        },
         {
           "type": "text",
           "value": "Dedans on peut y trouver des magasins, des bureaux et des observateurs, comme au 91ème étage. Tu peux admirer Taipei et son horizon, pour découvrir plein d’endroits ! Attention à ne pas avoir le vertige !"
@@ -876,12 +884,16 @@
       "text": "Les night-markets sont des lieux vivants et gourmands de Taiwan. On y trouve des repas variés et de qualité mais surtout pour peu cher. Pas besoin de cuisiner chaque soir : il suffit juste de descendre dans la rue, tu trouveras ton bonheur !",
       "additional": [
         {
-          "type": "text",
-          "value": "Tu peux par exemple y trouver des nouilles au bœuf, des raviolis vapeur, des saucisses sucrées, des patates douces frits, des bubble-teas, des bao burgers, etc. "
-        },
-        {
           "type": "image",
           "value":  "/public/images/pics/nightmarket.jpg"
+        },
+        {
+          "type": "separator",
+          "value": null
+        },
+        {
+          "type": "text",
+          "value": "Tu peux par exemple y trouver des nouilles au bœuf, des raviolis vapeur, des saucisses sucrées, des patates douces frits, des bubble-teas, des bao burgers, etc. "
         },
         {
           "type": "tips",
@@ -921,19 +933,40 @@
       "id": "democratie",
       "type": "hint",
       "name": "Démocratie",
-      "asset": "/public/images/pics/sample.png",
+      "asset": "/public/images/pics/democratie.jpg",
       "stamp": "/public/images/stamp/democratie.svg",
       "text": "Le nom n’est peut être pas très aguicheur, et ça peut faire un peu peur la première fois qu’on en goûte. Mais on s’habitue vite à cette spécialité taïwanaise. Après tout, il faut toujours goûter avant de dire “j’aime pas”.",
-      "additional": []
+      "additional": [
+        {
+          "type": "image",
+          "value":  "/public/images/pics/democratie.jpg"
+        },
+        {
+          "type": "separator",
+          "value": null
+        },
+        {
+          "type": "image",
+          "value":  "/public/images/pics/democratie2.jpg"
+        }
+      ]
     },
     {
       "id": "cybercafe",
       "type": "hint",
       "name": "Cybercafé",
-      "asset": "/public/images/pics/sample.png",
+      "asset": "/public/images/pics/cybercafe.jpg",
       "stamp": "/public/images/stamp/cybercafe.svg",
       "text": "En France, les cybercafés ont souvent mauvaise mine ! Mais à Taïwan, c'est carrément une institution ! Les sièges y sont confortables, tu peux y manger etc. !",
       "additional": [
+        {
+          "type": "image",
+          "value":  "/public/images/pics/cybercafe.jpg"
+        },
+        {
+          "type": "separator",
+          "value": null
+        },
         {
           "type": "text",
           "value": "Ça peut être utile d’ailleurs si tu veux pouvoir discuter avec des amis à l’autre bout du monde, jouer à divers jeux ou bien surfer sur Internet, pour revenir lire nos anecdotes et faits \uD83D\uDE0E !"
@@ -944,10 +977,15 @@
       "id": "vegan",
       "type": "hint",
       "name": "Vegan way",
-      "asset": "/public/images/pics/sample.png",
+      "asset": "/public/images/pics/vegan.jpg",
       "stamp": "/public/images/stamp/vegan.svg",
       "text": "Le véganisme est reconnu à Taïwan ! Ce pays est même reconnu comme un des pays les plus vegans-friendly du monde ! Il y existe de nombreux endroits qui proposent de pouvoir manger des plats sans origines animales.",
-      "additional": []
+      "additional": [
+        {
+          "type": "image",
+          "value":  "/public/images/pics/vegan.jpg"
+        }
+      ]
     },
     {
       "id": "scooter",
@@ -975,28 +1013,46 @@
       "id": "temple",
       "type": "hint",
       "name": "Temple Longshan",
-      "asset": "/public/images/pics/sample.png",
+      "asset": "/public/images/pics/temple.jpg",
       "stamp": "/public/images/stamp/temple.svg",
       "text": "C’est un temple buddhiste situé à Taipei. Le bouddhisme est la religion majoritaire à Taïwan, avec plus d’un tiers de la population suivant cette croyance. Toutes les religions sont acceptées à Taïwan, il n’y a pas de jugement relatifs à ça.",
-      "additional": []
+      "additional": [
+        {
+          "type": "image",
+          "value":  "/public/images/pics/temple.jpg"
+        }
+      ]
     },
     {
       "id": "ruyi",
       "type": "hint",
-      "name": "Temple Longshan",
-      "asset": "/public/images/pics/sample.png",
+      "name": "Architecture Ruyi",
+      "asset": "/public/images/pics/ruyi.jpg",
       "stamp": "/public/images/stamp/architecture_ruyi.svg",
       "text": "Le Ruyi, c’est ces formes que l’on voit sur Taipei 101. C’est un très vieux symbole de la croyance populaire de Taiwan, qui représente un nuage paradisiaque, un symbole de guérison, de protection et d’accomplissement.",
-      "additional": []
+      "additional": [
+        {
+          "type": "image",
+          "value":  "/public/images/pics/ruyi.jpg"
+        }
+      ]
     },
     {
       "id": "asus",
       "type": "hint",
       "name": "Asus",
-      "asset": "/public/images/pics/sample.png",
+      "asset": "/public/images/pics/asus1.jpg",
       "stamp": "/public/images/stamp/microprocesseur.svg",
       "text": "Tu as sans nulle doute déjà vu des ordinateurs de cette marque originaire de Taiwan. Cette entreprise produit divers matériels informatiques tels que des cartes mères, des ordinateurs portables, des cartes graphiques, etc…",
       "additional": [
+        {
+          "type": "image",
+          "value":  "/public/images/pics/asus1.jpg"
+        },
+        {
+          "type": "separator",
+          "value": null
+        },
         {
           "type": "text",
           "value": "Taiwan est par ailleurs réputé pour être le plus grand exportateur de semi-conducteurs et d'électronique au monde."
@@ -1004,6 +1060,10 @@
         {
           "type": "tips",
           "value": "Taïwan est réputée pour son ingénieurie informatique. Si tu es ingénieur, tu n'auras aucun mal à trouver un emploi durant ton PVT."
+        },
+        {
+          "type": "image",
+          "value":  "/public/images/pics/asus2.jpg"
         }
       ]
     },
@@ -1011,10 +1071,15 @@
       "id": "beef_noodles",
       "type": "hint",
       "name": "Beef Noodle",
-      "asset": "/public/images/pics/sample.png",
+      "asset": "/public/images/pics/beef_noodle.jpg",
       "stamp": "/public/images/stamp/beef_noodle.svg",
       "text": "Les nouilles au bœuf sont un plat typique de Taiwan et ont été introduits au pays par des réfugiés de la guerre civile chinoise.",
-      "additional": []
+      "additional": [
+        {
+          "type": "image",
+          "value":  "/public/images/pics/beef_noodle.jpg"
+        }
+      ]
     },
     {
       "id": "qi_gong",
