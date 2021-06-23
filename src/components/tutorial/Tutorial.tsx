@@ -88,7 +88,7 @@ function Tutorial (props: IProps) {
                 }} style={ButtonStyle.PATTERN} label={t('onboard__pins__button')}/>
               </div>
             </div>
-            <div ref={popupTutorialMove} className={"popup"}>
+            <div ref={popupTutorialMove}  className={merge(["popup", css.movePopup])}>
               <p className={"center"}>{t('onboard__move')}</p>
               <div className={css.tutorialIconList}>
                 <img src={"/public/da/icons/move.png"} alt={"Move"} className={css.tutorialIcon}/>
