@@ -410,6 +410,30 @@
           },
           {
             "type": "sprite",
+            "id": "homme_21",
+            "sprite": "/public/sprites/Homme/Homme_2.png",
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [8.6, 0.6, 23.2], "size": {"w": 108, "h": 255}}
+          },
+          {
+            "type": "sprite",
+            "id": "homme_22",
+            "sprite": "/public/sprites/Homme/Homme_1.png",
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [10.3, 0.6, 22.6], "size": {"w": 108, "h": 255}}
+          },
+          {
+            "type": "sprite",
+            "id": "homme_23",
+            "sprite": "/public/sprites/Homme/Homme_2.png",
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [20.1, 0.6, 24.7], "size": {"w": 108, "h": 255}}
+          },
+          {
+            "type": "sprite",
+            "id": "homme_24",
+            "sprite": "/public/sprites/Homme/Homme_2.png",
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [15.9, 0.6, 22.9], "size": {"w": 108, "h": 255}}
+          },
+          {
+            "type": "sprite",
             "id": "fille",
             "sprite": "/public/sprites/Fille/Fille_01.png",
             "options": {"scale": [0.7, 0.7, 0.7], "position": [4, 0.45, 0], "size": {"w": 98, "h": 228}}
@@ -524,6 +548,18 @@
           },
           {
             "type": "sprite",
+            "id": "fille_20",
+            "sprite": "/public/sprites/Fille/Fille_01.png",
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [7, 0.6, 22.3], "size": {"w": 98, "h": 228}}
+          },
+          {
+            "type": "sprite",
+            "id": "fille_21",
+            "sprite": "/public/sprites/Fille/Fille_01.png",
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [9.6, 0.6, 22.4], "size": {"w": 98, "h": 228}}
+          },
+          {
+            "type": "sprite",
             "id": "femme",
             "sprite": "/public/sprites/Femme/Femme_2.png",
             "options": {"scale": [0.6, 0.6, 0.6], "position": [-6, 0.6, -17], "size": {"w": 75, "h": 247}}
@@ -616,7 +652,7 @@
             "type": "sprite",
             "id": "femme_16",
             "sprite": "/public/sprites/Femme/Femme_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [18.3, 0.6, 16.8], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [18.3, 0.6, 22.8], "size": {"w": 75, "h": 247}}
           },
           {
             "type": "sprite",
@@ -647,6 +683,18 @@
             "id": "femme_21",
             "sprite": "/public/sprites/Femme/Femme_2.png",
             "options": {"scale": [0.4, 0.4, 0.4], "position": [-25, 0.4, 20], "size": {"w": 75, "h": 247}}
+          },
+          {
+            "type": "sprite",
+            "id": "femme_22",
+            "sprite": "/public/sprites/Femme/Femme_2.png",
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [12.1, 0.6, 21.3], "size": {"w": 75, "h": 247}}
+          },
+          {
+            "type": "sprite",
+            "id": "femme_23",
+            "sprite": "/public/sprites/Femme/Femme_1.png",
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [-16.9, 0.3, 18.9], "size": {"w": 75, "h": 247}}
           },
           {
             "type": "sprite",
@@ -782,6 +830,12 @@
           },
           {
             "type": "sprite",
+            "id": "mamie_23",
+            "sprite": "/public/sprites/Mamie/Mamie_01.png",
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [8.3, 0.5, 21.3], "size": {"w": 62, "h": 215}}
+          },
+          {
+            "type": "sprite",
             "id": "papy",
             "sprite": "/public/sprites/Papi/Papi_1.png",
             "options": {"scale": [0.6, 0.6, 0.6], "position": [-15, 0.6, -10], "size": {"w": 75, "h": 246}}
@@ -866,6 +920,24 @@
           },
           {
             "type": "sprite",
+            "id": "papy_15",
+            "sprite": "/public/sprites/Papi/Papi_2.png",
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [12.6, 0.55, 20.6], "size": {"w": 75, "h": 246}}
+          },
+          {
+            "type": "sprite",
+            "id": "papy_16",
+            "sprite": "/public/sprites/Papi/Papi_2.png",
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [14.1, 0.55, 22.6], "size": {"w": 75, "h": 246}}
+          },
+          {
+            "type": "sprite",
+            "id": "papy_17",
+            "sprite": "/public/sprites/Papi/Papi_1.png",
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [-20.7  , 0.35, 19.1], "size": {"w": 75, "h": 246}}
+          },
+          {
+            "type": "sprite",
             "id": "petit",
             "sprite": "/public/sprites/Petit/Petit_1.png",
             "options": {"scale": [0.5, 0.5, 0.5], "position": [-17, 0.2, 10], "size": {"w": 54, "h": 149}}
@@ -941,6 +1013,18 @@
             "id": "petit_13",
             "sprite": "/public/sprites/Petit/Petit_1.png",
             "options": {"scale": [0.5, 0.5, 0.5], "position": [20.1, 0.3, 23.1], "size": {"w": 54, "h": 149}}
+          },
+          {
+            "type": "sprite",
+            "id": "petit_14",
+            "sprite": "/public/sprites/Petit/Petit_1.png",
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [16.8, 0.3, 23.1], "size": {"w": 54, "h": 149}}
+          },
+          {
+            "type": "sprite",
+            "id": "petit_15",
+            "sprite": "/public/sprites/Petit/Petit_2.png",
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [10.8, 0.3, 21.9], "size": {"w": 54, "h": 149}}
           },
           {
             "type": "sprite",
@@ -1046,15 +1130,57 @@
           },
           {
             "type": "sprite",
+            "id": "petite_18",
+            "sprite": "/public/sprites/Petite/Petite_1.png",
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [4.2, 0.15, 23.3], "size": {"w": 39, "h": 123}}
+          },
+          {
+            "type": "sprite",
+            "id": "petite_19",
+            "sprite": "/public/sprites/Petite/Petite_1.png",
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [8.6, 0.15, 22.8], "size": {"w": 39, "h": 123}}
+          },
+          {
+            "type": "sprite",
+            "id": "petite_20",
+            "sprite": "/public/sprites/Petite/Petite_1.png",
+            "options": {"scale": [0.3, 0.3, 0.3], "position": [-18.6, 0.15, 19.8], "size": {"w": 39, "h": 123}}
+          },
+          {
+            "type": "sprite",
             "id": "qigong_femme",
             "sprite": "/public/sprites/Qigong/Qigong_woman.png",
             "options": {"scale": [0.9, 0.9, 0.9], "position": [18, 0.6, 4], "size": {"w": 108, "h": 223}}
           },
           {
             "type": "sprite",
+            "id": "qigong_femme",
+            "sprite": "/public/sprites/Qigong/Qigong_woman.png",
+            "options": {"scale": [0.9, 0.9, 0.9], "position": [18.4, 0.6, 4.6], "size": {"w": 108, "h": 223}}
+          },
+          {
+            "type": "sprite",
+            "id": "qigong_femme",
+            "sprite": "/public/sprites/Qigong/Qigong_woman.png",
+            "options": {"scale": [0.9, 0.9, 0.9], "position": [18.4, 0.6, 2], "size": {"w": 108, "h": 223}}
+          },
+          {
+            "type": "sprite",
             "id": "qigong_homme",
             "sprite": "/public/sprites/Qigong/Qigong_man.png",
             "options": {"scale": [0.9, 0.9, 0.9], "position": [18, 0.6, 3], "size": {"w": 183, "h": 393}}
+          },
+          {
+            "type": "sprite",
+            "id": "qigong_homme",
+            "sprite": "/public/sprites/Qigong/Qigong_man.png",
+            "options": {"scale": [0.9, 0.9, 0.9], "position": [17.6, 0.6, 3.4], "size": {"w": 183, "h": 393}}
+          },
+          {
+            "type": "sprite",
+            "id": "qigong_homme",
+            "sprite": "/public/sprites/Qigong/Qigong_man.png",
+            "options": {"scale": [0.9, 0.9, 0.9], "position": [17.6, 0.6, 4.4], "size": {"w": 183, "h": 393}}
           }
         ],
         "lights": [
