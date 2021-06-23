@@ -33,23 +33,26 @@ function InteractedElement (props: IProps) {
   const hintRootRef = useRef(null);
 
   useEffect(() => {
-    RaycastManager.getInstance().onInteract.add((type: RaycastInteractionType, value: IStateDataCollectible) => {
-      debug("value", value)
-      // On affiche si on clique sur un HINT sinon ignoré ici
-      if(type == RaycastInteractionType.ELEMENTS && [IStateDataSceneCollectibleType.HINT, IStateDataSceneCollectibleType.PICKUP].includes(value.type)) {
-        showCollectibleInfoTimeout.current = setTimeout(() => {
-          setCollectible(value);
-          toggleShowed(true);
-          setIsPickup(value.type == IStateDataSceneCollectibleType.PICKUP);
-        }, 2000);
-      }
-    });
+    RaycastManager.getInstance().onInteract.add(onInteractHandler);
 
     // Clear timeout on unmount
     return () => {
+      RaycastManager.getInstance().onInteract.remove(onInteractHandler);
       clearTimeout(showCollectibleInfoTimeout.current);
     }
   }, []);
+
+  function onInteractHandler(type: RaycastInteractionType, value: IStateDataCollectible) {
+    debug("value", value)
+    // On affiche si on clique sur un HINT sinon ignoré ici
+    if(type == RaycastInteractionType.ELEMENTS && [IStateDataSceneCollectibleType.HINT, IStateDataSceneCollectibleType.PICKUP].includes(value.type)) {
+      showCollectibleInfoTimeout.current = setTimeout(() => {
+        setCollectible(value);
+        toggleShowed(true);
+        setIsPickup(value.type == IStateDataSceneCollectibleType.PICKUP);
+      }, 2000);
+    }
+  }
 
   useLayoutEffect(() => {
     if(!collectible) return;
@@ -83,7 +86,7 @@ function InteractedElement (props: IProps) {
 
   if(showed) {
     switch (collectible.type) {
-      case IStateDataSceneCollectibleType.HINT: 
+      case IStateDataSceneCollectibleType.HINT:
         return <div ref={hintRootRef} className={merge([css.root, props.className])}>
           <div className={css.close}>
             <ButtonPicto disabled={false} picto={ButtonPictoStyle.CROSS} onClick={() => {
