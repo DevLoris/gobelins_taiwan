@@ -43,20 +43,23 @@ function PrePickupElement (props: IProps) {
               }
           }
       });
+  }, []);
 
-
+  useEffect(() => {
       let handler = (type, data) => {
-          if(type == NOTEBOOK_SEND.TOGGLE) {
-              console.log(type, data, collectible == null);
-              gsap.to(element.current, {opacity: (data || collectible == null) ? 0 : 1});
-          }
+          // todo à FIXER car le showed
+          gsap.delayedCall(0.2, ()  => {
+              if(type == NOTEBOOK_SEND.TOGGLE) {
+                  gsap.to(element.current, {opacity: (!data && showed) ? 1 : 0});
+              }
+          })
       }
       NotebookSignal.getInstance().notebookContent.add(handler)
 
       return () => {
           NotebookSignal.getInstance().notebookContent.remove(handler);
       }
-  }, []);
+  },[]);
 
     useEffect(() => {
         if(!showed) {

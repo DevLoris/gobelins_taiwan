@@ -865,13 +865,25 @@
       "id": "metro",
       "type": "hint",
       "name": "Métro",
-      "asset": "/public/images/pics/sample.png",
+      "asset": "/public/images/pics/metro.jpg",
       "stamp": "/public/images/stamp/metro.svg",
       "text": "Grâce au Métro de Taipei, ou le MRT, tu peux te rendre dans tous les quartiers de la ville, allant du zoo de Taipei au Temple de Longshan, en passant par divers nights markets !",
       "additional": [
         {
+          "type": "image",
+          "value":  "/public/images/pics/metro.jpg"
+        },
+        {
+          "type": "separator",
+          "value": null
+        },
+        {
           "type": "text",
           "value": "Le métro taïwanais est est plus simple que celui de nos grandes villes européennes, et n'a que très peu de lignes ! Tu ne pourras pas t’y perdre."
+        },
+        {
+          "type": "image",
+          "value":  "/public/images/pics/metro2.jpg"
         }
       ]
     },

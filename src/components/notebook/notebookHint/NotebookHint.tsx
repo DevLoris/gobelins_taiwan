@@ -5,6 +5,7 @@ import {gsap} from "gsap";
 import {AudioHandler} from "../../../lib/audio/AudioHandler";
 import ButtonPicto, {ButtonPictoStyle} from "../../buttonPicto/ButtonPicto";
 import SplitType from 'split-type';
+import {isLocal} from "../../../helpers/DebugHelpers";
 
 interface IProps {
   className?: string,
@@ -95,7 +96,12 @@ function NotebookHint (props: IProps) {
 
     <div className={css.contentBlock}>
       <div className={css.hintAudio} onClick={() => {
-        AudioHandler.play(props.hint_audio);
+        let audio= AudioHandler.get(props.hint_audio);
+        if(!isLocal() && audio.playing()) {
+          audio.stop();
+          audio.seek(0);
+        }
+        audio.play();
       }}>
         <svg xmlns="http://www.w3.org/2000/svg" width="56.501" height="57.752" viewBox="0 0 56.501 57.752">
           <g id="Groupe_304" data-name="Groupe 304" transform="translate(-1277.582 321.44)">
