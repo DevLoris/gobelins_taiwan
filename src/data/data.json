@@ -1533,10 +1533,6 @@
         {
           "type": "image",
           "value": "https://fr-wp.rti.org.tw/wp-content/uploads/2018/06/7-Eleven-%C3%A0-tous-les-carrefours-de-Taiwan-image-Flickr.jpg"
-        },
-        {
-          "type": "audio",
-          "value": "book"
         }
       ]
     },
@@ -1580,7 +1576,7 @@
       "type": "hint",
       "name": "Mariage LGBT",
       "asset": "/public/images/pics/lgbtq.jpg",
-      "stamp": "/public/images/stamp/tolerance.png",
+      "stamp": "/public/images/stamp/tolerance.svg",
       "text": "Depuis 2019, Taïwan est le seul pays dans toute l’Asie à autoriser le mariage LGBT. Les Taïwanais sont très tolérants sur ces sujets de société. L’hospitalité est un savoir-être partagé par les taïwanais.",
       "additional": [
         {
