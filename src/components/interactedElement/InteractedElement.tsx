@@ -85,9 +85,11 @@ function InteractedElement (props: IProps) {
     switch (collectible.type) {
       case IStateDataSceneCollectibleType.HINT: 
         return <div ref={hintRootRef} className={merge([css.root, props.className])}>
-          <ButtonPicto className={css.close} disabled={false} picto={ButtonPictoStyle.CROSS} onClick={() => {
-            componentAnimation(false);
-          }}/> 
+          <div className={css.close}>
+            <ButtonPicto disabled={false} picto={ButtonPictoStyle.CROSS} onClick={() => {
+              componentAnimation(false);
+            }}/>
+          </div>
 
           <div className={css.picture}>
             <img src={collectible.asset} alt={"Asset"}/>
