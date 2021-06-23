@@ -851,7 +851,7 @@
     {
       "id": "night_market",
       "type": "hint",
-      "name": "Night markets (friture)",
+      "name": "Night-markets",
       "asset": "/public/images/pics/nightmarket.jpg",
       "stamp": "/public/images/stamp/nightMarket.svg",
       "text": "Les night-markets sont des lieux vivants et gourmands de Taiwan. On y trouve des repas variés et de qualité mais surtout pour peu cher. Par exemple des nouilles au bœuf, des raviolis vapeur, des saucisses sucrées, des patates douces frits, des bubble-teas, des bao burgers, etc. \nPas besoin de cuisiner chaque soir : il suffit juste de descendre dans la rue, tu trouveras ton bonheur !\n",
@@ -859,6 +859,10 @@
         {
           "type": "image",
           "value":  "/public/images/pics/nightmarket.jpg"
+        },
+        {
+          "type": "tips",
+          "value": "Les night-markets sont vraiment utiles en tant que PVTistes : pour quelques dollars taiwanais, tu peux te nourrir convenablement."
         }
       ]
     },
@@ -870,7 +874,6 @@
       "stamp": "/public/images/stamp/stamp.png",
       "text": "Il y a beaucoup de climatiseurs à Taïwan ! On pourrait même te dire qu’il y en a dans tous les appartements. Mais pourquoi ? Et bien car le climat de Taïwan est quand même plutôt chaud et humide en été.",
       "additional": [
-
         {
           "type": "image",
           "value":  "/public/images/pics/climatiseur.jpg"
@@ -956,7 +959,12 @@
       "asset": "/public/images/pics/sample.png",
       "stamp": "/public/images/stamp/stamp.png",
       "text": "Tu as sans nulle doute déjà vu des ordinateurs de cette marque originaire de Taiwan. Cette entreprise produit divers matériels informatiques tels que des cartes mères, des ordinateurs portables, des cartes graphiques, etc… Taiwan est par ailleurs réputé pour être le plus grand exportateur de semi-conducteurs et d'électronique au monde.",
-      "additional": []
+      "additional": [
+        {
+          "type": "tips",
+          "value": "Taïwan est réputée pour son ingénieurie informatique. Si tu es ingénieur, tu n'auras aucun mal à trouver un emploi durant ton PVT."
+        }
+      ]
     },
     {
       "id": "beef_noodles",
@@ -976,13 +984,21 @@
       "text": "Le Qi gong est une gymnastique traditionnelle d’origine chinoise qui consiste à maîtriser le souffle en alliant mouvements lents, concentration et exercice respiratoire.",
       "additional": [
         {
+          "type": "image",
+          "value":  "/public/images/pics/qigong.jpg"
+        },
+        {
+          "type": "separator",
+          "value": null
+        },
+        {
           "type": "testimonial",
           "value": "Dans le parc à côté de chez moi, j’ai rencontré des gens qui faisaient du Qi gong en plein milieu du parc, ils m’ont invité à participer. Au début, c’était un peu gênant, mais au final c’était bien et reposant. Depuis, je retourne là-bas et j’en fais de temps en temps. - Jeanne"
         },
         {
           "type": "phonetic",
           "value": {
-            "chinese": "摩托車",
+            "chinese": "氣功",
             "phonetic": "Qìgōng",
             "english": "Qi gong"
           }
