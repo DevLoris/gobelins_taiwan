@@ -105,9 +105,9 @@ function Eligibility (props: IProps) {
     <div ref={el => refs.current[QUESTIONS.length + 1] = el} className={merge([css.frame, css.frameCenter])}>
       <div className={css.content}>
         <img src={"/public/da/test-icon.png"} />
-        {progression == EligibilityProgression.SUBMITTED_OK && (<h2 className={css.mb}>Vous remplissez tous les critères pour partir.</h2>)}
-        {progression == EligibilityProgression.SUBMITTED_TIP && (<h2 className={css.mb}>Vous remplissez presque tous les critères pour partir.</h2>)}
-        {progression == EligibilityProgression.SUBMITTED_FORBIDDEN && (<h2 className={css.mb}>Malheureusement, il est impossible pour vous de faire un PVT à Taiwan.</h2>)}
+        {progression == EligibilityProgression.SUBMITTED_OK && (<h2 className={css.mb}>Tu remplis tous les critères pour partir.</h2>)}
+        {progression == EligibilityProgression.SUBMITTED_TIP && (<h2 className={css.mb}>Tu remplis presque tous les critères pour partir.</h2>)}
+        {progression == EligibilityProgression.SUBMITTED_FORBIDDEN && (<h2 className={css.mb}>Malheureusement, il est impossible pour toi de faire un PVT à Taiwan.</h2>)}
         {progression == EligibilityProgression.SUBMITTED_TIP && responses.filter(value => value.correct == EligibilityResponseType.TIP).map((value, key) => <p key={key}>{value.tip_final}</p>)}
       </div>
     </div>

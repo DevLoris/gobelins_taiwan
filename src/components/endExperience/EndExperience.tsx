@@ -80,7 +80,7 @@ function EndExperience (props: IProps) {
     <Eligibility show={step == EndExperienceStep.ELIGIBILITY} onClose={()  => setEndExperienceStep(null) }/>
     <div style={{opacity: 0, visibility: "hidden"}} ref={pvtisteRef} className={'popup popup-big-padding'}>
       <ButtonPicto disabled={false} picto={ButtonPictoStyle.CROSS} onClick={()  => setEndExperienceStep(null)}/>
-      <p className={''}>Vous allez être redirigé vers le site PVTistes.net</p>
+      <p className={''}>Tu vas être redirigé vers le site PVTistes.net</p>
       <div className={"buttonGroup"}>
         <Button onClick={() => {
           window.open('https://pvtistes.net/le-pvt/taiwan/', '_blank').focus();

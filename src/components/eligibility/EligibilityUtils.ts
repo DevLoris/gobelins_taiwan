@@ -33,7 +33,7 @@ export enum EligibilityResponseType {
 export const QUESTIONS:IEligibilityQuestion[]  = [
     {
         id: "age",
-        question: "Quel âge avez-vous  ?",
+        question: "Quel âge as-tu  ?",
         type: EligibilityQuestionType.RADIO,
         response: [
             {
@@ -50,13 +50,13 @@ export const QUESTIONS:IEligibilityQuestion[]  = [
             {
                 response: ">30 ans",
                 correct: EligibilityResponseType.FORBIDDEN,
-                tip: 'Malheureusement vous êtes trop vieux...'
+                tip: 'Malheureusement tu es trop vieux...'
             }
         ]
     },
     {
         id: "passeport",
-        question: "Avez-vous un passeport ?",
+        question: "As-tu un passeport ?",
         type: EligibilityQuestionType.RADIO,
         response: [
             {
@@ -75,7 +75,7 @@ export const QUESTIONS:IEligibilityQuestion[]  = [
     {
         id: "economy",
         helper: "Afin d'aborder cette expérience unique au mieux, il est important d'avoir un peu d'argent en sa possession.",
-        question: "Avez-vous 2200€ d'économie ?",
+        question: "As-tu 2200€ d'économie ?",
         type: EligibilityQuestionType.RADIO,
         response: [
             {
@@ -93,13 +93,13 @@ export const QUESTIONS:IEligibilityQuestion[]  = [
     },
     {
         id: "pvt",
-        question: "Avez-vous déjà fait un PVT à Taïwan ?",
+        question: "As-tu déjà fait un PVT à Taïwan ?",
         type: EligibilityQuestionType.RADIO,
         response: [
             {
                 response: "Oui",
                 correct: EligibilityResponseType.FORBIDDEN,
-                tip: 'Mais que faites-vous ici ?!'
+                tip: 'Mais que fais-tu ici ?!'
             },
             {
                 response: "Non",
