@@ -4,6 +4,7 @@ import { usePageRegister } from "../../lib/router/usePageRegister";
 import Loader from "../../components/loader/Loader";
 import GameContainer from "../../components/gameContainer/GameContainer";
 import HomeSplash from "../../components/homeSplash/HomeSplash";
+import FakeLoader from "../../components/fakeLoader/FakeLoader";
 
 interface IProps {}
 
@@ -59,6 +60,7 @@ const HomePage = (props: IProps) => {
 
   return (
     <div className={css.root} ref={rootRef}>
+      <FakeLoader message={"gjfkdhgdfjkg dfhjgk fjghf jghfjk gdjgh jkghjfkdghj gjdfk !!!"}/>
       {playingState == PLAYING_STATE.HOME && (
           <HomeSplash startCallback={() =>  {
             setPlayingState(PLAYING_STATE.GAME);
