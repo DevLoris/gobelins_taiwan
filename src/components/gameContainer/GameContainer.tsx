@@ -147,7 +147,9 @@ function GameContainer (props: IProps) {
   function switchTo(step: EChapterStep) {
     setShowVlog(false);
     setShowWebgl(false);
-    [EChapterStep.OUTRO_VLOG, EChapterStep.INTRO_VLOG].includes(step) ? setShowVlog(true) : setShowWebgl(true);
+    gsap.delayedCall(0.2, () => {
+      [EChapterStep.OUTRO_VLOG, EChapterStep.INTRO_VLOG].includes(step) ? setShowVlog(true) : setShowWebgl(true);
+    })
   }
 
   // -------------------–-------------------–-------------------–--------------- RENDER
