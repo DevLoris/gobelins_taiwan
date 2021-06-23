@@ -47,7 +47,6 @@ function PrePickupElement (props: IProps) {
 
       let handler = (type, data) => {
           if(type == NOTEBOOK_SEND.TOGGLE) {
-              console.log(type, data, collectible == null);
               gsap.to(element.current, {opacity: (data || collectible == null) ? 0 : 1});
           }
       }

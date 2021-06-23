@@ -41,8 +41,8 @@
           "collectible_id": "poubelle",
           "trigger": "pinpoubelle",
           "focus": {
-            "coords": {"x":-2, "y": 4, "z": -2},
-            "rotation": {"x": 1.5, "y": 0.15, "z": 8.4}
+            "coords": {"x":2, "y": 4, "z": 26},
+            "rotation": {"x": -6.9, "y": 0.1, "z": 22}
           }
         },
         {
@@ -167,20 +167,20 @@
           }
         },
         {
-          "collectible_id": "ruyi",
-          "trigger": "ruyi",
+          "collectible_id": "democratie",
+          "trigger": "pindemocratie",
           "focus": {
-            "coords": {"x": 25, "y": 3, "z": 0},
-            "rotation": {"x": 19, "y": 0.7, "z": 3.2
+            "coords": {"x": -10, "y": 17, "z": -3},
+            "rotation": {"x": -18, "y": 5, "z": 2.8
             }
           }
         },
         {
-          "collectible_id": "democratie",
-          "trigger": "democratie",
+          "collectible_id": "ruyi",
+          "trigger": "pinruyi",
           "focus": {
-            "coords": {"x": 25, "y": 3, "z": 0},
-            "rotation": {"x": 19, "y": 0.7, "z": 3.2
+            "coords": {"x": -15, "y": 30, "z": 10},
+            "rotation": {"x": -18.3, "y": 25, "z": -23.7
             }
           }
         }
@@ -638,7 +638,7 @@
   "models": [
     {
       "id": "TaipeiMain",
-      "path": "/public/sceneries/demo/Taipei-test-car.glb"
+      "path": "/public/sceneries/demo/TaipeiV16.glb"
     },
     {
       "id": "GridBottom",

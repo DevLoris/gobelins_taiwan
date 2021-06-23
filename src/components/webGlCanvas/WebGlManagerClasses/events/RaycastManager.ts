@@ -40,7 +40,7 @@ class RaycastManager {
     }
 
     public clickProcessing(id: string, object: any) {
-        debug("Clicked on", id);
+        debug("Clicked on", id, object.position);
         // SCENE
         const userSceneId = selectUserActiveScene(getState());
         const scene = selectScene(userSceneId)(getState().data);
