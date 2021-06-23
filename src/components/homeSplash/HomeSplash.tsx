@@ -10,6 +10,12 @@ import * as gsap from "gsap";
 interface IProps {
   className?: string,
   startCallback: () => void,
+  mode: EHomeSplashMode
+}
+
+export enum EHomeSplashMode {
+  DESKTOP,
+  MOBILE
 }
 
 const componentName = "HomeSplash";
@@ -37,22 +43,38 @@ function HomeSplash(props: IProps) {
   }
 
   return <div className={merge([css.root, props.className])}>
-    
-    <div className={css.homepageContent}>
+
+    <div className={props.mode === EHomeSplashMode.MOBILE  ? css.homepageContent : css.homepageContent_desktop}>
       <div>
         <img src={"/public/da/logo_beige.svg"} className={css.logo} alt={"logo"}/>
         <p className={css.baseline}>Taiwan n'attend que toi</p>
       </div>
 
-      <div className={css.startButton}  onClick={animationButton}>
-        <img src={"public/da/button_start_text.svg"} alt={"Start Experience"}/>
-        <img ref={ticketButton} src={"public/da/button_start_arrow.svg"} alt={"Start Experience"}/>
-      </div>
+      {
+        props.mode === EHomeSplashMode.MOBILE &&
+          <div className={css.startButton}  onClick={animationButton}>
+            <img src={"public/da/button_start_text.svg"} alt={"Start Experience"}/>
+            <img ref={ticketButton} src={"public/da/button_start_arrow.svg"} alt={"Start Experience"}/>
+          </div>
+      }
+
+      {
+        props.mode === EHomeSplashMode.DESKTOP &&
+          <div className={css.desktopInner}>
+            <p className={css.desktopMessage} dangerouslySetInnerHTML={{ __html: "Patience, la version ordinateur arrive bientôt.<br>En attendant, l'aventure t'attend déjà sur mobile !" }} />
+            <img src={"/public/images/qrcode.png"} />
+          </div>
+      }
     </div>
 
-    <Settings show={settingsOpen}
-                onClose={() => setSettingsOpen(false)}/>
-      <SettingsToggler onClick={() => setSettingsOpen(!settingsOpen)}/>
+    {
+      props.mode === EHomeSplashMode.MOBILE &&
+          <>
+            <Settings show={settingsOpen}
+                      onClose={() => setSettingsOpen(false)}/>
+            <SettingsToggler onClick={() => setSettingsOpen(!settingsOpen)}/>
+          </>
+    }
   </div>
 }
 
