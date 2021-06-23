@@ -331,7 +331,6 @@ export class WebGlManager {
                     else if(object.type === "Object3D") {
                         // If object is a pin (hint)
                         if(object.name.includes("pin")) {
-                            debug("pin", object.name)
                             const nameWithoutPin = object.name.replace("pin", "");
                             // Animated pin
                             let texture = new TextureLoader().load( '/public/pin_seq.png' );
