@@ -638,7 +638,7 @@
   "models": [
     {
       "id": "TaipeiMain",
-      "path": "/public/sceneries/demo/TaipeiV15.glb"
+      "path": "/public/sceneries/demo/Taipei-test-car.glb"
     },
     {
       "id": "GridBottom",
