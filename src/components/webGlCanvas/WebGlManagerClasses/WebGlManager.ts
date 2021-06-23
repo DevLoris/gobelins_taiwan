@@ -266,13 +266,13 @@ export class WebGlManager {
                             // 2. Get size of the box
                             const boxSize: Vector3 = boxFromObject.getSize(new Vector3());
 
-                            const geometry = new BoxGeometry( boxSize.x, boxSize.y, boxSize.z );
-                            const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom()), wireframe: true} );
-                            const box = new Mesh( geometry, material );
-                            box.position.set(0,object.position.y,0);
-                            box.name = "colliderBox:" + object.name;
-                            box["size"] = boxSize;
-                            object.add(box);
+                            // const geometry = new BoxGeometry( boxSize.x, boxSize.y, boxSize.z );
+                            // const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom()), wireframe: true} );
+                            // const box = new Mesh( geometry, material );
+                            // box.position.set(0,object.position.y,0);
+                            // box.name = "colliderBox:" + object.name;
+                            // box["size"] = boxSize;
+                            // object.add(box);
 
                             object["size"] = boxSize;
                             // Will be re-computed at each frame
@@ -407,48 +407,6 @@ export class WebGlManager {
                 }
             });
         });
-    }
-
-    private _createInvisibleWalls() {
-        debug("scene", this.getScene());
-
-        // Add invisible walls all around scene
-        // Used for detecting cars leaving & entering
-        // Get size of mesh
-        // 1. Convert object in box
-        const boxFromObject: Box3 = new Box3().setFromObject(this.getScene());
-        // 2. Get size of the box
-        const boxSize: Vector3 = boxFromObject.getSize(new Vector3());
-
-        // const geometry = new BoxGeometry( boxSize.x, boxSize.y, boxSize.z );
-        // const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom())} );
-        // const cube = new Mesh( geometry, material );
-        // cube.position.set(0,0,0);
-        // this._scene.add(cube);
-
-        for(let i = 0; i < 4; i++) {
-            const condition = i === 0 || i === 2;
-
-            const wallSize = {
-                x: condition ? 1 : boxSize.x,
-                y: 5,
-                z: condition ? boxSize.x : 1
-            }
-
-            const geometry = new BoxGeometry(wallSize.x, wallSize.y, wallSize.z);
-            const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom())} );
-            const wall = new Mesh( geometry, material );
-            wall.position.set(
-                condition ? i === 0 ? boxSize.x / 2 : -boxSize.x / 2 : 0,
-                0,
-                condition ? 0 : i === 1 ? boxSize.z / 2 - 4 : -boxSize.z / 2 + 3);
-            wall.name = "WorldWall_" + i;
-            wall.material.transparent = true;
-            wall["size"] = wallSize;
-            wall["maxCoordinates"] = this._computeBoxMaxCoordinates(wall);
-            this._scene.add(wall);
-            this._sceneInvisibleWalls.push(wall);
-        }
     }
 
     private _computeBoxMaxCoordinates(box) {
@@ -636,9 +594,6 @@ export class WebGlManager {
             // Update moving objects data
             this._updateMovingObjectsAndCheckPosition();
 
-            // Wall collisions
-            // this._checkWallCollisions();
-
             // Effects
             if (this._effects.length == 0) {
                 this._renderer.render(this._scene, this._camera);
@@ -683,17 +638,6 @@ export class WebGlManager {
         });
     }
 
-    private _checkWallCollisions() {
-        this._sceneInvisibleWalls.forEach((wall) => {
-            this._movingObjects.forEach((movingObj) => {
-                // Look for collision between wall and box of moving object
-                if(this._twoBoxesCollided(wall, movingObj)) {
-                    debug("collision between", movingObj.position);
-                }
-            });
-        })
-    }
-
     private _twoBoxesCollided(boxA, boxB):boolean {
         return (boxA.maxCoordinates.xMin <= boxB.maxCoordinates.xMax && boxA.maxCoordinates.xMax >= boxB.maxCoordinates.xMin) &&
             (boxA.maxCoordinates.yMin <= boxB.maxCoordinates.yMax && boxA.maxCoordinates.yMax >= boxB.maxCoordinates.yMin) &&
@@ -730,6 +674,9 @@ export class WebGlManager {
 
         // DESTROY
         SceneryUtils.destroyScenery(this._scene);
+
+        this._spritesAnimators = [];
+        this._animationMixers = [];
 
         // AMBIENT SOUND DISABLE
         AudioHandler.stop(previous_scene.ambient);

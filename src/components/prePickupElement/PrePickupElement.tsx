@@ -47,12 +47,9 @@ function PrePickupElement (props: IProps) {
 
   useEffect(() => {
       let handler = (type, data) => {
-          // todo à FIXER car le showed
-          gsap.delayedCall(0.2, ()  => {
-              if(type == NOTEBOOK_SEND.TOGGLE) {
-                  gsap.to(element.current, {opacity: (!data && showed) ? 1 : 0});
-              }
-          })
+          if(type == NOTEBOOK_SEND.TOGGLE) {
+              gsap.to(element.current, {opacity: (data || collectible == null) ? 0 : 1});
+          }
       }
       NotebookSignal.getInstance().notebookContent.add(handler)
 

@@ -2,6 +2,8 @@ import css from './Video.module.less';
 import React, {useEffect, useRef} from 'react';
 import {gsap} from "gsap";
 import {SequenceManager} from "../../../mainClasses/Sequencer/SequenceManager";
+import ButtonPicto, {ButtonPictoStyle} from "../../buttonPicto/ButtonPicto";
+import {isLocal} from "../../../helpers/DebugHelpers";
 
 interface IProps {
     className?: string,
@@ -46,6 +48,13 @@ function Video(props: IProps) {
         <div ref={buttonRef} className={css.play}>
             <img src={"/public/da/icons/play.svg"} alt={"PLAY VLOG"} onClick={customPlayButtonClickHandler}/>
         </div>
+        {
+            isLocal() &&
+            <ButtonPicto className={css.lol} picto={ButtonPictoStyle.NEXT} disabled={false} onClick={() => {
+                videoRef.current.pause();
+                SequenceManager.instance.increment();
+            }} />
+        }
         <video playsInline={false} muted={false}  ref={videoRef} onEnded={videoFinishedHandler} controls={false}>
             <source src={props.path} type="video/mp4"/>
         </video>

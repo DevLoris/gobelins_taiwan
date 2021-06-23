@@ -63,15 +63,21 @@ function NotebookPageElements (props: IProps) {
     // Show list
     setListInDom(true);
 
-    NotebookSignal.getInstance().notebookContent.add((type, data) => {
-      if(type == NOTEBOOK_SEND.CONTENT)  {
-        // Set page data
-        setPage({...data, pickup: true});
-        // Show page
-        toggleShowPage(true);
-      }
-    })
+    NotebookSignal.getInstance().notebookContent.add(notebookContentHandler)
+
+    return () => {
+      NotebookSignal.getInstance().notebookContent.remove(notebookContentHandler)
+    }
   }, []);
+
+  function notebookContentHandler(type, data) {
+    if(type == NOTEBOOK_SEND.CONTENT)  {
+      // Set page data
+      setPage({...data, pickup: true});
+      // Show page
+      toggleShowPage(true);
+    }
+  }
 
   // Page open status
   useEffect(() => {
@@ -104,22 +110,26 @@ function NotebookPageElements (props: IProps) {
   function pageAnimation(pShow:boolean = true, pDuration:number = .7) {
     // Scroll top in list
     if(props.parentInnerRef.current.scrollTop > 0) {
+      gsap.killTweensOf(props.parentInnerRef);
       gsap.to(props.parentInnerRef.current, {scrollTo: {x: 0, y: 0}, duration: pDuration * .5, ease: "power2.easeInOut"});
     }
 
-    pageElRef.current && gsap.fromTo(pageElRef.current, {
-      xPercent: pShow ? 100 : 0,
-    }, {
-      xPercent: pShow ? 0 : 100,
-      duration: pDuration,
-      ease: "power2.easeOut",
-      onComplete: () => {
-        // If page has closed, remove it from dom
-        !pShow && setPageInDom(false);
-        // If page has opened, remove list from dom
-        pShow && setListInDom(false);
-      }
-    });
+    if(pageElRef.current) {
+      gsap.killTweensOf(pageElRef.current);
+      gsap.fromTo(pageElRef.current, {
+        xPercent: pShow ? 100 : 0,
+      }, {
+        xPercent: pShow ? 0 : 100,
+        duration: pDuration,
+        ease: "power2.easeOut",
+        onComplete: () => {
+          // If page has closed, remove it from dom
+          !pShow && setPageInDom(false);
+          // If page has opened, remove list from dom
+          pShow && setListInDom(false);
+        }
+      });
+    }
   }
 
   return <>
