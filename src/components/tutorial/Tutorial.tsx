@@ -80,7 +80,7 @@ function Tutorial (props: IProps) {
             <div ref={popupTutorialPins} className={merge(["popup", css.pinPopup])}>
               <p>{t('onboard__pins')}</p>
               <div>
-                <img src={"/public/PIN_2.png"} alt={"Move"} className={css.tutorialIcon}/>
+                <img src={"/public/pin.gif"} alt={"Move"} className={css.tutorialIcon}/>
               </div>
               <div className={"buttonGroup"}>
                 <Button onClick={() => {
