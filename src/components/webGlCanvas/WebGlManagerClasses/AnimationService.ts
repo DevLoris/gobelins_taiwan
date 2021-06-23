@@ -1,9 +1,14 @@
 import {AnimationClip} from "three";
 
+export interface IGltfAnimations {
+    name:string,
+    animations:AnimationClip[]
+}
+
 class AnimationService {
     private static instance: AnimationService;
 
-    private _animationsFromGltf:AnimationClip[] = new Array();
+    private _animationsFromGltf:IGltfAnimations[] = new Array();
 
     private constructor() { }
 
@@ -15,12 +20,21 @@ class AnimationService {
         return AnimationService.instance;
     }
 
-    public setAnimationFromGltf(animations:AnimationClip[]) {
-        this._animationsFromGltf = animations;
+    public saveAnimationsFromGltfNamed(name:string, animations:AnimationClip[]) {
+        this._animationsFromGltf.push({
+            name:name,
+            animations:animations,
+        });
     }
 
-    public getAnimationFromGltf() {
-        return this._animationsFromGltf;
+    public getAnimationFromGltfNamed(nameHint:string):IGltfAnimations {
+        let foundObj: IGltfAnimations;
+        this._animationsFromGltf.forEach((gltfAnimations) => {
+            if(gltfAnimations.name.toLowerCase().includes(nameHint)) {
+                foundObj = gltfAnimations;
+            }
+        });
+        return foundObj;
     }
 }
 

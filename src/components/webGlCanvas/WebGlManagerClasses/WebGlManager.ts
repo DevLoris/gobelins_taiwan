@@ -53,7 +53,7 @@ import {zeroToOneRandom} from "../../../lib/utils/mathUtils";
 import {TextureAnimator} from "./TextureAnimator";
 import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
 import {isLocal} from "../../../helpers/DebugHelpers";
-import AnimationService from "./AnimationService";
+import AnimationService, {IGltfAnimations} from "./AnimationService";
 
 const debug = require("debug")(`front:WebGlManager`);
 
@@ -120,6 +120,8 @@ export class WebGlManager {
     private _movingObjects: any[] = new Array();
     private _sceneInvisibleWalls: Mesh[] = new Array();
 
+    private _sceneryName:string;
+
     constructor() {
     }
 
@@ -145,6 +147,8 @@ export class WebGlManager {
         debug("Init WebGlManager", pWrapper);
         debug("ThreeJS version:", REVISION);
         debug("pSceneryName", pSceneryName);
+
+        this._sceneryName = pSceneryName;
 
         this._clock = new Clock();
 
@@ -230,11 +234,7 @@ export class WebGlManager {
     private _setupSceneChildrenArrays(): void {
         this._instancedMeshes = this.getScene().children.filter(object => object instanceof InstancedMesh);
 
-        const anims = AnimationService.getInstance().getAnimationFromGltf();
-
-        this._instancedMeshes.forEach((mesh) => {
-            // debug(mesh.userData.internalIdx, mesh.animations, mesh)
-        });
+        const animsObject:IGltfAnimations = AnimationService.getInstance().getAnimationFromGltfNamed(this._sceneryName);
 
         this.getScene().children.forEach(childElement => {
             // Meshes can be found in the Group child
@@ -268,13 +268,13 @@ export class WebGlManager {
                             // 2. Get size of the box
                             const boxSize: Vector3 = boxFromObject.getSize(new Vector3());
 
-                            // const geometry = new BoxGeometry( boxSize.x, boxSize.y, boxSize.z );
-                            // const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom()), wireframe: true} );
-                            // const box = new Mesh( geometry, material );
-                            // box.position.set(0,object.position.y,0);
-                            // box.name = "colliderBox:" + object.name;
-                            // box["size"] = boxSize;
-                            // object.add(box);
+                            const geometry = new BoxGeometry( boxSize.x, boxSize.y, boxSize.z );
+                            const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom()), wireframe: true} );
+                            const box = new Mesh( geometry, material );
+                            box.position.set(0,object.position.y,0);
+                            box.name = "colliderBox:" + object.name;
+                            box["size"] = boxSize;
+                            object.add(box);
 
                             object["size"] = boxSize;
                             // Will be re-computed at each frame
@@ -282,7 +282,7 @@ export class WebGlManager {
 
                             this._movingObjects.push(object);
 
-                            anims.forEach((anim) => {
+                            animsObject.animations.forEach((anim) => {
                                 if(anim.name.toLowerCase() === object.name.toLowerCase().replace("moving", ""))
                                 {
                                     object.animations = [anim];
@@ -381,6 +381,12 @@ export class WebGlManager {
 
                 // Start all anims
                 this._animationMixers.forEach((mixer, index) => {
+                    // const actions = this._animationClips[index].forEach((clip) => {
+                    //     return mixer.clipAction(clip);
+                    // })
+                    // debug(actions , this._animationClips[index])
+                    // actions.each().play();
+
                     const action = mixer.clipAction(this._animationClips[index][0]);
                     action.clampWhenFinished = false;
                     action.play();
