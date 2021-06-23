@@ -4,6 +4,8 @@ import { merge } from "../../lib/utils/arrayUtils";
 import {gsap} from "gsap";
 import {WebGlManager} from "./WebGlManagerClasses/WebGlManager";
 import {SequenceManager} from "../../mainClasses/Sequencer/SequenceManager";
+import {selectUserActiveScene} from "../../store/store_selector";
+import {getState} from "../../store/store";
 
 interface IProps {
   className?: string
@@ -29,7 +31,8 @@ function WebGlCanvas (props: IProps) {
    */
   useEffect(() => {
     webGlManagerRef.current = WebGlManager.getInstance();
-    const sceneryIdentifier = SequenceManager.instance.getCurrentChapterSceneFromDiorama();
+    //const sceneryIdentifier = SequenceManager.instance.getCurrentChapterSceneFromDiorama();
+    const sceneryIdentifier = selectUserActiveScene(getState());
     webGlManagerRef.current.initAndStart(rootRef.current, sceneryIdentifier);
 
     // On component destroy

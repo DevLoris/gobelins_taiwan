@@ -13,7 +13,7 @@
           "delay": 180
         },
         {
-          "message": "Soyez attentifs aux enseignes et affiches des bâtiments.",
+          "message": "Sois attentif aux enseignes et affiches des bâtiments.",
           "moment": "before_pre_pickup",
           "delay": 220
         },
@@ -110,14 +110,6 @@
           }
         },
         {
-          "collectible_id": "tofu",
-          "trigger": "pintofu",
-          "focus": {
-            "coords": {"x": 23, "y": 15, "z": 0},
-            "rotation": {"x": 28.8, "y": 0.66, "z": 20}
-          }
-        },
-        {
           "collectible_id": "cybercafe",
           "trigger": "pincybercafe",
           "focus": {
@@ -168,6 +160,24 @@
         {
           "collectible_id": "qi_gong",
           "trigger": "pinqi_gong",
+          "focus": {
+            "coords": {"x": 25, "y": 3, "z": 0},
+            "rotation": {"x": 19, "y": 0.7, "z": 3.2
+            }
+          }
+        },
+        {
+          "collectible_id": "ruyi",
+          "trigger": "ruyi",
+          "focus": {
+            "coords": {"x": 25, "y": 3, "z": 0},
+            "rotation": {"x": 19, "y": 0.7, "z": 3.2
+            }
+          }
+        },
+        {
+          "collectible_id": "democratie",
+          "trigger": "democratie",
           "focus": {
             "coords": {"x": 25, "y": 3, "z": 0},
             "rotation": {"x": 19, "y": 0.7, "z": 3.2
@@ -1349,8 +1359,8 @@
             "sprite": "/public/sprites/Guichet/Guichet_man.png",
             "options": {
               "scale": [1.8, 1.8, 1.8],
-              "position": [2, -0.5, 0],
-              "size": {"w": 70, "h": 230}
+              "position": [2, -0.8, 0.5],
+              "size": {"w": 268, "h": 942}
             }
           }
         ],
@@ -1378,7 +1388,7 @@
   "models": [
     {
       "id": "TaipeiMain",
-      "path": "/public/sceneries/demo/TaipeiV15.glb"
+      "path": "/public/sceneries/demo/Taipei-test-car.glb"
     },
     {
       "id": "GridBottom",
@@ -1570,8 +1580,8 @@
       "type": "hint",
       "name": "Mariage LGBT",
       "asset": "/public/images/pics/lgbtq.jpg",
-      "stamp": "/public/images/stamp/stamp.png",
-      "text": "Depuis 2019, Taïwan est le seul pays dans toute l’Asie à autoriser le mariage LGBT. Les taïwanais sont très tolérants sur ces sujets de société. L’hospitalité est un savoir-être partagé par les taïwanais.",
+      "stamp": "/public/images/stamp/tolerance.png",
+      "text": "Depuis 2019, Taïwan est le seul pays dans toute l’Asie à autoriser le mariage LGBT. Les Taïwanais sont très tolérants sur ces sujets de société. L’hospitalité est un savoir-être partagé par les taïwanais.",
       "additional": [
         {
           "type": "image",
@@ -1583,10 +1593,22 @@
       "id": "101",
       "type": "hint",
       "name": "Taipei 101",
-      "asset": "/public/images/pics/sample.png",
-      "stamp": "/public/images/stamp/stamp.png",
-      "text": "C’est le 10ème plus grand bâtiment du monde, du haut de ses 509 mètres ! Son nom vient du fait qu’il fasse 101 étages. \nDedans on peut y trouver des magasins, des bureaux et des observateurs, comme au 91ème étage. Tu peux admirer Taipei et son horizon, pour découvrir plein d’endroits ! Attention à ne pas avoir le vertige !\n",
+      "asset": "/public/images/pics/taipei101.jpg",
+      "stamp": "/public/images/stamp/taipei101.svg",
+      "text": "C’est le 10ème plus grand bâtiment du monde, du haut de ses 509 mètres ! Son nom vient du fait qu’il fasse 101 étages.",
       "additional": [
+        {
+          "type": "image",
+          "value":  "/public/images/pics/taipei101.jpg"
+        },
+        {
+          "type": "separator",
+          "value": null
+        },
+        {
+          "type": "text",
+          "value": "Dedans on peut y trouver des magasins, des bureaux et des observateurs, comme au 91ème étage. Tu peux admirer Taipei et son horizon, pour découvrir plein d’endroits ! Attention à ne pas avoir le vertige !"
+        }
       ]
     },
     {
@@ -1594,21 +1616,38 @@
       "type": "hint",
       "name": "Métro",
       "asset": "/public/images/pics/sample.png",
-      "stamp": "/public/images/stamp/stamp.png",
+      "stamp": "/public/images/stamp/metro.png",
       "text": "Grâce au métro de Taipei, ou le MRT, tu peux te rendre dans tous les quartiers de la ville, allant du zoo de Taipei au Temple de Longshan, en passant par divers nights markets ! En plus, il est plus simple que celui de nos grandes villes européennes, avec peu de lignes ! Tu ne pourras pas t’y perdre.",
-      "additional": []
+      "additional": [
+        {
+          "type": "text",
+          "value": "Le métro taïwanais est est plus simple que celui de nos grandes villes européennes, et n'a que très peu de lignes ! Tu ne pourras pas t’y perdre."
+        }
+      ]
     },
     {
       "id": "night_market",
       "type": "hint",
-      "name": "Night markets (friture)",
+      "name": "Night markets",
       "asset": "/public/images/pics/nightmarket.jpg",
       "stamp": "/public/images/stamp/nightMarket.svg",
-      "text": "Les night markets sont des lieux vivants et gourmands de Taiwan. On y trouve des repas variés et de qualité mais surtout pour peu cher. Par exemple des nouilles au bœuf, des raviolis vapeur, des saucisses sucrées, des patates douces frits, des bubble teas, des bao burgers, etc. \nPas besoin de cuisiner chaque soir : il suffit juste de descendre dans la rue, tu trouveras ton bonheur !\n",
+      "text": "Les night markets sont des lieux vivants et gourmands de Taïwan. On y trouve des repas variés et de qualité mais surtout pour peu cher. Pas besoin de cuisiner chaque soir : il suffit juste de descendre dans la rue, tu trouveras ton bonheur !",
       "additional": [
         {
           "type": "image",
           "value":  "/public/images/pics/nightmarket.jpg"
+        },
+        {
+          "type": "separator",
+          "value": null
+        },
+        {
+          "type": "text",
+          "value": "Tu peux par exemple y trouver des nouilles au bœuf, des raviolis vapeur, des saucisses sucrées, des patates douces frits, des bubble teas, des bao burgers, etc. "
+        },
+        {
+          "type": "tips",
+          "value": "Les night markets sont vraiment utiles en tant que PVTistes : pour quelques dollars taiwanais, tu peux te nourrir convenablement."
         }
       ]
     },
@@ -1617,10 +1656,9 @@
       "type": "hint",
       "name": "Climatiseur",
       "asset": "/public/images/pics/climatiseur.jpg",
-      "stamp": "/public/images/stamp/stamp.png",
+      "stamp": "/public/images/stamp/climatiseur.svg",
       "text": "Il y a beaucoup de climatiseurs à Taïwan ! On pourrait même te dire qu’il y en a dans tous les appartements. Mais pourquoi ? Et bien car le climat de Taïwan est quand même plutôt chaud et humide en été.",
       "additional": [
-
         {
           "type": "image",
           "value":  "/public/images/pics/climatiseur.jpg"
@@ -1632,8 +1670,8 @@
       "type": "hint",
       "name": "Tout est traduit",
       "asset": "/public/images/pics/translate.jpg",
-      "stamp": "/public/images/stamp/stamp.png",
-      "text": "Les noms des magasins, des rues, des villes sont traduits à Taipei en anglais. Tu n’auras aucun mal à trouver ton chemin. Aussi, une majorité des taïwanais parlent anglais et sont très bienveillants, tu peux compter sur eux pour t’aider à trouver ton chemin.",
+      "stamp": "/public/images/stamp/tout_traduit.svg",
+      "text": "Les noms des magasins, des rues, des villes sont traduits à Taipei en anglais. Tu n’auras aucun mal à trouver ton chemin. Aussi, une majorité des Taïwanais parlent anglais et sont très bienveillants, tu peux compter sur eux pour t’aider à trouver ton chemin.",
       "additional": [
         {
           "type": "image",
@@ -1642,31 +1680,62 @@
       ]
     },
     {
-      "id": "tofu",
+      "id": "democratie",
       "type": "hint",
-      "name": "Tofu Puant et ses variétés",
-      "asset": "/public/images/pics/sample.png",
-      "stamp": "/public/images/stamp/stamp.png",
+      "name": "Démocratie",
+      "asset": "/public/images/pics/democratie.jpg",
+      "stamp": "/public/images/stamp/democratie.svg",
       "text": "Le nom n’est peut être pas très aguicheur, et ça peut faire un peu peur la première fois qu’on en goûte. Mais on s’habitue vite à cette spécialité taïwanaise. Après tout, il faut toujours goûter avant de dire “j’aime pas”.",
-      "additional": []
+      "additional": [
+        {
+          "type": "image",
+          "value":  "/public/images/pics/democratie.jpg"
+        },
+        {
+          "type": "separator",
+          "value": null
+        },
+        {
+          "type": "image",
+          "value":  "/public/images/pics/democratie2.jpg"
+        }
+      ]
     },
     {
       "id": "cybercafe",
       "type": "hint",
       "name": "Cybercafé",
-      "asset": "/public/images/pics/sample.png",
-      "stamp": "/public/images/stamp/stamp.png",
-      "text": "En France, les cybercafés ont souvent mauvaise mine ! Mais à Taïwan, c'est carrément une institution ! Les sièges y sont confortables, tu peux y manger etc. ! Ça peut être utile d’ailleurs si tu veux pouvoir discuter avec des amis à l’autre bout du monde, jouer à divers jeux ou bien surfer sur Internet, pour revenir lire nos anecdotes et faits \uD83D\uDE0E !",
-      "additional": []
+      "asset": "/public/images/pics/cybercafe.jpg",
+      "stamp": "/public/images/stamp/cybercafe.svg",
+      "text": "En France, les cybercafés ont souvent mauvaise mine ! Mais à Taïwan, c'est carrément une institution ! Les sièges y sont confortables, tu peux y manger etc. !",
+      "additional": [
+        {
+          "type": "image",
+          "value":  "/public/images/pics/cybercafe.jpg"
+        },
+        {
+          "type": "separator",
+          "value": null
+        },
+        {
+          "type": "text",
+          "value": "Ça peut être utile d’ailleurs si tu veux pouvoir discuter avec des amis à l’autre bout du monde, jouer à divers jeux ou bien surfer sur Internet, pour revenir lire nos anecdotes et faits \uD83D\uDE0E !"
+        }
+      ]
     },
     {
       "id": "vegan",
       "type": "hint",
       "name": "Vegan way",
-      "asset": "/public/images/pics/sample.png",
-      "stamp": "/public/images/stamp/stamp.png",
-      "text": "Le véganisme est reconnu à Taïwan ! Ce pays est même reconnu comme un des pays les plus vegan-friendly du monde ! Il y existe de nombreux endroits qui proposent de pouvoir manger des plats sans origine animal.",
-      "additional": []
+      "asset": "/public/images/pics/vegan.jpg",
+      "stamp": "/public/images/stamp/vegan.svg",
+      "text": "Le véganisme est reconnu à Taïwan ! Ce pays est même reconnu comme un des pays les plus vegan-friendly du monde ! Il y existe de nombreux endroits qui proposent de pouvoir manger des plats sans origines animales.",
+      "additional": [
+        {
+          "type": "image",
+          "value":  "/public/images/pics/vegan.jpg"
+        }
+      ]
     },
     {
       "id": "scooter",
@@ -1694,28 +1763,73 @@
       "id": "temple",
       "type": "hint",
       "name": "Temple Longshan",
-      "asset": "/public/images/pics/sample.png",
-      "stamp": "/public/images/stamp/stamp.png",
+      "asset": "/public/images/pics/temple.jpg",
+      "stamp": "/public/images/stamp/temple.svg",
       "text": "C’est un temple buddhiste situé à Taipei. Le bouddhisme est la religion majoritaire à Taïwan, avec plus d’un tiers de la population suivant cette croyance. Toutes les religions sont acceptées à Taïwan, il n’y a pas de jugement relatif à ça.",
-      "additional": []
+      "additional": [
+        {
+          "type": "image",
+          "value":  "/public/images/pics/temple.jpg"
+        }
+      ]
+    },
+    {
+      "id": "ruyi",
+      "type": "hint",
+      "name": "Architecture Ruyi",
+      "asset": "/public/images/pics/ruyi.jpg",
+      "stamp": "/public/images/stamp/architecture_ruyi.svg",
+      "text": "Le Ruyi, c’est ces formes que l’on voit sur Taipei 101. C’est un très vieux symbole de la croyance populaire de Taiwan, qui représente un nuage paradisiaque, un symbole de guérison, de protection et d’accomplissement.",
+      "additional": [
+        {
+          "type": "image",
+          "value":  "/public/images/pics/ruyi.jpg"
+        }
+      ]
     },
     {
       "id": "asus",
       "type": "hint",
       "name": "Asus",
-      "asset": "/public/images/pics/sample.png",
-      "stamp": "/public/images/stamp/stamp.png",
-      "text": "Tu as sans nulle doute déjà vu des ordinateurs de cette marque originaire de Taïwan. Cette entreprise produit divers matériels informatiques tels que des cartes mères, des ordinateurs portables, des cartes graphiques, etc… Taïwan est par ailleurs réputé pour être le plus grand exportateur de semi-conducteurs et d'électronique au monde.",
-      "additional": []
+      "asset": "/public/images/pics/asus1.jpg",
+      "stamp": "/public/images/stamp/microprocesseur.svg",
+      "text": "Tu as sans nulle doute déjà vu des ordinateurs de cette marque originaire de Taïwan. Cette entreprise produit divers matériels informatiques tels que des cartes mères, des ordinateurs portables, des cartes graphiques, etc…",
+      "additional": [
+        {
+          "type": "image",
+          "value":  "/public/images/pics/asus1.jpg"
+        },
+        {
+          "type": "separator",
+          "value": null
+        },
+        {
+          "type": "text",
+          "value": "Taïwan est par ailleurs réputé pour être le plus grand exportateur de semi-conducteurs et d'électronique au monde."
+        },
+        {
+          "type": "tips",
+          "value": "Taïwan est réputée pour son ingénieurie informatique. Si tu es ingénieur, tu n'auras aucun mal à trouver un emploi durant ton PVT."
+        },
+        {
+          "type": "image",
+          "value":  "/public/images/pics/asus2.jpg"
+        }
+      ]
     },
     {
       "id": "beef_noodles",
       "type": "hint",
       "name": "Beef Noodle",
-      "asset": "/public/images/pics/sample.png",
-      "stamp": "/public/images/stamp/stamp.png",
-      "text": "Les nouilles au bœuf sont un plat typique de Taïwan et ont été introduites au pays par des réfugiés de la guerre civile chinoise. C'est une spécialité locale à ne pas rater !",
-      "additional": []
+      "asset": "/public/images/pics/beef_noodle.jpg",
+      "stamp": "/public/images/stamp/beef_noodle.svg",
+      "text": "Les nouilles au bœuf sont un plat typique de Taïwan et ont été introduites au pays par des réfugiés de la guerre civile chinoise.",
+      "additional": [
+        {
+          "type": "image",
+          "value":  "/public/images/pics/beef_noodle.jpg"
+        }
+      ]
     },
     {
       "id": "qi_gong",
@@ -1726,13 +1840,21 @@
       "text": "Le Qi gong est une gymnastique traditionnelle d’origine chinoise qui consiste à maîtriser le souffle en alliant mouvements lents, concentration et exercices respiratoires.",
       "additional": [
         {
+          "type": "image",
+          "value":  "/public/images/pics/qigong.jpg"
+        },
+        {
+          "type": "separator",
+          "value": null
+        },
+        {
           "type": "testimonial",
           "value": "Dans le parc à côté de chez moi, j’ai rencontré des gens qui faisaient du Qi gong en plein milieu du parc, ils m’ont invité à participer. Au début, c’était un peu gênant, mais au final c’était bien et reposant. Depuis, je retourne là-bas et j’en fais de temps en temps. - Jeanne"
         },
         {
           "type": "phonetic",
           "value": {
-            "chinese": "摩托車",
+            "chinese": "氣功",
             "phonetic": "Qìgōng",
             "english": "Qi gong"
           }

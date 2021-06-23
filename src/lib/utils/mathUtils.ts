@@ -7,6 +7,8 @@ export function zeroToOneRandom() {
   return Math.random() * (1 - 0) + 0;
 }
 
+export function isOdd(num) { return num % 2;}
+
 /**
  * Limit a value between a min and a max
  * @param pMin Can't go bellow

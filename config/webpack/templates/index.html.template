@@ -11,25 +11,25 @@
     />
 
     <!-- METAS -->
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>Départ pour Taïwan</title>
+    <meta name="description" content="« Départ pour Taïwan » est une expérience interactive et ludique présentant le visa vacances travail appliqué à Taïwan. Un pays méconnu à la croisée de la culture chinoise, japonaise et américaine d’une richesse insoupçonnée pour sa taille.">
+    <meta name="author" content="Loris Pinna, Mickael Debalme, Sulyvan Batt, Antoine Rault, Sandra Perreira Da Costa, Sonia Rouabhi">
     <meta name="keywords" content="">
     <link rel="canonical" href="">
     <link rel="image_src" href="">
     <!-- FB -->
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="">
-    <meta property="og:url" content="">
-    <meta property="og:title" content="<%= htmlWebpackPlugin.options.title %>">
-    <meta property="og:description" content="">
+    <meta property="og:site_name" content="departpourtaiwan.fr">
+    <meta property="og:url" content="https://departpourtaiwan.fr/">
+    <meta property="og:title" content="Départ pour Taïwan">
+    <meta property="og:description" content="« Départ pour Taïwan » est une expérience interactive et ludique présentant le visa vacances travail appliqué à Taïwan. Un pays méconnu à la croisée de la culture chinoise, japonaise et américaine d’une richesse insoupçonnée pour sa taille.">
     <meta property="og:image" content="">
     <!-- TW -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="">
-    <meta name="twitter:url" content="">
-    <meta name="twitter:title" content="<%= htmlWebpackPlugin.options.title %>">
-    <meta name="twitter:description" content="">
+    <meta name="twitter:site" content="departpourtaiwan.fr">
+    <meta name="twitter:url" content="https://departpourtaiwan.fr/">
+    <meta name="twitter:title" content="Départ pour Taïwan">
+    <meta name="twitter:description" content="« Départ pour Taïwan » est une expérience interactive et ludique présentant le visa vacances travail appliqué à Taïwan. Un pays méconnu à la croisée de la culture chinoise, japonaise et américaine d’une richesse insoupçonnée pour sa taille.">
     <meta name="twitter:image" content="">
     <!-- FAVICON -->
     <link rel="apple-touch-icon" sizes="180x180" href="">

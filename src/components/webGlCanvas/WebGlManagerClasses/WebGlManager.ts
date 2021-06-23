@@ -25,7 +25,7 @@ import {
     SpriteMaterial,
     Sprite,
     RepeatWrapping,
-    Group
+    Group, AnimationMixer, AnimationClip, LoopRepeat
 } from "three";
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
 import {OutlineEffect} from "three/examples/jsm/effects/OutlineEffect";
@@ -53,10 +53,11 @@ import {zeroToOneRandom} from "../../../lib/utils/mathUtils";
 import {TextureAnimator} from "./TextureAnimator";
 import {IStateDataSceneCollectibleType} from "../../../store/state_enums";
 import {isLocal} from "../../../helpers/DebugHelpers";
+import AnimationService, {IGltfAnimations} from "./AnimationService";
 
 const debug = require("debug")(`front:WebGlManager`);
 
-const DO_NOT_SHOW_LOCAL_DEBUG:boolean = false;
+const DO_NOT_SHOW_LOCAL_DEBUG:boolean = true;
 
 const ENABLE_STATS: boolean = !DO_NOT_SHOW_LOCAL_DEBUG && isLocal();
 const ENABLE_DEBUG: boolean = !DO_NOT_SHOW_LOCAL_DEBUG && isLocal();
@@ -72,6 +73,9 @@ interface IObjectEndCoordinates {
 
 export class WebGlManager {
     private static instance: WebGlManager;
+
+    private _animationMixers: AnimationMixer[] = new Array();
+    private _animationClips: any[] = new Array();
 
     private _clock:Clock;
 
@@ -113,6 +117,11 @@ export class WebGlManager {
 
     private _animatedSprites: any[] = Array();
 
+    private _movingObjects: any[] = new Array();
+    private _sceneInvisibleWalls: Mesh[] = new Array();
+
+    private _sceneryName:string;
+
     constructor() {
     }
 
@@ -138,6 +147,8 @@ export class WebGlManager {
         debug("Init WebGlManager", pWrapper);
         debug("ThreeJS version:", REVISION);
         debug("pSceneryName", pSceneryName);
+
+        this._sceneryName = pSceneryName;
 
         this._clock = new Clock();
 
@@ -221,14 +232,16 @@ export class WebGlManager {
     private _setupSceneChildrenArrays(): void {
         this._instancedMeshes = this.getScene().children.filter(object => object instanceof InstancedMesh);
 
+        const animsObject:IGltfAnimations = AnimationService.getInstance().getAnimationFromGltfNamed(this._sceneryName);
+
         this.getScene().children.forEach(childElement => {
             // Meshes can be found in the Group child
             if(childElement.type === "Group" && childElement.name === "Scene") {
 
                 this._allInstancedMeshes = childElement.children.filter(object => object.name.includes("instance"));
 
-                debug("instances meshes", this._instancedMeshes)
-                debug("All instanced meshes", this._allInstancedMeshes);
+                // debug("instances meshes", this._instancedMeshes)
+                // debug("All instanced meshes", this._allInstancedMeshes);
 
                 childElement.children.forEach(object => {
                     // Objects we are looking for (buildings) are Mesh type
@@ -239,40 +252,81 @@ export class WebGlManager {
                         // Excluded meshes
                         && !object.name.includes("SOL")
                     ) {
-                        // Get size of mesh
-                        // 1. Convert object in box
-                        const boxFromObject: Box3 = new Box3().setFromObject(object);
-                        // 2. Get size of the box
-                        const boxSize: Vector3 = boxFromObject.getSize(new Vector3());
 
-                        const divideFactor = 2;
-                        const offset = .5;
-                        const objectEndCoordinatesAndMore:IObjectEndCoordinates = {
-                            object: object,
-                            instancedMeshes: new Array(),
-                            xEnds: [ object.position.x - boxSize.x / divideFactor - offset, object.position.x + boxSize.x / divideFactor + offset ],
-                            yEnds: [ object.position.y - boxSize.y / divideFactor - offset, object.position.y + boxSize.y / divideFactor + offset ],
-                            zEnds: [ object.position.z - boxSize.z / divideFactor - offset, object.position.z + boxSize.z / divideFactor + offset ]
+                        // Moving objects
+                        if(object.name.toLowerCase().includes("moving")) {
+
+                            // @ts-ignore
+                            object.material.transparent = true;
+
+                            // Add box on object
+                            // Get size of mesh
+                            // 1. Convert object in box
+                            const boxFromObject: Box3 = new Box3().setFromObject(object);
+                            // 2. Get size of the box
+                            const boxSize: Vector3 = boxFromObject.getSize(new Vector3());
+
+                            const geometry = new BoxGeometry( boxSize.x, boxSize.y, boxSize.z );
+                            const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom()), wireframe: true} );
+                            const box = new Mesh( geometry, material );
+                            box.position.set(0,object.position.y,0);
+                            box.name = "colliderBox:" + object.name;
+                            box["size"] = boxSize;
+                            object.add(box);
+
+                            object["size"] = boxSize;
+                            // Will be re-computed at each frame
+                            object["maxCoordinates"] = this._computeBoxMaxCoordinates(object);
+
+                            this._movingObjects.push(object);
+
+                            animsObject.animations.forEach((anim) => {
+                                if(anim.name.toLowerCase() === object.name.toLowerCase().replace("moving", ""))
+                                {
+                                    object.animations = [anim];
+                                    this._animationMixers.push(new AnimationMixer(object));
+                                    this._animationClips.push(object.animations);
+                                }
+                            });
+                        }
+                        else {
+                            // Get size of mesh
+                            // 1. Convert object in box
+                            const boxFromObject: Box3 = new Box3().setFromObject(object);
+                            // 2. Get size of the box
+                            const boxSize: Vector3 = boxFromObject.getSize(new Vector3());
+
+                            const divideFactor = 2;
+                            const offset = .5;
+                            const objectEndCoordinatesAndMore:IObjectEndCoordinates = {
+                                object: object,
+                                instancedMeshes: new Array(),
+                                xEnds: [ object.position.x - boxSize.x / divideFactor - offset, object.position.x + boxSize.x / divideFactor + offset ],
+                                yEnds: [ object.position.y - boxSize.y / divideFactor - offset, object.position.y + boxSize.y / divideFactor + offset ],
+                                zEnds: [ object.position.z - boxSize.z / divideFactor - offset, object.position.z + boxSize.z / divideFactor + offset ]
+                            }
+
+                            // Look for instanced meshes inside walla
+                            this._allInstancedMeshes.forEach((instance) => {
+                                if(this._isFirstInsideSecond(instance, objectEndCoordinatesAndMore)) {
+                                    objectEndCoordinatesAndMore.instancedMeshes = [...objectEndCoordinatesAndMore.instancedMeshes, instance.name];
+                                }
+                            });
+
+                            // Add object coordinates to the global array
+                            this._objectsEndCoordinates.push(objectEndCoordinatesAndMore);
+
+                            // const geometry = new BoxGeometry( boxSize.x + offset, boxSize.y + offset, boxSize.z + offset );
+                            // const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom())} );
+                            // const cube = new Mesh( geometry, material );
+                            // cube.position.set(object.position.x - offset / 2, object.position.y - offset / 2, object.position.z - offset / 2);
+                            // this._scene.add(cube);
+
+                            // Add hitboxes
+                            this._setHitbox(object, boxSize);
+
                         }
 
-                        // Look for instanced meshes inside walla
-                        this._allInstancedMeshes.forEach((instance) => {
-                            if(this._isFirstInsideSecond(instance, objectEndCoordinatesAndMore)) {
-                                objectEndCoordinatesAndMore.instancedMeshes = [...objectEndCoordinatesAndMore.instancedMeshes, instance.name];
-                            }
-                        });
-
-                        // Add object coordinates to the global array
-                        this._objectsEndCoordinates.push(objectEndCoordinatesAndMore);
-
-                        // const geometry = new BoxGeometry( boxSize.x + offset, boxSize.y + offset, boxSize.z + offset );
-                        // const material = new MeshBasicMaterial( {color: new Color(tempRandom(), tempRandom(), tempRandom())} );
-                        // const cube = new Mesh( geometry, material );
-                        // cube.position.set(object.position.x - offset / 2, object.position.y - offset / 2, object.position.z - offset / 2);
-                        // this._scene.add(cube);
-
-                        // Add hitboxes
-                        this._setHitbox(object, boxSize);
                     }
                     else if(object.type === "Object3D") {
                         // If object is a pin (hint)
@@ -307,7 +361,7 @@ export class WebGlManager {
                                 let label_texture = new TextureLoader().load( `/public/pins/${nameWithoutPin}.png` );
                                 const label_material = new SpriteMaterial( { color: 0xffffff, map: label_texture, transparent: true } );
                                 const label_sprite = new Sprite( label_material );
-                                label_sprite.scale.set(1.5, .375, .7);
+                                label_sprite.scale.set(1.5, .3, .7);
                                 const yOffset = 0;
                                 label_sprite.position.set(object.position.x, object.position.y + yOffset, object.position.z + 1);
                                 label_sprite["pinName"] = nameWithoutPin;
@@ -322,6 +376,20 @@ export class WebGlManager {
                         }
                     }
                 });
+
+                // Start all anims
+                this._animationMixers.forEach((mixer, index) => {
+                    // const actions = this._animationClips[index].forEach((clip) => {
+                    //     return mixer.clipAction(clip);
+                    // })
+                    // debug(actions , this._animationClips[index])
+                    // actions.each().play();
+
+                    const action = mixer.clipAction(this._animationClips[index][0]);
+                    action.clampWhenFinished = false;
+                    action.play();
+                });
+
             }
         });
 
@@ -339,6 +407,56 @@ export class WebGlManager {
                 }
             });
         });
+    }
+
+    private _createInvisibleWalls() {
+        debug("scene", this.getScene());
+
+        // Add invisible walls all around scene
+        // Used for detecting cars leaving & entering
+        // Get size of mesh
+        // 1. Convert object in box
+        const boxFromObject: Box3 = new Box3().setFromObject(this.getScene());
+        // 2. Get size of the box
+        const boxSize: Vector3 = boxFromObject.getSize(new Vector3());
+
+        // const geometry = new BoxGeometry( boxSize.x, boxSize.y, boxSize.z );
+        // const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom())} );
+        // const cube = new Mesh( geometry, material );
+        // cube.position.set(0,0,0);
+        // this._scene.add(cube);
+
+        for(let i = 0; i < 4; i++) {
+            const condition = i === 0 || i === 2;
+
+            const wallSize = {
+                x: condition ? 1 : boxSize.x,
+                y: 5,
+                z: condition ? boxSize.x : 1
+            }
+
+            const geometry = new BoxGeometry(wallSize.x, wallSize.y, wallSize.z);
+            const material = new MeshBasicMaterial( {color: new Color(zeroToOneRandom(), zeroToOneRandom(), zeroToOneRandom())} );
+            const wall = new Mesh( geometry, material );
+            wall.position.set(
+                condition ? i === 0 ? boxSize.x / 2 : -boxSize.x / 2 : 0,
+                0,
+                condition ? 0 : i === 1 ? boxSize.z / 2 - 4 : -boxSize.z / 2 + 3);
+            wall.name = "WorldWall_" + i;
+            wall.material.transparent = true;
+            wall["size"] = wallSize;
+            wall["maxCoordinates"] = this._computeBoxMaxCoordinates(wall);
+            this._scene.add(wall);
+            this._sceneInvisibleWalls.push(wall);
+        }
+    }
+
+    private _computeBoxMaxCoordinates(box) {
+        return {
+            xMax: box.position.x + box.size.x / 2, xMin: box.position.x - box.size.x / 2,
+            yMax: box.position.y + box.size.y / 2, yMin: box.position.y - box.size.y / 2,
+            zMax: box.position.z + box.size.z / 2, zMin: box.position.z - box.size.z / 2
+        }
     }
 
     public setSpriteTexturePinValid(sprite) {
@@ -510,6 +628,17 @@ export class WebGlManager {
                 sprite.update(1000 * delta);
             });
 
+            // Mesh animations
+            this._animationMixers.forEach((mixer) => {
+                mixer.update(delta);
+            });
+
+            // Update moving objects data
+            this._updateMovingObjectsAndCheckPosition();
+
+            // Wall collisions
+            // this._checkWallCollisions();
+
             // Effects
             if (this._effects.length == 0) {
                 this._renderer.render(this._scene, this._camera);
@@ -521,6 +650,54 @@ export class WebGlManager {
         ENABLE_STATS && this._configureGui.getStats().end();
 
         requestAnimationFrame(this._animationFrame.bind(this));
+    }
+
+    private _updateMovingObjectsAndCheckPosition() {
+        this._movingObjects.forEach((obj) => {
+
+            const mapExtermityValue = 26.5;
+
+            // Object is outside scene
+            if(
+                obj.position.x > mapExtermityValue || obj.position.x < -mapExtermityValue
+                || obj.position.z > mapExtermityValue || obj.position.z < -mapExtermityValue
+            ) {
+                this._movingObjectFade(obj, false);
+            }
+            // Object is inside scene
+            else {
+                this._movingObjectFade(obj, true);
+            }
+        });
+    }
+
+    private _movingObjectFade(obj, pVisible:boolean = true, pDuration:number = .3) {
+        const animatedProperty = obj.material;
+
+        if(gsap.isTweening(animatedProperty)) return;
+
+        gsap.killTweensOf(animatedProperty);
+        gsap.to(animatedProperty, {
+            duration: pDuration,
+            opacity: pVisible ? 1 : 0,
+        });
+    }
+
+    private _checkWallCollisions() {
+        this._sceneInvisibleWalls.forEach((wall) => {
+            this._movingObjects.forEach((movingObj) => {
+                // Look for collision between wall and box of moving object
+                if(this._twoBoxesCollided(wall, movingObj)) {
+                    debug("collision between", movingObj.position);
+                }
+            });
+        })
+    }
+
+    private _twoBoxesCollided(boxA, boxB):boolean {
+        return (boxA.maxCoordinates.xMin <= boxB.maxCoordinates.xMax && boxA.maxCoordinates.xMax >= boxB.maxCoordinates.xMin) &&
+            (boxA.maxCoordinates.yMin <= boxB.maxCoordinates.yMax && boxA.maxCoordinates.yMax >= boxB.maxCoordinates.yMin) &&
+            (boxA.maxCoordinates.zMin <= boxB.maxCoordinates.zMax && boxA.maxCoordinates.zMax >= boxB.maxCoordinates.zMin);
     }
 
     // --------------------------------------------------------------------------- SETUP
