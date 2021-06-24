@@ -326,7 +326,7 @@
             "type": "sprite",
             "id": "homme_5",
             "sprite": "/public/sprites/Homme/Homme_1.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [13, 0.6, 8], "size": {"w": 429, "h": 1019}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [13, 0.6, 8.5], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
