@@ -1388,7 +1388,7 @@
   "models": [
     {
       "id": "TaipeiMain",
-      "path": "/public/sceneries/demo/TaipeiV16.glb"
+      "path": "/public/sceneries/demo/Taipei_4_final.glb"
     },
     {
       "id": "GridBottom",
@@ -1697,7 +1697,7 @@
       "name": "Démocratie",
       "asset": "/public/images/pics/democratie.jpg",
       "stamp": "/public/images/stamp/democratie.svg",
-      "text": "Le nom n’est peut être pas très aguicheur, et ça peut faire un peu peur la première fois qu’on en goûte. Mais on s’habitue vite à cette spécialité taïwanaise. Après tout, il faut toujours goûter avant de dire “j’aime pas”.",
+      "text": "Taïwan est une démocratie, et est indépendante de la Chine continentale. En 2014, des étudiants ont manifesté contre un accord commercial entre la Chine et Taïwan, lors du mouvement des tournesols.",
       "additional": [
         {
           "type": "image",
@@ -1706,6 +1706,10 @@
         {
           "type": "separator",
           "value": null
+        },
+        {
+          "type": "text",
+          "value": "Le mouvement des Tournesols fut un mouvement entièrement pacifiste, et a permis d'annuler cet accord."
         },
         {
           "type": "image",

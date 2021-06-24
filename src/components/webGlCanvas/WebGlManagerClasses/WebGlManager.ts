@@ -57,9 +57,10 @@ import AnimationService, {IGltfAnimations} from "./AnimationService";
 
 const debug = require("debug")(`front:WebGlManager`);
 
+const DO_NOT_SHOW_LOCAL_STAT:boolean = false;
 const DO_NOT_SHOW_LOCAL_DEBUG:boolean = true;
 
-const ENABLE_STATS: boolean = !DO_NOT_SHOW_LOCAL_DEBUG && isLocal();
+const ENABLE_STATS: boolean = !DO_NOT_SHOW_LOCAL_STAT && isLocal();
 const ENABLE_DEBUG: boolean = !DO_NOT_SHOW_LOCAL_DEBUG && isLocal();
 
 // Object extremities on each axis
