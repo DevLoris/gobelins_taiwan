@@ -46,9 +46,9 @@ export class ConfigureGui {
         perfFolder.add(instance.getOrbitControls().target, 'x', -20, 20, 0.1).name('Target X').onChange(function() { });
         perfFolder.add(instance.getOrbitControls().target, 'y', -20, 20, 0.1).name('Target Y').onChange(function() { });
         perfFolder.add(instance.getOrbitControls().target, 'z', -20, 20, 0.1).name('Target Z').onChange(function() { });
-        perfFolder.add(instance.getCamera().position, 'x', -20, 20, 0.1).name('Caméra X').onChange(function() { });
+        perfFolder.add(instance.getCamera().position, 'x', -40, 40, 0.1).name('Caméra X').onChange(function() { });
         perfFolder.add(instance.getCamera().position, 'y', -20, 20, 0.1).name('Caméra Y').onChange(function() { });
-        perfFolder.add(instance.getCamera().position, 'z', -20, 20, 0.1).name('Caméra Z').onChange(function() { });
+        perfFolder.add(instance.getCamera().position, 'z', -40, 40, 0.1).name('Caméra Z').onChange(function() { });
 
     }
 

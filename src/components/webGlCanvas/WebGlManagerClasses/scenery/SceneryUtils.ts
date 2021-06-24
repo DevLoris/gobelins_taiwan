@@ -42,12 +42,14 @@ export class SceneryUtils {
      */
     static buildElementsOf(scene: Scene, scene_data: IStateDataSceneElement[]) {
         this.convertSceneDataToElements(scene_data).forEach(value => {
-            let elements = value.prepareElements();
-            elements.forEach(element => {
-                if(element) {
-                    scene.add( element );
-                }
-            });
+            if(value !== undefined) {
+                let elements = value.prepareElements();
+                elements.forEach(element => {
+                    if (element) {
+                        scene.add(element);
+                    }
+                });
+            }
         });
     }
 
