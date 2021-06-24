@@ -82,27 +82,27 @@ function Notebook (props: IProps) {
 
     function revealAnimation(pShow:boolean, pDuration:number = .7) {
         // remove default display none
-        pShow && gsap.set(rootRef.current, {display: "block"})
+        pShow && rootRef.current && gsap.set(rootRef.current, {display: "block"})
 
         // Fix : menuButtonsRefs animation breaks css rotate.
         menuButtonsRefs.current.forEach((el, index) => {
-            gsap.set(el, {rotateZ: index === 0 ? -1 : (index === 1) ? 1 : 0});
+            el && gsap.set(el, {rotateZ: index === 0 ? -1 : (index === 1) ? 1 : 0});
         })
 
         // Cancel current animation
-        gsap.killTweensOf(rootRef.current);
-        gsap.killTweensOf(menuButtonsRefs.current);
+        rootRef.current && gsap.killTweensOf(rootRef.current);
+        menuButtonsRefs.current && gsap.killTweensOf(menuButtonsRefs.current);
 
         // Start animation
         // Root
-        gsap.to(rootRef.current, {
+        rootRef.current && gsap.to(rootRef.current, {
             xPercent: pShow ? 0 : 130,
             rotateZ: pShow ? 0 : -15,
             duration: pDuration,
             ease: "power2.easeOut",
         });
         // Menu buttons
-        (menuButtonsRefs.current.forEach(value => {
+        menuButtonsRefs.current && (menuButtonsRefs.current.forEach(value => {
             if(value)
                 gsap.to(value, {
                     yPercent: pShow ? 0 : 110,
