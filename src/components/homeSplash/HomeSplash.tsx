@@ -61,8 +61,8 @@ function HomeSplash(props: IProps) {
       {
         props.mode === EHomeSplashMode.DESKTOP &&
           <div className={css.desktopInner}>
-            <p className={css.desktopMessage} dangerouslySetInnerHTML={{ __html: "Patience, la version ordinateur arrive bientôt.<br>En attendant, l'aventure t'attend déjà sur mobile !" }} />
             <img src={"/public/images/qrcode.png"} />
+            <p className={css.desktopMessage} dangerouslySetInnerHTML={{ __html: "Patience, la version ordinateur arrive bientôt.<br>En attendant, l'aventure t'attend déjà sur mobile !" }} />
           </div>
       }
     </div>
