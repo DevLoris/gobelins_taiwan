@@ -42,7 +42,7 @@
           "trigger": "pinpoubelle",
           "focus": {
             "coords": {"x":2, "y": 4, "z": 26},
-            "rotation": {"x": -6.9, "y": 0.1, "z": 22}
+            "rotation": {"x": -6.9, "y": -5, "z": 22}
           }
         },
         {
@@ -130,7 +130,7 @@
           "trigger": "pinscooter",
           "focus": {
             "coords": {"x": 4, "y": 6, "z": -5},
-            "rotation": {"x": -8, "y": 0, "z": -12}
+            "rotation": {"x": -8, "y": -11, "z": -12}
           }
         },
         {
@@ -162,7 +162,7 @@
           "trigger": "pinqi_gong",
           "focus": {
             "coords": {"x": 25, "y": 3, "z": 0},
-            "rotation": {"x": 19, "y": 0.7, "z": 3.2
+            "rotation": {"x": 19, "y": -3, "z": 3.2
             }
           }
         },
