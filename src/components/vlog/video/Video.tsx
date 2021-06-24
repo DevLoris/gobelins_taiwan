@@ -48,13 +48,10 @@ function Video(props: IProps) {
         <div ref={buttonRef} className={css.play}>
             <img src={"/public/da/icons/play.svg"} alt={"PLAY VLOG"} onClick={customPlayButtonClickHandler}/>
         </div>
-        {
-            isLocal() &&
-            <ButtonPicto className={css.skipButton} picto={ButtonPictoStyle.NEXT} disabled={false} onClick={() => {
-            videoRef.current.pause();
-            SequenceManager.instance.increment();
-            }} />
-        }
+        <ButtonPicto hidden={!isLocal()} className={css.skipButton} picto={ButtonPictoStyle.NEXT} disabled={false} onClick={() => {
+        videoRef.current.pause();
+        SequenceManager.instance.increment();
+        }} />
         <video playsInline={false} muted={false}  ref={videoRef} onEnded={videoFinishedHandler} controls={false}>
             <source src={props.path} type="video/mp4"/>
         </video>
