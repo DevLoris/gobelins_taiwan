@@ -1905,7 +1905,7 @@
     },
     {
       "id": "book",
-      "url": "/public/audio/aac/book.wav",
+      "url": "/public/audio/aac/book.aac",
       "params": {
         "volume": 0.55
       }
