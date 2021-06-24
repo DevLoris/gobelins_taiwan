@@ -150,9 +150,7 @@ function Notebook (props: IProps) {
                 {(page == NotebookPages.HINT &&
                     <NotebookPageHint/>
                 )}
-                {(page == NotebookPages.ELEMENTS &&
-                    <NotebookPageElements parentInnerRef={innerRef}/>
-                )}
+                <NotebookPageElements show={page == NotebookPages.ELEMENTS} parentInnerRef={innerRef}/>
                 {(page == NotebookPages.MAP &&
                     <NotebookPageMap/>
                 )}
