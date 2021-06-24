@@ -55,4 +55,30 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
+
+  &_desktop {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+.desktopInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    margin-top: 4rem;
+    width: 15rem;
+  }
+}
+
+.desktopMessage {
+  color: @white-color;
+
+  font-size: 1.4rem;
+  line-height: 2rem;
 }

@@ -42,6 +42,7 @@
     "howler": "^2.2.1",
     "i18next": "^20.2.1",
     "local-storage": "^2.0.0",
+    "lottie-web": "^5.7.11",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-i18next": "^11.8.13",

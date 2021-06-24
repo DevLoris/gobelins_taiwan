@@ -50,9 +50,9 @@ function Video(props: IProps) {
         </div>
         {
             isLocal() &&
-            <ButtonPicto className={css.lol} picto={ButtonPictoStyle.NEXT} disabled={false} onClick={() => {
-                videoRef.current.pause();
-                SequenceManager.instance.increment();
+            <ButtonPicto className={css.skipButton} picto={ButtonPictoStyle.NEXT} disabled={false} onClick={() => {
+            videoRef.current.pause();
+            SequenceManager.instance.increment();
             }} />
         }
         <video playsInline={false} muted={false}  ref={videoRef} onEnded={videoFinishedHandler} controls={false}>

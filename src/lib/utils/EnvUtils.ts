@@ -169,6 +169,10 @@ export class EnvUtils {
     EnvUtils.__NEED_DETECTION = false;
   }
 
+  static isOrientationLandscape():boolean {
+    return window.innerHeight < window.innerWidth;
+  }
+
   /**
    * Detect WebGL capability
    */

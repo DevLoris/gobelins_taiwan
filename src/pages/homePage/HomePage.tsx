@@ -1,9 +1,10 @@
 import css from "./HomePage.module.less";
 import React, {useEffect, useRef, useState} from "react";
-import { usePageRegister } from "../../lib/router/usePageRegister";
+import {usePageRegister} from "../../lib/router/usePageRegister";
 import Loader from "../../components/loader/Loader";
 import GameContainer from "../../components/gameContainer/GameContainer";
-import HomeSplash from "../../components/homeSplash/HomeSplash";
+import HomeSplash, {EHomeSplashMode} from "../../components/homeSplash/HomeSplash";
+import {EDeviceType, EnvUtils} from "../../lib/utils/EnvUtils";
 
 interface IProps {}
 
@@ -55,19 +56,49 @@ const HomePage = (props: IProps) => {
     setPlayingState(PLAYING_STATE.HOME);
   }
 
+  useEffect(() => {
+    window.addEventListener("resize", onOrientationChange);
+    onOrientationChange();
+    return () => {
+      window.removeEventListener("resize", onOrientationChange);
+    }
+  }, []);
+
+  const [showLandscapemobileWarning, setShowLandscapemobileWarning] = useState(false);
+
+  function onOrientationChange() {
+    setShowLandscapemobileWarning(EnvUtils.getDeviceType() === EDeviceType.HANDHELD && EnvUtils.isOrientationLandscape())
+  }
+
   // -------------------–-------------------–-------------------–--------------- RENDER
 
   return (
     <div className={css.root} ref={rootRef}>
-      {playingState == PLAYING_STATE.HOME && (
+      {
+        // Mobile landscape = message
+        showLandscapemobileWarning &&
+            <div className={css.mobileLandscapeScreen}>
+              <div className={css.mobileLandscapeScreenMessage}>
+                Retourne ton écran pour profiter pleinement de l'expérience !
+              </div>
+            </div>
+      }
+      {
+        // Desktop = message + QR code
+        EnvUtils.getDeviceType() === EDeviceType.DESKTOP && <HomeSplash startCallback={null} mode={EHomeSplashMode.DESKTOP} />
+      }
+
+      {/* On mobile, enable experience */}
+      {EnvUtils.getDeviceType() === EDeviceType.HANDHELD && playingState == PLAYING_STATE.HOME && (
           <HomeSplash startCallback={() =>  {
             setPlayingState(PLAYING_STATE.GAME);
-          }}/>
+          }}
+          mode={EHomeSplashMode.MOBILE}/>
       )}
-      {playingState == PLAYING_STATE.LOADING && (
+      {EnvUtils.getDeviceType() === EDeviceType.HANDHELD && playingState == PLAYING_STATE.LOADING && (
           <Loader modelsLoadedCallback={onModelsLoaded} />
       )}
-      {playingState == PLAYING_STATE.GAME && (
+      {EnvUtils.getDeviceType() === EDeviceType.HANDHELD && playingState == PLAYING_STATE.GAME && (
           <GameContainer show={true} />
       )}
     </div>
