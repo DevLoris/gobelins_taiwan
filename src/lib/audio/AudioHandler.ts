@@ -1,5 +1,6 @@
-import {Howl} from 'howler';
+import {Howl, Howler} from 'howler';
 import {IStateDataAudio} from "../../store/state_interface_data_audio";
+import {AUDIO_LEVEL} from "../../vars/scene_vars";
 
 const debug = require("debug")(`front:Audio`);
 
@@ -17,6 +18,7 @@ export class AudioHandler {
     static audioList: IAudio[] = [];
 
     static loadAll(audios:  IStateDataAudio[]) {
+        Howler.volume(AUDIO_LEVEL);
         audios.forEach(value => AudioHandler.load(value.id, value.url, value.params));
     }
 
