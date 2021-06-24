@@ -236,961 +236,961 @@
             "type": "sprite",
             "id": "obasan",
             "sprite": "/public/sprites/Obasan/Obasan_01.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [20, 0.6, 14], "size": {"w": 98, "h": 215}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [20, 0.6, 14], "size": {"w": 389, "h": 856}}
           },
           {
             "type": "sprite",
             "id": "obasan_2",
             "sprite": "/public/sprites/Obasan/Obasan_02.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [25, 0.6, 11], "size": {"w": 98, "h": 215}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [25, 0.6, 11], "size": {"w": 389, "h": 856}}
           },
           {
             "type": "sprite",
             "id": "obasan_3",
             "sprite": "/public/sprites/Obasan/Obasan_02.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [25, 0.6, 22], "size": {"w": 98, "h": 215}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [25, 0.6, 22], "size": {"w": 389, "h": 856}}
           },
           {
             "type": "sprite",
             "id": "obasan_4",
             "sprite": "/public/sprites/Obasan/Obasan_02.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [25, 0.6, 14], "size": {"w": 98, "h": 215}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [25, 0.6, 14], "size": {"w": 389, "h": 856}}
           },
           {
             "type": "sprite",
             "id": "serveur",
             "sprite": "/public/sprites/Serveur/Serveur_2.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [16, 0.5, 24], "size": {"w": 69, "h": 245}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [16, 0.5, 24], "size": {"w": 272, "h": 977}}
           },
           {
             "type": "sprite",
             "id": "serveur_2",
             "sprite": "/public/sprites/Serveur/Serveur_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [24, 0.5, 15], "size": {"w": 69, "h": 245}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [24, 0.5, 15], "size": {"w": 272, "h": 977}}
           },
           {
             "type": "sprite",
             "id": "serveur_3",
             "sprite": "/public/sprites/Serveur/Serveur_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [20, 0.65, 18.5], "size": {"w": 69, "h": 245}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [20, 0.65, 18.5], "size": {"w": 272, "h": 977}}
           },
           {
             "type": "sprite",
             "id": "serveur_4",
             "sprite": "/public/sprites/Serveur/Serveur_2.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [20, 0.65, 10], "size": {"w": 69, "h": 245}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [20, 0.65, 10], "size": {"w": 272, "h": 977}}
           },
           {
             "type": "sprite",
             "id": "serveur_5",
             "sprite": "/public/sprites/Serveur/Serveur_2.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [-21, 0.5, 8], "size": {"w": 69, "h": 245}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [-21, 0.5, 8], "size": {"w": 272, "h": 977}}
           },
           {
             "type": "sprite",
             "id": "serveur_6",
             "sprite": "/public/sprites/Serveur/Serveur_2.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [24.5, 0.5, 5.4], "size": {"w": 69, "h": 245}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [24.5, 0.5, 5.4], "size": {"w": 272, "h": 977}}
           },
           {
             "type": "sprite",
             "id": "serveur_7",
             "sprite": "/public/sprites/Serveur/Serveur_1.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [23.5, 0.5, 1.5], "size": {"w": 69, "h": 245}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [23.5, 0.5, 1.5], "size": {"w": 272, "h": 977}}
           },
           {
             "type": "sprite",
             "id": "homme",
             "sprite": "/public/sprites/Homme/Homme_2.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [22, 0.6, -9], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [22, 0.6, -9], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_2",
             "sprite": "/public/sprites/Homme/Homme_1.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [15, 0.6, 22], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [15, 0.6, 22], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_3",
             "sprite": "/public/sprites/Homme/Homme_1.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [-7, 0.6, -13], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [-7, 0.6, -13], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_4",
             "sprite": "/public/sprites/Homme/Homme_2.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [24, 0.6, 18], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [24, 0.6, 18], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_5",
             "sprite": "/public/sprites/Homme/Homme_1.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [13, 0.6, 8], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [13, 0.6, 8], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_6",
             "sprite": "/public/sprites/Homme/Homme_1.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [-25, 0.6, 5], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [-25, 0.6, 5], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_7",
             "sprite": "/public/sprites/Homme/Homme_1.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [5, 0.6, -9], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [5, 0.6, -9], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_8",
             "sprite": "/public/sprites/Homme/Homme_2.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [-7, 0.6, -16], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [-7, 0.6, -16], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_9",
             "sprite": "/public/sprites/Homme/Homme_2.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [-17, 0.6, -11], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [-17, 0.6, -11], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_10",
             "sprite": "/public/sprites/Homme/Homme_2.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [5, 0.6, -25], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [5, 0.6, -25], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_11",
             "sprite": "/public/sprites/Homme/Homme_2.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [-20, 0.4, -1.5], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [-20, 0.4, -1.5], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_12",
             "sprite": "/public/sprites/Homme/Homme_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [-22, 0.4, -1.5], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [-22, 0.4, -1.5], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_13",
             "sprite": "/public/sprites/Homme/Homme_2.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [6.8, 0.6, -8.3], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [6.8, 0.6, -8.3], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_14",
             "sprite": "/public/sprites/Homme/Homme_2.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [23.4, 0.6, 22.8], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [23.4, 0.6, 22.8], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_15",
             "sprite": "/public/sprites/Homme/Homme_2.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [23.2, 0.6, 24.5], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [23.2, 0.6, 24.5], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_16",
             "sprite": "/public/sprites/Homme/Homme_1.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [20.8, 0.6, 22.9], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [20.8, 0.6, 22.9], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_17",
             "sprite": "/public/sprites/Homme/Homme_1.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [22.3, 0.6, 8.4], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [22.3, 0.6, 8.4], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_18",
             "sprite": "/public/sprites/Homme/Homme_2.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [19.3, 0.6, 11.9], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [19.3, 0.6, 11.9], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_19",
             "sprite": "/public/sprites/Homme/Homme_2.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [-24.5, 0.4, 20], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [-24.5, 0.4, 20], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_20",
             "sprite": "/public/sprites/Homme/Homme_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [-21.7, 0.4, 19.3], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [-21.7, 0.4, 19.3], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_21",
             "sprite": "/public/sprites/Homme/Homme_2.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [8.6, 0.6, 23.2], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [8.6, 0.6, 23.2], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_22",
             "sprite": "/public/sprites/Homme/Homme_1.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [10.3, 0.6, 22.6], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [10.3, 0.6, 22.6], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_23",
             "sprite": "/public/sprites/Homme/Homme_2.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [20.1, 0.6, 24.7], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [20.1, 0.6, 24.7], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "homme_24",
             "sprite": "/public/sprites/Homme/Homme_2.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [15.9, 0.6, 22.9], "size": {"w": 108, "h": 255}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [15.9, 0.6, 22.9], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille",
             "sprite": "/public/sprites/Fille/Fille_01.png",
-            "options": {"scale": [0.7, 0.7, 0.7], "position": [4, 0.45, 0], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.7, 0.7, 0.7], "position": [4, 0.45, 0], "size": {"w": 391, "h": 916}}
           },
           {
             "type": "sprite",
             "id": "fille_2",
             "sprite": "/public/sprites/Fille/Fille_02.png",
-            "options": {"scale": [0.7, 0.7, 0.7], "position": [8, 0.45, 20], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.7, 0.7, 0.7], "position": [8, 0.45, 20], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_3",
             "sprite": "/public/sprites/Fille/Fille_01.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [26, 0.4, 4], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [26, 0.4, 4], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_4",
             "sprite": "/public/sprites/Fille/Fille_01.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [-25, 0.4, 2], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [-25, 0.4, 2], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_5",
             "sprite": "/public/sprites/Fille/Fille_02.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [-6, 0.6, -12], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [-6, 0.6, -12], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_6",
             "sprite": "/public/sprites/Fille/Fille_02.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [16, 0.6, -23], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [16, 0.6, -23], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_7",
             "sprite": "/public/sprites/Fille/Fille_02.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [-18, 0.6, -11], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [-18, 0.6, -11], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_8",
             "sprite": "/public/sprites/Fille/Fille_01.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [-16, 0.6, -12], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [-16, 0.6, -12], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_9",
             "sprite": "/public/sprites/Fille/Fille_01.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [-19, 0.35, -1], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [-19, 0.35, -1], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_10",
             "sprite": "/public/sprites/Fille/Fille_02.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [-4.5, 0.35, 7.5], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [-4.5, 0.35, 7.5], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_11",
             "sprite": "/public/sprites/Fille/Fille_01.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [-5, 0.6, -16], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [-5, 0.6, -16], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_12",
             "sprite": "/public/sprites/Fille/Fille_01.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [10.3, 0.6, -8.7], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [10.3, 0.6, -8.7], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_13",
             "sprite": "/public/sprites/Fille/Fille_02.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [10, 0.6, -10], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [10, 0.6, -10], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_14",
             "sprite": "/public/sprites/Fille/Fille_02.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [23.5, 0.6, 14.5], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [23.5, 0.6, 14.5], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_15",
             "sprite": "/public/sprites/Fille/Fille_02.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [19.3, 0.6, 23.2], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [19.3, 0.6, 23.2], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_16",
             "sprite": "/public/sprites/Fille/Fille_01.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [22.9, 0.6, 18.7], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [22.9, 0.6, 18.7], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_17",
             "sprite": "/public/sprites/Fille/Fille_01.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [20.9, 0.6, 20.2], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [20.9, 0.6, 20.2], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_18",
             "sprite": "/public/sprites/Fille/Fille_02.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [22.7, 0.6, 21.4], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [22.7, 0.6, 21.4], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_19",
             "sprite": "/public/sprites/Fille/Fille_02.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [-24, 0.4, -1.5], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [-24, 0.4, -1.5], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_20",
             "sprite": "/public/sprites/Fille/Fille_01.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [7, 0.6, 22.3], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [7, 0.6, 22.3], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "fille_21",
             "sprite": "/public/sprites/Fille/Fille_01.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [9.6, 0.6, 22.4], "size": {"w": 98, "h": 228}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [9.6, 0.6, 22.4], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
             "id": "femme",
             "sprite": "/public/sprites/Femme/Femme_2.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [-6, 0.6, -17], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [-6, 0.6, -17], "size": {"w": 297, "h": 986}}
           },
           {
             "type": "sprite",
             "id": "femme_2",
             "sprite": "/public/sprites/Femme/Femme_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [24, 0.6, 4], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [24, 0.6, 4], "size": {"w": 297, "h": 984}}
           },
           {
             "type": "sprite",
             "id": "femme_3",
             "sprite": "/public/sprites/Femme/Femme_2.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [8, 0.6, 24], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [8, 0.6, 24], "size": {"w": 297, "h": 984}}
           },
           {
             "type": "sprite",
             "id": "femme_4",
             "sprite": "/public/sprites/Femme/Femme_2.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [16, 0.6, -24], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [16, 0.6, -24], "size": {"w": 297, "h": 986}}
           },
           {
             "type": "sprite",
             "id": "femme_5",
             "sprite": "/public/sprites/Femme/Femme_1.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [4, 0.5, 15], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [4, 0.5, 15], "size": {"w": 297, "h": 984}}
           },
           {
             "type": "sprite",
             "id": "femme_6",
             "sprite": "/public/sprites/Femme/Femme_1.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [-14, 0.5, 0], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [-14, 0.5, 0], "size": {"w": 297, "h": 984}}
           },
           {
             "type": "sprite",
             "id": "femme_7",
             "sprite": "/public/sprites/Femme/Femme_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [-6, 0.6, -20], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [-6, 0.6, -20], "size": {"w": 297, "h": 984}}
           },
           {
             "type": "sprite",
             "id": "femme_8",
             "sprite": "/public/sprites/Femme/Femme_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [-6, 0.6, -20], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [-6, 0.6, -20], "size": {"w": 297, "h": 984}}
           },
           {
             "type": "sprite",
             "id": "femme_9",
             "sprite": "/public/sprites/Femme/Femme_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [14, 0.6, 0], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [14, 0.6, 0], "size": {"w": 297, "h": 984}}
           },
           {
             "type": "sprite",
             "id": "femme_10",
             "sprite": "/public/sprites/Femme/Femme_2.png",
-            "options": {"scale": [0.45, 0.45, 0.45], "position": [-5, 0.35, -1.5], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.45, 0.45, 0.45], "position": [-5, 0.35, -1.5], "size": {"w": 297, "h": 986}}
           },
           {
             "type": "sprite",
             "id": "femme_11",
             "sprite": "/public/sprites/Femme/Femme_2.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [8.3, 0.6, -8.5], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [8.3, 0.6, -8.5], "size": {"w": 297, "h": 986}}
           },
           {
             "type": "sprite",
             "id": "femme_12",
             "sprite": "/public/sprites/Femme/Femme_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [12.3, 0.6, -8.9], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [12.3, 0.6, -8.9], "size": {"w": 297, "h": 984}}
           },
           {
             "type": "sprite",
             "id": "femme_13",
             "sprite": "/public/sprites/Femme/Femme_1.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [-23, 0.35, -1.5], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [-23, 0.35, -1.5], "size": {"w": 297, "h": 984}}
           },
           {
             "type": "sprite",
             "id": "femme_14",
             "sprite": "/public/sprites/Femme/Femme_2.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [21.9, 0.6, 14.5], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [21.9, 0.6, 14.5], "size": {"w": 297, "h": 986}}
           },
           {
             "type": "sprite",
             "id": "femme_15",
             "sprite": "/public/sprites/Femme/Femme_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [22.9, 0.6, 17.2], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [22.9, 0.6, 17.2], "size": {"w": 297, "h": 984}}
           },
           {
             "type": "sprite",
             "id": "femme_16",
             "sprite": "/public/sprites/Femme/Femme_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [18.3, 0.6, 22.8], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [18.3, 0.6, 22.8], "size": {"w": 297, "h": 984}}
           },
           {
             "type": "sprite",
             "id": "femme_17",
             "sprite": "/public/sprites/Femme/Femme_2.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [18.3, 0.6, 23.6], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [18.3, 0.6, 23.6], "size": {"w": 297, "h": 986}}
           },
           {
             "type": "sprite",
             "id": "femme_18",
             "sprite": "/public/sprites/Femme/Femme_2.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [20.3, 0.6, 20.3], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [20.3, 0.6, 20.3], "size": {"w": 297, "h": 986}}
           },
           {
             "type": "sprite",
             "id": "femme_19",
             "sprite": "/public/sprites/Femme/Femme_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [13.3, 0.6, 20.3], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [13.3, 0.6, 20.3], "size": {"w": 297, "h": 984}}
           },
           {
             "type": "sprite",
             "id": "femme_20",
             "sprite": "/public/sprites/Femme/Femme_2.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [-25, 0.4, -1.5], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [-25, 0.4, -1.5], "size": {"w": 297, "h": 986}}
           },
           {
             "type": "sprite",
             "id": "femme_21",
             "sprite": "/public/sprites/Femme/Femme_2.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [-25, 0.4, 20], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [-25, 0.4, 20], "size": {"w": 297, "h": 986}}
           },
           {
             "type": "sprite",
             "id": "femme_22",
             "sprite": "/public/sprites/Femme/Femme_2.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [12.1, 0.6, 21.3], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [12.1, 0.6, 21.3], "size": {"w": 297, "h": 986}}
           },
           {
             "type": "sprite",
             "id": "femme_23",
             "sprite": "/public/sprites/Femme/Femme_1.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [-16.9, 0.3, 18.9], "size": {"w": 75, "h": 247}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [-16.9, 0.3, 18.9], "size": {"w": 297, "h": 984}}
           },
           {
             "type": "sprite",
             "id": "mamie",
             "sprite": "/public/sprites/Mamie/Mamie_01.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [-17, 0.6, -10], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [-17, 0.6, -10], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_2",
             "sprite": "/public/sprites/Mamie/Mamie_02.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [10, 6.6, -22], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [10, 6.6, -22], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_3",
             "sprite": "/public/sprites/Mamie/Mamie_02.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [-10, 0.6, 20], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [-10, 0.6, 20], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_4",
             "sprite": "/public/sprites/Mamie/Mamie_02.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [10, 0.6, 24], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [10, 0.6, 24], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_5",
             "sprite": "/public/sprites/Mamie/Mamie_01.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [-20, 0.35, 12], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [-20, 0.35, 12], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_6",
             "sprite": "/public/sprites/Mamie/Mamie_02.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [-5, 0.5, -19], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [-5, 0.5, -19], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_7",
             "sprite": "/public/sprites/Mamie/Mamie_01.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [14, 0.5, -9], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [14, 0.5, -9], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_8",
             "sprite": "/public/sprites/Mamie/Mamie_01.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [4, 0.5, 4], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [4, 0.5, 4], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_9",
             "sprite": "/public/sprites/Mamie/Mamie_02.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [-4, 0.5, 1], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [-4, 0.5, 1], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_10",
             "sprite": "/public/sprites/Mamie/Mamie_02.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [19, 0.5, -19], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [19, 0.5, -19], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_11",
             "sprite": "/public/sprites/Mamie/Mamie_02.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [14, 0.5, 4], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [14, 0.5, 4], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_12",
             "sprite": "/public/sprites/Mamie/Mamie_01.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [19, 0.5, 8], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [19, 0.5, 8], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_13",
             "sprite": "/public/sprites/Mamie/Mamie_01.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [-7, 0.5, -18], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [-7, 0.5, -18], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_14",
             "sprite": "/public/sprites/Mamie/Mamie_02.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [9.4, 0.5, -9.3], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [9.4, 0.5, -9.3], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_15",
             "sprite": "/public/sprites/Mamie/Mamie_02.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [17.4, 0.5, 24.4], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [17.4, 0.5, 24.4], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_16",
             "sprite": "/public/sprites/Mamie/Mamie_01.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [20.5, 0.5, 23.8], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [20.5, 0.5, 23.8], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_17",
             "sprite": "/public/sprites/Mamie/Mamie_01.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [20.9, 0.5, 18.3], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [20.9, 0.5, 18.3], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_18",
             "sprite": "/public/sprites/Mamie/Mamie_01.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [23.2, 0.5, 16.3], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [23.2, 0.5, 16.3], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_19",
             "sprite": "/public/sprites/Mamie/Mamie_02.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [23.7, 0.5, 13.8], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [23.7, 0.5, 13.8], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_20",
             "sprite": "/public/sprites/Mamie/Mamie_02.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [22.7, 0.5, 9.9], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [22.7, 0.5, 9.9], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_21",
             "sprite": "/public/sprites/Mamie/Mamie_01.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [22.3, 0.5, 7], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [22.3, 0.5, 7], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_22",
             "sprite": "/public/sprites/Mamie/Mamie_01.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [-21.3, 0.35, 19.2], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [-21.3, 0.35, 19.2], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "mamie_23",
             "sprite": "/public/sprites/Mamie/Mamie_01.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [8.3, 0.5, 21.3], "size": {"w": 62, "h": 215}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [8.3, 0.5, 21.3], "size": {"w": 244, "h": 860}}
           },
           {
             "type": "sprite",
             "id": "papy",
             "sprite": "/public/sprites/Papi/Papi_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [-15, 0.6, -10], "size": {"w": 75, "h": 246}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [-15, 0.6, -10], "size": {"w": 296, "h": 982}}
           },
           {
             "type": "sprite",
             "id": "papy_2",
             "sprite": "/public/sprites/Papi/Papi_2.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [-18, 0.4, 20], "size": {"w": 75, "h": 246}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [-18, 0.4, 20], "size": {"w": 296, "h": 982}}
           },
           {
             "type": "sprite",
             "id": "papy_3",
             "sprite": "/public/sprites/Papi/Papi_1.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [8, 0.4, 23], "size": {"w": 75, "h": 246}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [8, 0.4, 23], "size": {"w": 296, "h": 982}}
           },
           {
             "type": "sprite",
             "id": "papy_4",
             "sprite": "/public/sprites/Papi/Papi_1.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [5, 0.4, 11], "size": {"w": 75, "h": 246}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [5, 0.4, 11], "size": {"w": 296, "h": 982}}
           },
           {
             "type": "sprite",
             "id": "papy_5",
             "sprite": "/public/sprites/Papi/Papi_2.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [22, 8.2, -15], "size": {"w": 75, "h": 246}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [22, 8.2, -15], "size": {"w": 296, "h": 982}}
           },
           {
             "type": "sprite",
             "id": "papy_6",
             "sprite": "/public/sprites/Papi/Papi_2.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [8, 15.7, -15], "size": {"w": 75, "h": 246}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [8, 15.7, -15], "size": {"w": 296, "h": 982}}
           },
           {
             "type": "sprite",
             "id": "papy_7",
             "sprite": "/public/sprites/Papi/Papi_1.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [8, 15.7, -14], "size": {"w": 75, "h": 246}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [8, 15.7, -14], "size": {"w": 296, "h": 982}}
           },
           {
             "type": "sprite",
             "id": "papy_8",
             "sprite": "/public/sprites/Papi/Papi_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [-5, 0.6, -20], "size": {"w": 75, "h": 246}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [-5, 0.6, -20], "size": {"w": 296, "h": 982}}
           },
           {
             "type": "sprite",
             "id": "papy_9",
             "sprite": "/public/sprites/Papi/Papi_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [-4, 0.6, -9], "size": {"w": 75, "h": 246}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [-4, 0.6, -9], "size": {"w": 296, "h": 982}}
           },
           {
             "type": "sprite",
             "id": "papy_10",
             "sprite": "/public/sprites/Papi/Papi_2.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [11.5, 0.6, -10], "size": {"w": 75, "h": 246}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [11.5, 0.6, -10], "size": {"w": 296, "h": 982}}
           },
           {
             "type": "sprite",
             "id": "papy_11",
             "sprite": "/public/sprites/Papi/Papi_1.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [-21, 0.35, -1.5], "size": {"w": 75, "h": 246}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [-21, 0.35, -1.5], "size": {"w": 296, "h": 982}}
           },
           {
             "type": "sprite",
             "id": "papy_12",
             "sprite": "/public/sprites/Papi/Papi_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [22.1, 0.45, 20.7], "size": {"w": 75, "h": 246}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [22.1, 0.45, 20.7], "size": {"w": 296, "h": 982}}
           },
           {
             "type": "sprite",
             "id": "papy_13",
             "sprite": "/public/sprites/Papi/Papi_1.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [16.3, 0.45, 21], "size": {"w": 75, "h": 246}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [16.3, 0.45, 21], "size": {"w": 296, "h": 982}}
           },
           {
             "type": "sprite",
             "id": "papy_14",
             "sprite": "/public/sprites/Papi/Papi_2.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [21.6, 0.55, 13.6], "size": {"w": 75, "h": 246}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [21.6, 0.55, 13.6], "size": {"w": 296, "h": 982}}
           },
           {
             "type": "sprite",
             "id": "papy_15",
             "sprite": "/public/sprites/Papi/Papi_2.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [12.6, 0.55, 20.6], "size": {"w": 75, "h": 246}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [12.6, 0.55, 20.6], "size": {"w": 296, "h": 982}}
           },
           {
             "type": "sprite",
             "id": "papy_16",
             "sprite": "/public/sprites/Papi/Papi_2.png",
-            "options": {"scale": [0.6, 0.6, 0.6], "position": [14.1, 0.55, 22.6], "size": {"w": 75, "h": 246}}
+            "options": {"scale": [0.6, 0.6, 0.6], "position": [14.1, 0.55, 22.6], "size": {"w": 296, "h": 982}}
           },
           {
             "type": "sprite",
             "id": "papy_17",
             "sprite": "/public/sprites/Papi/Papi_1.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [-20.7  , 0.35, 19.1], "size": {"w": 75, "h": 246}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [-20.7  , 0.35, 19.1], "size": {"w": 296, "h": 982}}
           },
           {
             "type": "sprite",
             "id": "petit",
             "sprite": "/public/sprites/Petit/Petit_1.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [-17, 0.2, 10], "size": {"w": 54, "h": 149}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [-17, 0.2, 10], "size": {"w": 226, "h": 591}}
           },
           {
             "type": "sprite",
             "id": "petit_2",
             "sprite": "/public/sprites/Petit/Petit_2.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [8, 0.25, -1.7], "size": {"w": 54, "h": 149}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [8, 0.25, -1.7], "size": {"w": 215, "h": 591}}
           },
           {
             "type": "sprite",
             "id": "petit_3",
             "sprite": "/public/sprites/Petit/Petit_2.png",
-            "options": {"scale": [0.3, 0.3, 0.3], "position": [-16, 0.1, 3], "size": {"w": 54, "h": 149}}
+            "options": {"scale": [0.3, 0.3, 0.3], "position": [-16, 0.1, 3], "size": {"w": 215, "h": 591}}
           },
           {
             "type": "sprite",
             "id": "petit_4",
             "sprite": "/public/sprites/Petit/Petit_2.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [22, 0.2, -25], "size": {"w": 54, "h": 149}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [22, 0.2, -25], "size": {"w": 215, "h": 591}}
           },
           {
             "type": "sprite",
             "id": "petit_5",
             "sprite": "/public/sprites/Petit/Petit_1.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [-22, 0.2, 20], "size": {"w": 54, "h": 149}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [-22, 0.2, 20], "size": {"w": 226, "h": 591}}
           },
           {
             "type": "sprite",
             "id": "petit_6",
             "sprite": "/public/sprites/Petit/Petit_2.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [-23, 0.2, 20], "size": {"w": 54, "h": 149}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [-23, 0.2, 20], "size": {"w": 215, "h": 591}}
           },
           {
             "type": "sprite",
             "id": "petit_7",
             "sprite": "/public/sprites/Petit/Petit_2.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [22, 0.2, -12], "size": {"w": 54, "h": 149}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [22, 0.2, -12], "size": {"w": 215, "h": 591}}
           },
           {
             "type": "sprite",
             "id": "petit_8",
             "sprite": "/public/sprites/Petit/Petit_2.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [5, 0.2, -19], "size": {"w": 54, "h": 149}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [5, 0.2, -19], "size": {"w": 215, "h": 591}}
           },
           {
             "type": "sprite",
             "id": "petit_9",
             "sprite": "/public/sprites/Petit/Petit_1.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [5, 0.2, -20], "size": {"w": 54, "h": 149}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [5, 0.2, -20], "size": {"w": 226, "h": 591}}
           },
           {
             "type": "sprite",
             "id": "petit_10",
             "sprite": "/public/sprites/Petit/Petit_2.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [-15, 0.3, 8], "size": {"w": 54, "h": 149}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [-15, 0.3, 8], "size": {"w": 215, "h": 591}}
           },
           {
             "type": "sprite",
             "id": "petit_11",
             "sprite": "/public/sprites/Petit/Petit_2.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [11.4, 0.3,-9.3], "size": {"w": 54, "h": 149}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [11.4, 0.3,-9.3], "size": {"w": 215, "h": 591}}
           },
           {
             "type": "sprite",
             "id": "petit_12",
             "sprite": "/public/sprites/Petit/Petit_2.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [23.4, 0.3, 23.1], "size": {"w": 54, "h": 149}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [23.4, 0.3, 23.1], "size": {"w": 215, "h": 591}}
           },
           {
             "type": "sprite",
             "id": "petit_13",
             "sprite": "/public/sprites/Petit/Petit_1.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [20.1, 0.3, 23.1], "size": {"w": 54, "h": 149}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [20.1, 0.3, 23.1], "size": {"w": 226, "h": 591}}
           },
           {
             "type": "sprite",
             "id": "petit_14",
             "sprite": "/public/sprites/Petit/Petit_1.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [16.8, 0.3, 23.1], "size": {"w": 54, "h": 149}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [16.8, 0.3, 23.1], "size": {"w": 226, "h": 591}}
           },
           {
             "type": "sprite",
             "id": "petit_15",
             "sprite": "/public/sprites/Petit/Petit_2.png",
-            "options": {"scale": [0.5, 0.5, 0.5], "position": [10.8, 0.3, 21.9], "size": {"w": 54, "h": 149}}
+            "options": {"scale": [0.5, 0.5, 0.5], "position": [10.8, 0.3, 21.9], "size": {"w": 215, "h": 591}}
           },
           {
             "type": "sprite",
             "id": "petite",
             "sprite": "/public/sprites/Petite/Petite_1.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [-15, 0.2, 10], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [-15, 0.2, 10], "size": {"w": 162, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_2",
             "sprite": "/public/sprites/Petite/Petite_2.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [6, 0.25, -1.5], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [6, 0.25, -1.5], "size": {"w": 145, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_3",
             "sprite": "/public/sprites/Petite/Petite_2.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [24, 0.2, 14], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [24, 0.2, 14], "size": {"w": 145, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_4",
             "sprite": "/public/sprites/Petite/Petite_1.png",
-            "options": {"scale": [0.3, 0.3, 0.3], "position": [-25, 0.2, 3], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.3, 0.3, 0.3], "position": [-25, 0.2, 3], "size": {"w": 162, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_5",
             "sprite": "/public/sprites/Petite/Petite_1.png",
-            "options": {"scale": [0.3, 0.3, 0.3], "position": [5, 0.2, -16], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.3, 0.3, 0.3], "position": [5, 0.2, -16], "size": {"w": 162, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_6",
             "sprite": "/public/sprites/Petite/Petite_2.png",
-            "options": {"scale": [0.3, 0.3, 0.3], "position": [5, 0.2, -15], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.3, 0.3, 0.3], "position": [5, 0.2, -15], "size": {"w": 145, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_7",
             "sprite": "/public/sprites/Petite/Petite_2.png",
-            "options": {"scale": [0.3, 0.3, 0.3], "position": [-7, 0.2, 20], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.3, 0.3, 0.3], "position": [-7, 0.2, 20], "size": {"w": 145, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_8",
             "sprite": "/public/sprites/Petite/Petite_2.png",
-            "options": {"scale": [0.3, 0.3, 0.3], "position": [-6.5, 0.2, 20], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.3, 0.3, 0.3], "position": [-6.5, 0.2, 20], "size": {"w": 145, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_9",
             "sprite": "/public/sprites/Petite/Petite_2.png",
-            "options": {"scale": [0.3, 0.3, 0.3], "position": [-6, 0.2, 20], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.3, 0.3, 0.3], "position": [-6, 0.2, 20], "size": {"w": 145, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_10",
             "sprite": "/public/sprites/Petite/Petite_2.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [-13, 0.2, 6], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [-13, 0.2, 6], "size": {"w": 145, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_11",
             "sprite": "/public/sprites/Petite/Petite_2.png",
-            "options": {"scale": [0.3, 0.3, 0.3], "position": [-5.5, 0.15, -1.53], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.3, 0.3, 0.3], "position": [-5.5, 0.15, -1.53], "size": {"w": 145, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_12",
             "sprite": "/public/sprites/Petite/Petite_2.png",
-            "options": {"scale": [0.3, 0.3, 0.3], "position": [13.7, 0.15, -8.43], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.3, 0.3, 0.3], "position": [13.7, 0.15, -8.43], "size": {"w": 145, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_13",
             "sprite": "/public/sprites/Petite/Petite_2.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [13.7, 0.15, 22.3], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [13.7, 0.15, 22.3], "size": {"w": 145, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_14",
             "sprite": "/public/sprites/Petite/Petite_2.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [17.2, 0.15, 23.3], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [17.2, 0.15, 23.3], "size": {"w": 145, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_15",
             "sprite": "/public/sprites/Petite/Petite_1.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [17.8, 0.15, 21.9], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [17.8, 0.15, 21.9], "size": {"w": 162, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_16",
             "sprite": "/public/sprites/Petite/Petite_1.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [22, 0.15, 17.9], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [22, 0.15, 17.9], "size": {"w": 162, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_17",
             "sprite": "/public/sprites/Petite/Petite_2.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [25, 0.15, 13], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [25, 0.15, 13], "size": {"w": 145, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_18",
             "sprite": "/public/sprites/Petite/Petite_1.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [4.2, 0.15, 23.3], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [4.2, 0.15, 23.3], "size": {"w": 162, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_19",
             "sprite": "/public/sprites/Petite/Petite_1.png",
-            "options": {"scale": [0.4, 0.4, 0.4], "position": [8.6, 0.15, 22.8], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.4, 0.4, 0.4], "position": [8.6, 0.15, 22.8], "size": {"w": 162, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "petite_20",
             "sprite": "/public/sprites/Petite/Petite_1.png",
-            "options": {"scale": [0.3, 0.3, 0.3], "position": [-18.6, 0.15, 19.8], "size": {"w": 39, "h": 123}}
+            "options": {"scale": [0.3, 0.3, 0.3], "position": [-18.6, 0.15, 19.8], "size": {"w": 162, "h": 489}}
           },
           {
             "type": "sprite",
             "id": "qigong_femme",
             "sprite": "/public/sprites/Qigong/Qigong_woman.png",
-            "options": {"scale": [0.9, 0.9, 0.9], "position": [18, 0.6, 4], "size": {"w": 108, "h": 223}}
+            "options": {"scale": [0.9, 0.9, 0.9], "position": [18, 0.6, 4], "size": {"w": 492, "h": 892}}
           },
           {
             "type": "sprite",
             "id": "qigong_femme",
             "sprite": "/public/sprites/Qigong/Qigong_woman.png",
-            "options": {"scale": [0.9, 0.9, 0.9], "position": [18.4, 0.6, 4.6], "size": {"w": 108, "h": 223}}
+            "options": {"scale": [0.9, 0.9, 0.9], "position": [18.4, 0.6, 4.6], "size": {"w": 492, "h": 892}}
           },
           {
             "type": "sprite",
             "id": "qigong_femme",
             "sprite": "/public/sprites/Qigong/Qigong_woman.png",
-            "options": {"scale": [0.9, 0.9, 0.9], "position": [18.4, 0.6, 2], "size": {"w": 108, "h": 223}}
+            "options": {"scale": [0.9, 0.9, 0.9], "position": [18.4, 0.6, 2], "size": {"w": 492, "h": 892}}
           },
           {
             "type": "sprite",
             "id": "qigong_homme",
             "sprite": "/public/sprites/Qigong/Qigong_man.png",
-            "options": {"scale": [0.9, 0.9, 0.9], "position": [18, 0.6, 3], "size": {"w": 183, "h": 393}}
+            "options": {"scale": [0.9, 0.9, 0.9], "position": [18, 0.6, 3], "size": {"w": 365, "h": 786}}
           },
           {
             "type": "sprite",
             "id": "qigong_homme",
             "sprite": "/public/sprites/Qigong/Qigong_man.png",
-            "options": {"scale": [0.9, 0.9, 0.9], "position": [17.6, 0.6, 3.4], "size": {"w": 183, "h": 393}}
+            "options": {"scale": [0.9, 0.9, 0.9], "position": [17.6, 0.6, 3.4], "size": {"w": 365, "h": 786}}
           },
           {
             "type": "sprite",
             "id": "qigong_homme",
             "sprite": "/public/sprites/Qigong/Qigong_man.png",
-            "options": {"scale": [0.9, 0.9, 0.9], "position": [17.6, 0.6, 4.4], "size": {"w": 183, "h": 393}}
+            "options": {"scale": [0.9, 0.9, 0.9], "position": [17.6, 0.6, 4.4], "size": {"w": 365, "h": 786}}
           }
         ],
         "lights": [
@@ -1360,7 +1360,7 @@
             "options": {
               "scale": [1.8, 1.8, 1.8],
               "position": [2, -0.8, 0.5],
-              "size": {"w": 268, "h": 942}
+              "size": {"w": 222, "h": 917}
             }
           }
         ],
