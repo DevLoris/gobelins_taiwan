@@ -281,10 +281,12 @@ export class WebGlManager {
 
                             this._movingObjects.push(object);
 
-                            animsObject.animations.forEach((anim) => {
+                            animsObject?.animations?.forEach((anim) => {
                                 if(anim.name.toLowerCase() === object.name.toLowerCase().replace("moving", ""))
                                 {
-                                    object.animations = [anim];
+                                    if(object.animations.length === 0) {
+                                        object.animations = [anim];
+                                    }
                                     this._animationMixers.push(new AnimationMixer(object));
                                     this._animationClips.push(object.animations);
                                 }
@@ -678,6 +680,7 @@ export class WebGlManager {
 
         this._spritesAnimators = [];
         this._animationMixers = [];
+        this._animationClips = [];
 
         // AMBIENT SOUND DISABLE
         AudioHandler.stop(previous_scene.ambient);

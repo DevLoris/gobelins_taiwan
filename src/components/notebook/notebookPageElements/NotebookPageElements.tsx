@@ -17,6 +17,7 @@ gsap.registerPlugin(ScrollToPlugin);
 interface IProps {
   className?: string
   parentInnerRef: any
+  show: boolean
 }
 
 const componentName = "NotebookPageElements";
@@ -37,6 +38,7 @@ function NotebookPageElements (props: IProps) {
   const [pageInDom, setPageInDom] = useState(false);
   const [listInDom, setListInDom] = useState(false);
 
+  const rootRef = useRef();
   const pageElRef = useRef();
 
   // get collectibles of scene
@@ -58,6 +60,7 @@ function NotebookPageElements (props: IProps) {
 
   // signal for forcing page change
   useEffect(() =>  {
+
     // Hide page
     toggleShowPage(false);
     // Show list
@@ -65,10 +68,23 @@ function NotebookPageElements (props: IProps) {
 
     NotebookSignal.getInstance().notebookContent.add(notebookContentHandler)
 
+    NotebookSignal.getInstance().onTabChange.add(notebookTabChangeHandler)
+
     return () => {
       NotebookSignal.getInstance().notebookContent.remove(notebookContentHandler)
+      NotebookSignal.getInstance().onTabChange.remove(notebookTabChangeHandler)
     }
   }, []);
+
+  useEffect(() => {
+
+    gsap.set(rootRef.current, {autoAlpha: props.show ? 1 : 0});
+
+  }, [props.show]);
+
+  function notebookTabChangeHandler() {
+    toggleShowPage(false);
+  }
 
   function notebookContentHandler(type, data) {
     if(type == NOTEBOOK_SEND.CONTENT)  {
@@ -132,7 +148,7 @@ function NotebookPageElements (props: IProps) {
     }
   }
 
-  return <>
+  return <div ref={rootRef}>
     {
       listInDom &&
       <div className={merge([css.root, props.className])}>
@@ -159,7 +175,7 @@ function NotebookPageElements (props: IProps) {
       </div>
     }
     { pageInDom && <NotebookPageElementsDetails elRef={pageElRef} className={"light"} leaveButton={true} data={page} onExit={() => { toggleShowPage(false); }} /> }
-    </>
+    </div>
 }
 
 export default NotebookPageElements
