@@ -84,7 +84,7 @@ function NotebookHint (props: IProps) {
           toggleVisible(false)
         }}/>
     )}
-    <div className={"big-title-block"}>
+    <div className={merge(["big-title-block", css.rotate])}>
       <div className={"title-block-mandarin"}>信息</div>
       <div>
         <h1>Indice</h1>

@@ -3,11 +3,12 @@ import React, {useEffect, useRef, useState} from 'react';
 import {merge} from "../../lib/utils/arrayUtils";
 import Eligibility from "../eligibility/Eligibility";
 import RaycastManager, {RaycastInteractionType} from "../webGlCanvas/WebGlManagerClasses/events/RaycastManager";
-import {Object3D} from "three";
+import {Object3D, WebGLRenderer} from "three";
 import Button, {ButtonStyle} from "../button/Button";
 import {gsap} from "gsap";
 import ButtonPicto, {ButtonPictoStyle} from "../buttonPicto/ButtonPicto";
 import ButtonRounded, {ButtonRoundedStyle} from "../buttonRounded/ButtonRounded";
+import {WebGlManager} from "../webGlCanvas/WebGlManagerClasses/WebGlManager";
 
 interface IProps {
   className?: string
@@ -64,6 +65,7 @@ function EndExperience (props: IProps) {
   }, []);
 
   useEffect(() => {
+    WebGlManager.getInstance().toggleRendering(true);
     if(step == EndExperienceStep.PVTISTES_NET) {
       gsap.to(pvtisteRef.current, {autoAlpha: 1});
     }
@@ -73,6 +75,7 @@ function EndExperience (props: IProps) {
     else {
       gsap.to(pvtisteRef.current, {autoAlpha:0 });
       gsap.to(vloggerRef.current, {autoAlpha:0 });
+      WebGlManager.getInstance().toggleRendering(false);
     }
   }, [step])
 
