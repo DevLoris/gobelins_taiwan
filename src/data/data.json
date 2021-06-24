@@ -326,7 +326,7 @@
             "type": "sprite",
             "id": "homme_5",
             "sprite": "/public/sprites/Homme/Homme_1.png",
-            "options": {"scale": [0.8, 0.8, 0.8], "position": [13, 0.6, 8], "size": {"w": 429, "h": 1019}}
+            "options": {"scale": [0.8, 0.8, 0.8], "position": [13, 0.6, 8.5], "size": {"w": 429, "h": 1019}}
           },
           {
             "type": "sprite",
@@ -1877,42 +1877,42 @@
   "audios": [
     {
       "id": "pickup",
-      "url": "/public/audio/Game Reward.mp3",
+      "url": "/public/audio/aac/Game Reward.aac",
       "params": {
         "volume": 0.5
       }
     },
     {
       "id": "coins",
-      "url": "/public/audio/coins.mp3",
+      "url": "/public/audio/aac/coins.aac",
       "params": {
         "volume": 0.5
       }
     },
     {
       "id": "camion-poubelle",
-      "url": "/public/audio/camion-poubelle.mp3",
+      "url": "/public/audio/aac/camion-poubelle.aac",
       "params": {
         "volume": 0.6
       }
     },
     {
       "id": "page",
-      "url": "/public/audio/page.mp3",
+      "url": "/public/audio/aac/page.aac",
       "params": {
         "volume": 0.75
       }
     },
     {
       "id": "book",
-      "url": "/public/audio/book.wav",
+      "url": "/public/audio/aac/book.wav",
       "params": {
         "volume": 0.55
       }
     },
     {
       "id": "ambient_city",
-      "url": "/public/audio/ambiance-taipei.mp3",
+      "url": "/public/audio/aac/ambiance-taipei.aac",
       "params": {
         "loop": true,
         "volume": 0.4
@@ -1920,7 +1920,7 @@
     },
     {
       "id": "ambient_airport",
-      "url": "/public/audio/ambiance-airport.mp3",
+      "url": "/public/audio/aac/ambiance-airport.aac",
       "params": {
         "loop": true,
         "volume": 0.4
@@ -1928,14 +1928,14 @@
     },
     {
       "id": "enigma_1",
-      "url": "/public/audio/enigma_1.mp3",
+      "url": "/public/audio/aac/enigma_1.aac",
       "params": {
         "loop": false
       }
     },
     {
       "id": "ambient_nature",
-      "url": "/public/audio/ambient_nature.mp3",
+      "url": "/public/audio/aac/ambient_nature.aac",
       "params": {
         "loop": true,
         "volume": 0.4

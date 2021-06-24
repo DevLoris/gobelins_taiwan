@@ -13,6 +13,7 @@ interface IProps {
   className?: string,
   disabled: boolean,
   picto: ButtonPictoStyle,
+  hidden?: boolean
   onClick: () => void
 }
 
@@ -25,7 +26,7 @@ const debug = require("debug")(`front:${componentName}`);
 function ButtonPicto (props: IProps) {
   const randId = randomTo(10000);
 
-  return <div  onClick={props.onClick} className={merge([css.root, props.className, props.disabled ? css.disabled : null])}>
+  return <div  onClick={props.onClick} className={merge([css.root, props.className, props.disabled ? css.disabled : null, props.hidden ? css.hidden : null])}>
     <svg  width="63.633" height="41.446" viewBox="0 0 63.633 41.446">
       <defs>
         <clipPath id={"clip-path_" + randId}>
